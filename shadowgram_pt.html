@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shadowgram — Descubra seu tipo</title>
+  <meta name="description" content="Diagnóstico de personalidade baseado em Jung e Big Five. 28 perguntas. Resultado instantâneo. Desenvolvido por especialista coreano com 20 anos de experiência."/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark:  #0F1119;
+      --dark2: #1A1F2E;
+      --card:  #161B28;
+      --gold:  #C5A572;
+      --goldL: #E8D4A8;
+      --white: #FFFFFF;
+      --silver:#9BAAB8;
+      --border:rgba(197,165,114,0.18);
+      --red:   #E05555;
+    }
+
+    /* ── 모바일 우선 베이스 ── */
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      background: var(--dark);
+      color: var(--white);
+      font-family: 'Montserrat', sans-serif;
+      min-height: 100vh;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { text-decoration: none; font-size: 14px; letter-spacing: 3px; }
+    .nav-logo .s1 { color: var(--gold); font-weight: 300; }
+    .nav-logo .s2 { color: var(--white); font-weight: 900; }
+    .nav-back {
+      font-size: 13px; color: var(--silver);
+      text-decoration: none; transition: color .2s;
+    }
+    .nav-back:active { color: var(--gold); }
+
+    /* ── HERO ── */
+    .hero {
+      text-align: center;
+      padding: 48px 20px 36px;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-label {
+      font-size: 12px; letter-spacing: 3px; color: var(--gold);
+      font-weight: 700; margin-bottom: 20px;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 7vw, 52px);
+      font-weight: 600; line-height: 1.35;
+      margin-bottom: 18px;
+    }
+    .hero-sub {
+      color: var(--silver); font-size: 16px;
+      max-width: 520px; margin: 0 auto;
+      line-height: 2.0;
+    }
+
+    /* ── CREDIBILITY BADGE ── */
+    .cred-bar {
+      max-width: 680px; margin: 0 auto;
+      padding: 28px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .cred-inner {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 22px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .cred-icon { font-size: 32px; flex-shrink: 0; }
+    .cred-title {
+      font-size: 12px; letter-spacing: 2px; color: var(--gold);
+      font-weight: 700; margin-bottom: 10px;
+    }
+    .cred-desc {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px; line-height: 1.9; color: var(--goldL);
+    }
+    .cred-sources {
+      margin-top: 14px;
+      display: flex; gap: 8px; flex-wrap: wrap;
+    }
+    .cred-tag {
+      font-size: 12px; color: var(--silver);
+      border: 1px solid var(--border); border-radius: 2px;
+      padding: 6px 12px;
+    }
+
+    /* ── META ── */
+    .hero-meta {
+      max-width: 680px; margin: 0 auto;
+      padding: 24px 20px 0;
+      display: flex; justify-content: center; gap: 16px;
+      flex-wrap: wrap;
+    }
+    .hero-meta span { font-size: 13px; color: var(--silver); }
+    .hero-meta strong { color: var(--gold); }
+
+    /* ── BACK BUTTON ── */
+    .back-btn-wrap {
+      max-width: 680px; margin: 0 auto;
+      padding: 16px 20px 0;
+    }
+    .btn-prev {
+      background: none; border: none;
+      color: var(--silver); font-size: 14px;
+      font-family: 'Montserrat', sans-serif;
+      cursor: pointer; padding: 8px 0;
+      display: flex; align-items: center; gap: 6px;
+      transition: color .2s;
+    }
+    .btn-prev:active { color: var(--gold); }
+    .btn-prev.hidden { visibility: hidden; pointer-events: none; }
+
+    /* ── PROGRESS ── */
+    .progress-wrap {
+      max-width: 680px; margin: 0 auto;
+      padding: 12px 20px 0;
+    }
+    .progress-bar-bg {
+      height: 3px; background: var(--border);
+      border-radius: 2px; overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%; background: var(--gold);
+      border-radius: 2px; transition: width .4s ease; width: 0%;
+    }
+    .progress-text {
+      display: flex; justify-content: space-between;
+      margin-top: 12px;
+      font-size: 13px; color: var(--silver);
+    }
+    .dimension-label {
+      font-size: 12px; letter-spacing: 1px; color: var(--gold);
+      margin-top: 8px; font-weight: 600;
+    }
+
+    /* ── QUIZ ── */
+    #quiz-section {
+      max-width: 680px; margin: 0 auto;
+      padding: 32px 20px 80px;
+    }
+    .question-block { display: none; }
+    .question-block.active { display: block; animation: fadeIn .3s ease; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .q-num {
+      font-size: 12px; letter-spacing: 2px; color: var(--gold);
+      font-weight: 700; margin-bottom: 16px;
+    }
+    .q-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(20px, 5vw, 26px);
+      font-weight: 600; line-height: 1.6;
+      margin-bottom: 28px;
+    }
+    .ab-options { display: flex; flex-direction: column; gap: 14px; }
+    .ab-btn {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--white);
+      padding: 20px 20px;
+      text-align: left; cursor: pointer;
+      border-radius: 4px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 16px; line-height: 1.7;
+      transition: border-color .2s, background .2s;
+      display: flex; align-items: flex-start; gap: 16px; width: 100%;
+    }
+    .ab-btn:active {
+      border-color: var(--gold);
+      background: rgba(197,165,114,0.13);
+    }
+    .ab-btn.selected {
+      border-color: var(--gold);
+      background: rgba(197,165,114,0.13);
+    }
+    .ab-label {
+      flex-shrink: 0; width: 36px; height: 36px;
+      border: 1px solid var(--border); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; font-weight: 800; color: var(--gold);
+      margin-top: 2px;
+    }
+    .ab-btn.selected .ab-label {
+      background: var(--gold); color: var(--dark); border-color: var(--gold);
+    }
+    .ab-text { font-size: 16px; }
+
+    /* ── RESULT ── */
+    #result-section {
+      display: none;
+      max-width: 700px; margin: 0 auto;
+      padding: 40px 20px 80px;
+      animation: fadeIn .5s ease;
+    }
+    .result-label {
+      text-align: center;
+      font-size: 12px; letter-spacing: 3px; color: var(--gold);
+      font-weight: 600; margin-bottom: 16px;
+    }
+    .result-type-name {
+      text-align: center;
+      font-size: clamp(56px, 16vw, 96px);
+      font-weight: 900; letter-spacing: 4px;
+      line-height: 1; margin-bottom: 10px;
+    }
+    .result-function {
+      text-align: center;
+      font-size: 14px; letter-spacing: 1px; color: var(--silver);
+      margin-bottom: 8px; line-height: 1.6;
+    }
+    .result-code {
+      text-align: center;
+      font-size: 12px; letter-spacing: 2px; color: rgba(197,165,114,0.4);
+      margin-bottom: 32px;
+    }
+    .result-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 4px; overflow: hidden; margin-bottom: 16px;
+    }
+    .result-card-header {
+      padding: 16px 20px;
+      font-size: 12px; letter-spacing: 2px; font-weight: 700;
+    }
+    .result-card-body {
+      padding: 18px 20px 22px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px; line-height: 1.95; color: var(--goldL);
+    }
+    .result-shadow-body {
+      padding: 18px 20px 22px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px; line-height: 1.95; color: var(--silver);
+    }
+
+    /* ── PAIN POINT CARD ── */
+    .pain-card {
+      background: rgba(224,85,85,0.07);
+      border: 1px solid rgba(224,85,85,0.3);
+      border-radius: 4px; padding: 22px 20px;
+      margin-bottom: 16px;
+    }
+    .pain-card-header {
+      font-size: 12px; letter-spacing: 2px; font-weight: 700;
+      color: var(--red); margin-bottom: 14px;
+    }
+    .pain-card-body {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px; line-height: 1.95; color: #f0c0c0;
+    }
+
+    /* ── Score bars (양방향 중심 기준) ── */
+    .score-bars {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 4px; padding: 22px 20px; margin-bottom: 16px;
+    }
+    .score-bar-label {
+      font-size: 12px; letter-spacing: 2px; color: var(--gold);
+      font-weight: 700; margin-bottom: 18px;
+    }
+    .bar-row { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .bar-dim { font-size: 13px; color: var(--silver); width: 24px; flex-shrink: 0; }
+    .bar-track {
+      flex: 1; height: 8px; background: var(--border); border-radius: 4px;
+      position: relative;
+    }
+    .bar-track::after {
+      content: ''; position: absolute;
+      left: 50%; top: -4px; width: 1px; height: 16px;
+      background: rgba(255,255,255,0.3);
+    }
+    .bar-fill-a {
+      position: absolute; top: 0; height: 100%; border-radius: 4px 0 0 4px;
+      right: 50%;
+    }
+    .bar-fill-b {
+      position: absolute; top: 0; height: 100%; border-radius: 0 4px 4px 0;
+      left: 50%;
+    }
+    .bar-ends {
+      display: flex; justify-content: space-between;
+      font-size: 13px;
+      margin-top: 8px;
+    }
+    .bar-label-a, .bar-label-b { transition: all 0.3s; }
+    .bar-label-active { color: #fff; font-weight: 700; }
+    .bar-label-inactive { color: var(--silver); font-weight: 400; opacity: 0.5; }
+
+    /* ── PREVIEW BLUR ── */
+    .preview-blur-wrap {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 4px; overflow: hidden;
+      margin-bottom: 16px; position: relative;
+    }
+    .preview-blur-header {
+      padding: 16px 20px;
+      font-size: 12px; letter-spacing: 2px; font-weight: 700;
+      color: var(--silver);
+    }
+    .preview-blur-body {
+      padding: 18px 20px 28px;
+      filter: blur(5px); user-select: none;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px; line-height: 1.9; color: var(--goldL);
+      pointer-events: none;
+      white-space: pre-line;
+    }
+    .preview-blur-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, var(--card) 70%);
+      height: 120px;
+      display: flex; align-items: flex-end; justify-content: center;
+      padding-bottom: 20px;
+    }
+    .preview-blur-label {
+      font-size: 13px; color: var(--silver);
+    }
+
+    /* ── CTA box ── */
+    .cta-box {
+      margin-top: 40px;
+      background: var(--dark2); border: 1px solid var(--border);
+      border-radius: 4px; padding: 32px 20px; text-align: center;
+    }
+    .cta-box-label {
+      font-size: 11px; letter-spacing: 2px; color: var(--gold);
+      font-weight: 700; margin-bottom: 14px;
+    }
+    .cta-box-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(22px, 5.5vw, 30px);
+      font-weight: 600; line-height: 1.45; margin-bottom: 14px;
+    }
+    .cta-box-sub {
+      color: var(--silver); font-size: 16px;
+      line-height: 1.9; margin-bottom: 24px;
+      max-width: 440px; margin-left: auto; margin-right: auto;
+    }
+
+    /* Price */
+    .price-row {
+      display: flex; justify-content: center; align-items: baseline;
+      gap: 8px; margin-bottom: 8px;
+    }
+    .price-main { font-size: 52px; font-weight: 900; color: var(--gold); }
+    .price-currency { font-size: 22px; font-weight: 600; color: var(--silver); }
+    .price-note {
+      font-size: 13px; color: var(--silver);
+      display: block; margin-bottom: 28px; line-height: 1.7;
+    }
+
+    .btn-buy {
+      display: inline-block; padding: 20px 32px;
+      background: var(--gold); color: var(--dark);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 16px; font-weight: 800; letter-spacing: 1px;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: background .2s;
+      width: 100%; max-width: 420px;
+    }
+    .btn-buy:active { background: var(--goldL); }
+
+    .btn-retry {
+      display: inline-block; margin-top: 24px;
+      font-size: 14px; color: var(--silver);
+      cursor: pointer; text-decoration: underline;
+      background: none; border: none;
+      font-family: 'Montserrat', sans-serif;
+      transition: color .2s; padding: 8px 0;
+    }
+    .btn-retry:active { color: var(--gold); }
+    .guarantee {
+      margin-top: 18px;
+      font-size: 13px; color: rgba(155,170,184,0.5);
+      line-height: 1.7;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 36px 20px; text-align: center;
+      font-size: 13px; color: rgba(155,170,184,0.4);
+      line-height: 2.0;
+    }
+
+    /* ── 태블릿/데스크탑 ── */
+    @media (min-width: 600px) {
+      nav { padding: 20px 40px; }
+      .nav-logo { font-size: 13px; }
+      .cred-inner { flex-direction: row; gap: 28px; }
+      .hero { padding: 64px 24px 48px; }
+      .result-card-body, .result-shadow-body, .pain-card-body { font-size: 19px; }
+      .ab-btn { font-size: 15px; }
+      .ab-text { font-size: 15px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <span class="s1">SHINING</span><span class="s2">SHADOW</span>
+  </a>
+  <a href="index.html" class="nav-back">← Voltar</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-label">SHADOWGRAM · DIAGNÓSTICO GRATUITO</p>
+  <h1 class="hero-title">Por que você continua repetindo<br>os mesmos erros?</h1>
+  <p class="hero-sub">
+    A resposta está na sua sombra psicológica.<br>
+    28 perguntas. Resultado imediato. Sem cadastro.
+  </p>
+</div>
+
+<!-- CREDIBILITY -->
+<div class="cred-bar">
+  <div class="cred-inner">
+    <div class="cred-icon">🔬</div>
+    <div>
+      <p class="cred-title">BASE CIENTÍFICA · REINTERPRETAÇÃO APLICADA</p>
+      <p class="cred-desc">
+        Este diagnóstico integra a teoria das funções psicológicas de
+        <strong>Carl Gustav Jung</strong> (Tipos Psicológicos, 1921)
+        com os estudos modernos do <strong>Big Five (IPIP)</strong>,
+        reinterpretados por um especialista coreano com
+        <strong>20 anos de experiência</strong> em desenvolvimento humano e psicologia aplicada.
+        Não é um teste de personalidade comum — é um mapa da sua sombra.
+      </p>
+      <div class="cred-sources">
+        <span class="cred-tag">C.G. Jung · 1921</span>
+        <span class="cred-tag">IPIP Big Five · Domínio Público</span>
+        <span class="cred-tag">20 anos de prática</span>
+        <span class="cred-tag">Framework Shadowgram</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- META -->
+<div class="hero-meta">
+  <span>⏱ <strong>5–7 min</strong></span>
+  <span>📋 <strong>28 perguntas</strong></span>
+  <span>🎯 <strong>Resultado imediato</strong></span>
+  <span>🔒 <strong>Sem cadastro</strong></span>
+</div>
+
+<!-- BACK BUTTON -->
+<div class="back-btn-wrap">
+  <button class="btn-prev hidden" id="btn-prev" onclick="goPrev()">← Pergunta anterior</button>
+</div>
+
+<!-- PROGRESS -->
+<div class="progress-wrap">
+  <div class="progress-bar-bg">
+    <div class="progress-bar-fill" id="progress-fill"></div>
+  </div>
+  <div class="progress-text">
+    <span id="progress-label">Pergunta 1 de 28</span>
+    <span id="progress-pct">0%</span>
+  </div>
+  <div class="dimension-label" id="dim-label">DIMENSÃO 1 · ENERGIA</div>
+</div>
+
+<!-- QUIZ -->
+<div id="quiz-section"></div>
+
+<!-- RESULT -->
+<div id="result-section">
+  <p class="result-label">SEU TIPO SHADOWGRAM</p>
+  <div class="result-type-name" id="res-type"></div>
+  <p class="result-function" id="res-function"></p>
+  <p class="result-code" id="res-code"></p>
+
+  <!-- Score bars -->
+  <div class="score-bars">
+    <p class="score-bar-label">PERFIL DAS 4 DIMENSÕES</p>
+    <div id="score-bar-rows"></div>
+  </div>
+
+  <!-- Luz -->
+  <div class="result-card">
+    <div class="result-card-header" id="res-light-header">✦ SUA LUZ — Função Dominante</div>
+    <div class="result-card-body" id="res-light"></div>
+  </div>
+
+  <!-- Sombra -->
+  <div class="result-card">
+    <div class="result-card-header" style="color:var(--silver);">◆ SUA SOMBRA — Função Inferior</div>
+    <div class="result-shadow-body" id="res-shadow"></div>
+  </div>
+
+  <!-- Pain point — custo da sombra não integrada -->
+  <div class="pain-card">
+    <p class="pain-card-header">⚠ O CUSTO DE IGNORAR SUA SOMBRA</p>
+    <div class="pain-card-body" id="res-pain"></div>
+  </div>
+
+  <!-- Preview desfocado do relatório -->
+  <div class="preview-blur-wrap">
+    <div class="preview-blur-header">📄 PRÉVIA DO RELATÓRIO COMPLETO · NÍVEL 1</div>
+    <div class="preview-blur-body" id="res-preview"></div>
+    <div class="preview-blur-overlay">
+      <span class="preview-blur-label">🔒 CONTEÚDO COMPLETO NO RELATÓRIO</span>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-box">
+
+    <p class="cta-box-label" id="res-cta-label">SHADOWGRAM SOLO · NÍVEL 1</p>
+    <h2 class="cta-box-title" id="res-cta-title"></h2>
+    <p class="cta-box-sub" id="res-cta-sub"></p>
+
+    <!-- Price -->
+    <div class="price-row">
+      <span class="price-currency">R$</span>
+      <span class="price-main">47</span>
+    </div>
+    <span class="price-note">pagamento único · acesso imediato · PDF completo</span>
+
+    <a class="btn-buy" id="res-buy-btn" href="#" target="_blank" rel="noopener">
+      QUERO MEU RELATÓRIO COMPLETO →
+    </a>
+    <br>
+
+    <!-- 내 결과 저장 버튼 -->
+    <button class="btn-save-link" id="btn-save-link" onclick="saveMyLink()" style="
+      background: transparent;
+      border: 1px solid rgba(197,165,114,0.4);
+      color: var(--gold);
+      font-size: 12px;
+      letter-spacing: 1px;
+      padding: 10px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-family: 'Montserrat', sans-serif;
+      margin-top: 4px;
+      display: block;
+      width: 100%;
+    ">🔖 Salvar meu resultado (acessar depois sem refazer)</button>
+
+    <div id="saved-link-box" style="display:none; margin-top:12px; background:rgba(197,165,114,0.08); border:1px solid rgba(197,165,114,0.3); border-radius:10px; padding:14px;">
+      <p style="font-size:11px; color:var(--silver); margin-bottom:8px; letter-spacing:1px;">📎 MEU LINK PESSOAL — salve nos favoritos ou copie para qualquer lugar</p>
+      <div style="display:flex; gap:8px; align-items:center;">
+        <input id="saved-link-input" type="text" readonly style="
+          flex:1; background:rgba(255,255,255,0.05); border:1px solid var(--border);
+          color:var(--white); padding:8px 12px; border-radius:6px; font-size:12px;
+          font-family:monospace;
+        "/>
+        <button onclick="copyLink()" style="
+          background:var(--gold); color:#000; border:none; padding:8px 14px;
+          border-radius:6px; font-size:11px; font-weight:700; cursor:pointer;
+          font-family:'Montserrat',sans-serif; white-space:nowrap;
+        ">Copiar</button>
+      </div>
+      <p style="font-size:11px; color:var(--silver); margin-top:8px;">✅ Cole no WhatsApp, favoritos ou notas — acesso imediato sempre</p>
+    </div>
+
+    <button class="btn-retry" onclick="restartQuiz()">Refazer o diagnóstico</button>
+    <p class="guarantee">🔒 Compra segura via Hotmart · Garantia de 7 dias sem perguntas</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  © 2025 ShiningShadow · shiningshadow.org<br>
+  Diagnóstico baseado em Jung (1921) e IPIP Big Five (domínio público).<br>
+  Shadowgram é um framework independente de desenvolvimento humano.<br>
+  Não é afiliado à The Myers &amp; Briggs Foundation.
+</footer>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+// HOTMART — PRODUTO ÚNICO (1 URL para todos os tipos)
+// Substitua apenas esta URL após aprovação do produto na Hotmart
+// ═══════════════════════════════════════════════════════════════
+const HOTMART_BASE_URL = 'https://pay.hotmart.com/PRODUTO_AQUI';
+
+// Gera o link com parâmetro de tipo para rastreamento
+// Ex: https://pay.hotmart.com/PRODUTO_AQUI?sck=SPARK&off=SPARK
+function getHotmartLink(tipo) {
+  return `${HOTMART_BASE_URL}?sck=${tipo}&off=${tipo}`;
+}
+
+// Compatibilidade retroativa (não remover)
+const HOTMART_LINKS = {
+  STEADY:  getHotmartLink('STEADY'),
+  SPARK:   getHotmartLink('SPARK'),
+  PLAYER:  getHotmartLink('PLAYER'),
+  VISION:  getHotmartLink('VISION'),
+  LOGIC:   getHotmartLink('LOGIC'),
+  HARMONY: getHotmartLink('HARMONY'),
+  LEADER:  getHotmartLink('LEADER'),
+  SOUL:    getHotmartLink('SOUL'),
+};
+
+// ═══════════════════════════════════════════════════════════════
+// 4 DIMENSÕES (eixos internos)
+//   Dim 1: a=introvertido  / b=extrovertido
+//   Dim 2: a=concreto      / d=intuitivo
+//   Dim 3: a=analítico     / b=empático
+//   Dim 4: a=estruturado   / b=flexível
+// ═══════════════════════════════════════════════════════════════
+const DIM_LABELS = [
+  'DIMENSÃO 1 · ENERGIA',
+  'DIMENSÃO 2 · PERCEPÇÃO',
+  'DIMENSÃO 3 · DECISÃO',
+  'DIMENSÃO 4 · ESTRUTURA',
+];
+
+// ═══════════════════════════════════════════════════════════════
+// 28 PERGUNTAS — 7 por dimensão, linguagem cotidiana simples
+// ═══════════════════════════════════════════════════════════════
+const QUESTIONS = [
+  // ── DIMENSÃO 1: ENERGIA ──
+  { dim:1, text:"No fim de um dia cheio de pessoas e conversas, você se sente...",
+    a:"Cansado — preciso de tempo sozinho para recarregar.",
+    b:"Energizado — adoro estar entre as pessoas." },
+  { dim:1, text:"Quando tem um problema para resolver, você prefere...",
+    a:"Pensar sozinho primeiro, depois compartilhar.",
+    b:"Pensar em voz alta, conversando com alguém." },
+  { dim:1, text:"Em uma festa ou evento social, você normalmente...",
+    a:"Fico com um grupo menor, conversando com mais profundidade.",
+    b:"Circulo, conheço pessoas novas, me sinto à vontade." },
+  { dim:1, text:"Quando começa algo novo (trabalho, projeto, hobby)...",
+    a:"Prefiro observar e entender antes de participar ativamente.",
+    b:"Pulo logo dentro — aprendo fazendo e interagindo." },
+  { dim:1, text:"Amigos e colegas diriam que você é...",
+    a:"Reservado, difícil de conhecer de verdade.",
+    b:"Aberto, fácil de conversar, expressivo." },
+  { dim:1, text:"No trabalho, você produz melhor...",
+    a:"Em silêncio, com concentração, sem interrupções.",
+    b:"Em ambientes movimentados, com troca constante." },
+  { dim:1, text:"Para tomar uma decisão difícil, você prefere...",
+    a:"Refletir internamente, talvez anotar seus pensamentos.",
+    b:"Conversar com alguém — a fala ajuda a clarear as ideias." },
+
+  // ── DIMENSÃO 2: PERCEPÇÃO ──
+  { dim:2, text:"Quando aprende algo novo, você prefere...",
+    a:"Exemplos concretos, passo a passo, aplicação prática.",
+    b:"Entender o conceito por trás, o padrão geral." },
+  { dim:2, text:"Você confia mais em...",
+    a:"O que pode ver, tocar, medir, comprovar.",
+    b:"Intuições e possibilidades que ainda não existem." },
+  { dim:2, text:"Ao planejar uma viagem, você prefere...",
+    a:"Roteiro detalhado, reservas feitas, tudo organizado.",
+    b:"Direção geral, improviso, descobrir no caminho." },
+  { dim:2, text:"No trabalho, você é mais valorizado por...",
+    a:"Ser confiável, preciso, realista e detalhista.",
+    b:"Trazer ideias novas, enxergar possibilidades que outros não veem." },
+  { dim:2, text:"Quando alguém conta um problema, você primeiro pensa...",
+    a:"Qual é a situação concreta? Quais são os fatos?",
+    b:"Qual é o padrão aqui? O que isso significa no fundo?" },
+  { dim:2, text:"Você prefere trabalhar com...",
+    a:"Coisas que já funcionam — melhorar e aperfeiçoar o que existe.",
+    b:"Coisas que ainda não existem — criar do zero." },
+  { dim:2, text:"Ao ler um livro ou artigo, você prefere...",
+    a:"Informações práticas, diretas, com exemplos reais.",
+    b:"Teorias, conceitos amplos, ideias que abrem a mente." },
+
+  // ── DIMENSÃO 3: DECISÃO ──
+  { dim:3, text:"Ao tomar uma decisão importante, você prioriza...",
+    a:"Lógica, dados, consequências objetivas.",
+    b:"Como vai afetar as pessoas, os sentimentos envolvidos." },
+  { dim:3, text:"Quando alguém te conta um problema pessoal, você tende a...",
+    a:"Oferecer uma solução ou análise objetiva do problema.",
+    b:"Ouvir, validar os sentimentos, oferecer apoio emocional." },
+  { dim:3, text:"Em um debate, você se sente mais à vontade quando...",
+    a:"O argumento é baseado em fatos e lógica verificável.",
+    b:"Há espaço para considerar valores humanos e sentimentos." },
+  { dim:3, text:"Quando precisa dar um feedback difícil, você...",
+    a:"Diz diretamente — honestidade objetiva é mais respeitosa.",
+    b:"Escolhe as palavras com muito cuidado para não magoar." },
+  { dim:3, text:"O que te incomoda mais em outras pessoas?",
+    a:"Pessoas muito emotivas que não conseguem ser objetivas.",
+    b:"Pessoas frias que ignoram o impacto emocional das suas decisões." },
+  { dim:3, text:"No trabalho em equipe, você naturalmente...",
+    a:"Foca no objetivo e na eficiência do processo.",
+    b:"Cuida do clima do grupo e das relações entre as pessoas." },
+  { dim:3, text:"Uma boa decisão para você é aquela que...",
+    a:"Faz sentido logicamente e gera o melhor resultado mensurável.",
+    b:"Está alinhada com os valores e o bem-estar de todos envolvidos." },
+
+  // ── DIMENSÃO 4: ESTRUTURA ──
+  { dim:4, text:"Sua mesa de trabalho ou espaço pessoal costuma ser...",
+    a:"Organizado — cada coisa tem seu lugar definido.",
+    b:"Um pouco caótico — mas eu sei onde está tudo." },
+  { dim:4, text:"Diante de um prazo, você normalmente...",
+    a:"Começo cedo, distribuo o trabalho, entrego antes do prazo.",
+    b:"Funciono melhor sob pressão — o prazo me motiva de verdade." },
+  { dim:4, text:"Você prefere uma semana...",
+    a:"Com agenda definida — sei o que vem a seguir.",
+    b:"Aberta, flexível — gosto de decidir conforme o momento pede." },
+  { dim:4, text:"Quando um plano muda de última hora, você sente...",
+    a:"Irritação — prefiro que as coisas saiam como planejado.",
+    b:"Às vezes animação — mudanças trazem novas possibilidades." },
+  { dim:4, text:"Você se descreve mais como...",
+    a:"Decidido — prefiro ter uma resposta, mesmo que incompleta.",
+    b:"Aberto — gosto de manter as opções em aberto o máximo possível." },
+  { dim:4, text:"Ao comprar algo grande (carro, viagem, eletrônico), você...",
+    a:"Pesquiso, decido e não fico em dúvida depois de decidir.",
+    b:"Continuo pesquisando e comparando mesmo depois de quase decidir." },
+  { dim:4, text:"No trabalho, você se sente melhor quando...",
+    a:"O projeto tem fases claras, prazos definidos e metas concretas.",
+    b:"Há liberdade para ajustar o caminho conforme o projeto avança." },
+];
+
+// ═══════════════════════════════════════════════════════════════
+// MAPEAMENTO: (dim1, dim2, dim3, dim4) → tipo Shadowgram
+// ═══════════════════════════════════════════════════════════════
+function getType(d1, d2, d3, d4) {
+  const I=d1==='a', E=d1==='b';
+  const S=d2==='a', N=d2==='b';
+  const T=d3==='a', F=d3==='b';
+  const J=d4==='a', P=d4==='b';
+
+  if (I&&S&&T&&J) return 'STEADY';
+  if (I&&S&&F&&J) return 'HARMONY';
+  if (I&&S&&T&&P) return 'LOGIC';
+  if (I&&S&&F&&P) return 'SOUL';
+  if (I&&N&&T&&J) return 'VISION';
+  if (I&&N&&F&&J) return 'VISION';
+  if (I&&N&&T&&P) return 'LOGIC';
+  if (I&&N&&F&&P) return 'SOUL';
+  if (E&&S&&T&&J) return 'LEADER';
+  if (E&&S&&F&&J) return 'HARMONY';
+  if (E&&S&&T&&P) return 'PLAYER';
+  if (E&&S&&F&&P) return 'PLAYER';
+  if (E&&N&&T&&J) return 'LEADER';
+  if (E&&N&&F&&J) return 'VISION';
+  if (E&&N&&T&&P) return 'SPARK';
+  if (E&&N&&F&&P) return 'SPARK';
+  return 'STEADY';
+}
+
+// ═══════════════════════════════════════════════════════════════
+// TYPE DATA — luz, sombra, dor, preview, bônus
+// ═══════════════════════════════════════════════════════════════
+const TYPES = {
+  STEADY: {
+    color: '#7B9EA8',
+    function: 'Si · Sensação Introvertida',
+    light: 'Você é a força que sustenta o mundo. Sua memória de como as coisas funcionam protege todos ao seu redor. Nos momentos de caos, você é o porto seguro — confiável, consistente, inabalável.',
+    shadow: 'Sua sombra é Ne (Intuição Extrovertida): a resistência às mudanças, a ansiedade diante do desconhecido, a dificuldade de soltar o que já não serve. Quando pressionado, você se torna rígido exatamente quando a vida pede flexibilidade.',
+    pain: 'Quantas vezes você ficou parado enquanto o mundo mudava ao redor? Sua sombra Ne não integrada custa oportunidades reais — carreiras que não evoluíram, relações que sufocaram, inovações que você deixou para outros. O custo de ignorar sua sombra é a estagnação disfaçada de "estabilidade".',
+    preview: 'Padrão 1 · A armadilha da rotina sagrada\nQuando a rotina se torna uma prisão invisível...\n\nPadrão 2 · O medo do novo travestido de prudência\nComo a sombra Ne distorce sua percepção de risco...\n\nPadrão 3 · A resistência passiva\nPor que você sabota mudanças sem perceber...\n\nPadrão 4 · O apego ao passado\nComo liberar o que te prendia para criar espaço ao que vem...',
+    ctaTitle: 'Seu relatório STEADY está pronto.',
+    ctaSub: 'O relatório completo revela os 4 padrões inconscientes que bloqueiam seu crescimento — e o caminho prático para integrá-los.',
+    bonus: '✦ Workbook de integração da sombra Ne\n✦ Rotina de 21 dias para o tipo STEADY\n✦ Guia de transição para novos ciclos',
+  },
+  SPARK: {
+    color: '#E8A84A',
+    function: 'Ne · Intuição Extrovertida',
+    light: 'Você vê possibilidades onde os outros veem paredes. Sua energia é contagiante, suas ideias são incontáveis, e você tem o dom de inspirar o novo. O mundo precisa de pessoas que enxergam além do horizonte visível.',
+    shadow: 'Sua sombra é Si (Sensação Introvertida): a dificuldade de terminar o que começa, a fuga da rotina e do concreto, o desconforto com a manutenção. Quando pressionado, você se dispersa em infinitas direções sem chegar a nenhuma.',
+    pain: 'Quantas ideias brilhantes você já abandonou a 90% do caminho? Sua sombra Si não integrada é a razão pela qual você repete o mesmo ciclo: começa com tudo, perde o interesse, abandona — e sente que algo está errado com você. Não está. Mas enquanto não integrar sua sombra, continuará sabotando seus próprios projetos.',
+    preview: 'Padrão 1 · O abandono antes da linha de chegada\nPor que você abandona projetos quase prontos...\n\nPadrão 2 · A dispersão mascarada de criatividade\nComo distinguir inspiração genuína de fuga da conclusão...\n\nPadrão 3 · O vício em começos\nO prazer neuroquímico do início e como reconhecê-lo...\n\nPadrão 4 · A fuga da manutenção\nComo construir sistemas que sua mente SPARK consegue sustentar...',
+    ctaTitle: 'Seu relatório SPARK está pronto.',
+    ctaSub: 'O relatório completo revela por que você abandona projetos — e o método específico para o tipo SPARK completar o que começa.',
+    bonus: '✦ Workbook de integração da sombra Si\n✦ Sistema de conclusão para mentes SPARK\n✦ Os 3 gatilhos do abandono e como neutralizá-los',
+  },
+  PLAYER: {
+    color: '#E07060',
+    function: 'Se · Sensação Extrovertida',
+    light: 'Você vive o presente com toda a intensidade. Sua capacidade de ação imediata, de sentir o ambiente e reagir com precisão é um dom raro. Nos momentos que pedem decisão, você já está em movimento.',
+    shadow: 'Sua sombra é Ni (Intuição Introvertida): a dificuldade de enxergar o padrão maior, o desconforto com o abstrato e o futuro distante. Quando pressionado, você age sem considerar as consequências de longo prazo.',
+    pain: 'Quanto dinheiro, energia ou tempo você já perdeu agindo rápido demais — sem ver o padrão? Sua sombra Ni não integrada é invisível para você, mas visível para todos ao redor. Ela aparece como impulsividade, como relações que se quebram sem você entender por quê, como conquistas que não duram.',
+    preview: 'Padrão 1 · A impulsividade disfarçada de confiança\nComo a sombra Ni distorce sua avaliação de risco...\n\nPadrão 2 · O presente que devora o futuro\nPor que suas conquistas têm prazo de validade curto...\n\nPadrão 3 · A cegueira para padrões\nComo reconhecer os ciclos que você repete sem perceber...\n\nPadrão 4 · A integração Ni\nComo desenvolver visão de longo prazo sem perder sua essência...',
+    ctaTitle: 'Seu relatório PLAYER está pronto.',
+    ctaSub: 'O relatório completo revela os 4 padrões que sabotam sua consistência — e o caminho para transformar ação em legado.',
+    bonus: '✦ Workbook de integração da sombra Ni\n✦ Protocolo de decisão para o tipo PLAYER\n✦ Guia de planejamento de 90 dias adaptado à sua mente',
+  },
+  VISION: {
+    color: '#8B7BB8',
+    function: 'Ni · Intuição Introvertida',
+    light: 'Você enxerga o que os outros ainda não podem ver. Seus insights sobre padrões profundos e direções futuras são proféticos. Você carrega um mapa interno que poucos possuem — a bússola do invisível.',
+    shadow: 'Sua sombra é Se (Sensação Extrovertida): a desconexão com o aqui e agora, a dificuldade de habitar o corpo e o presente. Quando pressionado, você se perde em visões e análises sem nunca agir no mundo real.',
+    pain: 'Quantas visões brilhantes ficaram apenas na sua cabeça? Sua sombra Se não integrada cria uma distância dolorosa entre o que você percebe e o que você manifesta. Por fora, parece que você está bem. Por dentro, você sabe que está aquém do que poderia ser.',
+    preview: 'Padrão 1 · A paralisia da perfeição visionária\nPor que seus planos mais ambiciosos nunca saem do papel...\n\nPadrão 2 · O descolamento do presente\nComo a sombra Se te afasta do corpo, do dinheiro, das relações...\n\nPadrão 3 · A solidão do visionário\nPor que é tão difícil ser compreendido — e o que fazer...\n\nPadrão 4 · Do insight à ação\nO método para o tipo VISION manifestar no mundo real...',
+    ctaTitle: 'Seu relatório VISION está pronto.',
+    ctaSub: 'O relatório completo revela como transformar sua visão interna em resultados concretos — sem perder sua profundidade.',
+    bonus: '✦ Workbook de integração da sombra Se\n✦ Protocolo de manifestação para o tipo VISION\n✦ Guia de grounding para mentes visionárias',
+  },
+  LOGIC: {
+    color: '#5B9EA0',
+    function: 'Ti · Pensamento Introvertido',
+    light: 'Sua mente é um instrumento de precisão. Você encontra a estrutura lógica onde outros veem caos. Sua capacidade de ir fundo em um problema e encontrar a verdade essencial é um presente raro para o mundo.',
+    shadow: 'Sua sombra é Fe (Sentimento Extrovertido): a dificuldade nas relações emocionais, o desconforto com a dinâmica de grupo e as expectativas sociais. Quando pressionado, você se isola exatamente quando mais precisa das pessoas.',
+    pain: 'Quantas relações — de trabalho, de amor, de amizade — você perdeu por não conseguir se conectar emocionalmente? Sua precisão analítica tem um custo invisível: a frieza que os outros sentem como rejeição, mesmo quando você está apenas pensando. Esse padrão se repete até você entender sua sombra Fe.',
+    preview: 'Padrão 1 · A armadura intelectual\nComo a lógica vira defesa contra a vulnerabilidade...\n\nPadrão 2 · O custo relacional da precisão\nPor que as pessoas se afastam mesmo admirando você...\n\nPadrão 3 · O isolamento como padrão\nComo o tipo LOGIC sabota conexão sem perceber...\n\nPadrão 4 · Integração Fe\nComo desenvolver inteligência emocional sem perder precisão...',
+    ctaTitle: 'Seu relatório LOGIC está pronto.',
+    ctaSub: 'O relatório completo revela como integrar emoção e razão — e construir relações sem abrir mão da sua precisão.',
+    bonus: '✦ Workbook de integração da sombra Fe\n✦ Guia de comunicação emocional para o tipo LOGIC\n✦ Protocolo de conexão para mentes analíticas',
+  },
+  HARMONY: {
+    color: '#D4886A',
+    function: 'Fe · Sentimento Extrovertido',
+    light: 'Você tem o dom de unir as pessoas. Sua sensibilidade ao estado emocional do grupo, sua capacidade de criar harmonia e cuidar do coletivo é uma força rara e profundamente necessária no mundo.',
+    shadow: 'Sua sombra é Ti (Pensamento Introvertido): a dificuldade de dizer não, de priorizar sua própria lógica interna, de separar suas necessidades das dos outros. Quando pressionado, você se perde completamente nos outros.',
+    pain: 'Quantas vezes você disse sim quando queria dizer não? Sua sombra Ti não integrada te mantém em um ciclo de doação excessiva — até o esgotamento. O preço de cuidar de todos é frequentemente se perder. E quem cuida de você?',
+    preview: 'Padrão 1 · A incapacidade de dizer não\nPor que você prioriza a paz dos outros à custa de si mesmo...\n\nPadrão 2 · A culpa como mecanismo de controle\nComo sua sombra Ti se manifesta como julgamento interno...\n\nPadrão 3 · O esgotamento do cuidador\nPor que você chega ao limite repetidamente...\n\nPadrão 4 · Integração Ti\nComo desenvolver limites saudáveis sem perder sua compaixão...',
+    ctaTitle: 'Seu relatório HARMONY está pronto.',
+    ctaSub: 'O relatório completo revela como cuidar dos outros sem se perder — e construir limites sem culpa.',
+    bonus: '✦ Workbook de integração da sombra Ti\n✦ Guia de limites saudáveis para o tipo HARMONY\n✦ Protocolo de autocuidado para cuidadores',
+  },
+  LEADER: {
+    color: '#6B8E6B',
+    function: 'Te · Pensamento Extrovertido',
+    light: 'Você constrói sistemas que funcionam. Sua capacidade de definir objetivos, organizar recursos e levar um grupo ao resultado é uma forma de liderança que o mundo precisa. Onde há caos, você cria ordem.',
+    shadow: 'Sua sombra é Fi (Sentimento Introvertido): a dificuldade de acessar e honrar seus próprios valores e emoções internas. Quando pressionado, você ignora sua vida interior em nome da eficiência — e paga um preço alto por isso.',
+    pain: 'Você constrói resultados para todos. Mas quando foi a última vez que perguntou o que você realmente quer? Sua sombra Fi não integrada acumula uma conta emocional que um dia cobra de uma vez — em forma de crise, de vazio, de relações que não sustentam o peso da sua vida.',
+    preview: 'Padrão 1 · A eficiência que devora a autenticidade\nComo a busca por resultado esconde o que você sente...\n\nPadrão 2 · A liderança sem vulnerabilidade\nPor que seu poder intimida e isola ao mesmo tempo...\n\nPadrão 3 · O vazio do executor\nO que acontece quando os objetivos são alcançados e ainda falta algo...\n\nPadrão 4 · Integração Fi\nComo liderar com propósito real — conectado a valores genuínos...',
+    ctaTitle: 'Seu relatório LEADER está pronto.',
+    ctaSub: 'O relatório completo revela o que sua eficiência está escondendo — e como liderar com mais autenticidade e sustentabilidade.',
+    bonus: '✦ Workbook de integração da sombra Fi\n✦ Guia de liderança com valores para o tipo LEADER\n✦ Protocolo de conexão com o eu interior para executores',
+  },
+  SOUL: {
+    color: '#B87BA8',
+    function: 'Fi · Sentimento Introvertido',
+    light: 'Você carrega uma bússola de valores que não se dobra. Sua autenticidade, profundidade e integridade são uma forma de presença no mundo que toca as pessoas de maneira que poucos conseguem.',
+    shadow: 'Sua sombra é Te (Pensamento Extrovertido): o choque com as exigências do mundo prático — eficiência, produtividade, resultados mensuráveis. Quando pressionado, você se sente incompreendido e invisível em um mundo que mede tudo.',
+    pain: 'Você tem muito a oferecer — mas o mundo parece não reconhecer. Sua sombra Te não integrada é a razão pela qual sua profundidade raramente se traduz em resultado concreto. Essa distância entre quem você é e o que o mundo vê é o custo real de ignorar sua sombra.',
+    preview: 'Padrão 1 · A invisibilidade do profundo\nPor que sua riqueza interior raramente é vista pelos outros...\n\nPadrão 2 · A resistência ao mundo prático\nComo a sombra Te se manifesta como procrastinação e evitação...\n\nPadrão 3 · O ressentimento silencioso\nO acúmulo emocional quando seus valores não são respeitados...\n\nPadrão 4 · Integração Te\nComo traduzir profundidade em impacto concreto no mundo...',
+    ctaTitle: 'Seu relatório SOUL está pronto.',
+    ctaSub: 'O relatório completo revela como transformar sua profundidade em presença real — e ser visto pelo que você realmente é.',
+    bonus: '✦ Workbook de integração da sombra Te\n✦ Guia de produtividade alinhada a valores para o tipo SOUL\n✦ Protocolo de visibilidade para mentes profundas',
+  },
+};
+
+// ═══════════════════════════════════════════════════════════════
+// QUIZ ENGINE
+// ═══════════════════════════════════════════════════════════════
+let dimScores = [0, 0, 0, 0];
+let answers = new Array(QUESTIONS.length).fill(null); // 각 문항 현재 선택값 저장
+let current = 0;
+const totalQ = QUESTIONS.length;
+
+function buildQuiz() {
+  const sec = document.getElementById('quiz-section');
+  sec.innerHTML = '';
+  QUESTIONS.forEach((q, qi) => {
+    const div = document.createElement('div');
+    div.className = 'question-block' + (qi === 0 ? ' active' : '');
+    div.id = 'q-' + qi;
+    div.innerHTML = `
+      <p class="q-num">PERGUNTA ${qi + 1} DE ${totalQ}</p>
+      <p class="q-text">${q.text}</p>
+      <div class="ab-options">
+        <button class="ab-btn" onclick="selectOption(${qi}, 'a', this)">
+          <span class="ab-label">A</span>
+          <span class="ab-text">${q.a}</span>
+        </button>
+        <button class="ab-btn" onclick="selectOption(${qi}, 'b', this)">
+          <span class="ab-label">B</span>
+          <span class="ab-text">${q.b}</span>
+        </button>
+      </div>
+    `;
+    sec.appendChild(div);
+  });
+}
+
+function selectOption(qIdx, choice, btn) {
+  // 첫 번째 답 선택 시 hero + meta + cred 숨기기
+  if (qIdx === 0 && answers[qIdx] === null) {
+    const hero = document.querySelector('.hero');
+    const meta = document.querySelector('.hero-meta');
+    const cred = document.querySelector('.cred-section');
+    if (hero) hero.style.display = 'none';
+    if (meta) meta.style.display = 'none';
+    if (cred) cred.style.display = 'none';
+  }
+  document.querySelectorAll(`#q-${qIdx} .ab-btn`).forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  const dimIdx = QUESTIONS[qIdx].dim - 1;
+  // 이전 선택이 있으면 먼저 되돌리기 (중복 카운트 방지)
+  if (answers[qIdx] === 'a') dimScores[dimIdx]--;
+  // 새 선택 저장
+  answers[qIdx] = choice;
+  if (choice === 'a') dimScores[dimIdx]++;
+  setTimeout(() => {
+    if (qIdx < totalQ - 1) goToQuestion(qIdx + 1);
+    else showResult();
+  }, 300);
+}
+
+function goToQuestion(idx) {
+  document.querySelectorAll('.question-block').forEach(b => b.classList.remove('active'));
+  document.getElementById('q-' + idx).classList.add('active');
+  current = idx;
+  updateProgress(idx);
+  // 첫 문항이면 뒤로가기 숨김, 아니면 표시
+  const prevBtn = document.getElementById('btn-prev');
+  if (idx === 0) prevBtn.classList.add('hidden');
+  else prevBtn.classList.remove('hidden');
+  window.scrollTo({ top: 200, behavior: 'smooth' });
+}
+
+function goPrev() {
+  if (current > 0) goToQuestion(current - 1);
+}
+
+function updateProgress(idx) {
+  const pct = Math.round((idx / totalQ) * 100);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = `Pergunta ${idx + 1} de ${totalQ}`;
+  document.getElementById('progress-pct').textContent = pct + '%';
+  document.getElementById('dim-label').textContent = DIM_LABELS[QUESTIONS[idx].dim - 1];
+}
+
+function showResult(savedWinner) {
+  let winner, d, data;
+
+  if (savedWinner) {
+    // localStorage에서 복원
+    winner = savedWinner;
+    data = TYPES[winner];
+    // 스코어바용 임시 d (저장된 유형 기반으로 추정)
+    d = ['a','a','a','a']; // 바 표시용 기본값
+  } else {
+    d = dimScores.map(s => s >= 4 ? 'a' : 'b');
+    winner = getType(d[0], d[1], d[2], d[3]);
+    data = TYPES[winner];
+    // ── localStorage에 결과 저장
+    try {
+      localStorage.setItem('sg_type', winner);
+      localStorage.setItem('sg_code', d.join(''));
+      localStorage.setItem('sg_date', new Date().toLocaleDateString('pt-BR'));
+      localStorage.setItem('sg_scores', JSON.stringify(dimScores));
+    } catch(e) {}
+  }
+
+  document.getElementById('quiz-section').style.display = 'none';
+  document.querySelector('.progress-wrap').style.display = 'none';
+  document.querySelector('.back-btn-wrap').style.display = 'none';
+
+  const rs = document.getElementById('result-section');
+  rs.style.display = 'block';
+
+  document.getElementById('res-type').textContent = winner;
+  document.getElementById('res-type').style.color = data.color;
+  document.getElementById('res-function').textContent = data.function;
+  document.getElementById('res-code').textContent = `código: ${d[0]}${d[1]}${d[2]}${d[3]}`;
+  document.getElementById('res-light-header').style.color = data.color;
+  document.getElementById('res-light').textContent = data.light;
+  document.getElementById('res-shadow').textContent = data.shadow;
+  document.getElementById('res-pain').textContent = data.pain;
+  document.getElementById('res-preview').textContent = data.preview;
+  document.getElementById('res-cta-label').textContent = `SHADOWGRAM SOLO · NÍVEL 1 · ${winner}`;
+  document.getElementById('res-cta-title').textContent = data.ctaTitle;
+  document.getElementById('res-cta-sub').textContent = data.ctaSub;
+  document.getElementById('res-buy-btn').href = HOTMART_LINKS[winner];
+
+  // 저장된 결과에서 복원 시 배너 표시
+  if (savedWinner) {
+    const savedDate = localStorage.getItem('sg_date') || '';
+    const banner = document.createElement('div');
+    banner.style.cssText = 'background:rgba(197,165,114,0.1);border:1px solid rgba(197,165,114,0.3);border-radius:10px;padding:12px 16px;margin-bottom:16px;font-size:12px;color:var(--silver);text-align:center;';
+    banner.innerHTML = `✅ Seu resultado salvo · ${savedDate} · <button onclick="restartQuiz()" style="background:none;border:none;color:var(--gold);cursor:pointer;font-size:12px;text-decoration:underline;">Refazer diagnóstico</button>`;
+    const rs = document.getElementById('result-section');
+    rs.insertBefore(banner, rs.firstChild);
+  }
+
+  // savedWinner일 때 저장된 점수 복원
+  let scoresForBar = dimScores;
+  if (savedWinner) {
+    try {
+      const saved = JSON.parse(localStorage.getItem('sg_scores') || 'null');
+      if (saved) scoresForBar = saved;
+    } catch(e) {}
+  }
+
+  // Score bars —양방향 중심 기준 그래프
+  const dimNames = [
+    {a:'Introvertido', b:'Extrovertido'},
+    {a:'Concreto',     b:'Intuitivo'},
+    {a:'Analítico',    b:'Empático'},
+    {a:'Estruturado',  b:'Flexível'},
+  ];
+  const barRows = document.getElementById('score-bar-rows');
+  barRows.innerHTML = '';
+  scoresForBar.forEach((sc, i) => {
+    // sc: 'a' 선택 횟수 (0~7), 4 이상이면 a 성향
+    const isA = sc >= 4;
+    // 중심(50%)에서 얼마나 벗어났는지 (0~50%)
+    const strength = isA
+      ? Math.round(((sc - 3.5) / 3.5) * 50)   // a: 4→7% ~ 4→50%
+      : Math.round(((3.5 - sc) / 3.5) * 50);   // b: 3→7% ~ 0→50%
+    const fillPct = Math.max(7, strength);       // 최소 7% (눈에 보이도록)
+
+    barRows.innerHTML += `
+      <div class="bar-row">
+        <span class="bar-dim">${i + 1}</span>
+        <div style="flex:1">
+          <div class="bar-track">
+            ${isA
+              ? `<div class="bar-fill-a" style="width:${fillPct}%;background:${data.color};opacity:0.9"></div>`
+              : `<div class="bar-fill-b" style="width:${fillPct}%;background:${data.color};opacity:0.9"></div>`
+            }
+          </div>
+          <div class="bar-ends">
+            <span class="bar-label-a ${isA ? 'bar-label-active' : 'bar-label-inactive'}">${dimNames[i].a}</span>
+            <span class="bar-label-b ${!isA ? 'bar-label-active' : 'bar-label-inactive'}">${dimNames[i].b}</span>
+          </div>
+        </div>
+      </div>`;
+  });
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function restartQuiz() {
+  dimScores = [0, 0, 0, 0];
+  answers = new Array(QUESTIONS.length).fill(null);
+  current = 0;
+  document.getElementById('result-section').style.display = 'none';
+  document.getElementById('quiz-section').style.display = 'block';
+  document.querySelector('.progress-wrap').style.display = 'block';
+  document.querySelector('.back-btn-wrap').style.display = 'block';
+  document.getElementById('btn-prev').classList.add('hidden');
+  // 재시작 시 hero + meta + cred 다시 표시
+  const hero = document.querySelector('.hero');
+  const meta = document.querySelector('.hero-meta');
+  const cred = document.querySelector('.cred-section');
+  if (hero) hero.style.display = '';
+  if (meta) meta.style.display = '';
+  if (cred) cred.style.display = '';
+  buildQuiz();
+  updateProgress(0);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ═══════════════════════════════════════════════════════════════
+// 재방문 처리 — localStorage + URL 파라미터
+// ═══════════════════════════════════════════════════════════════
+function checkSavedResult() {
+  // 1순위: URL 파라미터 ?type=SPARK
+  const params = new URLSearchParams(window.location.search);
+  const urlType = params.get('type');
+  if (urlType && TYPES[urlType.toUpperCase()]) {
+    showResult(urlType.toUpperCase());
+    return;
+  }
+  // 2순위: localStorage 저장값
+  try {
+    const saved = localStorage.getItem('sg_type');
+    if (saved && TYPES[saved]) {
+      showResult(saved);
+      return;
+    }
+  } catch(e) {}
+  // 저장값 없으면 일반 퀴즈 시작
+}
+
+// 내 결과 링크 저장 버튼
+function saveMyLink() {
+  try {
+    const type = localStorage.getItem('sg_type');
+    if (!type) return;
+    const base = window.location.href.split('?')[0];
+    const link = `${base}?type=${type}`;
+    document.getElementById('saved-link-input').value = link;
+    document.getElementById('saved-link-box').style.display = 'block';
+    document.getElementById('btn-save-link').style.display = 'none';
+  } catch(e) {}
+}
+
+function copyLink() {
+  const input = document.getElementById('saved-link-input');
+  input.select();
+  try {
+    navigator.clipboard.writeText(input.value).then(() => {
+      const btn = input.nextElementSibling;
+      btn.textContent = '✅ Copiado!';
+      setTimeout(() => btn.textContent = 'Copiar', 2000);
+    });
+  } catch(e) {
+    document.execCommand('copy');
+  }
+}
+
+// INIT
+buildQuiz();
+updateProgress(0);
+checkSavedResult();
+</script>
+</body>
+</html>

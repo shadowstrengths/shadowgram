@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shadowgram — Obrigado pela sua compra!</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --dark: #111111;
+      --card: #1a1a1a;
+      --gold: #c9a84c;
+      --gold-light: #e8c96a;
+      --silver: #9a9a9a;
+      --white: #f5f5f0;
+      --green: #4caf82;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Montserrat', sans-serif;
+      -webkit-text-size-adjust: 100%;
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 20px;
+      border-bottom: 1px solid #222;
+      position: sticky;
+      top: 0;
+      background: rgba(10,10,10,0.95);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+    }
+    .nav-logo {
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      text-decoration: none;
+    }
+    .nav-tag {
+      font-size: 11px;
+      color: var(--silver);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      text-align: center;
+      padding: 60px 20px 40px;
+    }
+    .hero-check {
+      font-size: 64px;
+      margin-bottom: 20px;
+      animation: popIn 0.6s cubic-bezier(0.34,1.56,0.64,1) both;
+    }
+    @keyframes popIn {
+      from { transform: scale(0); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+    .hero-title {
+      font-size: clamp(26px, 6vw, 42px);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+    .hero-title span {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: clamp(14px, 3.5vw, 17px);
+      color: var(--silver);
+      line-height: 1.6;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    /* ── TYPE BADGE ── */
+    .type-reveal {
+      max-width: 560px;
+      margin: 40px auto 0;
+      padding: 0 20px;
+      display: none;
+    }
+    .type-reveal.visible { display: block; }
+
+    .type-card {
+      background: var(--card);
+      border: 1px solid #2a2a2a;
+      border-radius: 16px;
+      padding: 32px 28px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .type-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+    }
+    .type-label {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--silver);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .type-name {
+      font-size: clamp(52px, 16vw, 80px);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 6px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .type-tagline {
+      font-size: clamp(13px, 3vw, 15px);
+      color: var(--silver);
+      font-style: italic;
+      margin-bottom: 24px;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: #2a2a2a;
+      margin: 20px 0;
+    }
+
+    /* ── REPORT LINKS ── */
+    .report-section {
+      max-width: 560px;
+      margin: 32px auto 0;
+      padding: 0 20px;
+    }
+    .section-title {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--silver);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #2a2a2a;
+    }
+
+    .report-btn {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      width: 100%;
+      background: var(--card);
+      border: 1px solid #2a2a2a;
+      border-radius: 14px;
+      padding: 20px 22px;
+      margin-bottom: 12px;
+      text-decoration: none;
+      color: var(--white);
+      transition: border-color 0.2s, transform 0.15s;
+      cursor: pointer;
+    }
+    .report-btn:active {
+      transform: scale(0.98);
+      border-color: var(--gold);
+    }
+    .report-btn-icon {
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+    .report-btn-text {
+      flex: 1;
+      text-align: left;
+    }
+    .report-btn-title {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 3px;
+      line-height: 1.3;
+    }
+    .report-btn-desc {
+      font-size: 12px;
+      color: var(--silver);
+      line-height: 1.4;
+    }
+    .report-btn-arrow {
+      color: var(--gold);
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    /* Primary CTA */
+    .btn-primary {
+      display: block;
+      width: 100%;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: #000;
+      border: none;
+      border-radius: 14px;
+      padding: 20px 24px;
+      font-size: 16px;
+      font-weight: 800;
+      font-family: 'Montserrat', sans-serif;
+      letter-spacing: 0.04em;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      margin-bottom: 12px;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+    .btn-primary:active {
+      opacity: 0.9;
+      transform: scale(0.98);
+    }
+
+    /* ── SAVE LINK SECTION ── */
+    .save-section {
+      max-width: 560px;
+      margin: 24px auto 0;
+      padding: 0 20px;
+    }
+    .save-card {
+      background: #161616;
+      border: 1px solid #2a2a2a;
+      border-radius: 14px;
+      padding: 20px 20px;
+    }
+    .save-title {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .save-desc {
+      font-size: 12px;
+      color: var(--silver);
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+    .save-link-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .save-link-box {
+      flex: 1;
+      background: #222;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 11px;
+      color: var(--silver);
+      word-break: break-all;
+      line-height: 1.4;
+      font-family: monospace;
+    }
+    .btn-copy {
+      background: var(--gold);
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      font-family: 'Montserrat', sans-serif;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+      flex-shrink: 0;
+    }
+    .btn-copy:active { opacity: 0.8; }
+
+    /* ── NO TYPE FALLBACK ── */
+    .no-type {
+      max-width: 560px;
+      margin: 40px auto 0;
+      padding: 0 20px;
+      text-align: center;
+    }
+    .no-type-card {
+      background: var(--card);
+      border: 1px solid #2a2a2a;
+      border-radius: 16px;
+      padding: 36px 28px;
+    }
+    .no-type-icon { font-size: 48px; margin-bottom: 16px; }
+    .no-type-title {
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+    .no-type-desc {
+      font-size: 14px;
+      color: var(--silver);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 40px 20px 60px;
+      color: var(--silver);
+      font-size: 11px;
+      line-height: 1.8;
+    }
+    footer a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    /* ── T2 UPSELL ── */
+    .upsell-section {
+      max-width: 560px;
+      margin: 36px auto 0;
+      padding: 0 20px;
+    }
+    .upsell-card {
+      background: linear-gradient(145deg, #1a1a1a, #161616);
+      border: 1px solid #333;
+      border-radius: 16px;
+      padding: 28px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .upsell-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #888, #ccc, #888);
+    }
+    .upsell-badge {
+      display: inline-block;
+      background: #2a2a2a;
+      border: 1px solid #444;
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: #aaa;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .upsell-title {
+      font-size: clamp(18px, 5vw, 22px);
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .upsell-title span {
+      background: linear-gradient(135deg, #bbb, #eee);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .upsell-desc {
+      font-size: 13px;
+      color: var(--silver);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .upsell-list {
+      list-style: none;
+      margin-bottom: 24px;
+    }
+    .upsell-list li {
+      font-size: 13px;
+      color: #ccc;
+      padding: 6px 0;
+      border-bottom: 1px solid #222;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.5;
+    }
+    .upsell-list li:last-child { border-bottom: none; }
+    .upsell-list li::before {
+      content: '✦';
+      color: #888;
+      font-size: 10px;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+    .upsell-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .upsell-price-old {
+      font-size: 16px;
+      color: #555;
+      text-decoration: line-through;
+    }
+    .upsell-price-new {
+      font-size: 36px;
+      font-weight: 900;
+      color: #ddd;
+    }
+    .upsell-price-currency {
+      font-size: 16px;
+      color: #888;
+      font-weight: 600;
+    }
+    .upsell-price-note {
+      font-size: 11px;
+      color: var(--silver);
+      margin-bottom: 20px;
+    }
+    .btn-upsell {
+      display: block;
+      width: 100%;
+      background: linear-gradient(135deg, #444, #666);
+      color: #fff;
+      border: none;
+      border-radius: 14px;
+      padding: 18px 24px;
+      font-size: 15px;
+      font-weight: 800;
+      font-family: 'Montserrat', sans-serif;
+      letter-spacing: 0.03em;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+    .btn-upsell:active { opacity: 0.85; transform: scale(0.98); }
+    .upsell-skip {
+      text-align: center;
+      margin-top: 12px;
+      font-size: 11px;
+      color: #444;
+    }
+
+    /* ── DESKTOP ── */
+    @media (min-width: 600px) {
+      nav { padding: 20px 40px; }
+      .hero { padding: 80px 40px 50px; }
+      .report-btn:hover { border-color: var(--gold); transform: translateY(-1px); }
+      .btn-primary:hover { opacity: 0.9; }
+      .btn-upsell:hover { opacity: 0.85; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">SHADOWGRAM</a>
+    <span class="nav-tag">Compra confirmada ✓</span>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-check">🎉</div>
+    <h1 class="hero-title">
+      Bem-vindo ao seu<br><span>Shadowgram</span>
+    </h1>
+    <p class="hero-sub">
+      Sua compra foi confirmada. Aqui estão seus relatórios personalizados para o seu tipo.
+    </p>
+  </div>
+
+  <!-- TYPE CARD (shown when type is detected) -->
+  <div class="type-reveal" id="type-reveal">
+    <div class="type-card">
+      <div class="type-label">Seu tipo Shadowgram</div>
+      <div class="type-name" id="type-display">—</div>
+      <div class="type-tagline" id="type-tagline"></div>
+    </div>
+  </div>
+
+  <!-- REPORT LINKS (shown when type is detected) -->
+  <div class="report-section" id="report-links" style="display:none">
+    <div class="section-title">Seus relatórios</div>
+
+    <!-- HTML Report (primary) -->
+    <a class="btn-primary" id="btn-html-report" href="#" target="_blank">
+      📖 Abrir Relatório Online (Recomendado)
+    </a>
+
+    <!-- PDF Download (secondary) -->
+    <a class="report-btn" id="btn-pdf-report" href="#" target="_blank">
+      <span class="report-btn-icon">📄</span>
+      <span class="report-btn-text">
+        <span class="report-btn-title">Baixar PDF — Relatório T1</span>
+        <span class="report-btn-desc">Versão para salvar e imprimir · Google Drive</span>
+      </span>
+      <span class="report-btn-arrow">↗</span>
+    </a>
+
+    <!-- AppA download -->
+    <a class="report-btn" id="btn-appa-report" href="#" target="_blank">
+      <span class="report-btn-icon">🌩️</span>
+      <span class="report-btn-text">
+        <span class="report-btn-title">Apêndice A — StormBreaker</span>
+        <span class="report-btn-desc">Mapa de padrões de conflito · Google Drive</span>
+      </span>
+      <span class="report-btn-arrow">↗</span>
+    </a>
+
+  </div>
+
+  <!-- T2 UPSELL SECTION -->
+  <div class="upsell-section" id="upsell-section" style="display:none">
+    <div class="upsell-card">
+      <div class="upsell-badge">Upgrade disponível</div>
+      <h2 class="upsell-title">Quer ir mais fundo no seu tipo <span id="upsell-type-name">?</span></h2>
+      <p class="upsell-desc">
+        O Shadowgram Deep é para quem leu o T1 e quis mais.
+        Análise completa — sem filtros.
+      </p>
+      <ul class="upsell-list">
+        <li>Mapa detalhado dos seus 4 eixos de personalidade</li>
+        <li>Como seu tipo age sob estresse extremo</li>
+        <li>Padrões de conflito e como resolvê-los</li>
+        <li>Compatibilidade detalhada com todos os 8 tipos</li>
+        <li>Estratégias práticas para seus relacionamentos</li>
+      </ul>
+      <div class="upsell-price-row">
+        <span class="upsell-price-currency">R$</span>
+        <span class="upsell-price-new">97</span>
+        <span class="upsell-price-old">R$147</span>
+      </div>
+      <div class="upsell-price-note">pagamento único · PDF completo · acesso imediato</div>
+      <a class="btn-upsell" id="btn-upsell" href="#" target="_blank">
+        Quero o Shadowgram Deep →
+      </a>
+      <div class="upsell-skip">Não obrigado, por enquanto o T1 é suficiente</div>
+    </div>
+  </div>
+
+  <!-- SAVE LINK SECTION -->
+  <div class="save-section" id="save-section" style="display:none">
+    <div class="save-card">
+      <div class="save-title">💾 Salve este link para acessar de qualquer dispositivo</div>
+      <div class="save-desc">Use este link para voltar aos seus relatórios sem precisar fazer a compra novamente.</div>
+      <div class="save-link-row">
+        <div class="save-link-box" id="save-link-text">—</div>
+        <button class="btn-copy" id="btn-copy" onclick="copyLink()">Copiar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- NO TYPE FALLBACK (shown when no type detected) -->
+  <div class="no-type" id="no-type" style="display:none">
+    <div class="no-type-card">
+      <div class="no-type-icon">🔍</div>
+      <div class="no-type-title">Faça o teste primeiro</div>
+      <div class="no-type-desc">
+        Para acessar seu relatório personalizado, complete o teste Shadowgram.
+        Após o teste, você será direcionado automaticamente para seus relatórios.
+      </div>
+      <a class="btn-primary" href="shadowgram_pt.html">Fazer o teste agora →</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Shadowgram · Shining Shadow</p>
+    <p style="margin-top:6px">
+      Dúvidas? <a href="mailto:support@shinigram.com">support@shinigram.com</a>
+    </p>
+    <p style="margin-top:16px; font-size:10px; color:#555">
+      Seus links de acesso são permanentes. Salve-os para uso futuro.
+    </p>
+  </footer>
+
+<script>
+  // ── 1. REPORT DATA ─────────────────────────────────────────────────────────
+  // TODO: Substituir URLs abaixo após upload no GitHub Pages + Google Drive
+
+  const GITHUB_BASE = 'https://YOUR_GITHUB_PAGES_URL/PT_mobile/';
+
+  // Google Drive links — formato: https://drive.google.com/file/d/FILE_ID/view?usp=sharing
+  const DRIVE_BASE = 'https://drive.google.com/file/d/';
+
+  // T2 Hotmart URL — TODO: substituir após cadastro do produto T2
+  const HOTMART_T2_BASE = 'https://pay.hotmart.com/PRODUTO_T2_AQUI';
+
+  const TYPES = {
+    SPARK: {
+      tagline: 'O Criador — Intensidade que ilumina o mundo',
+      htmlReport:  GITHUB_BASE + 'SPARK_T1_Basic.html',
+      pdfT1:       DRIVE_BASE + 'PLACEHOLDER_SPARK_T1/view?usp=sharing',
+      pdfAppA:     DRIVE_BASE + 'PLACEHOLDER_SPARK_APPA/view?usp=sharing',
+    },
+    STEADY: {
+      tagline: 'O Construtor — Força que sustenta o que importa',
+      htmlReport:  GITHUB_BASE + 'STEADY_T1_Basic.html',
+      pdfT1:       DRIVE_BASE + 'PLACEHOLDER_STEADY_T1/view?usp=sharing',
+      pdfAppA:     DRIVE_BASE + 'PLACEHOLDER_STEADY_APPA/view?usp=sharing',
+    },
+    PLAYER: {
+      tagline: 'O Estrategista — Visão que encontra o caminho',
+      htmlReport:  GITHUB_BASE + 'PLAYER_T1_Basic.html',
+      pdfT1:       DRIVE_BASE + 'PLACEHOLDER_PLAYER_T1/view?usp=sharing',
+      pdfAppA:     DRIVE_BASE + 'PLACEHOLDER_PLAYER_APPA/view?usp=sharing',
+    },
+    VISION: {
+      tagline: 'O Visionário — Profundidade que transforma',
+      htmlReport:  GITHUB_BASE + 'VISION_T1_Basic.html',
+      pdfT1:       DRIVE_BASE + 'PLACEHOLDER_VISION_T1/view?usp=sharing',
+      pdfAppA:     DRIVE_BASE + 'PLACEHOLDER_VISION_APPA/view?usp=sharing',
+    },
+    LOGIC: {
+      tagline: 'O Analista — Precisão que revela a verdade',
+      htmlReport:  GITHUB_BASE + 'LOGIC_T1_Basic.html',
+      pdfT1:       DRIVE_BASE + 'PLACEHOLDER_LOGIC_T1/view?usp=sharing',
+      pdfAppA:     DRIVE_BASE + 'PLACEHOLDER_LOGIC_APPA/view?usp=sharing',
+    },
+    HARMONY: {
+      tagline: 'O Mediador — Cuidado que une o que estava separado',
+      htmlReport:  GITHUB_BASE + 'HARMONY_T1_Basic.html',
+      pdfT1:       DRIVE_BASE + 'PLACEHOLDER_HARMONY_T1/view?usp=sharing',
+      pdfAppA:     DRIVE_BASE + 'PLACEHOLDER_HARMONY_APPA/view?usp=sharing',
+    },
+    LEADER: {
+      tagline: 'O Líder — Presença que move multidões',
+      htmlReport:  GITHUB_BASE + 'LEADER_T1_Basic.html',
+      pdfT1:       DRIVE_BASE + 'PLACEHOLDER_LEADER_T1/view?usp=sharing',
+      pdfAppA:     DRIVE_BASE + 'PLACEHOLDER_LEADER_APPA/view?usp=sharing',
+    },
+    SOUL: {
+      tagline: 'O Sensível — Conexão que toca a essência',
+      htmlReport:  GITHUB_BASE + 'SOUL_T1_Basic.html',
+      pdfT1:       DRIVE_BASE + 'PLACEHOLDER_SOUL_T1/view?usp=sharing',
+      pdfAppA:     DRIVE_BASE + 'PLACEHOLDER_SOUL_APPA/view?usp=sharing',
+    },
+  };
+
+  // ── 2. DETECT TYPE ─────────────────────────────────────────────────────────
+  function detectType() {
+    // Priority 1: URL param ?sck= or ?src= or ?type= (from Hotmart redirect)
+    const params = new URLSearchParams(window.location.search);
+    for (const key of ['sck', 'src', 'type', 'off']) {
+      const v = params.get(key);
+      if (v && TYPES[v.toUpperCase()]) return v.toUpperCase();
+    }
+
+    // Priority 2: localStorage (same device, from quiz)
+    try {
+      const saved = localStorage.getItem('sg_type');
+      if (saved && TYPES[saved]) return saved;
+    } catch(e) {}
+
+    return null;
+  }
+
+  // ── 3. RENDER ──────────────────────────────────────────────────────────────
+  function init() {
+    const type = detectType();
+
+    if (!type) {
+      document.getElementById('no-type').style.display = 'block';
+      return;
+    }
+
+    const data = TYPES[type];
+
+    // Show type card
+    document.getElementById('type-display').textContent = type;
+    document.getElementById('type-tagline').textContent = data.tagline;
+    document.getElementById('type-reveal').classList.add('visible');
+
+    // Set report links
+    document.getElementById('btn-html-report').href = data.htmlReport;
+    document.getElementById('btn-html-report').textContent =
+      '📖 Abrir Relatório ' + type + ' Online';
+
+    document.getElementById('btn-pdf-report').href = data.pdfT1;
+    document.getElementById('btn-appa-report').href = data.pdfAppA;
+    document.getElementById('report-links').style.display = 'block';
+
+    // T2 upsell — T2 구매자는 업셀 숨김
+    const params2 = new URLSearchParams(window.location.search);
+    const tier = params2.get('tier');
+    if (tier !== '2') {
+      document.getElementById('upsell-type-name').textContent = type + '?';
+      document.getElementById('btn-upsell').href = HOTMART_T2_BASE + '?sck=' + type + '_T2';
+      document.getElementById('upsell-section').style.display = 'block';
+    }
+
+    // Save link
+    const saveUrl = window.location.origin + window.location.pathname + '?type=' + type;
+    document.getElementById('save-link-text').textContent = saveUrl;
+    document.getElementById('save-section').style.display = 'block';
+
+    // Also persist to localStorage
+    try { localStorage.setItem('sg_type', type); } catch(e) {}
+  }
+
+  // ── 4. COPY LINK ───────────────────────────────────────────────────────────
+  function copyLink() {
+    const text = document.getElementById('save-link-text').textContent;
+    const btn  = document.getElementById('btn-copy');
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = '✅ Copiado!';
+        setTimeout(() => btn.textContent = 'Copiar', 2000);
+      }).catch(() => fallbackCopy(text, btn));
+    } else {
+      fallbackCopy(text, btn);
+    }
+  }
+
+  function fallbackCopy(text, btn) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0';
+    document.body.appendChild(ta);
+    ta.focus(); ta.select();
+    try {
+      document.execCommand('copy');
+      btn.textContent = '✅ Copiado!';
+      setTimeout(() => btn.textContent = 'Copiar', 2000);
+    } catch(e) {}
+    document.body.removeChild(ta);
+  }
+
+  // ── INIT ───────────────────────────────────────────────────────────────────
+  document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
