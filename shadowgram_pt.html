@@ -549,26 +549,51 @@
       QUERO MEU RELATÓRIO COMPLETO →
     </a>
 
-    <!-- WhatsApp 공유 버튼 -->
-    <a id="btn-whatsapp-share" href="#" target="_blank" rel="noopener" style="
-      display: block;
-      width: 100%;
-      background: linear-gradient(135deg, #25d366, #128c7e);
-      color: #fff;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 14px;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      padding: 14px 20px;
-      border-radius: 50px;
-      text-decoration: none;
-      text-align: center;
-      margin-top: 12px;
-      box-sizing: border-box;
-    ">💬 Compartilhar meu resultado no WhatsApp</a>
-    <p style="font-size:11px;color:#555;text-align:center;margin:6px 0 12px;">
-      Envie para um amigo — o teste é gratuito para eles!
-    </p>
+    <!-- SNS 공유 버튼 -->
+    <div style="margin-top:16px;">
+      <p style="font-size:11px;color:#888;text-align:center;margin:0 0 10px;letter-spacing:0.08em;text-transform:uppercase;">
+        ✦ Compartilhe — o teste é gratuito para seus amigos
+      </p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <!-- WhatsApp -->
+        <a id="btn-whatsapp-share" href="#" target="_blank" rel="noopener" style="
+          display:flex;align-items:center;justify-content:center;gap:6px;
+          background:#25d366;color:#fff;
+          font-family:'Montserrat',sans-serif;font-size:13px;font-weight:800;
+          padding:12px 8px;border-radius:12px;text-decoration:none;
+        ">💬 WhatsApp</a>
+        <!-- Instagram -->
+        <a id="btn-instagram-share" href="#" target="_blank" rel="noopener" style="
+          display:flex;align-items:center;justify-content:center;gap:6px;
+          background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);
+          color:#fff;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:800;
+          padding:12px 8px;border-radius:12px;text-decoration:none;
+        ">📸 Instagram</a>
+        <!-- Facebook -->
+        <a id="btn-facebook-share" href="#" target="_blank" rel="noopener" style="
+          display:flex;align-items:center;justify-content:center;gap:6px;
+          background:#1877f2;color:#fff;
+          font-family:'Montserrat',sans-serif;font-size:13px;font-weight:800;
+          padding:12px 8px;border-radius:12px;text-decoration:none;
+        ">📘 Facebook</a>
+        <!-- X (Twitter) -->
+        <a id="btn-twitter-share" href="#" target="_blank" rel="noopener" style="
+          display:flex;align-items:center;justify-content:center;gap:6px;
+          background:#000;color:#fff;
+          font-family:'Montserrat',sans-serif;font-size:13px;font-weight:800;
+          padding:12px 8px;border-radius:12px;text-decoration:none;
+        ">✕ X</a>
+      </div>
+      <!-- 링크 복사 -->
+      <button id="btn-copy-link" onclick="copyQuizLink()" style="
+        display:flex;align-items:center;justify-content:center;gap:8px;
+        width:100%;margin-top:8px;
+        background:transparent;border:1px solid rgba(197,165,114,0.4);
+        color:var(--gold);font-family:'Montserrat',sans-serif;
+        font-size:13px;font-weight:700;
+        padding:12px;border-radius:12px;cursor:pointer;
+      ">🔗 Copiar link do teste</button>
+    </div>
 
     <!-- 내 결과 저장 버튼 -->
     <button class="btn-save-link" id="btn-save-link" onclick="saveMyLink()" style="
@@ -998,10 +1023,40 @@ function showResult(savedWinner) {
   document.getElementById('res-cta-sub').textContent = data.ctaSub;
   document.getElementById('res-buy-btn').href = HOTMART_LINKS[winner];
 
-  // WhatsApp 공유 버튼 — 검사 페이지 링크 (민철님 100% 수익)
+  // SNS 공유 버튼 — 검사 페이지 링크 (민철님 100% 수익)
   const QUIZ_URL = 'https://shadowstrengths.github.io/shadowgram/shadowgram_pt.html';
   const shareMsg = `Descobri meu tipo Shadowgram: ${winner}! 🔥\nO teste revela o padrão oculto que está sabotando sua vida.\nFaça o teste gratuito 👇\n${QUIZ_URL}`;
-  document.getElementById('btn-whatsapp-share').href = 'https://wa.me/?text=' + encodeURIComponent(shareMsg);
+  const shareMsgShort = `Meu tipo Shadowgram é ${winner} 🔥 Descubra o seu — teste gratuito: ${QUIZ_URL}`;
+
+  // WhatsApp
+  document.getElementById('btn-whatsapp-share').href =
+    'https://wa.me/?text=' + encodeURIComponent(shareMsg);
+
+  // Instagram — 링크 복사 후 스토리 안내
+  document.getElementById('btn-instagram-share').href = '#';
+  document.getElementById('btn-instagram-share').onclick = function(e) {
+    e.preventDefault();
+    navigator.clipboard && navigator.clipboard.writeText(QUIZ_URL);
+    this.textContent = '✅ Link copiado! Cole no Instagram';
+    setTimeout(() => this.textContent = '📸 Instagram', 2500);
+  };
+
+  // Facebook
+  document.getElementById('btn-facebook-share').href =
+    'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(QUIZ_URL) +
+    '&quote=' + encodeURIComponent(shareMsgShort);
+
+  // X (Twitter)
+  document.getElementById('btn-twitter-share').href =
+    'https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareMsgShort);
+
+  // 링크 복사 함수 (전역)
+  window.copyQuizLink = function() {
+    navigator.clipboard && navigator.clipboard.writeText(QUIZ_URL);
+    const btn = document.getElementById('btn-copy-link');
+    btn.textContent = '✅ Link copiado!';
+    setTimeout(() => btn.textContent = '🔗 Copiar link do teste', 2000);
+  };
 
   // 저장된 결과에서 복원 시 배너 표시
   if (savedWinner) {
