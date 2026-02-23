@@ -715,16 +715,26 @@
     document.getElementById('btn-appa-report').href = data.pdfAppA;
     document.getElementById('report-links').style.display = 'block';
 
-    // T2 upsell — T2 구매자는 업셀 숨기고 T2 PDF 표시
+    // T2 upsell — T2 구매자는 업셀 숨기고 T2 PDF 자동다운로드
     const params2 = new URLSearchParams(window.location.search);
     const tier = params2.get('tier');
     if (tier === '2') {
-      // T2 buyer: show T2 PDF, hide upsell
+      // T2 buyer: 버튼 표시 + 자동 다운로드 (1.5초 후)
       const btnT2 = document.getElementById('btn-t2-report');
       if (btnT2 && data.pdfT2) {
         btnT2.href = data.pdfT2;
         btnT2.style.display = 'flex';
       }
+      // 자동 다운로드 — 1.5초 후 PDF 다운로드 트리거
+      setTimeout(function() {
+        const a = document.createElement('a');
+        a.href = data.pdfT2;
+        a.download = type + '_T2_Deep.pdf';
+        a.target = '_blank';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      }, 1500);
     } else {
       document.getElementById('upsell-type-name').textContent = type + '?';
       document.getElementById('btn-upsell').href = HOTMART_T2_BASE + '?sck=' + type + '_T2';
