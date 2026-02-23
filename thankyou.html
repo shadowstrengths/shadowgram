@@ -521,7 +521,17 @@
       <span class="report-btn-icon">🌩️</span>
       <span class="report-btn-text">
         <span class="report-btn-title">Apêndice A — StormBreaker</span>
-        <span class="report-btn-desc">Mapa de padrões de conflito · Google Drive</span>
+        <span class="report-btn-desc">Mapa de padrões de conflito · PDF</span>
+      </span>
+      <span class="report-btn-arrow">↗</span>
+    </a>
+
+    <!-- T2 PDF download (shown only for T2 buyers) -->
+    <a class="report-btn" id="btn-t2-report" href="#" target="_blank" style="display:none">
+      <span class="report-btn-icon">🔥</span>
+      <span class="report-btn-text">
+        <span class="report-btn-title">Relatório Avançado T2 — Deep</span>
+        <span class="report-btn-desc">Análise profunda da sua sombra · PDF exclusivo</span>
       </span>
       <span class="report-btn-arrow">↗</span>
     </a>
@@ -609,48 +619,56 @@
       htmlReport:  GITHUB_BASE + 'SPARK_T1_Basic.html',
       pdfT1:       PDF_BASE + 'SPARK_T1_Basic.pdf',
       pdfAppA:     PDF_BASE + 'SPARK_AppA_StormBreaker.pdf',
+      pdfT2:       PDF_BASE + 'SPARK_T2_Deep.pdf',
     },
     STEADY: {
       tagline: 'O Construtor — Força que sustenta o que importa',
       htmlReport:  GITHUB_BASE + 'STEADY_T1_Basic.html',
       pdfT1:       PDF_BASE + 'STEADY_T1_Basic.pdf',
       pdfAppA:     PDF_BASE + 'STEADY_AppA_StormBreaker.pdf',
+      pdfT2:       PDF_BASE + 'STEADY_T2_Deep.pdf',
     },
     PLAYER: {
       tagline: 'O Estrategista — Visão que encontra o caminho',
       htmlReport:  GITHUB_BASE + 'PLAYER_T1_Basic.html',
       pdfT1:       PDF_BASE + 'PLAYER_T1_Basic.pdf',
       pdfAppA:     PDF_BASE + 'PLAYER_AppA_StormBreaker.pdf',
+      pdfT2:       PDF_BASE + 'PLAYER_T2_Deep.pdf',
     },
     VISION: {
       tagline: 'O Visionário — Profundidade que transforma',
       htmlReport:  GITHUB_BASE + 'VISION_T1_Basic.html',
       pdfT1:       PDF_BASE + 'VISION_T1_Basic.pdf',
       pdfAppA:     PDF_BASE + 'VISION_AppA_StormBreaker.pdf',
+      pdfT2:       PDF_BASE + 'VISION_T2_Deep.pdf',
     },
     LOGIC: {
       tagline: 'O Analista — Precisão que revela a verdade',
       htmlReport:  GITHUB_BASE + 'LOGIC_T1_Basic.html',
       pdfT1:       PDF_BASE + 'LOGIC_T1_Basic.pdf',
       pdfAppA:     PDF_BASE + 'LOGIC_AppA_StormBreaker.pdf',
+      pdfT2:       PDF_BASE + 'LOGIC_T2_Deep.pdf',
     },
     HARMONY: {
       tagline: 'O Mediador — Cuidado que une o que estava separado',
       htmlReport:  GITHUB_BASE + 'HARMONY_T1_Basic.html',
       pdfT1:       PDF_BASE + 'HARMONY_T1_Basic.pdf',
       pdfAppA:     PDF_BASE + 'HARMONY_AppA_StormBreaker.pdf',
+      pdfT2:       PDF_BASE + 'HARMONY_T2_Deep.pdf',
     },
     LEADER: {
       tagline: 'O Líder — Presença que move multidões',
       htmlReport:  GITHUB_BASE + 'LEADER_T1_Basic.html',
       pdfT1:       PDF_BASE + 'LEADER_T1_Basic.pdf',
       pdfAppA:     PDF_BASE + 'LEADER_AppA_StormBreaker.pdf',
+      pdfT2:       PDF_BASE + 'LEADER_T2_Deep.pdf',
     },
     SOUL: {
       tagline: 'O Sensível — Conexão que toca a essência',
       htmlReport:  GITHUB_BASE + 'SOUL_T1_Basic.html',
       pdfT1:       PDF_BASE + 'SOUL_T1_Basic.pdf',
       pdfAppA:     PDF_BASE + 'SOUL_AppA_StormBreaker.pdf',
+      pdfT2:       PDF_BASE + 'SOUL_T2_Deep.pdf',
     },
   };
 
@@ -697,10 +715,17 @@
     document.getElementById('btn-appa-report').href = data.pdfAppA;
     document.getElementById('report-links').style.display = 'block';
 
-    // T2 upsell — T2 구매자는 업셀 숨김
+    // T2 upsell — T2 구매자는 업셀 숨기고 T2 PDF 표시
     const params2 = new URLSearchParams(window.location.search);
     const tier = params2.get('tier');
-    if (tier !== '2') {
+    if (tier === '2') {
+      // T2 buyer: show T2 PDF, hide upsell
+      const btnT2 = document.getElementById('btn-t2-report');
+      if (btnT2 && data.pdfT2) {
+        btnT2.href = data.pdfT2;
+        btnT2.style.display = 'flex';
+      }
+    } else {
       document.getElementById('upsell-type-name').textContent = type + '?';
       document.getElementById('btn-upsell').href = HOTMART_T2_BASE + '?sck=' + type + '_T2';
       document.getElementById('upsell-section').style.display = 'block';
