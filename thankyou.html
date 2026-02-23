@@ -678,7 +678,12 @@
     const params = new URLSearchParams(window.location.search);
     for (const key of ['sck', 'src', 'type', 'off']) {
       const v = params.get(key);
-      if (v && TYPES[v.toUpperCase()]) return v.toUpperCase();
+      if (!v) continue;
+      // 정확히 매칭 (예: SPARK)
+      if (TYPES[v.toUpperCase()]) return v.toUpperCase();
+      // _T2 / _T1 suffix 제거 후 매칭 (예: SPARK_T2 → SPARK)
+      const base = v.toUpperCase().replace(/_T[123].*$/, '');
+      if (TYPES[base]) return base;
     }
 
     // Priority 2: localStorage (same device, from quiz)
@@ -737,7 +742,7 @@
       }, 1500);
     } else {
       document.getElementById('upsell-type-name').textContent = type + '?';
-      document.getElementById('btn-upsell').href = HOTMART_T2_BASE + '?sck=' + type + '_T2';
+      document.getElementById('btn-upsell').href = HOTMART_T2_BASE + '?sck=' + type;
       document.getElementById('upsell-section').style.display = 'block';
     }
 
