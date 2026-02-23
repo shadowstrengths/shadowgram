@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shadowgram — Programa de Afiliados</title>
+  <style>
+    :root {
+      --gold: #c9a84c;
+      --gold-light: #e8c96a;
+      --bg: #0a0a0a;
+      --card: #111;
+      --silver: #999;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--bg);
+      color: #eee;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.6;
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(180deg, #111 0%, #0a0a0a 100%);
+      border-bottom: 1px solid #1e1a00;
+      padding: 60px 24px 50px;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: #0a0a0a;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      padding: 6px 18px;
+      border-radius: 20px;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(32px, 8vw, 56px);
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+    }
+    .hero p {
+      font-size: clamp(15px, 3vw, 18px);
+      color: var(--silver);
+      max-width: 560px;
+      margin: 0 auto 32px;
+    }
+    .commission-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: #1a1500;
+      border: 1px solid var(--gold);
+      border-radius: 16px;
+      padding: 16px 32px;
+    }
+    .commission-pct {
+      font-size: 52px;
+      font-weight: 900;
+      color: var(--gold-light);
+      line-height: 1;
+    }
+    .commission-text {
+      text-align: left;
+    }
+    .commission-text strong {
+      display: block;
+      font-size: 16px;
+      color: #eee;
+    }
+    .commission-text span {
+      font-size: 13px;
+      color: var(--silver);
+    }
+
+    /* CONTENT */
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    .section {
+      margin-top: 56px;
+    }
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #1e1a00;
+    }
+
+    /* CARDS */
+    .card {
+      background: var(--card);
+      border: 1px solid #1e1e1e;
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+    .card h3 {
+      font-size: 16px;
+      font-weight: 800;
+      color: #eee;
+      margin-bottom: 8px;
+    }
+    .card p {
+      font-size: 14px;
+      color: var(--silver);
+    }
+
+    /* STATS */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .stat-card {
+      background: var(--card);
+      border: 1px solid #1e1e1e;
+      border-radius: 16px;
+      padding: 20px 16px;
+      text-align: center;
+    }
+    .stat-number {
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--gold-light);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-label {
+      font-size: 12px;
+      color: var(--silver);
+    }
+
+    /* STEPS */
+    .step {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 20px;
+      align-items: flex-start;
+    }
+    .step-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: #0a0a0a;
+      font-weight: 900;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .step-content h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #eee;
+      margin-bottom: 4px;
+    }
+    .step-content p {
+      font-size: 13px;
+      color: var(--silver);
+    }
+
+    /* LINK BOX */
+    .link-box {
+      background: #0d0d0d;
+      border: 1px solid #2a2a2a;
+      border-radius: 12px;
+      padding: 16px 20px;
+      font-family: monospace;
+      font-size: 14px;
+      color: var(--gold-light);
+      word-break: break-all;
+      margin-bottom: 12px;
+    }
+
+    /* CTA */
+    .cta-section {
+      text-align: center;
+      margin-top: 56px;
+      padding: 40px 24px;
+      background: #0d0d0d;
+      border: 1px solid #1e1a00;
+      border-radius: 20px;
+    }
+    .cta-section h2 {
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--gold-light);
+      margin-bottom: 12px;
+    }
+    .cta-section p {
+      font-size: 14px;
+      color: var(--silver);
+      margin-bottom: 24px;
+    }
+    .btn-cta {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: #0a0a0a;
+      font-size: 16px;
+      font-weight: 900;
+      padding: 16px 40px;
+      border-radius: 50px;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+    }
+
+    /* TYPES */
+    .types-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .type-chip {
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 700;
+      color: #ddd;
+    }
+    .type-chip span {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    @media (max-width: 480px) {
+      .stats-grid { grid-template-columns: repeat(3, 1fr); }
+      .types-grid { grid-template-columns: repeat(4, 1fr); }
+      .commission-pct { font-size: 40px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge">✦ PROGRAMA DE AFILIADOS</div>
+    <h1>Shadowgram</h1>
+    <p>O teste de personalidade que revela não só quem você é — mas o padrão oculto que está sabotando sua vida.</p>
+    <div class="commission-badge">
+      <div class="commission-pct">70%</div>
+      <div class="commission-text">
+        <strong>de comissão por venda</strong>
+        <span>~R$47 por cada indicação convertida</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- STATS -->
+    <div class="section">
+      <div class="section-title">Por que promover o Shadowgram?</div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">70%</div>
+          <div class="stat-label">Comissão por venda</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">8</div>
+          <div class="stat-label">Tipos de personalidade</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">R$67</div>
+          <div class="stat-label">Preço do produto</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- O QUE É -->
+    <div class="section">
+      <div class="section-title">O que é o Shadowgram?</div>
+      <div class="card">
+        <h3>🔍 Teste de personalidade gratuito</h3>
+        <p>O visitante faz um teste rápido e gratuito que revela seu tipo Shadowgram — um dos 8 arquétipos da psique com luz e sombra únicos.</p>
+      </div>
+      <div class="card">
+        <h3>📄 Relatório PDF personalizado</h3>
+        <p>Após o teste, o usuário pode comprar um relatório PDF completo com análise profunda do seu tipo — padrões de comportamento, gatilhos emocionais e estratégias de crescimento.</p>
+      </div>
+      <div class="card">
+        <h3>🌑 Conceito da Sombra (Jung)</h3>
+        <p>Baseado na psicologia junguiana — o lado oculto da personalidade que sabota relacionamentos, carreira e bem-estar. Conteúdo profundo, linguagem acessível.</p>
+      </div>
+    </div>
+
+    <!-- 8 TIPOS -->
+    <div class="section">
+      <div class="section-title">Os 8 Tipos Shadowgram</div>
+      <div class="types-grid">
+        <div class="type-chip"><span>✦</span>SPARK</div>
+        <div class="type-chip"><span>⬡</span>STEADY</div>
+        <div class="type-chip"><span>▲</span>PLAYER</div>
+        <div class="type-chip"><span>◈</span>VISION</div>
+        <div class="type-chip"><span>◎</span>LOGIC</div>
+        <div class="type-chip"><span>❋</span>HARMONY</div>
+        <div class="type-chip"><span>◆</span>LEADER</div>
+        <div class="type-chip"><span>✿</span>SOUL</div>
+      </div>
+    </div>
+
+    <!-- PÚBLICO-ALVO -->
+    <div class="section">
+      <div class="section-title">Público-alvo</div>
+      <div class="card">
+        <h3>👥 Quem compra?</h3>
+        <p>Pessoas interessadas em autoconhecimento, psicologia, relacionamentos e desenvolvimento pessoal. Funciona muito bem com públicos de 20–40 anos ativos em redes sociais, especialmente no Brasil e LATAM.</p>
+      </div>
+      <div class="card">
+        <h3>💡 Funciona melhor com</h3>
+        <p>Conteúdo sobre autoconhecimento, MBTI, astrologia, relacionamentos, ansiedade, propósito de vida, terapia e crescimento pessoal. A linguagem e abordagem ficam 100% na sua mão.</p>
+      </div>
+    </div>
+
+    <!-- COMO FUNCIONA -->
+    <div class="section">
+      <div class="section-title">Como funciona a afiliação?</div>
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h4>Cadastre-se como afiliado na Hotmart</h4>
+          <p>Busque "Shadowgram" no Marketplace da Hotmart e clique em "Ser Afiliado". Aprovação imediata.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h4>Pegue seu link exclusivo</h4>
+          <p>A Hotmart gera um link rastreado só seu. Cada venda feita pelo seu link é 100% atribuída a você.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h4>Promova do seu jeito</h4>
+          <p>Instagram, TikTok, YouTube, WhatsApp, blog — você decide como e para quem promover. A linguagem e cultura são suas.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h4>Receba 70% de cada venda</h4>
+          <p>A cada R$67 vendidos, você recebe ~R$47. Pagamento pela Hotmart direto na sua conta.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- LINKS -->
+    <div class="section">
+      <div class="section-title">Links para promover</div>
+      <p style="font-size:13px;color:var(--silver);margin-bottom:16px">
+        Use o link do teste gratuito — alta conversão porque o visitante já conhece o resultado antes de comprar.
+      </p>
+      <div class="link-box">🔍 Teste gratuito: https://shadowstrengths.github.io/shadowgram/shadowgram_pt.html</div>
+      <div class="link-box">💳 Página de compra: https://pay.hotmart.com/Q104596575B</div>
+      <p style="font-size:12px;color:#555;margin-top:8px">
+        * Substitua pelo seu link de afiliado gerado na Hotmart para rastrear suas vendas.
+      </p>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section">
+      <h2>Pronto para começar?</h2>
+      <p>Acesse o Marketplace da Hotmart, busque "Shadowgram" e clique em Ser Afiliado. É gratuito e a aprovação é imediata.</p>
+      <a class="btn-cta" href="https://hotmart.com/pt-br/marketplace" target="_blank">
+        Ser Afiliado agora →
+      </a>
+    </div>
+
+  </div>
+
+</body>
+</html>
