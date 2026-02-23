@@ -501,19 +501,14 @@
   <div class="report-section" id="report-links" style="display:none">
     <div class="section-title">Seus relatórios</div>
 
-    <!-- HTML Report (primary) -->
-    <a class="btn-primary" id="btn-html-report" href="#" target="_blank">
-      📖 Abrir Relatório Online (Recomendado)
-    </a>
-
-    <!-- PDF Download (secondary) -->
+    <!-- PDF Download T1 -->
     <a class="report-btn" id="btn-pdf-report" href="#" target="_blank">
       <span class="report-btn-icon">📄</span>
       <span class="report-btn-text">
         <span class="report-btn-title">Baixar PDF — Relatório T1</span>
-        <span class="report-btn-desc">Versão para salvar e imprimir · Google Drive</span>
+        <span class="report-btn-desc">Versão para salvar e imprimir</span>
       </span>
-      <span class="report-btn-arrow">↗</span>
+      <span class="report-btn-arrow">↓</span>
     </a>
 
     <!-- AppA download -->
@@ -523,47 +518,37 @@
         <span class="report-btn-title">Apêndice A — StormBreaker</span>
         <span class="report-btn-desc">Mapa de padrões de conflito · PDF</span>
       </span>
-      <span class="report-btn-arrow">↗</span>
+      <span class="report-btn-arrow">↓</span>
     </a>
 
     <!-- T2 PDF download (shown only for T2 buyers) -->
     <a class="report-btn" id="btn-t2-report" href="#" target="_blank" style="display:none">
       <span class="report-btn-icon">🔥</span>
       <span class="report-btn-text">
-        <span class="report-btn-title">Relatório Avançado T2 — Deep</span>
+        <span class="report-btn-title">Relatório Deep T2</span>
         <span class="report-btn-desc">Análise profunda da sua sombra · PDF exclusivo</span>
       </span>
-      <span class="report-btn-arrow">↗</span>
+      <span class="report-btn-arrow">↓</span>
     </a>
 
   </div>
 
-  <!-- T2 UPSELL SECTION -->
-  <div class="upsell-section" id="upsell-section" style="display:none">
-    <div class="upsell-card">
-      <div class="upsell-badge">Exclusivo para quem já tem o T1</div>
-      <h2 class="upsell-title">Pronto para ir mais fundo no <span id="upsell-type-name">?</span></h2>
-      <p class="upsell-desc">
-        Você já conhece sua luz e sua sombra. O Deep vai além —
-        análise completa, sem filtros, só para quem está pronto.
+  <!-- VIRAL SHARE SECTION -->
+  <div class="upsell-section" id="viral-section" style="display:none">
+    <div class="upsell-card" style="text-align:center">
+      <div class="upsell-badge">✦ Compartilhe com seus amigos</div>
+      <h2 class="upsell-title" style="font-size:20px;margin:16px 0 10px">Você conhece alguém que precisa descobrir seu tipo?</h2>
+      <p class="upsell-desc" style="margin-bottom:20px">
+        O teste é <strong style="color:#e8c96a">100% gratuito</strong>. Mande para quem você quer entender melhor.
       </p>
-      <ul class="upsell-list">
-        <li>Mapa detalhado dos seus 4 eixos de personalidade</li>
-        <li>Como seu tipo age sob estresse extremo</li>
-        <li>Padrões de conflito e como resolvê-los</li>
-        <li>Compatibilidade detalhada com todos os 8 tipos</li>
-        <li>Estratégias práticas para seus relacionamentos</li>
-      </ul>
-      <div class="upsell-price-row">
-        <span class="upsell-price-currency">R$</span>
-        <span class="upsell-price-new">50</span>
-        <span class="upsell-price-old">R$97</span>
-      </div>
-      <div class="upsell-price-note">pagamento único · apenas o Deep · acesso imediato</div>
-      <a class="btn-upsell" id="btn-upsell" href="#" target="_blank">
-        Quero o Deep agora →
+      <a class="btn-upsell" id="btn-share-whatsapp" href="#" target="_blank"
+         style="background:linear-gradient(135deg,#25d366,#128c7e);margin-bottom:10px">
+        💬 Compartilhar no WhatsApp →
       </a>
-      <div class="upsell-skip">Não obrigado, o T1 já foi suficiente</div>
+      <a class="btn-upsell" id="btn-share-link" href="#" target="_blank"
+         style="background:linear-gradient(135deg,#444,#666)">
+        🔗 Copiar link do teste →
+      </a>
     </div>
   </div>
 
@@ -720,21 +705,18 @@
     document.getElementById('btn-appa-report').href = data.pdfAppA;
     document.getElementById('report-links').style.display = 'block';
 
-    // T2 업셀 — T1 구매자가 추가 구매한 경우 (T2 PDF만 제공)
+    // T2 업셀 구매자 처리
     const params2 = new URLSearchParams(window.location.search);
     const tier = params2.get('tier');
     if (tier === '2') {
-      // T2 업셀 구매자: T2 PDF만 추가 (T1/AppA는 이미 보유)
-      document.getElementById('btn-html-report').style.display = 'none';
+      // T2 구매자: T2 PDF만 표시 + 자동 다운로드
       document.getElementById('btn-pdf-report').style.display = 'none';
       document.getElementById('btn-appa-report').style.display = 'none';
-      // T2 버튼만 표시
       const btnT2 = document.getElementById('btn-t2-report');
       if (btnT2 && data.pdfT2) {
         btnT2.href = data.pdfT2;
         btnT2.style.display = 'flex';
       }
-      // 1.5초 후 T2 PDF만 자동 다운로드
       setTimeout(function() {
         const a = document.createElement('a');
         a.href = data.pdfT2;
@@ -745,10 +727,34 @@
         document.body.removeChild(a);
       }, 1500);
     } else {
-      document.getElementById('upsell-type-name').textContent = type + '?';
-      document.getElementById('btn-upsell').href = HOTMART_T2_BASE + '?sck=' + type;
-      document.getElementById('upsell-section').style.display = 'block';
+      // T1 구매자: T1+AppA PDF 자동 다운로드
+      setTimeout(function() {
+        [
+          { url: data.pdfT1,  name: type + '_T1_Basic.pdf' },
+          { url: data.pdfAppA, name: type + '_AppA_StormBreaker.pdf' },
+        ].forEach(function(f, i) {
+          setTimeout(function() {
+            const a = document.createElement('a');
+            a.href = f.url; a.download = f.name; a.target = '_blank';
+            document.body.appendChild(a); a.click(); document.body.removeChild(a);
+          }, i * 1500);
+        });
+      }, 1000);
     }
+
+    // 바이럴 공유 버튼 — 검사 페이지 링크 (수익 100%)
+    const QUIZ_URL = 'https://shadowstrengths.github.io/shadowgram/shadowgram_pt.html';
+    const shareText = 'Descobri meu tipo Shadowgram — ' + type + '! Você sabe qual é o seu? Faça o teste gratuito 👇';
+    document.getElementById('btn-share-whatsapp').href =
+      'https://wa.me/?text=' + encodeURIComponent(shareText + '\n' + QUIZ_URL);
+    document.getElementById('btn-share-link').href = QUIZ_URL;
+    document.getElementById('btn-share-link').onclick = function(e) {
+      e.preventDefault();
+      navigator.clipboard && navigator.clipboard.writeText(QUIZ_URL);
+      this.textContent = '✅ Link copiado!';
+      setTimeout(() => this.textContent = '🔗 Copiar link do teste →', 2000);
+    };
+    document.getElementById('viral-section').style.display = 'block';
 
     // Save link
     const saveUrl = window.location.origin + window.location.pathname + '?type=' + type;
