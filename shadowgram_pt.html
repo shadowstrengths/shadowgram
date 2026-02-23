@@ -548,7 +548,27 @@
     <a class="btn-buy" id="res-buy-btn" href="#" target="_blank" rel="noopener">
       QUERO MEU RELATÓRIO COMPLETO →
     </a>
-    <br>
+
+    <!-- WhatsApp 공유 버튼 -->
+    <a id="btn-whatsapp-share" href="#" target="_blank" rel="noopener" style="
+      display: block;
+      width: 100%;
+      background: linear-gradient(135deg, #25d366, #128c7e);
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      padding: 14px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      text-align: center;
+      margin-top: 12px;
+      box-sizing: border-box;
+    ">💬 Compartilhar meu resultado no WhatsApp</a>
+    <p style="font-size:11px;color:#555;text-align:center;margin:6px 0 12px;">
+      Envie para um amigo — o teste é gratuito para eles!
+    </p>
 
     <!-- 내 결과 저장 버튼 -->
     <button class="btn-save-link" id="btn-save-link" onclick="saveMyLink()" style="
@@ -977,6 +997,11 @@ function showResult(savedWinner) {
   document.getElementById('res-cta-title').textContent = data.ctaTitle;
   document.getElementById('res-cta-sub').textContent = data.ctaSub;
   document.getElementById('res-buy-btn').href = HOTMART_LINKS[winner];
+
+  // WhatsApp 공유 버튼 — 검사 페이지 링크 (민철님 100% 수익)
+  const QUIZ_URL = 'https://shadowstrengths.github.io/shadowgram/shadowgram_pt.html';
+  const shareMsg = `Descobri meu tipo Shadowgram: ${winner}! 🔥\nO teste revela o padrão oculto que está sabotando sua vida.\nFaça o teste gratuito 👇\n${QUIZ_URL}`;
+  document.getElementById('btn-whatsapp-share').href = 'https://wa.me/?text=' + encodeURIComponent(shareMsg);
 
   // 저장된 결과에서 복원 시 배너 표시
   if (savedWinner) {
