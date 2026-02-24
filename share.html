@@ -45,7 +45,8 @@
       padding: 18px 20px;
       border-bottom: 1px solid var(--border);
     }
-    .nav-logo { text-decoration: none; font-size: 14px; letter-spacing: 3px; }
+    .nav-logo { text-decoration: none; font-size: 14px; letter-spacing: 3px; display: flex; align-items: center; gap: 10px; }
+    .nav-logo img { width: 34px; height: 34px; border-radius: 50%; }
     .nav-logo .s1 { color: var(--gold); font-weight: 300; }
     .nav-logo .s2 { color: var(--white); font-weight: 900; }
 
@@ -270,9 +271,10 @@
 <body>
 
 <nav>
-  <span class="nav-logo">
-    <span class="s1">SHINING</span><span class="s2">SHADOW</span>
-  </span>
+  <a class="nav-logo" href="https://shiningshadow.org">
+    <img src="https://shiningshadow.org/logo.png" alt="ShiningShadow Logo">
+    <span><span class="s1">SHINING</span><span class="s2">SHADOW</span></span>
+  </a>
 </nav>
 
 <div class="container">
