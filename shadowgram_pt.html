@@ -550,6 +550,21 @@
 
     <!-- SNS 공유 버튼 -->
     <div style="margin-top:16px;">
+      <!-- 나도 알아보기 버튼 — 공유받은 사람이 처음 보는 CTA -->
+      <a href="https://shadowstrengths.github.io/shadowgram/shadowgram_pt.html" style="
+        display:block;text-align:center;
+        background:linear-gradient(135deg,#C5A572,#E8D4A8);
+        color:#0F1119;
+        font-family:'Montserrat',sans-serif;
+        font-size:16px;font-weight:900;
+        letter-spacing:0.05em;
+        padding:18px 16px;
+        border-radius:14px;
+        text-decoration:none;
+        margin-bottom:20px;
+        box-shadow:0 4px 24px rgba(197,165,114,0.35);
+      ">✨ Qual é o SEU tipo? Fazer o teste gratuito →</a>
+
       <p style="font-size:11px;color:#888;text-align:center;margin:0 0 10px;letter-spacing:0.08em;text-transform:uppercase;">
         ✦ Compartilhe — o teste é gratuito para seus amigos
       </p>
@@ -1024,8 +1039,8 @@ function showResult(savedWinner) {
 
   // SNS 공유 버튼 — 검사 페이지 링크 (민철님 100% 수익)
   const QUIZ_URL = 'https://shadowstrengths.github.io/shadowgram/shadowgram_pt.html';
-  const shareMsg = `Descobri meu tipo Shadowgram: ${winner}! 🔥\nO teste revela o padrão oculto que está sabotando sua vida.\nFaça o teste gratuito 👇\n${QUIZ_URL}`;
-  const shareMsgShort = `Meu tipo Shadowgram é ${winner} 🔥 Descubra o seu — teste gratuito: ${QUIZ_URL}`;
+  const shareMsg = `Fiz o Shadowgram e sou tipo ${winner}! 🔥\nE você, qual é o seu?\n👇\n${QUIZ_URL}`;
+  const shareMsgShort = `Fiz o Shadowgram e sou tipo ${winner}! 🔥 E você? 👇 ${QUIZ_URL}`;
 
   // WhatsApp
   document.getElementById('btn-whatsapp-share').href =
