@@ -1141,8 +1141,20 @@ function restartQuiz() {
 // 재방문 처리 — localStorage + URL 파라미터
 // ═══════════════════════════════════════════════════════════════
 function checkSavedResult() {
-  // 1순위: URL 파라미터 ?type=SPARK
   const params = new URLSearchParams(window.location.search);
+
+  // ?fresh=1 이면 localStorage 지우고 첫 화면 시작 (공유 링크 진입 시)
+  if (params.get('fresh') === '1') {
+    try {
+      localStorage.removeItem('sg_type');
+      localStorage.removeItem('sg_code');
+      localStorage.removeItem('sg_date');
+      localStorage.removeItem('sg_scores');
+    } catch(e) {}
+    return;
+  }
+
+  // 1순위: URL 파라미터 ?type=SPARK (내 결과 저장 링크)
   const urlType = params.get('type');
   if (urlType && TYPES[urlType.toUpperCase()]) {
     showResult(urlType.toUpperCase());
