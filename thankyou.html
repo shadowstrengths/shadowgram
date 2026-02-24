@@ -705,7 +705,7 @@
     const params2 = new URLSearchParams(window.location.search);
     const tier = params2.get('tier');
     if (tier === '2') {
-      // T2 구매자: T2 PDF만 표시 + 자동 다운로드
+      // T2 구매자: T2 PDF 버튼만 표시
       document.getElementById('btn-pdf-report').style.display = 'none';
       document.getElementById('btn-appa-report').style.display = 'none';
       const btnT2 = document.getElementById('btn-t2-report');
@@ -713,29 +713,12 @@
         btnT2.href = data.pdfT2;
         btnT2.style.display = 'flex';
       }
-      setTimeout(function() {
-        const a = document.createElement('a');
-        a.href = data.pdfT2;
-        a.download = type + '_T2_Deep.pdf';
-        a.target = '_blank';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-      }, 1500);
     } else {
-      // T1 구매자: T1+AppA PDF 자동 다운로드
-      setTimeout(function() {
-        [
-          { url: data.pdfT1,  name: type + '_T1_Basic.pdf' },
-          { url: data.pdfAppA, name: type + '_AppA_StormBreaker.pdf' },
-        ].forEach(function(f, i) {
-          setTimeout(function() {
-            const a = document.createElement('a');
-            a.href = f.url; a.download = f.name; a.target = '_blank';
-            document.body.appendChild(a); a.click(); document.body.removeChild(a);
-          }, i * 1500);
-        });
-      }, 1000);
+      // T1 구매자: T1+AppA PDF 버튼만 표시 (자동 다운로드 없음)
+      const btnT1 = document.getElementById('btn-pdf-report');
+      if (btnT1 && data.pdfT1) { btnT1.href = data.pdfT1; }
+      const btnAppA = document.getElementById('btn-appa-report');
+      if (btnAppA && data.pdfAppA) { btnAppA.href = data.pdfAppA; }
     }
 
     // 바이럴 공유 버튼 — 검사 페이지 링크 (수익 100%)
