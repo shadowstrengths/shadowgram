@@ -550,23 +550,8 @@
 
     <!-- SNS 공유 버튼 -->
     <div style="margin-top:16px;">
-      <!-- 나도 알아보기 버튼 — 공유받은 사람이 처음 보는 CTA -->
-      <a href="https://shadowstrengths.github.io/shadowgram/shadowgram_pt.html" style="
-        display:block;text-align:center;
-        background:linear-gradient(135deg,#C5A572,#E8D4A8);
-        color:#0F1119;
-        font-family:'Montserrat',sans-serif;
-        font-size:16px;font-weight:900;
-        letter-spacing:0.05em;
-        padding:18px 16px;
-        border-radius:14px;
-        text-decoration:none;
-        margin-bottom:20px;
-        box-shadow:0 4px 24px rgba(197,165,114,0.35);
-      ">✨ Qual é o SEU tipo? Fazer o teste gratuito →</a>
-
-      <p style="font-size:11px;color:#888;text-align:center;margin:0 0 10px;letter-spacing:0.08em;text-transform:uppercase;">
-        ✦ Compartilhe — o teste é gratuito para seus amigos
+      <p style="font-size:12px;color:#aaa;text-align:center;margin:0 0 12px;letter-spacing:0.08em;text-transform:uppercase;font-weight:700;">
+        ✦ Compartilhe — seus amigos descobrem o tipo deles
       </p>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
         <!-- WhatsApp -->
@@ -1037,36 +1022,37 @@ function showResult(savedWinner) {
   document.getElementById('res-cta-sub').textContent = data.ctaSub;
   document.getElementById('res-buy-btn').href = HOTMART_LINKS[winner];
 
-  // SNS 공유 버튼 — 검사 페이지 링크 (민철님 100% 수익)
-  const QUIZ_URL = 'https://shadowstrengths.github.io/shadowgram/shadowgram_pt.html';
-  const shareMsg = `Fiz o Shadowgram e sou tipo ${winner}! 🔥\nE você, qual é o seu?\n👇\n${QUIZ_URL}`;
-  const shareMsgShort = `Fiz o Shadowgram e sou tipo ${winner}! 🔥 E você? 👇 ${QUIZ_URL}`;
+  // SNS 공유 버튼 — share.html?type=유형 (바이럴 전용 페이지)
+  const SHARE_URL = `https://shadowstrengths.github.io/shadowgram/share.html?type=${winner}`;
+  const QUIZ_URL  = 'https://shadowstrengths.github.io/shadowgram/shadowgram_pt.html';
+  const shareMsg  = `Fiz o Shadowgram e sou tipo ${winner}! 🔥\nE você, qual é o seu?\n👇\n${SHARE_URL}`;
+  const shareMsgShort = `Sou tipo ${winner} no Shadowgram 🔥 E você? 👇 ${SHARE_URL}`;
 
   // WhatsApp
   document.getElementById('btn-whatsapp-share').href =
     'https://wa.me/?text=' + encodeURIComponent(shareMsg);
 
-  // Instagram — 링크 복사 후 스토리 안내
+  // Instagram — share 링크 복사
   document.getElementById('btn-instagram-share').href = '#';
   document.getElementById('btn-instagram-share').onclick = function(e) {
     e.preventDefault();
-    navigator.clipboard && navigator.clipboard.writeText(QUIZ_URL);
+    navigator.clipboard && navigator.clipboard.writeText(SHARE_URL);
     this.textContent = '✅ Link copiado! Cole no Instagram';
     setTimeout(() => this.textContent = '📸 Instagram', 2500);
   };
 
   // Facebook
   document.getElementById('btn-facebook-share').href =
-    'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(QUIZ_URL) +
+    'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(SHARE_URL) +
     '&quote=' + encodeURIComponent(shareMsgShort);
 
   // X (Twitter)
   document.getElementById('btn-twitter-share').href =
     'https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareMsgShort);
 
-  // 링크 복사 함수 (전역)
+  // 링크 복사 함수 (전역) — share.html 링크 복사
   window.copyQuizLink = function() {
-    navigator.clipboard && navigator.clipboard.writeText(QUIZ_URL);
+    navigator.clipboard && navigator.clipboard.writeText(SHARE_URL);
     const btn = document.getElementById('btn-copy-link');
     btn.textContent = '✅ Link copiado!';
     setTimeout(() => btn.textContent = '🔗 Copiar link do teste', 2000);
