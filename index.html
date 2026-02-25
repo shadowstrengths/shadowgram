@@ -47,6 +47,13 @@
     .nav-logo-text { font-size: 15px; letter-spacing: 3px; }
     .nav-logo .s1 { color: var(--gold); font-weight: 300; }
     .nav-logo .s2 { color: var(--white); font-weight: 900; }
+    .nav-links { display: flex; align-items: center; gap: 24px; }
+    .nav-link {
+      color: rgba(255,255,255,0.6); font-size: 12px; font-weight: 400;
+      letter-spacing: 2px; text-decoration: none; text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: var(--gold); }
     .nav-cta {
       background: var(--gold); color: #0F1119;
       font-size: 12px; font-weight: 800; letter-spacing: 1px;
@@ -275,7 +282,11 @@
     <img src="/logo.png" alt="Shadowgram Logo">
     <span class="nav-logo-text"><span class="s1">SHADOW</span><span class="s2">GRAM</span></span>
   </a>
-  <a class="nav-cta" href="/shadowgram_pt.html?fresh=1">Teste Gratuito →</a>
+  <div class="nav-links">
+    <a class="nav-link" href="/blog/">Blog</a>
+    <a class="nav-link" href="/blog/faq.html">FAQ</a>
+    <a class="nav-cta" href="/shadowgram_pt.html?fresh=1">Teste Gratuito →</a>
+  </div>
 </nav>
 
 <!-- HERO -->
