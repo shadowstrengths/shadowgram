@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tipo VISION — A Sombra da Visão | Shadowgram</title>
+  <meta name="description" content="O tipo VISION é a sombra da Sensação Extrovertida (Se). Descubra como a profundidade de visão sem ação concreta está sabotando sua vida — e como integrar essa sombra."/>
+  <meta property="og:title" content="Tipo VISION — A Sombra da Visão | Shadowgram"/>
+  <meta property="og:description" content="Você vê o futuro com clareza, mas nunca sai do papel? A sombra VISION pode estar prendendo sua criatividade."/>
+  <meta property="og:image" content="https://shadowgram.org/shadowgram_cover_sq.png"/>
+  <meta property="og:url" content="https://shadowgram.org/blog/tipos/vision.html"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Tipo VISION — A Sombra da Visão",
+    "description": "O tipo de sombra VISION, baseado na Sensação Extrovertida (Se) reprimida, manifesta-se como profundidade de visão sem ação concreta, procrastinação criativa e dificuldade em executar. Entenda o padrão e como integrá-lo.",
+    "author": { "@type": "Organization", "name": "Shadowgram" },
+    "publisher": { "@type": "Organization", "name": "Shadowgram", "url": "https://shadowgram.org" },
+    "datePublished": "2026-02-26",
+    "mainEntityOfPage": "https://shadowgram.org/blog/tipos/vision.html"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "O que é o tipo VISION no Shadowgram?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "O tipo VISION é um dos 8 tipos de sombra do Shadowgram. Representa a sombra da Sensação Extrovertida (Se) — o padrão inconsciente de profundidade de visão sem ação concreta, procrastinação criativa e dificuldade em executar no mundo real. Manifesta-se como planejamento elaborado, análise excessiva e paralisia diante da ação final."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Como saber se sou do tipo VISION?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sinais do tipo VISION incluem: planos e visões elaboradas que raramente chegam à execução; excesso de planejamento antes de qualquer ação; vida interior rica mas desconectada da vida exterior; dificuldade em responder ao ambiente como ele realmente é; e projetos criativos raramente publicados porque 'ainda não está pronto'. O diagnóstico completo pode ser feito gratuitamente em shadowgram.org."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --dark: #0F1119; --dark2: #1A1F2E; --card: #161B28;
+      --gold: #C5A572; --goldL: #E8D4A8;
+      --white: #FFFFFF; --silver: #9BAAB8;
+      --border: rgba(197,165,114,0.18);
+      --type-color: #8B7BB8;
+      --type-bg: rgba(139,123,184,0.1);
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--dark); color: var(--white); font-family: 'Montserrat', sans-serif; }
+
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 18px 24px; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: rgba(15,17,25,0.95); backdrop-filter: blur(10px); z-index: 100; }
+    .nav-logo { text-decoration: none; display: flex; align-items: center; gap: 10px; }
+    .nav-logo img { width: 36px; height: 36px; border-radius: 50%; }
+    .nav-logo-text { font-size: 15px; letter-spacing: 3px; }
+    .nav-logo .s1 { color: var(--gold); font-weight: 300; }
+    .nav-logo .s2 { color: var(--white); font-weight: 900; }
+    .nav-links { display: flex; align-items: center; gap: 24px; }
+    .nav-link { color: var(--silver); font-size: 12px; letter-spacing: 1px; text-decoration: none; text-transform: uppercase; }
+    .nav-link:hover { color: var(--gold); }
+    .nav-cta { background: var(--gold); color: #0F1119; font-size: 12px; font-weight: 800; letter-spacing: 1px; padding: 10px 20px; border-radius: 30px; text-decoration: none; text-transform: uppercase; }
+    .nav-cta:hover { background: var(--goldL); }
+
+    .breadcrumb { padding: 16px 24px; font-size: 12px; color: var(--silver); max-width: 800px; margin: 0 auto; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+
+    .article-wrap { max-width: 800px; margin: 0 auto; padding: 0 24px 80px; }
+
+    /* TYPE HERO */
+    .type-hero {
+      text-align: center; padding: 48px 0 40px;
+      border-bottom: 1px solid var(--border); margin-bottom: 40px;
+    }
+    .type-badge {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: var(--type-bg); border: 1px solid var(--type-color);
+      border-radius: 50px; padding: 10px 24px; margin-bottom: 24px;
+    }
+    .type-emoji-big { font-size: 32px; }
+    .type-name-big { font-size: 22px; font-weight: 900; letter-spacing: 4px; color: var(--type-color); }
+    .type-function { font-size: 12px; color: var(--silver); letter-spacing: 1px; margin-bottom: 20px; }
+    .type-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 5vw, 44px); font-weight: 600; line-height: 1.3;
+      margin-bottom: 16px;
+    }
+    .type-headline em { color: var(--gold); font-style: italic; }
+    .type-tagline { font-size: 16px; color: var(--silver); line-height: 1.7; max-width: 560px; margin: 0 auto; }
+
+    /* PAIR BOX */
+    .pair-box {
+      display: flex; align-items: center; justify-content: center; gap: 20px;
+      background: var(--dark2); border: 1px solid var(--border);
+      border-radius: 12px; padding: 20px 28px; margin: 32px 0;
+    }
+    .pair-side { text-align: center; }
+    .pair-side .func { font-size: 26px; font-weight: 900; }
+    .pair-side.dominant .func { color: var(--type-color); }
+    .pair-side.shadow .func { color: var(--gold); }
+    .pair-side .label { font-size: 11px; color: var(--silver); margin-top: 4px; letter-spacing: 1px; text-transform: uppercase; }
+    .pair-arrow { font-size: 24px; color: var(--border); }
+
+    /* BODY */
+    .article-body h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(22px, 4vw, 32px); font-weight: 600; margin: 52px 0 14px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+    .article-body h3 { font-size: 14px; font-weight: 800; color: var(--gold); letter-spacing: 1px; margin: 28px 0 8px; text-transform: uppercase; }
+    .article-body p { font-size: 16px; color: var(--silver); line-height: 1.85; margin-bottom: 20px; }
+    .article-body strong { color: var(--white); }
+
+    /* SIGNAL LIST */
+    .signal-list { list-style: none; margin: 16px 0 24px; }
+    .signal-list li {
+      display: flex; gap: 14px; align-items: flex-start;
+      padding: 12px 0; border-bottom: 1px solid var(--border);
+      font-size: 15px; color: var(--silver); line-height: 1.6;
+    }
+    .signal-list li:last-child { border-bottom: none; }
+    .signal-icon { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--type-bg); border: 1px solid var(--type-color); display: flex; align-items: center; justify-content: center; font-size: 13px; margin-top: 2px; }
+
+    /* INTEGRATION STEPS */
+    .integration-steps { margin: 20px 0; }
+    .int-step { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 20px; }
+    .int-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--gold); color: #0F1119; font-size: 15px; font-weight: 900; display: flex; align-items: center; justify-content: center; }
+    .int-content h4 { font-size: 14px; font-weight: 800; color: var(--white); margin-bottom: 4px; }
+    .int-content p { font-size: 14px; color: var(--silver); line-height: 1.7; margin: 0; }
+
+    /* HIGHLIGHT */
+    .highlight-box { background: var(--dark2); border: 1px solid var(--border); border-radius: 12px; padding: 24px 28px; margin: 28px 0; }
+    .highlight-box .label { font-size: 11px; font-weight: 800; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
+    .highlight-box p { font-size: 15px; color: var(--silver); line-height: 1.8; margin: 0; }
+    .highlight-box p strong { color: var(--white); }
+
+    /* OTHER TYPES */
+    .other-types { margin: 40px 0; }
+    .other-types h3 { font-size: 13px; font-weight: 800; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
+    .types-mini { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    .type-mini-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px; text-align: center; text-decoration: none; transition: border-color 0.2s; }
+    .type-mini-card:hover { border-color: var(--gold); }
+    .type-mini-card.active { border-color: var(--type-color); }
+    .type-mini-card .em { font-size: 20px; margin-bottom: 4px; }
+    .type-mini-card .nm { font-size: 11px; font-weight: 900; color: var(--white); letter-spacing: 1px; }
+    .type-mini-card.active .nm { color: var(--type-color); }
+
+    /* CTA */
+    .cta-block { text-align: center; background: linear-gradient(135deg, rgba(197,165,114,0.1), rgba(197,165,114,0.04)); border: 1px solid var(--border); border-radius: 16px; padding: 48px 32px; margin: 60px 0 0; }
+    .cta-block h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(22px, 4vw, 34px); font-weight: 600; margin-bottom: 10px; }
+    .cta-block p { font-size: 15px; color: var(--silver); margin-bottom: 24px; }
+    .btn-cta { display: inline-block; background: var(--gold); color: #0F1119; font-size: 14px; font-weight: 900; letter-spacing: 1px; padding: 16px 36px; border-radius: 40px; text-decoration: none; text-transform: uppercase; }
+    .btn-cta:hover { background: var(--goldL); }
+    .cta-meta { font-size: 12px; color: var(--silver); margin-top: 14px; }
+
+    footer { border-top: 1px solid var(--border); padding: 32px 24px; text-align: center; font-size: 12px; color: #444; line-height: 1.8; }
+    footer a { color: var(--gold); text-decoration: none; }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .types-mini { grid-template-columns: repeat(4, 1fr); }
+      .pair-box { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">
+    <img src="/logo.png" alt="Shadowgram Logo">
+    <span class="nav-logo-text"><span class="s1">SHADOW</span><span class="s2">GRAM</span></span>
+  </a>
+  <div class="nav-links">
+    <a class="nav-link" href="/blog/">Blog</a>
+    <a class="nav-link" href="/blog/o-que-e-sombra.html">O que é Sombra?</a>
+    <a class="nav-link" href="/blog/faq.html">FAQ</a>
+  </div>
+  <a class="nav-cta" href="/shadowgram_pt.html?fresh=1">Teste Gratuito →</a>
+</nav>
+
+<div class="breadcrumb">
+  <a href="/">Início</a> › <a href="/blog/">Blog</a> › <a href="/blog/o-que-e-sombra.html">Tipos de Sombra</a> › VISION
+</div>
+
+<article class="article-wrap">
+
+  <!-- TYPE HERO -->
+  <div class="type-hero">
+    <div class="type-badge">
+      <span class="type-emoji-big">🔭</span>
+      <span class="type-name-big">VISION</span>
+    </div>
+    <p class="type-function">✦ Sombra da Sensação Extrovertida (Se) · Par oposto: Ni ↔ Se</p>
+    <h1 class="type-headline">A sombra que confunde<br><em>visão com realidade</em></h1>
+    <p class="type-tagline">Você vê o futuro com clareza impressionante. Mas o presente continua esperando. O tipo VISION revela como a profundidade de visão pode se tornar uma fuga da ação concreta.</p>
+  </div>
+
+  <div class="article-body">
+
+    <!-- PAR OPOSTO -->
+    <div class="pair-box">
+      <div class="pair-side dominant">
+        <div class="func">Ni</div>
+        <div class="label">Intuição Introvertida</div>
+        <div class="label" style="color: var(--type-color); margin-top: 4px;">Função ativa</div>
+      </div>
+      <div class="pair-arrow">↔</div>
+      <div class="pair-side shadow">
+        <div class="func">Se</div>
+        <div class="label">Sensação Extrovertida</div>
+        <div class="label" style="color: var(--gold); margin-top: 4px;">Na sombra</div>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <div class="label">✦ Definição</div>
+      <p>O tipo <strong>VISION</strong> ocorre quando a <strong>Sensação Extrovertida (Se)</strong> opera na sombra. Se é a função responsável por agir no presente, responder ao ambiente concreto e transformar intenção em ação física. Quando Se está na sombra, a visão existe com intensidade — mas a execução no mundo real encontra resistência constante. O pensamento é rico, o plano é elaborado, mas o momento de agir "de verdade" sempre encontra um obstáculo misterioso.</p>
+    </div>
+
+    <h2>Os Sinais do Tipo VISION</h2>
+    <p>Reconhecer os sinais é o primeiro passo da integração. O padrão VISION aparece com frequência nestas situações:</p>
+
+    <ul class="signal-list">
+      <li><div class="signal-icon">🔭</div><div>Planos e visões elaboradas que raramente chegam à execução completa. "Quando o momento for certo" se torna adiamento perpétuo.</div></li>
+      <li><div class="signal-icon">📝</div><div>Excesso de planejamento e análise antes de qualquer ação. O mapa é detalhado; o território real, pouco explorado.</div></li>
+      <li><div class="signal-icon">💭</div><div>Vida interior rica e intensa — às vezes mais satisfatória que a vida exterior, o que reduz a urgência de agir.</div></li>
+      <li><div class="signal-icon">🌀</div><div>Dificuldade em responder ao ambiente como ele é, não como deveria ser. Frustração quando a realidade não corresponde à visão.</div></li>
+      <li><div class="signal-icon">🎨</div><div>Projetos criativos ou intelectuais iniciados com profundidade, mas raramente publicados ou compartilhados — "ainda não está pronto".</div></li>
+      <li><div class="signal-icon">😰</div><div>Desconforto com ação impulsiva, com o imprevisível, com situações que exigem resposta física imediata.</div></li>
+    </ul>
+
+    <h2>Como o VISION Sabota na Prática</h2>
+
+    <h3>No trabalho</h3>
+    <p>O padrão VISION cria estrategistas excepcionais — mas pode gerar lacuna entre planejamento e entrega. "Ele pensa diferente, mas nunca vejo o resultado na prática" é feedback comum. A sombra Se trava a última milha: transformar insight em produto concreto.</p>
+
+    <h3>Nos relacionamentos</h3>
+    <p>Presente mentalmente, às vezes ausente fisicamente. O tipo VISION pode estar em uma conversa enquanto parte de sua atenção já está processando uma ideia nova. Parceiros frequentemente sentem que precisam "competir" com o mundo interior da pessoa.</p>
+
+    <h3>No desenvolvimento pessoal</h3>
+    <p>O desenvolvimento intelectual e conceitual avança rapidamente. Mas mudanças comportamentais concretas — hábitos, rotinas, ações físicas — encontram resistência desproporcional. Saber muito e mudar pouco.</p>
+
+    <div class="highlight-box">
+      <div class="label">✦ O Paradoxo do VISION</div>
+      <p>A ironia do tipo VISION é que Ni integrada é extraordinária: profundidade de insight, capacidade de ver padrões invisíveis, visão de longo prazo genuína. Com Se integrada, o VISION se torna alguém capaz de transformar visão profunda em impacto real no mundo — a combinação mais poderosa de todas.</p>
+    </div>
+
+    <h2>O Caminho de Integração</h2>
+    <p>Integrar a sombra VISION não significa abandonar a profundidade de pensamento. Significa recuperar a capacidade de <strong>colocar visão em ação</strong> — de deixar o mundo real enriquecer (e às vezes corrigir) o que foi imaginado.</p>
+
+    <div class="integration-steps">
+      <div class="int-step">
+        <div class="int-num">1</div>
+        <div class="int-content">
+          <h4>"Feito é melhor que perfeito" como prática diária</h4>
+          <p>Publique, entregue, compartilhe antes de estar "completamente pronto". A Se integrada aprende pelo contato com a realidade.</p>
+        </div>
+      </div>
+      <div class="int-step">
+        <div class="int-num">2</div>
+        <div class="int-content">
+          <h4>Ação física mínima diária</h4>
+          <p>Escolha uma ação concreta por dia que avance um projeto real. Não planejamento — execução. Mesmo que imperfeita.</p>
+        </div>
+      </div>
+      <div class="int-step">
+        <div class="int-num">3</div>
+        <div class="int-content">
+          <h4>Pratique responder ao ambiente como ele é</h4>
+          <p>Em vez de reinterpretar a realidade para que se encaixe na visão, experimente adaptar a visão ao que a realidade oferece.</p>
+        </div>
+      </div>
+      <div class="int-step">
+        <div class="int-num">4</div>
+        <div class="int-content">
+          <h4>Celebre a execução, não apenas a concepção</h4>
+          <p>Mude o critério de sucesso interno: o valor está em materializar, não apenas em imaginar.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>VISION nas Equipes (HRD)</h2>
+    <p>Em equipes, o tipo VISION frequentemente ocupa posições de estratégia e inovação — onde é insubstituível. O desafio aparece quando esse perfil precisa também executar ou liderar equipes de execução. Diagnósticos de sombra permitem posicionar o VISION onde seu talento é máximo e criar estruturas de suporte para a lacuna de Se.</p>
+
+  </div>
+
+  <!-- OUTROS TIPOS -->
+  <div class="other-types">
+    <h3>✦ Todos os Tipos de Sombra</h3>
+    <div class="types-mini">
+      <a class="type-mini-card" href="/blog/tipos/steady.html"><div class="em">🪨</div><div class="nm">STEADY</div></a>
+      <a class="type-mini-card" href="/blog/tipos/spark.html"><div class="em">⚡</div><div class="nm">SPARK</div></a>
+      <a class="type-mini-card" href="/blog/tipos/player.html"><div class="em">🎯</div><div class="nm">PLAYER</div></a>
+      <div class="type-mini-card active"><div class="em">🔭</div><div class="nm">VISION</div></div>
+      <a class="type-mini-card" href="/blog/tipos/logic.html"><div class="em">🔬</div><div class="nm">LOGIC</div></a>
+      <a class="type-mini-card" href="/blog/tipos/harmony.html"><div class="em">🕊️</div><div class="nm">HARMONY</div></a>
+      <a class="type-mini-card" href="/blog/tipos/leader.html"><div class="em">⚙️</div><div class="nm">LEADER</div></a>
+      <a class="type-mini-card" href="/blog/tipos/soul.html"><div class="em">🌿</div><div class="nm">SOUL</div></a>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <h2>Você é do tipo VISION?</h2>
+    <p>Faça o diagnóstico gratuito e descubra seu tipo de sombra com precisão.</p>
+    <a class="btn-cta" href="/shadowgram_pt.html?fresh=1">Fazer o Diagnóstico Gratuito →</a>
+    <p class="cta-meta">⏱ 5–7 min &nbsp;·&nbsp; 📋 28 perguntas &nbsp;·&nbsp; 🔒 Sem cadastro</p>
+  </div>
+
+</article>
+
+<footer>
+  <p>© 2026 Shadowgram · <a href="/">shadowgram.org</a> · Diagnóstico psicológico baseado em Jung</p>
+</footer>
+
+</body>
+</html>
