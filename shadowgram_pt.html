@@ -642,7 +642,8 @@
   © 2025 Shadowgram · shadowgram.org<br>
   Diagnóstico baseado em Jung (1921) e IPIP Big Five (domínio público).<br>
   Shadowgram é um framework independente de desenvolvimento humano.<br>
-  Não é afiliado à The Myers &amp; Briggs Foundation.
+  Não é afiliado à The Myers &amp; Briggs Foundation.<br><br>
+  Contato · <a href="mailto:joculsion@gmail.com" style="color:rgba(155,170,184,0.5);text-decoration:none;">joculsion@gmail.com</a>
 </footer>
 
 <script>
@@ -956,7 +957,7 @@ function selectOption(qIdx, choice, btn) {
   if (qIdx === 0 && answers[qIdx] === null) {
     const hero = document.querySelector('.hero');
     const meta = document.querySelector('.hero-meta');
-    const cred = document.querySelector('.cred-section');
+    const cred = document.querySelector('.cred-bar');
     if (hero) hero.style.display = 'none';
     if (meta) meta.style.display = 'none';
     if (cred) cred.style.display = 'none';
@@ -1148,7 +1149,7 @@ function restartQuiz() {
   // 재시작 시 hero + meta + cred 다시 표시
   const hero = document.querySelector('.hero');
   const meta = document.querySelector('.hero-meta');
-  const cred = document.querySelector('.cred-section');
+  const cred = document.querySelector('.cred-bar');
   if (hero) hero.style.display = '';
   if (meta) meta.style.display = '';
   if (cred) cred.style.display = '';
