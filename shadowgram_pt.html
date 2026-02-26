@@ -649,10 +649,14 @@
 // ═══════════════════════════════════════════════════════════════
 const HOTMART_BASE_URL = 'https://pay.hotmart.com/Q104596575B';
 
-// Gera o link com parâmetro de tipo para rastreamento
-// Ex: https://pay.hotmart.com/PRODUTO_AQUI?sck=SPARK&off=SPARK
+// Gera o link com parâmetro de tipo + código de afiliado para rastreamento
+// Afiliado passa: shadowgram.org/shadowgram_pt.html?src=CODIGO_AFILIADO
+// → link de compra inclui o código automaticamente via parâmetro src
 function getHotmartLink(tipo) {
-  return `${HOTMART_BASE_URL}?sck=${tipo}&off=3i9qb96g`;
+  const params = new URLSearchParams(window.location.search);
+  const srcCode = params.get('src') || params.get('ref') || params.get('aff') || '';
+  const srcParam = srcCode ? `&src=${encodeURIComponent(srcCode)}` : '';
+  return `${HOTMART_BASE_URL}?sck=${tipo}&off=3i9qb96g${srcParam}`;
 }
 
 // Compatibilidade retroativa (não remover)
