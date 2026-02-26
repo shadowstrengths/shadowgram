@@ -1020,6 +1020,25 @@ function showResult(savedWinner) {
       localStorage.setItem('sg_date', new Date().toLocaleDateString('pt-BR'));
       localStorage.setItem('sg_scores', JSON.stringify(dimScores));
     } catch(e) {}
+
+    // ── Google Sheets DB 전송
+    try {
+      const utmParams = new URLSearchParams(window.location.search);
+      const payload = {
+        type:     winner,
+        code:     d.join(''),
+        lang:     navigator.language || 'unknown',
+        device:   /Mobi|Android/i.test(navigator.userAgent) ? 'mobile' : 'desktop',
+        ref:      utmParams.get('src') || utmParams.get('utm_source') || 'direct',
+        ts:       new Date().toISOString()
+      };
+      fetch('https://script.google.com/macros/s/AKfycbzPLACEHOLDER/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).catch(() => {});
+    } catch(e) {}
   }
 
   document.getElementById('quiz-section').style.display = 'none';
