@@ -568,12 +568,24 @@
   <div class="no-type" id="no-type" style="display:none">
     <div class="no-type-card">
       <div class="no-type-icon">🔍</div>
-      <div class="no-type-title">Faça o teste primeiro</div>
+      <div class="no-type-title">Qual é o seu tipo?</div>
       <div class="no-type-desc">
-        Para acessar seu relatório personalizado, complete o teste Shadowgram.
-        Após o teste, você será direcionado automaticamente para seus relatórios.
+        Você já fez o teste? Selecione seu tipo abaixo para acessar seu relatório.
       </div>
-      <a class="btn-primary" href="shadowgram_pt.html">Fazer o teste agora →</a>
+      <!-- 8 type buttons -->
+      <div id="type-picker" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px">
+        <button onclick="pickType('SPARK')"   class="btn-primary" style="padding:14px;font-size:14px;margin:0">SPARK</button>
+        <button onclick="pickType('STEADY')"  class="btn-primary" style="padding:14px;font-size:14px;margin:0">STEADY</button>
+        <button onclick="pickType('PLAYER')"  class="btn-primary" style="padding:14px;font-size:14px;margin:0">PLAYER</button>
+        <button onclick="pickType('VISION')"  class="btn-primary" style="padding:14px;font-size:14px;margin:0">VISION</button>
+        <button onclick="pickType('LOGIC')"   class="btn-primary" style="padding:14px;font-size:14px;margin:0">LOGIC</button>
+        <button onclick="pickType('HARMONY')" class="btn-primary" style="padding:14px;font-size:14px;margin:0">HARMONY</button>
+        <button onclick="pickType('LEADER')"  class="btn-primary" style="padding:14px;font-size:14px;margin:0">LEADER</button>
+        <button onclick="pickType('SOUL')"    class="btn-primary" style="padding:14px;font-size:14px;margin:0">SOUL</button>
+      </div>
+      <div style="font-size:12px;color:#555;margin-top:8px">
+        Ainda não fez o teste? <a href="https://shadowgram.org/shadowgram_pt.html" style="color:#c9a84c">Fazer o teste gratuito →</a>
+      </div>
     </div>
   </div>
 
@@ -722,7 +734,7 @@
     }
 
     // 바이럴 공유 버튼 — 검사 페이지 링크 (수익 100%)
-    const QUIZ_URL = 'https://shadowstrengths.github.io/shadowgram/shadowgram_pt.html';
+    const QUIZ_URL = 'https://shadowgram.org/shadowgram_pt.html';
     const shareText = 'Descobri meu tipo Shadowgram — ' + type + '! Você sabe qual é o seu? Faça o teste gratuito 👇';
     document.getElementById('btn-share-whatsapp').href =
       'https://wa.me/?text=' + encodeURIComponent(shareText + '\n' + QUIZ_URL);
@@ -771,6 +783,14 @@
       setTimeout(() => btn.textContent = 'Copiar', 2000);
     } catch(e) {}
     document.body.removeChild(ta);
+  }
+
+  // ── 5. PICK TYPE (fallback UI) ─────────────────────────────────────────────
+  function pickType(type) {
+    // Save to localStorage and reload with param
+    try { localStorage.setItem('sg_type', type); } catch(e) {}
+    const url = window.location.origin + window.location.pathname + '?type=' + type;
+    window.location.href = url;
   }
 
   // ── INIT ───────────────────────────────────────────────────────────────────
