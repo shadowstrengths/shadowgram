@@ -649,14 +649,25 @@
 // ═══════════════════════════════════════════════════════════════
 const HOTMART_BASE_URL = 'https://pay.hotmart.com/Q104596575B';
 
+// 유형별 오퍼 코드 — 각 구매자가 자기 유형 리포트만 받도록
+const OFFER_CODES = {
+  SPARK:   '5vec4x6v',
+  STEADY:  '0p45lzio',
+  PLAYER:  '9npw9n9p',
+  VISION:  'dyjq3kyq',
+  LOGIC:   '8oxqjekr',
+  HARMONY: 'wjz91caf',
+  LEADER:  'r496g2qe',
+  SOUL:    'uk2lrxxr',
+};
+
 // Gera o link com parâmetro de tipo + código de afiliado para rastreamento
-// Afiliado passa: shadowgram.org/shadowgram_pt.html?src=CODIGO_AFILIADO
-// → link de compra inclui o código automaticamente via parâmetro src
 function getHotmartLink(tipo) {
   const params = new URLSearchParams(window.location.search);
   const srcCode = params.get('src') || params.get('ref') || params.get('aff') || '';
   const srcParam = srcCode ? `&src=${encodeURIComponent(srcCode)}` : '';
-  return `${HOTMART_BASE_URL}?sck=${tipo}&off=3i9qb96g${srcParam}`;
+  const offCode = OFFER_CODES[tipo] || '3i9qb96g';
+  return `${HOTMART_BASE_URL}?sck=${tipo}&off=${offCode}${srcParam}`;
 }
 
 // Compatibilidade retroativa (não remover)

@@ -567,23 +567,19 @@
   <!-- NO TYPE FALLBACK (shown when no type detected) -->
   <div class="no-type" id="no-type" style="display:none">
     <div class="no-type-card">
-      <div class="no-type-icon">🔍</div>
-      <div class="no-type-title">Qual é o seu tipo?</div>
+      <div class="no-type-icon">📬</div>
+      <div class="no-type-title">Acesso não identificado</div>
       <div class="no-type-desc">
-        Você já fez o teste? Selecione seu tipo abaixo para acessar seu relatório.
+        Não foi possível identificar seu tipo a partir desta sessão.<br><br>
+        Por favor, acesse seu relatório pelo link enviado após a compra,
+        ou entre em contato pelo e-mail abaixo.
       </div>
-      <!-- 8 type buttons -->
-      <div id="type-picker" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px">
-        <button onclick="pickType('SPARK')"   class="btn-primary" style="padding:14px;font-size:14px;margin:0">SPARK</button>
-        <button onclick="pickType('STEADY')"  class="btn-primary" style="padding:14px;font-size:14px;margin:0">STEADY</button>
-        <button onclick="pickType('PLAYER')"  class="btn-primary" style="padding:14px;font-size:14px;margin:0">PLAYER</button>
-        <button onclick="pickType('VISION')"  class="btn-primary" style="padding:14px;font-size:14px;margin:0">VISION</button>
-        <button onclick="pickType('LOGIC')"   class="btn-primary" style="padding:14px;font-size:14px;margin:0">LOGIC</button>
-        <button onclick="pickType('HARMONY')" class="btn-primary" style="padding:14px;font-size:14px;margin:0">HARMONY</button>
-        <button onclick="pickType('LEADER')"  class="btn-primary" style="padding:14px;font-size:14px;margin:0">LEADER</button>
-        <button onclick="pickType('SOUL')"    class="btn-primary" style="padding:14px;font-size:14px;margin:0">SOUL</button>
+      <div style="margin-top:20px">
+        <a href="mailto:joculsion@gmail.com" class="btn-primary" style="display:inline-block;padding:14px 24px;text-decoration:none">
+          📧 Contato: joculsion@gmail.com
+        </a>
       </div>
-      <div style="font-size:12px;color:#555;margin-top:8px">
+      <div style="font-size:12px;color:#555;margin-top:16px">
         Ainda não fez o teste? <a href="https://shadowgram.org/shadowgram_pt.html" style="color:#c9a84c">Fazer o teste gratuito →</a>
       </div>
     </div>
@@ -670,20 +666,36 @@
   };
 
   // ── 2. DETECT TYPE ─────────────────────────────────────────────────────────
+
+  // 오퍼코드 → 유형 매핑 (핫마트 오퍼별 고유 코드)
+  const OFFER_TO_TYPE = {
+    '5vec4x6v': 'SPARK',
+    '0p45lzio': 'STEADY',
+    '9npw9n9p': 'PLAYER',
+    'dyjq3kyq': 'VISION',
+    '8oxqjekr': 'LOGIC',
+    'wjz91caf': 'HARMONY',
+    'r496g2qe': 'LEADER',
+    'uk2lrxxr': 'SOUL',
+  };
+
   function detectType() {
-    // Priority 1: URL param ?sck= or ?src= or ?type= (from Hotmart redirect)
     const params = new URLSearchParams(window.location.search);
-    for (const key of ['sck', 'src', 'type', 'off']) {
+
+    // Priority 1: off= 오퍼코드로 유형 판별 (가장 신뢰 — 핫마트가 전달)
+    const offCode = params.get('off');
+    if (offCode && OFFER_TO_TYPE[offCode]) return OFFER_TO_TYPE[offCode];
+
+    // Priority 2: sck= or type= 직접 유형명
+    for (const key of ['sck', 'type']) {
       const v = params.get(key);
       if (!v) continue;
-      // 정확히 매칭 (예: SPARK)
       if (TYPES[v.toUpperCase()]) return v.toUpperCase();
-      // _T2 / _T1 suffix 제거 후 매칭 (예: SPARK_T2 → SPARK)
       const base = v.toUpperCase().replace(/_T[123].*$/, '');
       if (TYPES[base]) return base;
     }
 
-    // Priority 2: localStorage (same device, from quiz)
+    // Priority 3: localStorage (같은 기기에서 퀴즈 직후 접근 시)
     try {
       const saved = localStorage.getItem('sg_type');
       if (saved && TYPES[saved]) return saved;
