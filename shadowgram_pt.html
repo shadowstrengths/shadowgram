@@ -962,6 +962,8 @@ function buildQuiz() {
 function selectOption(qIdx, choice, btn) {
   // 첫 번째 답 선택 시 hero + meta + cred 숨기기
   if (qIdx === 0 && answers[qIdx] === null) {
+    // 퀴즈 시작 시간 기록
+    if (!window._sgQuizStart) window._sgQuizStart = Date.now();
     const hero = document.querySelector('.hero');
     const meta = document.querySelector('.hero-meta');
     const cred = document.querySelector('.cred-bar');
@@ -1031,13 +1033,61 @@ function showResult(savedWinner) {
     // ── Google Sheets DB 전송
     try {
       const utmParams = new URLSearchParams(window.location.search);
+
+      // 세션 ID (재방문 추적용)
+      let sessionId = sessionStorage.getItem('sg_session_id');
+      if (!sessionId) {
+        sessionId = Date.now().toString(36) + Math.random().toString(36).substr(2, 6);
+        sessionStorage.setItem('sg_session_id', sessionId);
+      }
+
+      // 재방문 여부
+      const visitCount = parseInt(localStorage.getItem('sg_visit_count') || '0') + 1;
+      localStorage.setItem('sg_visit_count', visitCount);
+
+      // 소요 시간 (초)
+      const duration = window._sgQuizStart ? Math.round((Date.now() - window._sgQuizStart) / 1000) : null;
+
+      // 브라우저 파싱
+      const ua = navigator.userAgent;
+      let browser = 'other';
+      if (/Edg\//.test(ua)) browser = 'edge';
+      else if (/OPR\/|Opera/.test(ua)) browser = 'opera';
+      else if (/Chrome\//.test(ua) && !/Chromium/.test(ua)) browser = 'chrome';
+      else if (/Firefox\//.test(ua)) browser = 'firefox';
+      else if (/Safari\//.test(ua) && !/Chrome/.test(ua)) browser = 'safari';
+      else if (/SamsungBrowser/.test(ua)) browser = 'samsung';
+
+      // OS 파싱
+      let os = 'other';
+      if (/Windows/.test(ua)) os = 'windows';
+      else if (/Mac OS X/.test(ua) && !/iPhone|iPad/.test(ua)) os = 'macos';
+      else if (/Android/.test(ua)) os = 'android';
+      else if (/iPhone|iPad/.test(ua)) os = 'ios';
+      else if (/Linux/.test(ua)) os = 'linux';
+
       const payload = {
-        type:     winner,
-        code:     d.join(''),
-        lang:     navigator.language || 'unknown',
-        device:   /Mobi|Android/i.test(navigator.userAgent) ? 'mobile' : 'desktop',
-        ref:      utmParams.get('src') || utmParams.get('utm_source') || 'direct',
-        ts:       new Date().toISOString()
+        ts:           new Date().toISOString(),
+        type:         winner,
+        code:         d.join(''),
+        lang:         navigator.language || 'unknown',
+        device:       /Mobi|Android/i.test(ua) ? 'mobile' : 'desktop',
+        browser:      browser,
+        os:           os,
+        screen:       `${screen.width}x${screen.height}`,
+        viewport:     `${window.innerWidth}x${window.innerHeight}`,
+        timezone:     Intl.DateTimeFormat().resolvedOptions().timeZone || 'unknown',
+        duration_sec: duration,
+        session_id:   sessionId,
+        revisit:      visitCount > 1 ? 'yes' : 'no',
+        visit_count:  visitCount,
+        ref:          utmParams.get('src') || utmParams.get('utm_source') || document.referrer || 'direct',
+        utm_source:   utmParams.get('utm_source') || '',
+        utm_medium:   utmParams.get('utm_medium') || '',
+        utm_campaign: utmParams.get('utm_campaign') || '',
+        utm_content:  utmParams.get('utm_content') || '',
+        utm_term:     utmParams.get('utm_term') || '',
+        page_url:     window.location.href.split('?')[0]
       };
       fetch('https://script.google.com/macros/s/AKfycbz_NGq3iCKjCYIwR6EYRZOD8VFS9kZP0JNa5Dqg9MwA76nsTmOFDz9YkZ1T2eb1fCU1Eg/exec', {
         method: 'POST',
