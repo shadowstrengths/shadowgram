@@ -517,6 +517,56 @@
     <div class="result-shadow-body" id="res-shadow"></div>
   </div>
 
+  <!-- K-Drama Character Match Card -->
+  <div id="kdrama-match-card" style="
+    background: linear-gradient(135deg, rgba(13,27,42,0.95) 0%, rgba(26,44,68,0.95) 100%);
+    border: 1px solid rgba(197,165,114,0.4);
+    border-radius: 16px;
+    padding: 20px 20px 16px;
+    margin: 18px 0;
+    text-align: center;
+  ">
+    <p style="font-size:10px;letter-spacing:0.18em;color:rgba(155,170,184,0.6);
+      text-transform:uppercase;font-weight:700;margin:0 0 10px;font-family:'Montserrat',sans-serif;">
+      ✦ PERSONAGEM K-DRAMA COM SEU PERFIL
+    </p>
+    <div id="kdrama-match-name" style="
+      font-size:22px;font-weight:900;font-family:'Montserrat',sans-serif;
+      color:#C5A572;margin-bottom:4px;"></div>
+    <div id="kdrama-match-drama" style="
+      font-size:11px;color:rgba(155,170,184,0.55);letter-spacing:0.06em;
+      margin-bottom:14px;font-family:'Montserrat',sans-serif;"></div>
+
+    <!-- 유사도 바 -->
+    <div style="background:rgba(255,255,255,0.07);border-radius:20px;height:10px;margin:0 auto 6px;max-width:280px;overflow:hidden;">
+      <div id="kdrama-match-bar" style="
+        height:100%;border-radius:20px;
+        background:linear-gradient(90deg,#C5A572,#E8D5A3);
+        transition:width 1.2s cubic-bezier(0.4,0,0.2,1);
+        width:0%;"></div>
+    </div>
+    <div id="kdrama-match-pct" style="
+      font-size:28px;font-weight:900;font-family:'Montserrat',sans-serif;
+      color:#E8D5A3;margin-bottom:6px;"></div>
+    <div id="kdrama-match-line" style="
+      font-size:13px;color:rgba(197,165,114,0.75);
+      font-style:italic;line-height:1.5;margin-bottom:14px;
+      font-family:'Montserrat',sans-serif;"></div>
+
+    <!-- WhatsApp 공유 버튼 (캐릭터 특화) -->
+    <button id="btn-kdrama-share" onclick="shareKdramaMatch()" style="
+      width:100%;padding:13px;border-radius:12px;border:none;cursor:pointer;
+      background:#25d366;color:#fff;
+      font-family:'Montserrat',sans-serif;font-size:13px;font-weight:800;
+      letter-spacing:0.04em;">
+      💬 Compartilhar no WhatsApp
+    </button>
+    <p style="font-size:11px;color:rgba(155,170,184,0.4);margin:8px 0 0;
+      font-family:'Montserrat',sans-serif;">
+      Seus amigos descobrem o próprio tipo 👆
+    </p>
+  </div>
+
   <!-- Pain point — custo da sombra não integrada -->
   <div class="pain-card">
     <p class="pain-card-header">⚠ O CUSTO DE IGNORAR SUA SOMBRA</p>
@@ -652,6 +702,68 @@
 // Substitua apenas esta URL após aprovação do produto na Hotmart
 // ═══════════════════════════════════════════════════════════════
 const HOTMART_BASE_URL = 'https://pay.hotmart.com/Q104596575B';
+
+// ── K-Drama Character Matching Data ────────────────────────────────────────
+// 드라마 시즌 교체 시 이 객체만 업데이트하면 됨
+// 현재 시즌: "Esse Amor Pode Ser Traduzido?" (2026) + clássicos Netflix Brasil
+const KDRAMA_MATCHES = {
+  HARMONY: {
+    name: "Cha Mu-hee",
+    drama: "Esse Amor Pode Ser Traduzido?",
+    match: 89,
+    emoji: "🌊",
+    line: "Ela sente tudo — mas não consegue explicar nada."
+  },
+  LOGIC: {
+    name: "Ju Ho-jin",
+    drama: "Esse Amor Pode Ser Traduzido?",
+    match: 91,
+    emoji: "🔬",
+    line: "Ele traduz 7 idiomas. Mas não sabe dizer 'eu te amo'."
+  },
+  SOUL: {
+    name: "Kang Tae-eul",
+    drama: "Está Tudo Bem Não Estar Bem",
+    match: 87,
+    emoji: "🌙",
+    line: "Ele tem muito a oferecer — mas o mundo raramente consegue ver."
+  },
+  VISION: {
+    name: "Moon Young",
+    drama: "Está Tudo Bem Não Estar Bem",
+    match: 88,
+    emoji: "🔮",
+    line: "Ela via o que ninguém via — mas não sabia como existir no mundo real."
+  },
+  LEADER: {
+    name: "Yoon Hyun-woo",
+    drama: "Queen of Tears",
+    match: 86,
+    emoji: "👑",
+    line: "Ele construiu tudo. Mas não sabia pedir desculpa."
+  },
+  SPARK: {
+    name: "Oh Gyeong-hwan",
+    drama: "Queen of Tears",
+    match: 84,
+    emoji: "⚡",
+    line: "Energia para salvar o mundo — mas não sabia salvar o casamento."
+  },
+  STEADY: {
+    name: "Hong Du-sik",
+    drama: "A Vida nos Deu Tangerinas",
+    match: 90,
+    emoji: "🏔️",
+    line: "Ele ficou. Mas ficar também pode ser uma forma de fugir."
+  },
+  PLAYER: {
+    name: "Seong Gi-hun",
+    drama: "Round 6",
+    match: 85,
+    emoji: "🎯",
+    line: "Ele sempre recomeça — mas nunca entende por que o ciclo continua."
+  }
+};
 
 // 유형별 오퍼 코드 — 각 구매자가 자기 유형 리포트만 받도록
 const OFFER_CODES = {
@@ -1062,11 +1174,40 @@ function showResult(savedWinner) {
   document.getElementById('res-cta-sub').textContent = data.ctaSub;
   document.getElementById('res-buy-btn').href = HOTMART_LINKS[winner];
 
+  // ── K-Drama Character Match ───────────────────────────────────────────────
+  const km = KDRAMA_MATCHES[winner];
+  if (km) {
+    document.getElementById('kdrama-match-name').textContent = km.emoji + '  ' + km.name;
+    document.getElementById('kdrama-match-drama').textContent = km.drama;
+    document.getElementById('kdrama-match-pct').textContent  = km.match + '% de compatibilidade';
+    document.getElementById('kdrama-match-line').textContent = '"' + km.line + '"';
+    // 바 애니메이션 — 약간 딜레이 후 렌더
+    setTimeout(function() {
+      document.getElementById('kdrama-match-bar').style.width = km.match + '%';
+    }, 400);
+
+    // WhatsApp 공유 메시지 (캐릭터 특화)
+    window.shareKdramaMatch = function() {
+      const SHARE_URL = 'https://shadowgram.org/shadowgram_pt.html';
+      const msg = km.emoji + ' Meu tipo Shadowgram é ' + winner
+        + ' — igual a ' + km.name + ' de "' + km.drama + '" ('
+        + km.match + '% de compatibilidade)!\n\n'
+        + '"' + km.line + '"\n\n'
+        + 'Descubra o seu: ' + SHARE_URL;
+      window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank');
+    };
+  }
+
   // SNS 공유 버튼 — share.html?type=유형 (바이럴 전용 페이지)
   const SHARE_URL = `https://shadowgram.org/shadowgram_pt.html?type=${winner}&fresh=0`;
   const QUIZ_URL  = 'https://shadowgram.org/shadowgram_pt.html';
-  const shareMsg  = `Fiz o Shadowgram e sou tipo ${winner}! 🔥\nE você, qual é o seu?\n👇\n${SHARE_URL}`;
-  const shareMsgShort = `Sou tipo ${winner} no Shadowgram 🔥 E você? 👇 ${SHARE_URL}`;
+  const _km = KDRAMA_MATCHES[winner];
+  const shareMsg = _km
+    ? `${_km.emoji} Fiz o Shadowgram e sou tipo ${winner} — igual a ${_km.name}! (${_km.match}% de compatibilidade)\n\n"${_km.line}"\n\nE você, qual é o seu?\n👇\n${QUIZ_URL}`
+    : `Fiz o Shadowgram e sou tipo ${winner}! 🔥\nE você, qual é o seu?\n👇\n${SHARE_URL}`;
+  const shareMsgShort = _km
+    ? `${_km.emoji} Sou tipo ${winner} no Shadowgram — igual a ${_km.name}! E você? 👇 ${QUIZ_URL}`
+    : `Sou tipo ${winner} no Shadowgram 🔥 E você? 👇 ${SHARE_URL}`;
 
   // WhatsApp
   document.getElementById('btn-whatsapp-share').href =
