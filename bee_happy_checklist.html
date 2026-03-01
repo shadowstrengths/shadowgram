@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bee HAPPY — 실행 체크리스트</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#1a1a1e;--surface:#222226;--surface2:#2a2a2f;--surface3:#32323a;--border:#3a3a42;--text:#e8e4df;--text-dim:#8a8690;--text-muted:#5a5660;--gold:#d4a537;--gold-dim:#b8922f;--gold-glow:rgba(212,165,55,.08);--honey:#e8b84b;--amber:#c4882a;--cave:#6b4c2a;--green:#4a9a6a;--green-dim:rgba(74,154,106,.15);--red:#c85050}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-serif;font-weight:400;line-height:1.7;min-height:100vh}
+  ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+  .container{max-width:860px;margin:0 auto;padding:40px 24px 120px}
+  .sync-bar{position:fixed;top:0;left:0;right:0;height:3px;z-index:1000;background:transparent;transition:background .3s}
+  .sync-bar.syncing{background:linear-gradient(90deg,var(--gold),var(--honey),var(--gold));animation:sp 1s infinite}
+  .sync-bar.synced{background:var(--green)}.sync-bar.error{background:var(--red)}
+  @keyframes sp{0%,100%{opacity:.5}50%{opacity:1}}
+  .sync-status{position:fixed;top:10px;right:16px;font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--text-muted);z-index:1001;display:flex;align-items:center;gap:6px;background:var(--surface);padding:4px 10px;border-radius:12px;border:1px solid var(--border);transition:all .3s}
+  .sync-dot{width:6px;height:6px;border-radius:50%;background:var(--text-muted);transition:background .3s}
+  .sync-dot.syncing{background:var(--gold);animation:sp 1s infinite}.sync-dot.synced{background:var(--green)}.sync-dot.error{background:var(--red)}
+  .page-header{margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid var(--border)}
+  .page-icon{font-size:48px;margin-bottom:16px;display:block}
+  .page-title{font-family:'Playfair Display',serif;font-size:36px;font-weight:600;color:var(--text);margin-bottom:8px;letter-spacing:-.5px}
+  .page-subtitle{font-size:14px;color:var(--text-dim);font-weight:300;margin-bottom:20px}
+  .progress-section{margin-bottom:12px}
+  .progress-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+  .progress-label{font-size:12px;font-family:'JetBrains Mono',monospace;color:var(--text-dim);text-transform:uppercase;letter-spacing:1.5px}
+  .progress-count{font-size:12px;font-family:'JetBrains Mono',monospace;color:var(--gold)}
+  .progress-bar{width:100%;height:4px;background:var(--surface2);border-radius:2px;overflow:hidden}
+  .progress-fill{height:100%;background:linear-gradient(90deg,var(--gold-dim),var(--honey));border-radius:2px;transition:width .6s cubic-bezier(.22,1,.36,1);width:0%}
+  .properties{display:grid;grid-template-columns:120px 1fr;gap:4px 16px;padding:16px 0;margin-bottom:8px;font-size:13px}
+  .prop-key{color:var(--text-muted);padding:4px 0}.prop-value{color:var(--text-dim);padding:4px 0}
+  .tag{display:inline-block;padding:2px 8px;border-radius:3px;font-size:12px;font-weight:500;margin-right:4px}
+  .tag-gold{background:rgba(212,165,55,.15);color:var(--gold)}.tag-green{background:var(--green-dim);color:var(--green)}.tag-cave{background:rgba(107,76,42,.2);color:var(--amber)}
+  .callout{background:var(--gold-glow);border-left:3px solid var(--gold-dim);padding:16px 20px;margin:24px 0;border-radius:0 6px 6px 0;font-size:14px;color:var(--text-dim);font-style:italic}
+  .callout strong{color:var(--gold);font-style:normal}
+  .divider{height:1px;background:var(--border);margin:40px 0}
+  .phase{margin-bottom:48px}
+  .phase-header{display:flex;align-items:center;gap:12px;margin-bottom:6px;cursor:pointer;user-select:none}
+  .phase-toggle{width:20px;height:20px;display:flex;align-items:center;justify-content:center;color:var(--text-muted);transition:transform .2s;font-size:12px;flex-shrink:0}
+  .phase.collapsed .phase-toggle{transform:rotate(-90deg)}
+  .phase-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:600;color:var(--text)}
+  .phase-badge{font-size:11px;font-family:'JetBrains Mono',monospace;padding:2px 10px;border-radius:10px;background:var(--surface2);color:var(--text-muted);margin-left:auto;flex-shrink:0}
+  .phase-desc{font-size:13px;color:var(--text-muted);margin-bottom:20px;padding-left:32px;font-weight:300}
+  .phase-body{overflow:hidden;transition:max-height .4s ease}
+  .phase.collapsed .phase-body{max-height:0!important;overflow:hidden}
+  .task-group{margin-bottom:24px;padding-left:32px}
+  .task-group-label{font-size:12px;font-family:'JetBrains Mono',monospace;color:var(--gold-dim);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+  .task-group-label::after{content:'';flex:1;height:1px;background:var(--surface3)}
+  .task{display:flex;align-items:flex-start;gap:12px;padding:10px 12px;margin-bottom:2px;border-radius:6px;transition:background .15s;cursor:pointer}
+  .task:hover{background:var(--surface)}
+  .task-checkbox{width:18px;height:18px;border:1.5px solid var(--border);border-radius:4px;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;transition:all .2s;cursor:pointer;background:transparent}
+  .task-checkbox:hover{border-color:var(--gold-dim)}
+  .task.done .task-checkbox{background:var(--gold);border-color:var(--gold)}
+  .task.done .task-checkbox::after{content:'\2713';color:var(--bg);font-size:12px;font-weight:700}
+  .task-content{flex:1}
+  .task-title{font-size:14px;color:var(--text);transition:all .2s;line-height:1.5}
+  .task.done .task-title{color:var(--text-muted);text-decoration:line-through}
+  .task-meta{font-size:12px;color:var(--text-muted);margin-top:3px;font-weight:300}
+  .task-week{font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--text-muted);background:var(--surface2);padding:2px 8px;border-radius:3px;flex-shrink:0;margin-top:2px}
+  .section-label{font-size:15px;font-weight:600;color:var(--text);margin:24px 0 12px 32px;display:flex;align-items:center;gap:10px}
+  .bee-tag{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-family:'JetBrains Mono',monospace;padding:2px 8px;border-radius:3px;font-weight:500}
+  .bee-h{background:rgba(74,154,106,.12);color:#5ab87a}.bee-a{background:rgba(80,140,200,.12);color:#6aacda}.bee-p1{background:rgba(212,165,55,.12);color:var(--gold)}.bee-p2{background:rgba(200,100,80,.12);color:#d07a5a}.bee-y{background:rgba(180,130,60,.12);color:var(--amber)}
+  .quote-block{border-left:2px solid var(--gold-dim);padding:12px 20px;margin:16px 0 16px 32px;font-size:14px;color:var(--text-dim);font-family:'Playfair Display',serif;font-style:italic}
+  .kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0;padding-left:32px}
+  .kpi-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px}
+  .kpi-label{font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+  .kpi-value{font-size:24px;font-weight:600;color:var(--gold);font-family:'JetBrains Mono',monospace}
+  .kpi-note{font-size:12px;color:var(--text-muted);margin-top:4px;font-weight:300}
+  .price-row{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;margin:16px 0;padding-left:32px}
+  .price-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px;text-align:center}
+  .price-card.anchor{border-color:var(--gold-dim)}
+  .price-card-label{font-size:11px;color:var(--text-muted);margin-bottom:4px}
+  .price-card-name{font-size:13px;font-weight:600;color:var(--text);margin-bottom:8px}
+  .price-card-price{font-size:20px;font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--gold)}
+  .price-card-price.free{color:var(--green)}
+  .price-card-role{font-size:11px;color:var(--text-muted);margin-top:6px;font-weight:300}
+  .page-footer{margin-top:60px;padding-top:24px;border-top:1px solid var(--border);text-align:center}
+  .page-footer p{font-size:13px;color:var(--text-muted);font-weight:300}
+  .page-footer .cave-quote{font-family:'Playfair Display',serif;font-style:italic;font-size:15px;color:var(--text-dim);margin-top:12px}
+  .loading-overlay{position:fixed;inset:0;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:2000;transition:opacity .5s}
+  .loading-overlay.hidden{opacity:0;pointer-events:none}
+  .loading-bee{font-size:40px;animation:lb .8s infinite alternate}
+  @keyframes lb{from{transform:translateY(0)}to{transform:translateY(-10px)}}
+  .loading-text{font-size:13px;color:var(--text-muted);margin-top:16px;font-family:'JetBrains Mono',monospace}
+  @media(max-width:640px){.container{padding:24px 16px 80px}.page-title{font-size:28px}.phase-title{font-size:18px}.price-row{grid-template-columns:1fr 1fr}.kpi-grid{grid-template-columns:1fr}.properties{grid-template-columns:100px 1fr}}
+</style>
+</head>
+<body>
+<div class="loading-overlay" id="loadingOverlay"><div class="loading-bee">🐝</div><div class="loading-text">동기화 중...</div></div>
+<div class="sync-bar" id="syncBar"></div>
+<div class="sync-status"><div class="sync-dot" id="syncDot"></div><span id="syncText">연결 중</span></div>
+
+<div class="container">
+  <div class="page-header">
+    <span class="page-icon">🐝</span>
+    <h1 class="page-title">Bee HAPPY 실행 체크리스트</h1>
+    <p class="page-subtitle">Digital Caver의 양봉 바이럴 프로세스 — ShadowGRAM 브라질 시장 전략 및 실행</p>
+    <div class="progress-section">
+      <div class="progress-header">
+        <span class="progress-label">Overall Progress</span>
+        <span class="progress-count" id="progressCount">0 / 0</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
+    <div class="properties">
+      <span class="prop-key">상태</span><span class="prop-value"><span class="tag tag-gold">🔥 실행 중</span></span>
+      <span class="prop-key">프레임워크</span><span class="prop-value"><span class="tag tag-cave">Bee HAPPY</span></span>
+      <span class="prop-key">타겟 시장</span><span class="prop-value">브라질 🇧🇷 25~40대 여성 중심</span>
+      <span class="prop-key">유형</span><span class="prop-value"><span class="tag tag-green">SPARK</span> → 그림자: STEADY + LEADER</span>
+      <span class="prop-key">가격 확정</span><span class="prop-value">Kindle R$49 (앵커) · 매뉴얼 R$37 (Hotmart)</span>
+      <span class="prop-key">동기화</span><span class="prop-value">☁️ Google Sheets 실시간 저장</span>
+    </div>
+  </div>
+
+  <div class="callout"><strong>STEADY의 규칙:</strong> 이 체크리스트의 순서를 지키십시오. Week 1에서 Week 7로 건너뛰고 싶은 충동이 올 겁니다. 그게 SPARK입니다. 그 충동을 알아차리고 순서를 지키는 것 — 그게 그림자 통합입니다.</div>
+
+  <div class="section-label"><span class="emoji">🏗️</span> 상품 아키텍처</div>
+  <div class="price-row">
+    <div class="price-card"><div class="price-card-label">꽃밭</div><div class="price-card-name">무료 검사</div><div class="price-card-price free">R$0</div><div class="price-card-role">바이럴 진입점</div></div>
+    <div class="price-card"><div class="price-card-label">꽃가루</div><div class="price-card-name">무료 리포트</div><div class="price-card-price free">R$0</div><div class="price-card-role">이메일 수집</div></div>
+    <div class="price-card"><div class="price-card-label">꿀</div><div class="price-card-name">실전 매뉴얼</div><div class="price-card-price">R$37</div><div class="price-card-role">수익화 · Hotmart</div></div>
+    <div class="price-card anchor"><div class="price-card-label">토양 (앵커)</div><div class="price-card-name">Kindle eBook</div><div class="price-card-price">R$49</div><div class="price-card-role">권위 + 가격 앵커</div></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Phase 0 -->
+  <div class="phase" id="phase0">
+    <div class="phase-header" onclick="togglePhase('phase0')"><div class="phase-toggle">▼</div><div class="phase-title">0. Bee HAPPY 5계명</div><div class="phase-badge">철학</div></div>
+    <div class="phase-desc">실행 전에 이 원칙을 체화할 것. 모든 의사결정의 기준.</div>
+    <div class="phase-body">
+      <div class="task-group">
+        <div class="task" data-id="t0_help" onclick="toggleTask(this)"><div class="task-checkbox"></div><div class="task-content"><div class="task-title"><span class="bee-tag bee-h">H</span> Help — 조력이지 조련이 아니다</div><div class="task-meta">고객을 내 입맛대로 길들이려 하지 말고, 진심으로 불편함을 해결해 줄 것</div></div></div>
+        <div class="task" data-id="t0_ask" onclick="toggleTask(this)"><div class="task-checkbox"></div><div class="task-content"><div class="task-title"><span class="bee-tag bee-a">A</span> Ask — 질문이지 질척이 아니다</div><div class="task-meta">대답 없는 고객에게 매달리지 말고, 마음을 열 수 있는 세련된 질문을 던질 것</div></div></div>
+        <div class="task" data-id="t0_propose" onclick="toggleTask(this)"><div class="task-checkbox"></div><div class="task-content"><div class="task-title"><span class="bee-tag bee-p1">P</span> Propose — 제안하라, 제한이 아니다</div><div class="task-meta">퍼널에 가두어 선택을 제한하지 말고, 삶이 나아질 수 있는 매력적인 상품을 제안할 것</div></div></div>
+        <div class="task" data-id="t0_process" onclick="toggleTask(this)"><div class="task-checkbox"></div><div class="task-content"><div class="task-title"><span class="bee-tag bee-p2">P</span> Process — 자발이지 촉발이 아니다</div><div class="task-meta">억지로 떠밀리는 결제가 아니라, 스스로 즐거워서 지갑을 열게 하는 경쾌한 경로를 설계할 것</div></div></div>
+        <div class="task" data-id="t0_yield" onclick="toggleTask(this)"><div class="task-checkbox"></div><div class="task-content"><div class="task-title"><span class="bee-tag bee-y">Y</span> Yield — 수확이지 수학이 아니다</div><div class="task-meta">소수점 계산에 매몰되지 말고, 생태계가 풍요로워진 결과로 얻는 결실을 즐길 것</div></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <!-- Phase 1 -->
+  <div class="phase" id="phase1">
+    <div class="phase-header" onclick="togglePhase('phase1')"><div class="phase-toggle">▼</div><div class="phase-title">1. 토양 다지기</div><div class="phase-badge">Week 1–4</div></div>
+    <div class="phase-desc">꽃밭을 심기 전에 토양부터. 모든 인프라를 세우는 단계.</div>
+    <div class="phase-body">
+      <div class="quote-block">"꽃의 향기가 약하면 벌은 오지 않는다. 검사 퀄리티가 전부다."</div>
+      <div class="task-group">
+        <div class="task-group-label">Kindle 신뢰자산 (토양)</div>
+        <div class="task" data-id="t1_kindle_edit" onclick="toggleTask(this)"><div class="task-checkbox"></div><div class="task-content"><div class="task-title">eBook 포르투갈어 최종 편집 완료</div><div class="task-meta">4부 구조: 나를 만나다 → 8가지 패턴 → 패턴을 넘어서 → 여정의 시작</div></div><div class="task-week">W1</div></div>
+        <div class="task" data-id="t1_kindle_upload" onclick="toggleTask(this)"><div class="task-checkbox"></div><div class="task-content"><div class="task-title">Kindle 업로드 — Autoconhecimento / Psicologia Popular</div><div class="task-meta">가격 R$49 설정. 매뉴얼(R$37) 대비 앵커 역할 확인</div></div><div class="task-week">W1</div></div>
+      </div>
+      <div class="task-group">
+        <div class="task-group-label"><span class="bee-tag bee-h">H</span> Help — 꽃밭 (무료 검사)</div>
+        <div class="task" data-id="t1_landing" onclick="toggleTask(this)"><div class="task-checkbox"></div><div class="task-content"><div class="task-title">포르투갈어 검사 랜딩페이지 제작</div><div class="task-meta">모바일 최적화 필수. 이메일/회원가입 없이 바로 검사 시작. 장벽 제로.</div></div><div class="task-week">W1–2</div></div>
+        <div class="task" data-id="t1_result_pages" onclick="toggleTask(this)"><div class="task-checkbox"></div><div class="task-content"><div class="task-title">8가지 유형 결과 페이지 설계</div><div class="task-meta">SPARK / VISION / STEADY / PLAYER / HARMONY / SOUL / LOGIC / LEADER</div></div><div class="task-week">W2–3</div></div>
+        <div class="task" data-id="t1_share_cards" onclick="toggleTask(this)"><div class="task-checkbox"></div><div class="task-content"><div class="task-title">각 유형별 인스타 스토리 공유 카드 디자인</div><div class="task-meta">"Eu sou SPARK!" 원탭 공유 버튼 포함. Dancing Bee의 날개.</div></div><div class="task-week">W2–3</div></div>
+      </div>
+      <div class="task-group">
+        <div class="task-group-label"><span class="bee-tag bee-a">A</span> Ask — 정찰벌 질문 설계</div>
+        <div class="task" data-id="t1_questions" onclick="toggleTask(this)"><div class="task-checkbox"></div><div class="task-content"><div class="task-title">결과 페이지 내 호기심 질문 3종 삽입</div><div class="task-meta">"Seu parceiro repete o mesmo padrão?" / 유형 조합 / 태그 유도</div></div><div class="task-week">W3</div></div>
+        <div class="task" data-id="t1_combo_cards" onclick="toggleTask(this)"><div class="task-checkbox"></div><div class="task-content"><div class="task-title">유형 조합 콘텐츠 카드 제작 (최소 4종)</div><div class="task-meta">"SPARK + HARMONY = ?" 식의 궁합 카드. 콘텐츠로 호기심 유발.</div></div><div class="task-week">W3</div></div>
+      </div>
+      <div class="task-group">
+        <div class="task-group-label"><span class="bee-tag bee-p1">P</span> Propose — 제안 인프라</div>
+        <div class="task" data-id="t1_reports" onclick="toggleTask(this)"><div class="task-checkbox"></div><div class="task-content"><div class="task-title">유형별 무료 리포트 8종 작성 (포르투갈어)</div><div class="task-meta">빛(강점) · 그림자(반복 패턴) · 관계에서의 모습. 리포트 끝에 매뉴얼 CTA.</div></div><div class="task-week">W3–4</div></div>
+        <div class="task" data-id="t1_email_auto" onclick="toggleTask(this)"><div class="task-checkbox"></div><div class="task-content"><div class="task-title">이메일 자동발송 시스템 연결</div><div class="task-meta">검사 결과 → 이메일 입력 → 리포트 자동 발송. 이메일 수집 지점.</div></div><div class="task-week">W4</div></div>
+        <div class="task" data-id="t1_hotmart" onclick="toggleTask(this)"><div class="task-checkbox"></div><div class="task-content"><div class="task-title">Hotmart에 매뉴얼 업로드 + Pix 결제 설정</div><div class="task-meta">R$37. Pix 활성화 필수. 테스트 결제 완료 확인.</div></div><div class="task-week">W4</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <!-- Phase 2 -->
+  <div class="phase" id="phase2">
+    <div class="phase-header" onclick="togglePhase('phase2')"><div class="phase-toggle">▼</div><div class="phase-title">2. 베타 테스트</div><div class="phase-badge">Week 5–6</div></div>
+    <div class="phase-desc">꽃밭에 처음 벌을 풀어본다. 생태계가 돌아가는지 확인.</div>
+    <div class="phase-body">
+      <div class="quote-block">"검사 결과를 본 사람이 '소름 돋는다'고 느끼는 순간. 이 반응이 없으면 런칭하지 마라."</div>
+      <div class="task-group">
+        <div class="task-group-label">베타 리더 모집</div>
+        <div class="task" data-id="t2_beta" onclick="toggleTask(this)"><div class="task-checkbox"></div><div class="task-content"><div class="task-title">브라질 베타 리더 10~20명 모집</div><div class="task-meta">타겟: 25~40대 브라질 여성. MBTI 관심층. Kindle 리뷰 요청 포함.</div></div><div class="task-week">W5</div></div>
+      </div>
+      <div class="task-group">
+        <div class="task-group-label">퍼널 전체 테스트</div>
+        <div class="task" data-id="t2_funnel" onclick="toggleTask(this)"><div class="task-checkbox"></div><div class="task-content"><div class="task-title">검사 → 결과 → 리포트 → 매뉴얼 전체 흐름 점검</div><div class="task-meta">끊기는 지점 없는지 확인. 각 단계 전환율 측정.</div></div><div class="task-week">W5–6</div></div>
+        <div class="task" data-id="t2_viral" onclick="toggleTask(this)"><div class="task-checkbox"></div><div class="task-content"><div class="task-title">바이럴 포인트 작동 여부 확인</div><div class="task-meta">공유 카드 실제 공유 발생 여부. "Eu sou ___!" 카드가 인스타에 올라가는가?</div></div><div class="task-week">W6</div></div>
+        <div class="task" data-id="t2_ux" onclick="toggleTask(this)"><div class="task-checkbox"></div><div class="task-content"><div class="task-title">베타 피드백 기반 UX 수정</div><div class="task-meta">"소름 돋는다" 반응 비율 체크. 부족하면 검사 결과 문구 재작성.</div></div><div class="task-week">W6</div></div>
+      </div>
+      <div class="task-group">
+        <div class="task-group-label">Kindle 리뷰 확보</div>
+        <div class="task" data-id="t2_reviews" onclick="toggleTask(this)"><div class="task-checkbox"></div><div class="task-content"><div class="task-title">베타 리더로부터 Kindle 리뷰 최소 10개 확보</div><div class="task-meta">신뢰자산 강화. 리뷰 없는 킨들은 토양이 아니라 빈 땅.</div></div><div class="task-week">W6</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <!-- Phase 3 -->
+  <div class="phase" id="phase3">
+    <div class="phase-header" onclick="togglePhase('phase3')"><div class="phase-toggle">▼</div><div class="phase-title">3. 오가닉 런칭</div><div class="phase-badge">Week 7–12</div></div>
+    <div class="phase-desc">꽃밭을 열고 Dancing Bee를 날린다. 생태계가 자생하는지 관찰.</div>
+    <div class="phase-body">
+      <div class="quote-block">"아무도 떠밀지 않는다. '야 이거 소름이야 너도 해봐'가 자발적으로 터지는 구조."</div>
+      <div class="task-group">
+        <div class="task-group-label">Kindle 노출 최적화</div>
+        <div class="task" data-id="t3_kindle_cat" onclick="toggleTask(this)"><div class="task-checkbox"></div><div class="task-content"><div class="task-title">Kindle 카테고리 노출 확인 — Autoconhecimento</div><div class="task-meta">리뷰 10개 이상 확보 후 카테고리 랭킹 모니터링</div></div><div class="task-week">W7</div></div>
+      </div>
+      <div class="task-group">
+        <div class="task-group-label"><span class="bee-tag bee-p2">P</span> Process — Dancing Bee 런칭</div>
+        <div class="task" data-id="t3_insta" onclick="toggleTask(this)"><div class="task-checkbox"></div><div class="task-content"><div class="task-title">인스타그램 @digitalcaver 포르투갈어 콘텐츠 시작</div><div class="task-meta">유형별 카드, 조합 콘텐츠, 그림자 인사이트 게시. K-콘텐츠 저자 포지셔닝.</div></div><div class="task-week">W7–8</div></div>
+        <div class="task" data-id="t3_reward" onclick="toggleTask(this)"><div class="task-checkbox"></div><div class="task-content"><div class="task-title">리워드 구조 활성화 — 친구 3명 검사 시 심층 분석 언락</div><div class="task-meta">강제가 아닌 보너스. 자발적 공유 가속기.</div></div><div class="task-week">W8</div></div>
+        <div class="task" data-id="t3_reddit" onclick="toggleTask(this)"><div class="task-checkbox"></div><div class="task-content"><div class="task-title">Reddit 댓글 활동 시작</div><div class="task-meta">r/Jung, r/mbti, r/selfimprovement. 링크 절대 금지. 신뢰 먼저.</div></div><div class="task-week">W8–10</div></div>
+      </div>
+      <div class="task-group">
+        <div class="task-group-label"><span class="bee-tag bee-y">Y</span> Yield — 수확 관찰</div>
+        <div class="task" data-id="t3_loop" onclick="toggleTask(this)"><div class="task-checkbox"></div><div class="task-content"><div class="task-title">오가닉 바이럴 루프 작동 확인</div><div class="task-meta">새 유저가 기존 유저의 공유를 통해 유입되고 있는가?</div></div><div class="task-week">W10–12</div></div>
+        <div class="task" data-id="t3_conversion" onclick="toggleTask(this)"><div class="task-checkbox"></div><div class="task-content"><div class="task-title">퍼널 전환율 1차 리포트</div><div class="task-meta">검사 유입 → 리포트 요청 → 매뉴얼 구매. 숫자를 보되 매몰되지 말 것.</div></div><div class="task-week">W12</div></div>
+        <div class="task" data-id="t3_email_list" onclick="toggleTask(this)"><div class="task-checkbox"></div><div class="task-content"><div class="task-title">이메일 리스트 규모 확인 — 다음 상품 토양 평가</div><div class="task-meta">커플 버전, 코칭, 커뮤니티를 심을 수 있는 토양인가?</div></div><div class="task-week">W12</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <!-- KPI -->
+  <div class="phase" id="phaseKPI">
+    <div class="phase-header" onclick="togglePhase('phaseKPI')"><div class="phase-toggle">▼</div><div class="phase-title">KPI — 생태계 건강도</div><div class="phase-badge">측정</div></div>
+    <div class="phase-desc">수확이지 수학이 아니다. 이 숫자만 본다.</div>
+    <div class="phase-body">
+      <div class="kpi-grid">
+        <div class="kpi-card"><div class="kpi-label">주간 검사 완료</div><div class="kpi-value">—</div><div class="kpi-note">꽃밭에 벌이 오고 있는가</div></div>
+        <div class="kpi-card"><div class="kpi-label">검사 → 리포트 전환</div><div class="kpi-value">—%</div><div class="kpi-note">이메일 수집률</div></div>
+        <div class="kpi-card"><div class="kpi-label">공유 카드 공유율</div><div class="kpi-value">—%</div><div class="kpi-note">Dancing Bee가 춤추고 있는가</div></div>
+        <div class="kpi-card"><div class="kpi-label">리포트 → 매뉴얼 전환</div><div class="kpi-value">—%</div><div class="kpi-note">꿀이 차오르고 있는가</div></div>
+      </div>
+      <div class="callout"><strong>보지 않는 숫자:</strong> 소수점 단위 전환율 최적화, 일별 매출 변동, Kindle 판매량. 이 숫자에 매몰되면 미이라가 됩니다.</div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <p>Bee HAPPY · Digital Caver · ShadowGRAM Brazil</p>
+    <p class="cave-quote">"꽃밭을 심으십시오. 벌은 옵니다."</p>
+  </div>
+</div>
+
+<script>
+const API="https://script.google.com/macros/s/AKfycbytwLsKxbVRO2NwzXfenQDSatKzOoYkUXRhSZ3qNnKnmHhagKdwmS18NxdJIKs6MBvtGA/exec";
+let saveTimer=null,taskState={};
+
+function setSyncStatus(s,t){
+  const b=document.getElementById("syncBar"),d=document.getElementById("syncDot"),x=document.getElementById("syncText");
+  b.className="sync-bar "+s;d.className="sync-dot "+s;x.textContent=t;
+  if(s==="synced")setTimeout(()=>b.className="sync-bar",2000);
+}
+
+async function loadFromCloud(){
+  try{
+    setSyncStatus("syncing","불러오는 중...");
+    const r=await fetch(API+"?action=load");
+    const j=await r.json();
+    if(j.status==="ok"&&j.data){taskState=j.data;applyState();setSyncStatus("synced","동기화 완료");}
+    else setSyncStatus("synced","새 체크리스트");
+  }catch(e){
+    console.error(e);
+    try{const l=localStorage.getItem("bh");if(l){taskState=JSON.parse(l);applyState();}}catch(x){}
+    setSyncStatus("error","오프라인 모드");
+  }
+  document.getElementById("loadingOverlay").classList.add("hidden");
+  updateProgress();
+}
+
+async function saveToCloud(){
+  try{
+    setSyncStatus("syncing","저장 중...");
+    const r=await fetch(API+"?action=save&data="+encodeURIComponent(JSON.stringify(taskState)));
+    const j=await r.json();
+    if(j.status==="saved")setSyncStatus("synced","저장 완료 ✓");
+  }catch(e){console.error(e);setSyncStatus("error","저장 실패");}
+  try{localStorage.setItem("bh",JSON.stringify(taskState));}catch(x){}
+}
+
+function debounceSave(){if(saveTimer)clearTimeout(saveTimer);saveTimer=setTimeout(saveToCloud,800);}
+
+function applyState(){
+  document.querySelectorAll(".task[data-id]").forEach(t=>{
+    const id=t.getAttribute("data-id");
+    if(taskState[id])t.classList.add("done");else t.classList.remove("done");
+  });
+}
+
+function toggleTask(el){
+  el.classList.toggle("done");
+  const id=el.getAttribute("data-id");
+  if(id){taskState[id]=el.classList.contains("done");debounceSave();}
+  updateProgress();
+}
+
+function togglePhase(id){document.getElementById(id).classList.toggle("collapsed");}
+
+function updateProgress(){
+  const a=document.querySelectorAll(".task[data-id]"),d=document.querySelectorAll(".task[data-id].done");
+  const tot=a.length,done=d.length,pct=tot>0?(done/tot*100):0;
+  document.getElementById("progressCount").textContent=done+" / "+tot;
+  document.getElementById("progressFill").style.width=pct+"%";
+}
+
+loadFromCloud();
+</script>
+</body>
+</html>
