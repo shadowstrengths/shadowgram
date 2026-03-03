@@ -16,12 +16,15 @@
   .brand-logo { color:#D4A520; font-size:13px; letter-spacing:3px; text-transform:uppercase; font-family: 'Arial', sans-serif; }
   .brand-tag { color:#8899AA; font-size:11px; letter-spacing:1px; font-family:'Arial',sans-serif; }
 
-  /* ── 타입 히어로 ── */
-  .type-hero { background: linear-gradient(135deg, #1A2030 0%, #3D7A5A22 100%); padding:36px 32px 28px; text-align:center; border-bottom:1px solid #3D7A5A44; }
-  .type-emoji { font-size:48px; display:block; margin-bottom:10px; }
-  .type-name { font-size:36px; font-weight:900; color:#3D7A5A; letter-spacing:4px; font-family:'Arial Black','Arial',sans-serif; text-transform:uppercase; }
-  .type-archetype { color:#8899AA; font-size:13px; letter-spacing:2px; margin-top:6px; font-family:'Arial',sans-serif; text-transform:uppercase; }
-  .email-badge { display:inline-block; margin-top:14px; background:#3D7A5A22; color:#3D7A5A; border:1px solid #3D7A5A55; border-radius:20px; padding:5px 16px; font-size:11px; letter-spacing:1.5px; font-family:'Arial',sans-serif; text-transform:uppercase; }
+  /* ── 카드 이미지 히어로 ── */
+  .card-hero { background:#1A2030; padding:0; text-align:center; border-bottom:3px solid #3D7A5A; }
+  .card-hero img { width:100%; max-width:620px; height:auto; display:block; }
+
+  /* ── 타입 히어로 (이미지 아래) ── */
+  .type-hero { background: linear-gradient(180deg, #1A2030 0%, #3D7A5A18 100%); padding:20px 32px 22px; text-align:center; border-bottom:1px solid #3D7A5A33; }
+  .type-name { font-size:30px; font-weight:900; color:#3D7A5A; letter-spacing:4px; font-family:'Arial Black','Arial',sans-serif; text-transform:uppercase; }
+  .type-archetype { color:#8899AA; font-size:12px; letter-spacing:2px; margin-top:5px; font-family:'Arial',sans-serif; text-transform:uppercase; }
+  .email-badge { display:inline-block; margin-top:12px; background:#3D7A5A22; color:#3D7A5A; border:1px solid #3D7A5A55; border-radius:20px; padding:5px 16px; font-size:11px; letter-spacing:1.5px; font-family:'Arial',sans-serif; text-transform:uppercase; }
 
   /* ── 제목줄 메타 ── */
   .subj-bar { background:#F0FFF7; border-left:4px solid #3D7A5A; padding:14px 24px; margin:0 32px; margin-top:-1px; }
@@ -100,9 +103,12 @@
     </div>
   </div>
 
+  <div class="card-hero">
+    <img src="https://shadowgram-app.github.io/shadowgram/share_images/card_STEADY.png" alt="STEADY — O Guardião" />
+  </div>
+
   <div class="type-hero">
-    <span class="type-emoji">🐢</span>
-    <div class="type-name">STEADY</div>
+    <div class="type-name">🐢 STEADY</div>
     <div class="type-archetype">O Guardião · Tartaruga</div>
     <div class="email-badge">📩 Email 2 — 24h após entrega</div>
   </div>
