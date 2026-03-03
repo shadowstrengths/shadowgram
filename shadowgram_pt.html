@@ -869,44 +869,53 @@ const GAS_URL = 'https://script.google.com/macros/s/AKfycbw4gdZ0y8L47fo1p9HGcIb7
 
 let _currentType = '';  // showResult()에서 세팅됨
 
-// ── 실시간 통계 로드 (JSONP) ──
+// ── 시드 데이터 (GAS 연결 전 / 폴백용) ──
+const SEED_TOTAL = 1000;
+const SEED_PCT = { SPARK:13, VISION:13, STEADY:13, PLAYER:13, HARMONY:12, SOUL:12, LOGIC:12, LEADER:12 };
+
+// ── 통계 배너 렌더 ──
+function renderStats(tipo, total, pct, rank) {
+  animateCount(document.getElementById('stats-total-num'), total);
+  let msg = '';
+  if (pct != null) msg += '<em>' + pct + '%</em> dos usuários são tipo ' + tipo;
+  if (rank <= 3) { const m = ['🥇','🥈','🥉']; msg += ' · ' + m[rank-1] + ' ' + rank + 'º mais comum'; }
+  else msg += ' · ' + rank + 'º entre os 8 tipos';
+  document.getElementById('stats-type-line').innerHTML = msg;
+  document.getElementById('stats-banner').style.display = 'block';
+}
+
+// ── 실시간 통계 로드 (JSONP) — 실패 시 시드 폴백 ──
 function loadStats(tipo) {
+  // 시드로 먼저 즉시 표시
+  renderStats(tipo, SEED_TOTAL, SEED_PCT[tipo] || 13, 4);
+
+  // GAS에서 실제 데이터 가져오기 시도
   const callbackName = '_sgStats_' + Date.now();
   const script = document.createElement('script');
   script.src = GAS_URL + '?action=stats&callback=' + callbackName;
 
+  const timer = setTimeout(function() {
+    // 5초 내 응답 없으면 시드 유지
+    delete window[callbackName];
+    if (script.parentNode) script.parentNode.removeChild(script);
+  }, 5000);
+
   window[callbackName] = function(data) {
+    clearTimeout(timer);
     try {
-      const total = data.total || 0;
-      const pct   = data.pctByType && data.pctByType[tipo] ? data.pctByType[tipo] : null;
-      const rank  = data.ranking   ? data.ranking.find(function(r){ return r.type === tipo; }) : null;
-
-      // 총 카운트 — 카운트 업 애니메이션
-      animateCount(document.getElementById('stats-total-num'), total);
-
-      // 유형 비율 + 순위
-      const typeLine = document.getElementById('stats-type-line');
-      let msg = '';
-      if (pct !== null) {
-        msg += '<em>' + pct + '%</em> dos usuários são tipo ' + tipo;
-      }
-      if (rank && rank.rank <= 3) {
-        const medals = ['🥇','🥈','🥉'];
-        msg += ' · ' + medals[rank.rank - 1] + ' ' + rank.rank + 'º mais comum';
-      } else if (rank) {
-        msg += ' · ' + rank.rank + 'º entre os 8 tipos';
-      }
-      typeLine.innerHTML = msg;
-
-      document.getElementById('stats-banner').style.display = 'block';
+      const total = data.total || SEED_TOTAL;
+      const pct   = (data.pctByType && data.pctByType[tipo]) != null
+                    ? data.pctByType[tipo] : SEED_PCT[tipo] || 13;
+      const rankObj = data.ranking ? data.ranking.find(function(r){ return r.type === tipo; }) : null;
+      const rank = rankObj ? rankObj.rank : 4;
+      renderStats(tipo, total, pct, rank);
     } catch(e) {}
-
-    // JSONP 클린업
     delete window[callbackName];
     if (script.parentNode) script.parentNode.removeChild(script);
   };
 
   script.onerror = function() {
+    clearTimeout(timer);
     delete window[callbackName];
     if (script.parentNode) script.parentNode.removeChild(script);
   };
