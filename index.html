@@ -157,49 +157,68 @@
     .what-is { background: var(--dark); }
     /* ── KINDLE CARD ── */
     .kindle-card {
-      display: flex; align-items: center; gap: 28px;
-      background: linear-gradient(120deg, rgba(184,134,11,0.06) 0%, rgba(255,255,255,0.02) 100%);
-      border: 1px solid rgba(184,134,11,0.3);
+      display: flex; align-items: stretch; gap: 0;
+      background: linear-gradient(120deg, rgba(184,134,11,0.07) 0%, rgba(20,24,36,0.9) 100%);
+      border: 1px solid rgba(184,134,11,0.35);
       border-radius: 16px;
-      padding: 24px 28px;
       margin-top: 32px;
       text-decoration: none;
-      transition: border-color 0.25s, background 0.25s;
+      overflow: hidden;
+      transition: border-color 0.25s, box-shadow 0.25s;
     }
     .kindle-card:hover {
-      border-color: rgba(184,134,11,0.65);
-      background: linear-gradient(120deg, rgba(184,134,11,0.1) 0%, rgba(255,255,255,0.03) 100%);
+      border-color: rgba(184,134,11,0.7);
+      box-shadow: 0 8px 32px rgba(184,134,11,0.12);
+    }
+    .kindle-cover-wrap {
+      flex-shrink: 0; width: 130px;
+      background: #0a0d14;
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px 16px;
     }
     .kindle-cover {
-      flex-shrink: 0;
-      width: 72px;
+      width: 100%;
       border-radius: 4px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.5), 0 2px 6px rgba(184,134,11,0.2);
+      box-shadow: 4px 6px 20px rgba(0,0,0,0.7), 0 2px 8px rgba(184,134,11,0.25);
+      display: block;
     }
-    .kindle-info { flex: 1; min-width: 0; }
+    .kindle-info {
+      flex: 1; min-width: 0;
+      padding: 24px 24px 24px 20px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
     .kindle-eyebrow {
       font-size: 10px; letter-spacing: 3px; font-weight: 700;
-      color: var(--gold); text-transform: uppercase; margin-bottom: 6px;
+      color: var(--gold); text-transform: uppercase; margin-bottom: 8px;
     }
     .kindle-title {
-      font-size: 17px; font-weight: 800; color: #fff;
-      line-height: 1.25; margin-bottom: 4px;
+      font-size: 22px; font-weight: 900; color: #fff;
+      line-height: 1.2; margin-bottom: 6px;
+      font-family: Georgia, serif;
+    }
+    .kindle-author {
+      font-size: 12px; color: rgba(155,170,184,0.6);
+      margin-bottom: 10px; letter-spacing: 0.5px;
     }
     .kindle-sub {
-      font-size: 12px; color: var(--silver); margin-bottom: 10px; line-height: 1.5;
+      font-size: 13px; color: var(--silver); margin-bottom: 18px; line-height: 1.6;
     }
     .kindle-cta {
       display: inline-flex; align-items: center; gap: 6px;
-      font-size: 12px; font-weight: 700; color: var(--gold);
-      letter-spacing: 0.5px;
+      font-size: 12px; font-weight: 800; color: var(--gold);
+      letter-spacing: 1px; text-transform: uppercase;
+      border: 1px solid rgba(184,134,11,0.4);
+      border-radius: 4px; padding: 7px 14px;
+      width: fit-content;
+      transition: background 0.2s;
     }
-    .kindle-logo {
-      width: 48px; opacity: 0.55; flex-shrink: 0;
+    .kindle-card:hover .kindle-cta {
+      background: rgba(184,134,11,0.12);
     }
-    @media (max-width: 500px) {
-      .kindle-card { gap: 16px; padding: 18px; }
-      .kindle-cover { width: 56px; }
-      .kindle-logo { display: none; }
+    @media (max-width: 540px) {
+      .kindle-cover-wrap { width: 100px; padding: 16px 12px; }
+      .kindle-title { font-size: 18px; }
+      .kindle-info { padding: 18px 16px; }
     }
     .what-grid {
       display: grid;
@@ -360,17 +379,16 @@
     <p class="section-body">O Shadowgram integra a teoria das funções psicológicas de Jung com os estudos modernos do Big Five — reinterpretados para revelar não apenas quem você é, mas por que você age da forma que age.</p>
 
     <a class="kindle-card" href="https://a.co/d/06IXW2VS" target="_blank" rel="noopener">
-      <img class="kindle-cover" src="/kindle_cover.jpg" alt="Luz e Sombra — M. C. Cho">
+      <div class="kindle-cover-wrap">
+        <img class="kindle-cover" src="/kindle_cover.png" alt="Luz e Sombra — M. C. Cho">
+      </div>
       <div class="kindle-info">
         <p class="kindle-eyebrow">✦ Livro do autor · Amazon Kindle</p>
         <p class="kindle-title">Luz e Sombra</p>
-        <p class="kindle-sub">O livro que fundamenta o framework Shadowgram —<br>escrito por M. C. Cho</p>
+        <p class="kindle-author">M. C. Cho</p>
+        <p class="kindle-sub">O livro que fundamenta o framework Shadowgram — a teoria por trás dos 8 tipos.</p>
         <span class="kindle-cta">Ler na Amazon →</span>
       </div>
-      <!-- Amazon Kindle wordmark SVG inline -->
-      <svg class="kindle-logo" viewBox="0 0 80 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <text x="0" y="18" font-family="Arial" font-size="13" font-weight="700" fill="#FF9900">kindle</text>
-      </svg>
     </a>
 
     <div class="what-grid">
