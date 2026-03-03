@@ -61,32 +61,95 @@
       padding: 0 20px;
     }
 
-    /* ── 친구 공유 헤더 ── */
-    .friend-header {
+    /* ── 선언 헤더 (공유자 본인 시점) ── */
+    .declaration-header {
+      width: 100%;
       text-align: center;
-      margin: 32px 0 24px;
+      padding: 36px 20px 28px;
+      position: relative;
+      overflow: hidden;
     }
-    .friend-tag {
-      display: inline-block;
-      background: rgba(197,165,114,0.12);
-      border: 1px solid rgba(197,165,114,0.3);
+    .declaration-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, var(--type-color, #C5A572) 0%, transparent 70%);
+      opacity: 0.10;
+      pointer-events: none;
+    }
+    .declaration-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(197,165,114,0.10);
+      border: 1px solid rgba(197,165,114,0.25);
       color: var(--gold);
-      font-size: 11px;
-      letter-spacing: 2px;
+      font-size: 10px;
+      letter-spacing: 3px;
       padding: 5px 14px;
       border-radius: 20px;
       text-transform: uppercase;
-      margin-bottom: 14px;
+      margin-bottom: 20px;
     }
-    .friend-header h1 {
-      font-size: 22px;
+    .declaration-main {
+      font-size: 13px;
+      letter-spacing: 2px;
+      color: var(--silver);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .declaration-type {
+      font-size: clamp(52px, 16vw, 80px);
       font-weight: 900;
-      line-height: 1.3;
+      letter-spacing: 6px;
+      line-height: 1;
+      color: var(--type-color, #C5A572);
+      margin-bottom: 6px;
+      text-shadow: 0 0 40px var(--type-color, rgba(197,165,114,0.4));
+    }
+    .declaration-archetype {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--goldL);
+      margin-bottom: 4px;
+    }
+    .declaration-animal {
+      font-size: 13px;
+      color: var(--silver);
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+    .declaration-divider {
+      width: 40px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--type-color, #C5A572), transparent);
+      margin: 0 auto 20px;
+    }
+    .declaration-subtitle {
+      font-size: 15px;
+      color: var(--goldL);
+      line-height: 1.6;
+      font-style: italic;
+      max-width: 340px;
+      margin: 0 auto 4px;
+    }
+
+    /* ── 친구 유도 배너 ── */
+    .friend-nudge {
+      background: rgba(197,165,114,0.07);
+      border: 1px solid rgba(197,165,114,0.2);
+      border-radius: 14px;
+      padding: 14px 18px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .friend-nudge p {
+      font-size: 15px;
+      font-weight: 700;
       color: var(--white);
+      line-height: 1.4;
     }
-    .friend-header h1 span {
-      color: var(--gold);
-    }
+    .friend-nudge p span { color: var(--gold); }
 
     /* ── 유형 히어로 이미지 ── */
     .share-hero-img {
@@ -374,19 +437,29 @@
   </a>
 </nav>
 
-<div class="container">
-
-  <!-- 친구 공유 헤더 -->
-  <div class="friend-header">
-    <div class="friend-tag">✦ Diagnóstico Compartilhado</div>
-    <h1>Seu amigo é tipo <span id="header-type">...</span> 🔥<br>E você, qual é o seu?</h1>
+  <!-- ── 선언 헤더 전체 너비 ── -->
+  <div class="declaration-header" id="declaration-header">
+    <div class="declaration-label">✦ Meu Resultado Shadowgram</div>
+    <div class="declaration-main">Meu tipo é</div>
+    <div class="declaration-type" id="decl-type">—</div>
+    <div class="declaration-archetype" id="decl-archetype">—</div>
+    <div class="declaration-animal" id="decl-animal">—</div>
+    <div class="declaration-divider"></div>
+    <div class="declaration-subtitle" id="decl-subtitle">—</div>
   </div>
+
+<div class="container">
 
   <!-- 유형 히어로 이미지 -->
   <img id="share-hero-img" class="share-hero-img" src="" alt="" loading="eager"
     onclick="document.getElementById('btn-quiz').scrollIntoView({behavior:'smooth'})"
     title="Clique para descobrir o seu tipo!"/>
   <p class="share-hero-hint">👆 Toque na imagem e descubra o seu animal!</p>
+
+  <!-- 친구 유도 배너 -->
+  <div class="friend-nudge">
+    <p>E você — <span>qual é o seu tipo?</span> 👇</p>
+  </div>
 
   <!-- 유형 카드 -->
   <div class="type-card">
@@ -594,6 +667,30 @@ const TYPES = {
 
 const QUIZ_URL = 'https://shadowgram.org/shadowgram_pt.html';
 
+// 유형별 아키타입 명칭 (카드 이미지 기준)
+const ARCHETYPE_MAP = {
+  SPARK:   'O Explorador',
+  VISION:  'O Visionário',
+  STEADY:  'O Guardião',
+  PLAYER:  'O Intenso',
+  HARMONY: 'O Cuidador',
+  SOUL:    'O Profundo',
+  LOGIC:   'O Analista',
+  LEADER:  'O Executor',
+};
+
+// 유형별 한 줄 선언 문구
+const SUBTITLE_MAP = {
+  SPARK:   'A intuição que vê o que ainda não existe.',
+  VISION:  'A profundidade que enxerga além do visível.',
+  STEADY:  'A força que sustenta sem precisar de palco.',
+  PLAYER:  'A presença que transforma cada momento em ação.',
+  HARMONY: 'O cuidado que une sem pedir nada em troca.',
+  SOUL:    'A autenticidade que não se dobra a nada.',
+  LOGIC:   'A precisão que vai até a raiz de tudo.',
+  LEADER:  'A força que transforma visão em resultado.',
+};
+
 // ── URL 파라미터에서 유형 읽기 ──
 function getTypeFromURL() {
   const params = new URLSearchParams(window.location.search);
@@ -610,13 +707,24 @@ function renderType(typeName) {
   const animalMap = {SPARK:'Beija-flor ⚡',VISION:'Pavão 🦚',STEADY:'Tartaruga 🐢',PLAYER:'Leopardo 🐆',HARMONY:'Golfinho 🐬',SOUL:'Borboleta 🦋',LOGIC:'Corvo 🐦',LEADER:'Águia 🦅'};
   const animal = animalMap[typeName] || typeName;
 
+  // ── 선언 헤더 채우기 ──
+  const header = document.getElementById('declaration-header');
+  if (header) header.style.setProperty('--type-color', data.color);
+  const declType = document.getElementById('decl-type');
+  if (declType) { declType.textContent = typeName; declType.style.color = data.color; }
+  const declArch = document.getElementById('decl-archetype');
+  if (declArch) declArch.textContent = ARCHETYPE_MAP[typeName] || '';
+  const declAnim = document.getElementById('decl-animal');
+  if (declAnim) declAnim.textContent = animal;
+  const declSub = document.getElementById('decl-subtitle');
+  if (declSub) declSub.textContent = SUBTITLE_MAP[typeName] || '';
+
   // 헤더 & 타이틀
-  document.getElementById('header-type').textContent = typeName;
-  document.title = `Meu animal Shadowgram é ${animal} — E o seu? 🔥`;
+  document.title = `Meu tipo Shadowgram é ${typeName} — ${ARCHETYPE_MAP[typeName]} 🔥`;
 
   // OG 메타 — card_ 이미지로 SNS 미리보기
-  document.getElementById('og-title').setAttribute('content', `Meu animal é ${animal} no Shadowgram 🔥 — E o seu?`);
-  document.getElementById('og-desc').setAttribute('content', `Fiz o diagnóstico e descobri meu animal. ${data.light.substring(0, 80)}... Descubra o seu!`);
+  document.getElementById('og-title').setAttribute('content', `Meu tipo Shadowgram é ${typeName} — ${ARCHETYPE_MAP[typeName]} 🔥`);
+  document.getElementById('og-desc').setAttribute('content', `${SUBTITLE_MAP[typeName]} Descubra o seu tipo — grátis em 4 minutos.`);
   const ogImg = document.getElementById('og-img');
   if (ogImg) ogImg.setAttribute('content', `https://shadowgram.org/share_images/card_${typeName}.png`);
 
