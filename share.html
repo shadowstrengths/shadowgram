@@ -209,6 +209,67 @@
       color: #a8d8da;
     }
 
+    /* ── 호기심 질문 박스 ── */
+    .ask-section {
+      margin: 8px 0 20px;
+    }
+    .ask-title {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--silver);
+      text-align: center;
+      margin-bottom: 12px;
+    }
+    .ask-q {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: border-color .2s, background .2s;
+      position: relative;
+    }
+    .ask-q:hover { border-color: var(--gold); }
+    .ask-q.open  { border-color: var(--gold); background: rgba(197,165,114,0.06); }
+    .ask-q-text {
+      font-size: 15px;
+      font-weight: 700;
+      color: #f0e6d0;
+      line-height: 1.45;
+      padding-right: 28px;
+    }
+    .ask-q-arrow {
+      position: absolute;
+      right: 18px; top: 50%;
+      transform: translateY(-50%);
+      font-size: 18px;
+      color: var(--gold);
+      transition: transform .25s;
+    }
+    .ask-q.open .ask-q-arrow { transform: translateY(-50%) rotate(180deg); }
+    .ask-q-answer {
+      display: none;
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: #c8bfb0;
+      margin-top: 12px;
+      border-top: 1px solid var(--border);
+      padding-top: 12px;
+    }
+    .ask-q.open .ask-q-answer { display: block; }
+    .ask-q-answer strong { color: var(--gold); }
+    .ask-q-answer .answer-cta {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gold);
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
     /* ── CTA — 나도 알아보기 ── */
     .cta-section {
       margin-bottom: 24px;
@@ -365,10 +426,33 @@
     </div>
   </div>
 
+  <!-- 호기심 질문 3종 -->
+  <div class="ask-section" id="ask-section">
+    <p class="ask-title">⚡ Isso soa familiar pra você?</p>
+
+    <div class="ask-q" onclick="toggleAsk(this)">
+      <div class="ask-q-text" id="ask-q1-text">—</div>
+      <span class="ask-q-arrow">▾</span>
+      <div class="ask-q-answer" id="ask-q1-answer"></div>
+    </div>
+
+    <div class="ask-q" onclick="toggleAsk(this)">
+      <div class="ask-q-text" id="ask-q2-text">—</div>
+      <span class="ask-q-arrow">▾</span>
+      <div class="ask-q-answer" id="ask-q2-answer"></div>
+    </div>
+
+    <div class="ask-q" onclick="toggleAsk(this)">
+      <div class="ask-q-text" id="ask-q3-text">—</div>
+      <span class="ask-q-arrow">▾</span>
+      <div class="ask-q-answer" id="ask-q3-answer"></div>
+    </div>
+  </div>
+
   <!-- CTA — 나도 알아보기 -->
   <div class="cta-section">
     <p class="cta-label">28 perguntas · gratuito · resultado imediato</p>
-    <a class="btn-cta" href="https://shadowgram.org/shadowgram_pt.html?fresh=1">
+    <a class="btn-cta" id="btn-quiz" href="https://shadowgram.org/shadowgram_pt.html?fresh=1">
       Qual é o MEU tipo? Fazer o teste →
     </a>
     <p class="btn-sub">🔒 Sem cadastro · Resultado na hora</p>
@@ -402,6 +486,11 @@ const TYPES = {
     pain: 'Quantas ideias brilhantes você já abandonou a 90% do caminho? Começa com tudo, perde o interesse, abandona — e sente que algo está errado com você.',
     solution: 'O relatório revela os 4 padrões do abandono e o método específico para o tipo SPARK completar o que começa — sem perder sua criatividade.',
     miniDesc: 'Criativo · Para tudo antes do fim',
+    asks: [
+      { q: 'Você já teve uma ideia incrível... e simplesmente parou no meio?', a: 'Para o SPARK, isso não é falta de força de vontade. É o seu padrão de sombra agindo. <strong>O relatório completo revela os 4 gatilhos exatos</strong> que fazem você abandonar — e como desativá-los um por um.', cta: 'Quero entender meu padrão →' },
+      { q: 'Você se sente "multitarefas demais" para se aprofundar em algo?', a: 'A intuição extrovertida cria um fluxo constante de novas conexões. Sem integrar a sombra (Si), você vira escravo das ideias. <strong>Existe um método específico para o tipo SPARK</strong> — descubra no relatório.', cta: 'Descobrir meu método →' },
+      { q: 'Seu parceiro já reclamou que você não termina o que promete?', a: 'A sombra do SPARK afeta diretamente suas relações. Você promete, se anima — e desaparece. <strong>O relatório revela como isso aparece nos seus relacionamentos</strong> e o caminho para mudar esse ciclo.', cta: 'Entender meu impacto →' },
+    ],
   },
   STEADY: {
     icon: '🏔',
@@ -411,6 +500,11 @@ const TYPES = {
     pain: 'Sua rotina protege — mas também prende. Você evita mudanças mesmo quando sente que algo precisa evoluir. O conforto virou uma gaiola dourada.',
     solution: 'O relatório revela como identificar quando a estabilidade virou estagnação — e o caminho para crescer sem abandonar quem você é.',
     miniDesc: 'Estável · Preso na zona de conforto',
+    asks: [
+      { q: 'Você sente que poderia estar mais longe do que está — mas algo te segura?', a: 'O STEADY protege com a rotina. Mas o que antes era segurança pode virar paralisia. <strong>O relatório revela o sinal exato</strong> de quando a estabilidade virou estagnação — e o primeiro passo para sair.', cta: 'Quero identificar meu sinal →' },
+      { q: 'Você evita conversas difíceis esperando que o problema se resolva sozinho?', a: 'A sombra do STEADY (Ne) tem medo do desconhecido. Evitar conflitos é uma forma de controle. <strong>Existe uma técnica no relatório</strong> para o tipo STEADY enfrentar o que precisa sem entrar em colapso.', cta: 'Ver a técnica →' },
+      { q: 'Alguém próximo já te disse que você é "resistente a mudanças"?', a: 'Para quem te vê de fora, parece teimosia. Por dentro, é medo real. <strong>O relatório completo explica</strong> como a sombra funciona nas suas relações — e por que a mudança não precisa ser uma ameaça.', cta: 'Entender minha resistência →' },
+    ],
   },
   LEADER: {
     icon: '👑',
@@ -420,6 +514,11 @@ const TYPES = {
     pain: 'Você constrói resultados para todos. Mas quando foi a última vez que perguntou o que você realmente quer? A eficiência está devorando sua autenticidade.',
     solution: 'O relatório revela o que sua eficiência está escondendo — e como liderar com propósito real, conectado a valores genuínos.',
     miniDesc: 'Executor · Vazio por dentro',
+    asks: [
+      { q: 'Você conquista metas — mas sente que falta algo, sem saber o quê?', a: 'O LEADER entrega resultados para o mundo. Mas a sombra (Fi) cobra: <strong>qual é o seu propósito real?</strong> O relatório revela o que está por trás dessa sensação de vazio — e como preenchê-la com autenticidade.', cta: 'Descobrir meu propósito real →' },
+      { q: 'Você tem dificuldade de delegar — e termina fazendo tudo você mesmo?', a: 'Para o LEADER, confiar é difícil porque os padrões são altíssimos. Mas isso tem um custo invisível. <strong>O relatório revela os 3 padrões de controle</strong> do tipo LEADER — e como libertar sua liderança.', cta: 'Ver meus padrões de controle →' },
+      { q: 'As pessoas ao seu redor se sentem intimidadas ou distantes de você?', a: 'A sombra do LEADER projeta autoridade que intimida sem querer. Suas relações íntimas sofrem com isso. <strong>O relatório explica</strong> como ser um líder que conecta — sem perder sua força.', cta: 'Quero liderar e conectar →' },
+    ],
   },
   LOGIC: {
     icon: '🔬',
@@ -429,6 +528,11 @@ const TYPES = {
     pain: 'Quantas relações você perdeu por não conseguir se conectar emocionalmente? Sua precisão tem um custo invisível: a frieza que os outros sentem como rejeição.',
     solution: 'O relatório revela como integrar emoção e razão — e construir conexões reais sem abrir mão da sua precisão intelectual.',
     miniDesc: 'Preciso · Frio nas relações',
+    asks: [
+      { q: 'Alguém já te chamou de "frio" ou "distante" — e você não entendeu por quê?', a: 'Para o LOGIC, é lógico. Para o outro, parece rejeição. A sombra (Fe) cria um abismo entre você e as pessoas que ama. <strong>O relatório revela os 3 momentos exatos</strong> em que você fecha sem perceber.', cta: 'Entender meu fechamento →' },
+      { q: 'Você explica problemas com perfeição — mas raramente fala do que sente?', a: 'Análise é conforto. Emoção é território estranho. Mas isso tem um custo real nos seus relacionamentos. <strong>O relatório ensina o caminho específico</strong> para o tipo LOGIC integrar emoção sem se trair.', cta: 'Ver meu caminho →' },
+      { q: 'Você já perdeu uma relação importante por não conseguir ceder?', a: 'A precisão do LOGIC é uma força — mas a rigidez é uma armadilha. <strong>O relatório revela</strong> quando sua precisão vira obstáculo — e o primeiro passo concreto para sair disso.', cta: 'Quero sair da rigidez →' },
+    ],
   },
   VISION: {
     icon: '🔮',
@@ -438,6 +542,11 @@ const TYPES = {
     pain: 'Quantas visões brilhantes ficaram apenas na sua cabeça? Sua sombra cria uma distância dolorosa entre o que você percebe e o que você manifesta no mundo.',
     solution: 'O relatório revela como transformar visão interna em resultados concretos — sem perder sua profundidade e singularidade.',
     miniDesc: 'Visionário · Não consegue agir',
+    asks: [
+      { q: 'Você sente que as pessoas ao redor simplesmente não te entendem?', a: 'A visão do VISION é rara — e esse isolamento é real. Mas parte disso é a sombra (Se) evitando o mundo concreto. <strong>O relatório revela</strong> como sair do isolamento sem trair sua profundidade.', cta: 'Quero ser compreendido →' },
+      { q: 'Você tem clareza interna sobre o que quer — mas dificuldade de agir?', a: 'Visão sem ação é sofrimento silencioso. A sombra do VISION paralisa entre o ideal e o real. <strong>O relatório ensina o método de aterrissagem</strong> específico para o tipo VISION.', cta: 'Ver meu método de ação →' },
+      { q: 'Você já teve uma intuição forte que ignorou — e se arrependeu depois?', a: 'Confiar na própria visão é o desafio central do VISION. A sombra sabota essa confiança. <strong>O relatório revela</strong> como distinguir intuição genuína de medo disfarçado.', cta: 'Confiar na minha intuição →' },
+    ],
   },
   HARMONY: {
     icon: '🌊',
@@ -447,6 +556,11 @@ const TYPES = {
     pain: 'Quantas vezes você disse sim quando queria dizer não? Você se perde completamente nos outros — até o esgotamento. Quem cuida de você?',
     solution: 'O relatório revela como cuidar dos outros sem se perder — e construir limites saudáveis sem culpa e sem perder sua compaixão.',
     miniDesc: 'Cuidador · Não consegue dizer não',
+    asks: [
+      { q: 'Você às vezes sente raiva das pessoas que ajudou — mas não consegue falar?', a: 'Essa raiva silenciosa é a sombra (Ti) do HARMONY falando. Você deu demais, esperou reconhecimento, não recebeu. <strong>O relatório revela esse ciclo</strong> e como sair dele sem se tornar frio.', cta: 'Entender minha raiva silenciosa →' },
+      { q: 'Você evita conflitos a qualquer custo — mesmo quando tem razão?', a: 'Para o HARMONY, conflito parece o fim do mundo. Mas essa evitação acumula ressentimento. <strong>O relatório ensina o método específico</strong> para o HARMONY falar com verdade sem destruir o vínculo.', cta: 'Falar com verdade →' },
+      { q: 'Quando foi a última vez que alguém cuidou de você de verdade?', a: 'Você cuida de todos. Mas tem dificuldade de receber. A sombra do HARMONY inverte o fluxo. <strong>O relatório revela</strong> por que você rejeita o cuidado — e como aprender a receber.', cta: 'Aprender a receber →' },
+    ],
   },
   PLAYER: {
     icon: '🎯',
@@ -456,6 +570,11 @@ const TYPES = {
     pain: 'Suas conquistas têm prazo de validade curto. Você repete os mesmos padrões — impulsividade, excesso, recomeço — sem entender por quê o ciclo continua.',
     solution: 'O relatório revela os 4 padrões que sabotam sua consistência — e o caminho para transformar ação intensa em legado duradouro.',
     miniDesc: 'Intenso · Repete os mesmos erros',
+    asks: [
+      { q: 'Você já se perguntou por que conquistas incríveis não te satisfazem por muito tempo?', a: 'O PLAYER vive no pico — e o pico passa rápido. A sombra (Ni) nunca deixa você descansar no que conquistou. <strong>O relatório revela o ciclo exato</strong> e como criar satisfação que dura.', cta: 'Entender meu ciclo →' },
+      { q: 'Você age no impulso e só pensa nas consequências depois?', a: 'Isso é a assinatura do PLAYER em modo sombra. A ação vem antes do reflexo — sempre. <strong>O relatório ensina a técnica dos 3 segundos</strong> específica para o tipo PLAYER que muda tudo.', cta: 'Ver a técnica dos 3 segundos →' },
+      { q: 'Você tem histórico de relações intensas que acabam abruptamente?', a: 'A intensidade do PLAYER atrai e assusta ao mesmo tempo. A sombra cria vínculos que queimam rápido. <strong>O relatório revela</strong> como manter a intensidade sem destruir o que você construiu.', cta: 'Manter sem destruir →' },
+    ],
   },
   SOUL: {
     icon: '🌙',
@@ -465,6 +584,11 @@ const TYPES = {
     pain: 'Você tem muito a oferecer — mas o mundo parece não reconhecer. Sua profundidade raramente se traduz em resultado concreto. E essa distância dói.',
     solution: 'O relatório revela como transformar sua profundidade em presença real — e ser visto pelo que você realmente é, no mundo que existe.',
     miniDesc: 'Profundo · Invisível no mundo prático',
+    asks: [
+      { q: 'Você sente que as pessoas não enxergam sua profundidade real?', a: 'Para o SOUL, ser mal interpretado é uma dor constante. A sombra (Te) dificulta traduzir o interno em externo. <strong>O relatório revela como</strong> tornar sua profundidade visível sem se trair.', cta: 'Ser visto de verdade →' },
+      { q: 'Você tem dificuldade de pedir o que precisa — esperando que percebam?', a: 'O SOUL espera que o amor se expresse sem palavras. Isso cria silêncios que magoam. <strong>O relatório ensina</strong> como o tipo SOUL comunica necessidades sem perder autenticidade.', cta: 'Comunicar sem se perder →' },
+      { q: 'Você já abandonou algo importante porque "não se sentiu certo por dentro"?', a: 'Os valores do SOUL são sagrados. Mas a sombra usa isso para evitar o desconforto do crescimento. <strong>O relatório revela</strong> a diferença entre valor genuíno e fuga disfarçada de autenticidade.', cta: 'Distinguir valor de fuga →' },
+    ],
   },
 };
 
@@ -507,6 +631,19 @@ function renderType(typeName) {
     };
   }
 
+  // 호기심 질문 3종 렌더
+  if (data.asks) {
+    data.asks.forEach((ask, i) => {
+      const idx = i + 1;
+      const qtEl = document.getElementById(`ask-q${idx}-text`);
+      const qaEl = document.getElementById(`ask-q${idx}-answer`);
+      if (qtEl) qtEl.textContent = ask.q;
+      if (qaEl) qaEl.innerHTML = ask.a +
+        `<br><span class="answer-cta" onclick="document.getElementById('btn-quiz').click()">${ask.cta}</span>`;
+    });
+    document.getElementById('ask-section').style.display = 'block';
+  }
+
   // 유형 카드
   const icon = document.getElementById('type-icon');
   icon.textContent = data.icon;
@@ -537,6 +674,15 @@ function renderGrid(currentType) {
     `;
     grid.appendChild(card);
   });
+}
+
+// ── 호기심 질문 토글 ──
+function toggleAsk(el) {
+  const isOpen = el.classList.contains('open');
+  // 모두 닫기
+  document.querySelectorAll('.ask-q').forEach(q => q.classList.remove('open'));
+  // 클릭한 거 열기 (이미 열려있으면 닫기)
+  if (!isOpen) el.classList.add('open');
 }
 
 // ── 초기화 ──

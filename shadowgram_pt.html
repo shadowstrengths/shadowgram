@@ -396,6 +396,49 @@
     }
     .stats-type em { color: var(--goldL); font-style: normal; font-weight: 700; }
 
+    /* ── 업셀 호기심 질문 ── */
+    .upsell-ask-section {
+      margin: 32px 0 8px;
+      background: rgba(197,165,114,0.05);
+      border: 1px solid rgba(197,165,114,0.25);
+      border-radius: 18px;
+      padding: 22px 20px 16px;
+    }
+    .upsell-ask-title {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      text-align: center;
+    }
+    .upsell-q {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 8px;
+      font-size: 14.5px;
+      font-weight: 700;
+      color: #f0e6d0;
+      line-height: 1.5;
+      cursor: pointer;
+      transition: border-color .2s, background .2s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .upsell-q:hover { border-color: var(--gold); background: rgba(197,165,114,0.07); }
+    .upsell-q-icon { font-size: 18px; flex-shrink: 0; }
+    .upsell-ask-sub {
+      font-size: 12px;
+      color: var(--silver);
+      text-align: center;
+      margin-top: 12px;
+      line-height: 1.5;
+    }
+
     /* ── CTA box ── */
     .cta-box {
       margin-top: 40px;
@@ -769,6 +812,13 @@
       <p>Verifique sua caixa de entrada (e a pasta de spam, só por garantia).<br>
       O relatório do seu tipo <strong id="email-success-type" style="color:var(--gold)"></strong> está a caminho.</p>
     </div>
+  </div>
+
+  <!-- 업셀 호기심 질문 — 결제 유도 -->
+  <div class="upsell-ask-section" id="upsell-ask-section" style="display:none;">
+    <p class="upsell-ask-title">💡 Antes de continuar — uma pergunta:</p>
+    <div class="upsell-ask-questions" id="upsell-ask-questions"></div>
+    <p class="upsell-ask-sub">O relatório completo responde isso em detalhe — com o mapa exato do seu tipo.</p>
   </div>
 
   <!-- CTA -->
@@ -1494,6 +1544,30 @@ function showResult(savedWinner) {
 
   // 실시간 통계 로드
   loadStats(winner);
+
+  // 업셀 호기심 질문 렌더링
+  const UPSELL_ASKS = {
+    SPARK:   [{icon:'🔥',q:'Por que você começa tudo com energia total — e para bem antes de terminar?'},{icon:'💔',q:'Seu parceiro já reclamou que você promete e não cumpre?'},{icon:'🧩',q:'Você sabe quais são os 4 gatilhos que fazem você abandonar o que começou?'}],
+    VISION:  [{icon:'🌀',q:'Por que você enxerga tudo com clareza — mas tem dificuldade de transformar em ação?'},{icon:'💔',q:'Alguém próximo já disse que você é "difícil de entender"?'},{icon:'🧩',q:'Você conhece o método de aterrissagem específico para o tipo VISION?'}],
+    STEADY:  [{icon:'🔥',q:'Por que você sente que poderia crescer mais — mas algo invisível te segura?'},{icon:'💔',q:'Você evita falar sobre o que te incomoda esperando que passe sozinho?'},{icon:'🧩',q:'Você sabe identificar quando sua estabilidade virou estagnação?'}],
+    PLAYER:  [{icon:'🔥',q:'Por que suas conquistas nunca parecem suficientes por muito tempo?'},{icon:'💔',q:'Você já perdeu uma relação importante por agir no impulso sem pensar?'},{icon:'🧩',q:'Você conhece os 4 padrões que fazem o tipo PLAYER repetir os mesmos erros?'}],
+    HARMONY: [{icon:'🔥',q:'Por que você cuida de todos — mas ninguém parece cuidar de você?'},{icon:'💔',q:'Você já sentiu raiva de alguém que ajudou — mas não conseguiu falar?'},{icon:'🧩',q:'Você sabe como dizer não sem se sentir culpado — sendo tipo HARMONY?'}],
+    SOUL:    [{icon:'🔥',q:'Por que você tem tanto a oferecer — mas sente que o mundo não reconhece?'},{icon:'💔',q:'Você já desistiu de algo importante porque "não se sentiu certo por dentro"?'},{icon:'🧩',q:'Você sabe a diferença entre valor genuíno e fuga disfarçada de autenticidade?'}],
+    LOGIC:   [{icon:'🔥',q:'Por que sua precisão afasta as pessoas que você mais quer perto?'},{icon:'💔',q:'Alguém já te chamou de frio ou distante — e você não entendeu por quê?'},{icon:'🧩',q:'Você conhece os 3 momentos exatos em que o tipo LOGIC fecha sem perceber?'}],
+    LEADER:  [{icon:'🔥',q:'Por que você constrói resultados para todos — mas sente vazio por dentro?'},{icon:'💔',q:'As pessoas ao seu redor se sentem intimidadas ou distantes de você?'},{icon:'🧩',q:'Você sabe o que sua eficiência está escondendo de você mesmo?'}],
+  };
+  const uAsks = UPSELL_ASKS[winner];
+  const uContainer = document.getElementById('upsell-ask-questions');
+  const uSection = document.getElementById('upsell-ask-section');
+  if (uAsks && uContainer && uSection) {
+    uContainer.innerHTML = uAsks.map(a =>
+      `<div class="upsell-q" onclick="document.querySelector('.cta-box').scrollIntoView({behavior:'smooth'})">
+        <span class="upsell-q-icon">${a.icon}</span>
+        <span>${a.q}</span>
+      </div>`
+    ).join('');
+    uSection.style.display = 'block';
+  }
 
   // 이메일 캡처 — 유형별 타이틀 업데이트 & 상태 리셋
   _currentType = winner;
