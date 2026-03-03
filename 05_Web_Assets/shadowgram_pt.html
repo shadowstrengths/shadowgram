@@ -710,23 +710,9 @@
   <!-- CTA -->
   <div class="cta-box">
 
-    <p class="cta-box-label" id="res-cta-label">SHADOWGRAM SOLO · NÍVEL 1</p>
+    <p class="cta-box-label" id="res-cta-label">SHADOWGRAM SELF · RELATÓRIO COMPLETO</p>
     <h2 class="cta-box-title" id="res-cta-title"></h2>
     <p class="cta-box-sub" id="res-cta-sub"></p>
-
-    <!-- Price -->
-    <div class="price-row">
-      <span class="price-currency">R$</span>
-      <span class="price-main">37</span>
-    </div>
-    <span class="price-note">pagamento único · acesso imediato · 6 PDFs completos</span>
-
-    <a class="btn-buy" id="res-buy-btn" href="#" target="_blank" rel="noopener">
-      QUERO O RELATÓRIO COMPLETO →
-    </a>
-    <p style="font-size:12px;color:rgba(155,170,184,0.7);margin:10px 0 0;letter-spacing:0.03em;line-height:1.6;">
-      🔒 Pagamento seguro via <strong style="color:rgba(197,165,114,0.85);">Hotmart</strong> · Garantia de 7 dias
-    </p>
 
     <!-- SNS 공유 버튼 -->
     <div style="margin-top:16px;">
@@ -808,7 +794,6 @@
     </div>
 
     <button class="btn-retry" onclick="restartQuiz()">Refazer o diagnóstico</button>
-    <p class="guarantee">🔒 Compra segura via Hotmart · Garantia de 7 dias sem perguntas</p>
   </div>
 </div>
 
@@ -1363,7 +1348,6 @@ function showResult(savedWinner) {
   document.getElementById('res-cta-label').textContent = `SHADOWGRAM SELF · RELATÓRIO COMPLETO · ${winner}`;
   document.getElementById('res-cta-title').textContent = data.ctaTitle;
   document.getElementById('res-cta-sub').textContent = data.ctaSub;
-  document.getElementById('res-buy-btn').href = getHotmartLink(winner);
 
   // 이메일 캡처 — 유형별 타이틀 업데이트 & 상태 리셋
   _currentType = winner;
