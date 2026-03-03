@@ -1,0 +1,29 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+**/.DS_Store
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyc
+.env
+
+# 빌드 임시파일
+*.tmp
+*.bak
+
+# 민감 정보 — 절대 커밋 금지
+# (Brevo API 키는 shadowgram_sheets_script.js에서 placeholder로 대체됨)
+
+# 아카이브 (용량 큼)
+_archive/
+
+# 내부 전략 문서 (공개 불필요)
+03_Strategy_Docs/
+SHADOWGRAM_beehappy_PT/

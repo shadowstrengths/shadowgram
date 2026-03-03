@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>쉐도우그램 — 나의 유형 발견하기</title>
+  <meta name="description" content="융 심리학과 Big Five 기반 성격 진단. 28문항. 즉시 결과. 20년 경력 전문가가 재해석한 심층 심리 진단 도구."/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark:  #0F1119;
+      --dark2: #1A1F2E;
+      --card:  #161B28;
+      --gold:  #C5A572;
+      --goldL: #E8D4A8;
+      --white: #FFFFFF;
+      --silver:#9BAAB8;
+      --border:rgba(197,165,114,0.18);
+      --red:   #E05555;
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      background: var(--dark);
+      color: var(--white);
+      font-family: 'Noto Sans KR', sans-serif;
+      min-height: 100vh;
+      word-break: keep-all;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { text-decoration: none; font-size: 15px; letter-spacing: 3px; }
+    .nav-logo .s1 { color: var(--gold); font-weight: 300; }
+    .nav-logo .s2 { color: var(--white); font-weight: 900; }
+    .nav-back {
+      font-size: 14px; letter-spacing: 0px; color: var(--silver);
+      text-decoration: none; transition: color .2s;
+    }
+    .nav-back:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    .hero {
+      text-align: center;
+      padding: 48px 20px 36px;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-label {
+      font-size: 12px; letter-spacing: 3px; color: var(--gold);
+      font-weight: 700; margin-bottom: 20px;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 7vw, 52px);
+      font-weight: 600; line-height: 1.35;
+      margin-bottom: 18px;
+    }
+    .hero-sub {
+      color: var(--silver); font-size: 16px;
+      max-width: 520px; margin: 0 auto;
+      line-height: 2.0;
+    }
+
+    /* ── CREDIBILITY BADGE ── */
+    .cred-bar {
+      max-width: 680px; margin: 0 auto;
+      padding: 28px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .cred-inner {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 22px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .cred-icon { font-size: 32px; flex-shrink: 0; }
+    .cred-title {
+      font-size: 12px; letter-spacing: 2px; color: var(--gold);
+      font-weight: 700; margin-bottom: 10px;
+    }
+    .cred-desc {
+      font-size: 16px; line-height: 1.9; color: var(--goldL);
+    }
+    .cred-sources {
+      margin-top: 14px;
+      display: flex; gap: 8px; flex-wrap: wrap;
+    }
+    .cred-tag {
+      font-size: 12px; letter-spacing: 0px; color: var(--silver);
+      border: 1px solid var(--border); border-radius: 2px;
+      padding: 6px 12px;
+    }
+
+    /* ── META ── */
+    .hero-meta {
+      max-width: 680px; margin: 0 auto;
+      padding: 24px 20px 0;
+      display: flex; justify-content: center; gap: 16px;
+      flex-wrap: wrap;
+    }
+    .hero-meta span { font-size: 14px; letter-spacing: 0px; color: var(--silver); }
+    .hero-meta strong { color: var(--gold); }
+
+    /* ── BACK BUTTON ── */
+    .back-btn-wrap {
+      max-width: 680px; margin: 0 auto;
+      padding: 16px 20px 0;
+    }
+    .btn-prev {
+      background: none; border: none;
+      color: var(--silver); font-size: 14px;
+      font-family: 'Noto Sans KR', sans-serif;
+      cursor: pointer; padding: 8px 0;
+      display: flex; align-items: center; gap: 6px;
+      transition: color .2s;
+    }
+    .btn-prev:active { color: var(--gold); }
+    .btn-prev.hidden { visibility: hidden; pointer-events: none; }
+
+    /* ── PROGRESS ── */
+    .progress-wrap {
+      max-width: 680px; margin: 0 auto;
+      padding: 12px 20px 0;
+    }
+    .progress-bar-bg {
+      height: 3px; background: var(--border);
+      border-radius: 2px; overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%; background: var(--gold);
+      border-radius: 2px; transition: width .4s ease; width: 0%;
+    }
+    .progress-text {
+      display: flex; justify-content: space-between;
+      margin-top: 12px;
+      font-size: 13px; letter-spacing: 0px; color: var(--silver);
+    }
+    .dimension-label {
+      font-size: 12px; letter-spacing: 1px; color: var(--gold);
+      margin-top: 8px; font-weight: 600;
+    }
+
+    /* ── QUIZ ── */
+    #quiz-section {
+      max-width: 680px; margin: 0 auto;
+      padding: 32px 20px 80px;
+    }
+    .question-block { display: none; }
+    .question-block.active { display: block; animation: fadeIn .3s ease; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .q-num {
+      font-size: 12px; letter-spacing: 2px; color: var(--gold);
+      font-weight: 700; margin-bottom: 16px;
+    }
+    .q-text {
+      font-size: clamp(20px, 5vw, 26px);
+      font-weight: 500; line-height: 1.6;
+      margin-bottom: 28px;
+    }
+    .ab-options { display: flex; flex-direction: column; gap: 14px; }
+    .ab-btn {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--white);
+      padding: 20px 20px;
+      text-align: left; cursor: pointer;
+      border-radius: 4px;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 16px; line-height: 1.7;
+      transition: border-color .2s, background .2s, transform .15s;
+      display: flex; align-items: flex-start; gap: 16px; width: 100%;
+    }
+    .ab-btn:active {
+      border-color: var(--gold);
+      background: rgba(197,165,114,0.13);
+    }
+    .ab-btn.selected {
+      border-color: var(--gold);
+      background: rgba(197,165,114,0.13);
+    }
+    .ab-label {
+      flex-shrink: 0; width: 36px; height: 36px;
+      border: 1px solid var(--border); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; font-weight: 800; color: var(--gold);
+      margin-top: 2px;
+    }
+    .ab-btn.selected .ab-label {
+      background: var(--gold); color: var(--dark); border-color: var(--gold);
+    }
+    .ab-text { font-size: 16px; }
+
+    /* ── RESULT ── */
+    #result-section {
+      display: none;
+      max-width: 700px; margin: 0 auto;
+      padding: 40px 20px 80px;
+      animation: fadeIn .5s ease;
+    }
+    .result-label {
+      text-align: center;
+      font-size: 12px; letter-spacing: 3px; color: var(--gold);
+      font-weight: 600; margin-bottom: 16px;
+    }
+    .result-type-name {
+      text-align: center;
+      font-size: clamp(56px, 16vw, 96px);
+      font-weight: 900; letter-spacing: 4px;
+      line-height: 1; margin-bottom: 10px;
+    }
+    .result-function {
+      text-align: center;
+      font-size: 14px; letter-spacing: 1px; color: var(--silver);
+      margin-bottom: 8px; line-height: 1.6;
+    }
+    .result-code {
+      text-align: center;
+      font-size: 12px; letter-spacing: 2px; color: rgba(197,165,114,0.4);
+      margin-bottom: 32px;
+    }
+    .result-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 4px; overflow: hidden; margin-bottom: 16px;
+    }
+    .result-card-header {
+      padding: 16px 20px;
+      font-size: 12px; letter-spacing: 2px; font-weight: 700;
+    }
+    .result-card-body {
+      padding: 18px 20px 22px;
+      font-size: 17px; line-height: 1.95; color: var(--goldL);
+    }
+    .result-shadow-body {
+      padding: 18px 20px 22px;
+      font-size: 17px; line-height: 1.95; color: var(--silver);
+    }
+
+    /* ── PAIN POINT CARD ── */
+    .pain-card {
+      background: rgba(224,85,85,0.07);
+      border: 1px solid rgba(224,85,85,0.3);
+      border-radius: 4px; padding: 22px 20px;
+      margin-bottom: 16px;
+    }
+    .pain-card-header {
+      font-size: 12px; letter-spacing: 2px; font-weight: 700;
+      color: var(--red); margin-bottom: 14px;
+    }
+    .pain-card-body {
+      font-size: 17px; line-height: 1.95; color: #f0c0c0;
+    }
+
+    /* ── Score bars (양방향 중심 기준) ── */
+    .score-bars {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 4px; padding: 22px 20px; margin-bottom: 16px;
+    }
+    .score-bar-label {
+      font-size: 12px; letter-spacing: 2px; color: var(--gold);
+      font-weight: 700; margin-bottom: 18px;
+    }
+    .bar-row { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .bar-dim { font-size: 13px; letter-spacing: 0px; color: var(--silver); width: 24px; flex-shrink: 0; }
+    .bar-track {
+      flex: 1; height: 8px; background: var(--border); border-radius: 4px;
+      position: relative;
+    }
+    .bar-track::after {
+      content: ''; position: absolute;
+      left: 50%; top: -4px; width: 1px; height: 16px;
+      background: rgba(255,255,255,0.3);
+    }
+    .bar-fill-a {
+      position: absolute; top: 0; height: 100%; border-radius: 4px 0 0 4px;
+      right: 50%;
+    }
+    .bar-fill-b {
+      position: absolute; top: 0; height: 100%; border-radius: 0 4px 4px 0;
+      left: 50%;
+    }
+    .bar-ends {
+      display: flex; justify-content: space-between;
+      font-size: 13px; letter-spacing: 0px;
+      margin-top: 8px;
+    }
+    .bar-label-a, .bar-label-b { transition: all 0.3s; }
+    .bar-label-active { color: #fff; font-weight: 700; }
+    .bar-label-inactive { color: var(--silver); font-weight: 400; opacity: 0.5; }
+
+    /* ── PREVIEW BLUR ── */
+    .preview-blur-wrap {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 4px; overflow: hidden;
+      margin-bottom: 16px; position: relative;
+    }
+    .preview-blur-header {
+      padding: 16px 20px;
+      font-size: 12px; letter-spacing: 2px; font-weight: 700;
+      color: var(--silver);
+    }
+    .preview-blur-body {
+      padding: 18px 20px 28px;
+      filter: blur(5px); user-select: none;
+      font-size: 16px; line-height: 1.9; color: var(--goldL);
+      pointer-events: none;
+      white-space: pre-line;
+    }
+    .preview-blur-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, var(--card) 70%);
+      height: 120px;
+      display: flex; align-items: flex-end; justify-content: center;
+      padding-bottom: 20px;
+    }
+    .preview-blur-label {
+      font-size: 13px; letter-spacing: 0px; color: var(--silver);
+    }
+
+    /* ── CTA box ── */
+    .cta-box {
+      margin-top: 40px;
+      background: var(--dark2); border: 1px solid var(--border);
+      border-radius: 4px; padding: 32px 20px; text-align: center;
+    }
+    .cta-box-label {
+      font-size: 11px; letter-spacing: 2px; color: var(--gold);
+      font-weight: 700; margin-bottom: 14px;
+    }
+    .cta-box-title {
+      font-size: clamp(22px, 5.5vw, 30px);
+      font-weight: 700; line-height: 1.45; margin-bottom: 14px;
+    }
+    .cta-box-sub {
+      color: var(--silver); font-size: 16px;
+      line-height: 1.9; margin-bottom: 24px;
+      max-width: 440px; margin-left: auto; margin-right: auto;
+    }
+
+    /* Price */
+    .price-row {
+      display: flex; justify-content: center; align-items: baseline;
+      gap: 8px; margin-bottom: 8px;
+    }
+    .price-main { font-size: 52px; font-weight: 900; color: var(--gold); }
+    .price-currency { font-size: 22px; font-weight: 600; color: var(--silver); }
+    .price-note {
+      font-size: 13px; color: var(--silver);
+      display: block; margin-bottom: 28px; line-height: 1.7;
+    }
+
+    .btn-buy {
+      display: inline-block; padding: 20px 32px;
+      background: var(--gold); color: var(--dark);
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 16px; font-weight: 800; letter-spacing: 1px;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: background .2s, transform .15s;
+      width: 100%; max-width: 420px;
+    }
+    .btn-buy:active { background: var(--goldL); }
+
+    .btn-retry {
+      display: inline-block; margin-top: 24px;
+      font-size: 14px; letter-spacing: 0px; color: var(--silver);
+      cursor: pointer; text-decoration: underline;
+      background: none; border: none;
+      font-family: 'Noto Sans KR', sans-serif;
+      transition: color .2s; padding: 8px 0;
+    }
+    .btn-retry:active { color: var(--gold); }
+    .guarantee {
+      margin-top: 18px;
+      font-size: 13px; color: rgba(155,170,184,0.5);
+      line-height: 1.7;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 36px 20px; text-align: center;
+      font-size: 13px; color: rgba(155,170,184,0.4);
+      line-height: 2.0;
+    }
+
+    /* ── 태블릿/데스크탑 ── */
+    @media (min-width: 600px) {
+      nav { padding: 20px 40px; }
+      .nav-logo { font-size: 13px; }
+      .cred-inner { flex-direction: row; gap: 28px; }
+      .hero { padding: 64px 24px 48px; }
+      .result-card-body, .result-shadow-body, .pain-card-body { font-size: 19px; }
+      .ab-btn { font-size: 15px; }
+      .ab-text { font-size: 15px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <span class="s1">SHADOW</span><span class="s2">GRAM</span>
+  </a>
+  <a href="index.html" class="nav-back">← 홈으로</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-label">쉐도우그램 · 무료 진단</p>
+  <h1 class="hero-title">왜 나는 같은 실수를<br>반복하는 걸까?</h1>
+  <p class="hero-sub">
+    답은 당신의 심리적 그림자 안에 있습니다.<br>
+    28문항 · 즉시 결과 · 회원가입 불필요
+  </p>
+</div>
+
+<!-- CREDIBILITY -->
+<div class="cred-bar">
+  <div class="cred-inner">
+    <div class="cred-icon">🔬</div>
+    <div>
+      <p class="cred-title">과학적 근거 · 현장 20년 재해석</p>
+      <p class="cred-desc">
+        이 진단은 <strong>칼 구스타프 융</strong>(심리유형론, 1921)의
+        심리적 기능 이론과 현대 심리학의
+        <strong>Big Five(IPIP)</strong> 연구를
+        20년 경력의 한국인 강사·퍼실리테이터가
+        실무에 맞게 재해석한 도구입니다.<br>
+        일반적인 성격 검사가 아닙니다 — 당신의 <strong>그림자를 비추는 지도</strong>입니다.
+      </p>
+      <div class="cred-sources">
+        <span class="cred-tag">C.G. Jung · 1921</span>
+        <span class="cred-tag">IPIP Big Five · 공개 도메인</span>
+        <span class="cred-tag">현장 20년 경험</span>
+        <span class="cred-tag">Shadowgram 프레임워크</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- META -->
+<div class="hero-meta">
+  <span>⏱ <strong>5~7분</strong></span>
+  <span>📋 <strong>28문항</strong></span>
+  <span>🎯 <strong>즉시 결과</strong></span>
+  <span>🔒 <strong>회원가입 불필요</strong></span>
+</div>
+
+<!-- BACK BUTTON -->
+<div class="back-btn-wrap">
+  <button class="btn-prev hidden" id="btn-prev" onclick="goPrev()">← 이전 문항</button>
+</div>
+
+<!-- PROGRESS -->
+<div class="progress-wrap">
+  <div class="progress-bar-bg">
+    <div class="progress-bar-fill" id="progress-fill"></div>
+  </div>
+  <div class="progress-text">
+    <span id="progress-label">1번 문항 / 총 28문항</span>
+    <span id="progress-pct">0%</span>
+  </div>
+  <div class="dimension-label" id="dim-label">차원 1 · 에너지</div>
+</div>
+
+<!-- QUIZ -->
+<div id="quiz-section"></div>
+
+<!-- RESULT -->
+<div id="result-section">
+  <p class="result-label">나의 쉐도우그램 유형</p>
+  <div class="result-type-name" id="res-type"></div>
+  <p class="result-function" id="res-function"></p>
+  <p class="result-code" id="res-code"></p>
+
+  <!-- Score bars -->
+  <div class="score-bars">
+    <p class="score-bar-label">4차원 성향 프로필</p>
+    <div id="score-bar-rows"></div>
+  </div>
+
+  <!-- 빛 -->
+  <div class="result-card">
+    <div class="result-card-header" id="res-light-header">✦ 나의 빛 — 주도 기능</div>
+    <div class="result-card-body" id="res-light"></div>
+  </div>
+
+  <!-- 그림자 -->
+  <div class="result-card">
+    <div class="result-card-header" style="color:var(--silver);">◆ 나의 그림자 — 열등 기능</div>
+    <div class="result-shadow-body" id="res-shadow"></div>
+  </div>
+
+  <!-- Pain point -->
+  <div class="pain-card">
+    <p class="pain-card-header">⚠ 그림자를 외면할 때의 대가</p>
+    <div class="pain-card-body" id="res-pain"></div>
+  </div>
+
+  <!-- 미리보기 블러 -->
+  <div class="preview-blur-wrap">
+    <div class="preview-blur-header">📄 전체 리포트 미리보기 · 레벨 1</div>
+    <div class="preview-blur-body" id="res-preview"></div>
+    <div class="preview-blur-overlay">
+      <span class="preview-blur-label">🔒 전체 내용은 리포트에서 확인하세요</span>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-box">
+    <p class="cta-box-label" id="res-cta-label">쉐도우그램 솔로 · 레벨 1</p>
+    <h2 class="cta-box-title" id="res-cta-title"></h2>
+    <p class="cta-box-sub" id="res-cta-sub"></p>
+
+    <!-- Price -->
+    <div class="price-row">
+      <span class="price-currency">₩</span>
+      <span class="price-main" id="res-price">9,900</span>
+    </div>
+    <span class="price-note">1회 결제 · 즉시 이용 · PDF 전체 리포트</span>
+
+    <a class="btn-buy" id="res-buy-btn" href="#" target="_blank" rel="noopener">
+      나의 전체 리포트 받기 →
+    </a>
+    <br>
+
+    <!-- 내 결과 저장 버튼 -->
+    <button id="btn-save-link" onclick="saveMyLink()" style="
+      background: transparent;
+      border: 1px solid rgba(197,165,114,0.4);
+      color: var(--gold);
+      font-size: 12px;
+      letter-spacing: 1px;
+      padding: 10px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-family: 'Noto Sans KR', sans-serif;
+      margin-top: 4px;
+      display: block;
+      width: 100%;
+    ">🔖 내 결과 링크 저장하기 (다음에 바로 다시 보기)</button>
+
+    <div id="saved-link-box" style="display:none; margin-top:12px; background:rgba(197,165,114,0.08); border:1px solid rgba(197,165,114,0.3); border-radius:10px; padding:14px;">
+      <p style="font-size:11px; color:var(--silver); margin-bottom:8px; letter-spacing:1px;">📎 나의 개인 링크 — 즐겨찾기 또는 카카오톡에 저장해 두세요</p>
+      <div style="display:flex; gap:8px; align-items:center;">
+        <input id="saved-link-input" type="text" readonly style="
+          flex:1; background:rgba(255,255,255,0.05); border:1px solid var(--border);
+          color:var(--white); padding:8px 12px; border-radius:6px; font-size:12px;
+          font-family:monospace;
+        "/>
+        <button onclick="copyLink()" style="
+          background:var(--gold); color:#000; border:none; padding:8px 14px;
+          border-radius:6px; font-size:11px; font-weight:700; cursor:pointer;
+          font-family:'Noto Sans KR',sans-serif; white-space:nowrap;
+        ">복사</button>
+      </div>
+      <p style="font-size:11px; color:var(--silver); margin-top:8px;">✅ 카카오톡 나에게 보내기, 메모장, 북마크 어디든 저장 가능</p>
+    </div>
+
+    <button class="btn-retry" onclick="restartQuiz()">다시 진단하기</button>
+    <p class="guarantee">🔒 안전한 결제 · 7일 환불 보장</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  © 2026 Shadowgram · shadowgram.org<br>
+  Jung(1921) 및 IPIP Big Five(공개 도메인) 기반 진단 도구.<br>
+  Shadowgram은 독립적인 인간 개발 프레임워크입니다.<br>
+  The Myers &amp; Briggs Foundation과 무관합니다.
+</footer>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+// 결제 링크 — 상품 1개 단일 URL (승인 후 아래 1줄만 교체)
+// ═══════════════════════════════════════════════════════════════
+const HOTMART_BASE_URL = 'https://pay.hotmart.com/PRODUTO_AQUI';
+
+// 유형별 추적 파라미터 자동 생성
+function getHotmartLink(tipo) {
+  return `${HOTMART_BASE_URL}?sck=${tipo}&off=${tipo}`;
+}
+
+// 하위 호환 (삭제 금지)
+const PAYMENT_LINKS = {
+  STEADY:  getHotmartLink('STEADY'),
+  SPARK:   getHotmartLink('SPARK'),
+  PLAYER:  getHotmartLink('PLAYER'),
+  VISION:  getHotmartLink('VISION'),
+  LOGIC:   getHotmartLink('LOGIC'),
+  HARMONY: getHotmartLink('HARMONY'),
+  LEADER:  getHotmartLink('LEADER'),
+  SOUL:    getHotmartLink('SOUL'),
+};
+
+// ═══════════════════════════════════════════════════════════════
+// 4개 차원 라벨
+//   차원 1: a=내향  / b=외향
+//   차원 2: a=감각  / b=직관
+//   차원 3: a=사고  / b=감정
+//   차원 4: a=판단  / b=인식
+// ═══════════════════════════════════════════════════════════════
+const DIM_LABELS = [
+  '차원 1 · 에너지',
+  '차원 2 · 지각',
+  '차원 3 · 결정',
+  '차원 4 · 구조',
+];
+
+// ═══════════════════════════════════════════════════════════════
+// 28문항 — 차원당 7문항, 일상 언어
+// ═══════════════════════════════════════════════════════════════
+const QUESTIONS = [
+  // ── 차원 1: 에너지 ──
+  { dim:1, text:"사람들과 하루 종일 어울린 날 저녁, 나는...",
+    a:"지쳐있다. 혼자만의 시간이 필요하다.",
+    b:"오히려 에너지가 넘친다. 사람들과 함께 있는 게 좋다." },
+  { dim:1, text:"문제가 생겼을 때 나는 주로...",
+    a:"먼저 혼자 충분히 생각한 뒤 이야기한다.",
+    b:"누군가와 이야기하면서 생각을 정리한다." },
+  { dim:1, text:"파티나 모임 자리에서 나는 보통...",
+    a:"소수와 깊이 이야기하는 편이다.",
+    b:"여러 사람과 두루 어울리며 에너지를 얻는다." },
+  { dim:1, text:"새로운 일(직장, 프로젝트, 취미)을 시작할 때...",
+    a:"먼저 관찰하고 파악한 뒤 천천히 참여한다.",
+    b:"일단 뛰어든다. 하면서 배우는 편이다." },
+  { dim:1, text:"친구나 동료들이 나를 표현한다면...",
+    a:"조용하고 속을 잘 모르겠다고 한다.",
+    b:"편하고 표현이 많다고 한다." },
+  { dim:1, text:"나는 이런 환경에서 가장 잘 집중된다...",
+    a:"조용하고 방해가 없는 혼자만의 공간.",
+    b:"활발하고 사람들과 함께 움직이는 환경." },
+  { dim:1, text:"중요한 결정을 앞두고 나는...",
+    a:"혼자 깊이 생각하거나 글로 정리한다.",
+    b:"누군가와 대화하면서 생각을 구체화한다." },
+
+  // ── 차원 2: 지각 ──
+  { dim:2, text:"새로운 것을 배울 때 나는...",
+    a:"구체적인 예시와 단계적인 설명이 필요하다.",
+    b:"개념과 전체적인 원리를 먼저 이해하고 싶다." },
+  { dim:2, text:"나는 주로 무엇을 더 믿는가...",
+    a:"눈으로 확인하고 검증된 사실.",
+    b:"아직 존재하지 않는 가능성과 직감." },
+  { dim:2, text:"여행을 계획할 때 나는...",
+    a:"숙소·교통·일정을 미리 다 정해두는 편.",
+    b:"대략적인 방향만 정하고 현지에서 결정하는 편." },
+  { dim:2, text:"직장에서 나는 주로 이런 이유로 인정받는다...",
+    a:"꼼꼼하고 현실적이며 믿을 수 있다는 것.",
+    b:"새로운 아이디어와 남들이 보지 못하는 가능성을 본다는 것." },
+  { dim:2, text:"누군가 문제를 털어놓으면 나는 먼저...",
+    a:"구체적으로 어떤 상황인지, 사실이 무엇인지 파악한다.",
+    b:"이 상황의 패턴이나 더 깊은 의미를 생각한다." },
+  { dim:2, text:"나는 이런 일을 할 때 더 잘 맞는다...",
+    a:"이미 잘 되는 것을 더 개선하고 완성하는 일.",
+    b:"아직 없는 것을 처음부터 만들어내는 일." },
+  { dim:2, text:"책이나 글을 읽을 때 나는...",
+    a:"실용적이고 직접적인 정보가 있는 것을 선호한다.",
+    b:"이론, 개념, 새로운 시각을 여는 내용을 즐긴다." },
+
+  // ── 차원 3: 결정 ──
+  { dim:3, text:"중요한 결정을 내릴 때 나는...",
+    a:"논리와 데이터, 객관적 결과를 우선시한다.",
+    b:"사람들에게 미치는 영향과 감정을 우선시한다." },
+  { dim:3, text:"친구가 개인적인 문제를 털어놓을 때 나는...",
+    a:"해결책이나 객관적인 분석을 제시하는 편.",
+    b:"먼저 공감하고 감정을 들어주는 편." },
+  { dim:3, text:"토론할 때 나는 이럴 때 편안하다...",
+    a:"논거가 사실과 논리에 기반할 때.",
+    b:"상대방의 감정과 가치관도 고려되는 분위기일 때." },
+  { dim:3, text:"어려운 피드백을 줄 때 나는...",
+    a:"직접적으로 말한다. 솔직함이 더 존중이라 생각한다.",
+    b:"상처받지 않도록 표현을 많이 고른다." },
+  { dim:3, text:"다른 사람에게서 가장 불편한 것은...",
+    a:"지나치게 감정적이어서 객관적인 판단이 안 되는 것.",
+    b:"너무 냉정해서 상대방이 받는 감정적 영향을 무시하는 것." },
+  { dim:3, text:"팀으로 일할 때 나는 자연스럽게...",
+    a:"목표와 프로세스 효율에 집중한다.",
+    b:"팀 분위기와 구성원 관계를 챙긴다." },
+  { dim:3, text:"내가 생각하는 좋은 결정이란...",
+    a:"논리적으로 타당하고 측정 가능한 최선의 결과를 만드는 것.",
+    b:"관련된 모든 사람의 가치와 감정에 부합하는 것." },
+
+  // ── 차원 4: 구조 ──
+  { dim:4, text:"나의 책상이나 개인 공간은 보통...",
+    a:"정돈되어 있다. 각 물건이 제자리에 있다.",
+    b:"조금 어수선하지만 나는 다 어디 있는지 안다." },
+  { dim:4, text:"마감이 있을 때 나는 보통...",
+    a:"미리 시작하고 여유있게 마친다.",
+    b:"마감이 다가올수록 집중력이 올라간다." },
+  { dim:4, text:"나는 이런 한 주가 더 편하다...",
+    a:"일정이 정해져 있어서 다음이 예측되는 주.",
+    b:"열려 있고 유동적이어서 그때그때 결정할 수 있는 주." },
+  { dim:4, text:"계획이 갑자기 바뀌면 나는...",
+    a:"짜증스럽다. 계획대로 되는 것이 좋다.",
+    b:"때로는 설레기도 한다. 변화가 새로운 가능성을 만들기도 한다." },
+  { dim:4, text:"나를 더 잘 표현하는 것은...",
+    a:"결단력 있다. 불완전해도 결론을 내리는 편.",
+    b:"열려있다. 최대한 선택지를 열어두는 편." },
+  { dim:4, text:"큰 구매(차, 여행, 가전)를 할 때 나는...",
+    a:"조사하고 결정하면 후회 없이 넘어간다.",
+    b:"결정한 뒤에도 계속 비교하고 찾아보는 편." },
+  { dim:4, text:"일할 때 나는 이럴 때 가장 편안하다...",
+    a:"단계, 마감, 목표가 명확하게 정해진 프로젝트.",
+    b:"진행하면서 방향을 조정할 자유가 있는 프로젝트." },
+];
+
+// ═══════════════════════════════════════════════════════════════
+// 유형 매핑: (차원1, 차원2, 차원3, 차원4) → Shadowgram 유형
+// ═══════════════════════════════════════════════════════════════
+function getType(d1, d2, d3, d4) {
+  const I=d1==='a', E=d1==='b';
+  const S=d2==='a', N=d2==='b';
+  const T=d3==='a', F=d3==='b';
+  const J=d4==='a', P=d4==='b';
+
+  if (I&&S&&T&&J) return 'STEADY';
+  if (I&&S&&F&&J) return 'HARMONY';
+  if (I&&S&&T&&P) return 'LOGIC';
+  if (I&&S&&F&&P) return 'SOUL';
+  if (I&&N&&T&&J) return 'VISION';
+  if (I&&N&&F&&J) return 'VISION';
+  if (I&&N&&T&&P) return 'LOGIC';
+  if (I&&N&&F&&P) return 'SOUL';
+  if (E&&S&&T&&J) return 'LEADER';
+  if (E&&S&&F&&J) return 'HARMONY';
+  if (E&&S&&T&&P) return 'PLAYER';
+  if (E&&S&&F&&P) return 'PLAYER';
+  if (E&&N&&T&&J) return 'LEADER';
+  if (E&&N&&F&&J) return 'VISION';
+  if (E&&N&&T&&P) return 'SPARK';
+  if (E&&N&&F&&P) return 'SPARK';
+  return 'STEADY';
+}
+
+// ═══════════════════════════════════════════════════════════════
+// 유형별 데이터 — 한국어
+// ═══════════════════════════════════════════════════════════════
+const TYPES = {
+  STEADY: {
+    color: '#7B9EA8',
+    function: 'Si · 내향 감각 — 기억과 안정의 기능',
+    light: '당신은 세상을 떠받치는 힘입니다. 일이 어떻게 돌아가는지를 기억하고 지키는 당신의 능력이 주변 모든 이를 보호합니다. 혼란 속에서 당신은 피할 수 없는 항구 — 신뢰할 수 있고, 일관되고, 흔들리지 않는 사람입니다.',
+    shadow: '당신의 그림자는 Ne(외향 직관)입니다. 변화에 대한 저항, 미지의 것 앞에서의 불안, 이미 작동을 멈춘 것을 놓지 못하는 습관. 압박을 받을 때 당신은 삶이 유연함을 요구하는 바로 그 순간에 가장 경직됩니다.',
+    pain: '세상이 변하는 동안 얼마나 많이 멈춰 있었나요? 통합되지 않은 그림자 Ne는 실제 기회를 앗아갑니다 — 성장하지 못한 경력, 숨막혔던 관계, 다른 사람에게 넘어간 혁신들. 그림자를 외면하는 대가는 "안정"이라는 이름으로 포장된 정체입니다.',
+    preview: '패턴 1 · 신성한 루틴의 함정\n루틴이 보이지 않는 감옥이 되는 순간...\n\n패턴 2 · 신중함으로 위장된 새로움의 두려움\n그림자 Ne가 위험 인식을 어떻게 왜곡하는가...\n\n패턴 3 · 수동적 저항\n당신이 왜 변화를 인식하지 못한 채 방해하는가...\n\n패턴 4 · 과거에 대한 집착\n다가올 것을 위한 공간을 만들기 위해 놓아주는 법...',
+    ctaTitle: 'STEADY 리포트가 준비됐습니다.',
+    ctaSub: '전체 리포트는 성장을 가로막는 4가지 무의식 패턴과 그것을 통합하는 실질적인 길을 담고 있습니다.',
+  },
+  SPARK: {
+    color: '#E8A84A',
+    function: 'Ne · 외향 직관 — 가능성과 영감의 기능',
+    light: '당신은 다른 이들이 벽을 보는 곳에서 가능성을 봅니다. 당신의 에너지는 전염성이 있고, 아이디어는 끝이 없으며, 새로운 것을 영감으로 이끄는 재능이 있습니다. 세상은 지평선 너머를 보는 사람이 필요합니다.',
+    shadow: '당신의 그림자는 Si(내향 감각)입니다. 시작한 것을 끝내지 못하는 어려움, 루틴과 구체적인 것에서 도망치는 경향, 유지하는 것에 대한 불편함. 압박을 받을 때 당신은 어느 방향에도 닿지 못한 채 사방으로 흩어집니다.',
+    pain: '90%쯤에서 포기한 빛나는 아이디어가 몇 개나 있나요? 통합되지 않은 그림자 Si가 당신이 같은 사이클을 반복하는 이유입니다. 불꽃처럼 시작하고, 흥미를 잃고, 포기하고 — 스스로 뭔가 잘못됐다고 느낍니다. 잘못된 게 아닙니다. 하지만 그림자를 통합하지 않으면, 당신은 계속해서 자신의 프로젝트를 스스로 방해하게 됩니다.',
+    preview: '패턴 1 · 결승선 앞에서의 포기\n거의 완성된 프로젝트를 왜 버리는가...\n\n패턴 2 · 창의성으로 위장된 산만함\n진정한 영감과 완수 회피를 구별하는 법...\n\n패턴 3 · 시작 중독\n시작의 신경화학적 쾌감과 그것을 인식하는 법...\n\n패턴 4 · 유지에서의 도피\nSPARK 유형의 마음이 지속할 수 있는 시스템 만들기...',
+    ctaTitle: 'SPARK 리포트가 준비됐습니다.',
+    ctaSub: '전체 리포트는 당신이 프로젝트를 포기하는 이유와 SPARK 유형에 맞는 완수 방법을 담고 있습니다.',
+  },
+  PLAYER: {
+    color: '#E07060',
+    function: 'Se · 외향 감각 — 현재와 행동의 기능',
+    light: '당신은 현재를 온전한 강도로 삽니다. 즉각적인 행동 능력, 환경을 느끼고 정확하게 반응하는 능력은 드문 재능입니다. 결단이 필요한 순간, 당신은 이미 움직이고 있습니다.',
+    shadow: '당신의 그림자는 Ni(내향 직관)입니다. 큰 패턴을 보는 어려움, 추상적인 것과 먼 미래에 대한 불편함. 압박을 받을 때 당신은 장기적 결과를 고려하지 않고 행동합니다.',
+    pain: '너무 빠르게 행동해서 — 패턴을 보지 못하고 — 잃어버린 돈, 에너지, 시간이 얼마나 됩니까? 통합되지 않은 그림자 Ni는 당신에게는 보이지 않지만 주변 모두에게는 보입니다. 충동성으로, 이유를 모른 채 깨지는 관계로, 오래 가지 않는 성취로 나타납니다.',
+    preview: '패턴 1 · 자신감으로 위장된 충동성\n그림자 Ni가 위험 평가를 어떻게 왜곡하는가...\n\n패턴 2 · 미래를 삼키는 현재\n당신의 성취에 짧은 유통기한이 있는 이유...\n\n패턴 3 · 패턴에 대한 맹목\n인식하지 못하고 반복하는 사이클 인식하기...\n\n패턴 4 · Ni 통합\n본질을 잃지 않고 장기적 시각 개발하기...',
+    ctaTitle: 'PLAYER 리포트가 준비됐습니다.',
+    ctaSub: '전체 리포트는 일관성을 방해하는 4가지 패턴과 행동을 유산으로 전환하는 길을 담고 있습니다.',
+  },
+  VISION: {
+    color: '#8B7BB8',
+    function: 'Ni · 내향 직관 — 통찰과 방향의 기능',
+    light: '당신은 다른 사람들이 아직 볼 수 없는 것을 봅니다. 깊은 패턴과 미래 방향에 대한 통찰은 예언적입니다. 당신은 소수만 가진 내면의 지도를 지니고 있습니다 — 보이지 않는 것의 나침반.',
+    shadow: '당신의 그림자는 Se(외향 감각)입니다. 지금 이 순간과의 단절, 몸과 현재에 머무는 어려움. 압박을 받을 때 당신은 현실 세계에서 아무것도 행동하지 않은 채 비전과 분석 속에서 길을 잃습니다.',
+    pain: '얼마나 많은 빛나는 비전들이 머릿속에만 머물렀습니까? 통합되지 않은 그림자 Se는 당신이 인식하는 것과 당신이 만들어내는 것 사이에 고통스러운 거리를 만듭니다. 겉으로는 괜찮아 보입니다. 하지만 내면에서 당신은 될 수 있는 것에 훨씬 못 미치고 있음을 압니다.',
+    preview: '패턴 1 · 비전의 완벽주의 마비\n가장 야심찬 계획들이 왜 종이 위에만 머무는가...\n\n패턴 2 · 현재로부터의 분리\n그림자 Se가 몸, 돈, 관계에서 어떻게 멀어지게 하는가...\n\n패턴 3 · 비전가의 고독\n이해받기 어려운 이유 — 그리고 대처법...\n\n패턴 4 · 통찰에서 행동으로\nVISION 유형이 현실 세계에서 구현하는 방법...',
+    ctaTitle: 'VISION 리포트가 준비됐습니다.',
+    ctaSub: '전체 리포트는 내면의 비전을 구체적인 결과로 전환하는 방법을 담고 있습니다 — 깊이를 잃지 않고.',
+  },
+  LOGIC: {
+    color: '#5B9EA0',
+    function: 'Ti · 내향 사고 — 분석과 정밀함의 기능',
+    light: '당신의 마음은 정밀한 도구입니다. 다른 이들이 혼돈을 보는 곳에서 논리적 구조를 찾아냅니다. 문제의 핵심 진실을 깊이 파고드는 능력은 세상에 드문 선물입니다.',
+    shadow: '당신의 그림자는 Fe(외향 감정)입니다. 감정적 관계에서의 어려움, 집단 역동과 사회적 기대에 대한 불편함. 압박을 받을 때 당신은 사람들이 가장 필요한 바로 그 순간에 고립됩니다.',
+    pain: '정밀한 분석 능력에는 보이지 않는 대가가 있습니다. 당신이 그냥 생각하고 있을 뿐인데도 타인이 거절로 느끼는 차가움. 이 패턴은 그림자 Fe를 이해하기 전까지 반복됩니다 — 직장에서도, 사랑에서도, 우정에서도.',
+    preview: '패턴 1 · 지적 갑옷\n논리가 취약성에 대한 방어로 변하는 방식...\n\n패턴 2 · 정밀함의 관계적 대가\n당신을 존경하면서도 사람들이 멀어지는 이유...\n\n패턴 3 · 패턴으로서의 고립\nLOGIC 유형이 인식하지 못한 채 연결을 방해하는 방식...\n\n패턴 4 · Fe 통합\n정밀함을 잃지 않고 감성 지능 개발하기...',
+    ctaTitle: 'LOGIC 리포트가 준비됐습니다.',
+    ctaSub: '전체 리포트는 감정과 이성을 통합하고 정밀함을 포기하지 않고 관계를 구축하는 방법을 담고 있습니다.',
+  },
+  HARMONY: {
+    color: '#D4886A',
+    function: 'Fe · 외향 감정 — 조화와 연결의 기능',
+    light: '당신은 사람들을 하나로 모으는 재능이 있습니다. 집단의 감정 상태를 감지하고, 조화를 만들고, 전체를 돌보는 능력은 세상에 드물고 깊이 필요한 힘입니다.',
+    shadow: '당신의 그림자는 Ti(내향 사고)입니다. 거절하는 어려움, 자신만의 내적 논리를 우선시하는 것, 자신의 필요와 타인의 필요를 구별하는 것. 압박을 받을 때 당신은 완전히 타인 속에서 길을 잃습니다.',
+    pain: '싫다고 하고 싶었지만 괜찮다고 한 적이 몇 번이나 있었나요? 통합되지 않은 그림자 Ti는 당신을 과도한 헌신의 사이클에 가두어 놓습니다 — 결국 소진될 때까지. 모든 이를 돌보는 대가는 종종 자신을 잃는 것입니다. 당신을 돌보는 사람은 누구인가요?',
+    preview: '패턴 1 · 거절하지 못하는 이유\n왜 당신은 자신을 희생하며 타인의 평화를 우선시하는가...\n\n패턴 2 · 통제 메커니즘으로서의 죄책감\n그림자 Ti가 내면의 판단으로 어떻게 나타나는가...\n\n패턴 3 · 돌보는 이의 소진\n왜 반복적으로 한계에 도달하는가...\n\n패턴 4 · Ti 통합\n연민을 잃지 않고 건강한 경계 개발하기...',
+    ctaTitle: 'HARMONY 리포트가 준비됐습니다.',
+    ctaSub: '전체 리포트는 자신을 잃지 않고 타인을 돌보는 방법을 담고 있습니다 — 죄책감 없는 경계.',
+  },
+  LEADER: {
+    color: '#6B8E6B',
+    function: 'Te · 외향 사고 — 조직과 실행의 기능',
+    light: '당신은 작동하는 시스템을 만듭니다. 목표를 정하고, 자원을 조직하고, 그룹을 결과로 이끄는 능력은 세상이 필요로 하는 리더십입니다. 혼돈이 있는 곳에서 당신은 질서를 만듭니다.',
+    shadow: '당신의 그림자는 Fi(내향 감정)입니다. 자신의 내면 가치와 감정을 찾아 존중하는 어려움. 압박을 받을 때 당신은 효율성의 이름으로 내면의 삶을 무시합니다 — 그 대가는 높습니다.',
+    pain: '당신은 모든 이를 위한 결과를 만들어냅니다. 하지만 마지막으로 당신이 진정으로 원하는 것이 무엇인지 물어본 것은 언제였나요? 통합되지 않은 그림자 Fi는 어느 날 한꺼번에 청구서를 보냅니다 — 위기, 공허함, 감당할 수 없는 삶의 무게를 가진 관계로.',
+    preview: '패턴 1 · 진정성을 삼키는 효율성\n결과 추구가 당신이 느끼는 것을 어떻게 숨기는가...\n\n패턴 2 · 취약성 없는 리더십\n당신의 힘이 동시에 고립시키고 위협하는 이유...\n\n패턴 3 · 실행자의 공허함\n목표가 달성되었는데도 여전히 무언가 부족한 이유...\n\n패턴 4 · Fi 통합\n진정한 가치에 연결된 진정성 있는 리더십...',
+    ctaTitle: 'LEADER 리포트가 준비됐습니다.',
+    ctaSub: '전체 리포트는 당신의 효율성이 숨기고 있는 것을 드러내고 더 진정성 있고 지속가능한 리더십으로 가는 길을 담고 있습니다.',
+  },
+  SOUL: {
+    color: '#B87BA8',
+    function: 'Fi · 내향 감정 — 가치와 진정성의 기능',
+    light: '당신은 흔들리지 않는 가치의 나침반을 지니고 있습니다. 당신의 진정성, 깊이, 무결성은 세상에서 드문 방식으로 사람들을 감동시킵니다.',
+    shadow: '당신의 그림자는 Te(외향 사고)입니다. 현실 세계의 요구 — 효율성, 생산성, 측정 가능한 결과 — 와의 충돌. 압박을 받을 때 당신은 모든 것을 측정하는 세상 속에서 오해받고 보이지 않는 존재처럼 느낍니다.',
+    pain: '당신은 많은 것을 줄 수 있습니다 — 하지만 세상이 인정하지 않는 것처럼 보입니다. 통합되지 않은 그림자 Te가 당신의 깊이가 구체적인 결과로 거의 이어지지 않는 이유입니다. 당신이 있는 모습과 세상이 보는 모습 사이의 이 거리 — 그것이 그림자를 외면하는 실제 대가입니다.',
+    preview: '패턴 1 · 깊은 것의 비가시성\n당신의 내면의 풍요로움이 왜 좀처럼 보이지 않는가...\n\n패턴 2 · 현실 세계에 대한 저항\n그림자 Te가 미루기와 회피로 어떻게 나타나는가...\n\n패턴 3 · 침묵의 원망\n당신의 가치가 존중받지 않을 때의 감정적 축적...\n\n패턴 4 · Te 통합\n깊이를 현실 세계의 영향력으로 전환하기...',
+    ctaTitle: 'SOUL 리포트가 준비됐습니다.',
+    ctaSub: '전체 리포트는 당신의 깊이를 진정한 존재감으로 전환하는 방법을 담고 있습니다 — 당신 그대로 보이기.',
+  },
+};
+
+// ═══════════════════════════════════════════════════════════════
+// 퀴즈 엔진
+// ═══════════════════════════════════════════════════════════════
+let dimScores = [0, 0, 0, 0];
+let answers = new Array(QUESTIONS.length).fill(null);
+let current = 0;
+const totalQ = QUESTIONS.length;
+
+function buildQuiz() {
+  const sec = document.getElementById('quiz-section');
+  sec.innerHTML = '';
+  QUESTIONS.forEach((q, qi) => {
+    const div = document.createElement('div');
+    div.className = 'question-block' + (qi === 0 ? ' active' : '');
+    div.id = 'q-' + qi;
+    div.innerHTML = `
+      <p class="q-num">${qi + 1}번 문항 / 총 ${totalQ}문항</p>
+      <p class="q-text">${q.text}</p>
+      <div class="ab-options">
+        <button class="ab-btn" onclick="selectOption(${qi}, 'a', this)">
+          <span class="ab-label">A</span>
+          <span class="ab-text">${q.a}</span>
+        </button>
+        <button class="ab-btn" onclick="selectOption(${qi}, 'b', this)">
+          <span class="ab-label">B</span>
+          <span class="ab-text">${q.b}</span>
+        </button>
+      </div>
+    `;
+    sec.appendChild(div);
+  });
+}
+
+function selectOption(qIdx, choice, btn) {
+  // 첫 번째 답 선택 시 hero + meta + cred 숨기기
+  if (qIdx === 0 && answers[qIdx] === null) {
+    const hero = document.querySelector('.hero');
+    const meta = document.querySelector('.hero-meta');
+    const cred = document.querySelector('.cred-section');
+    if (hero) hero.style.display = 'none';
+    if (meta) meta.style.display = 'none';
+    if (cred) cred.style.display = 'none';
+  }
+  document.querySelectorAll(`#q-${qIdx} .ab-btn`).forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  const dimIdx = QUESTIONS[qIdx].dim - 1;
+  if (answers[qIdx] === 'a') dimScores[dimIdx]--;
+  answers[qIdx] = choice;
+  if (choice === 'a') dimScores[dimIdx]++;
+  setTimeout(() => {
+    if (qIdx < totalQ - 1) goToQuestion(qIdx + 1);
+    else showResult();
+  }, 300);
+}
+
+function goToQuestion(idx) {
+  document.querySelectorAll('.question-block').forEach(b => b.classList.remove('active'));
+  document.getElementById('q-' + idx).classList.add('active');
+  current = idx;
+  updateProgress(idx);
+  const prevBtn = document.getElementById('btn-prev');
+  if (idx === 0) prevBtn.classList.add('hidden');
+  else prevBtn.classList.remove('hidden');
+  window.scrollTo({ top: 200, behavior: 'smooth' });
+}
+
+function goPrev() {
+  if (current > 0) goToQuestion(current - 1);
+}
+
+function updateProgress(idx) {
+  const pct = Math.round((idx / totalQ) * 100);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = `${idx + 1}번 문항 / 총 ${totalQ}문항`;
+  document.getElementById('progress-pct').textContent = pct + '%';
+  document.getElementById('dim-label').textContent = DIM_LABELS[QUESTIONS[idx].dim - 1];
+}
+
+function showResult(savedWinner) {
+  let winner, d, data;
+
+  if (savedWinner) {
+    winner = savedWinner;
+    data = TYPES[winner];
+    d = ['a','a','a','a'];
+  } else {
+    d = dimScores.map(s => s >= 4 ? 'a' : 'b');
+    winner = getType(d[0], d[1], d[2], d[3]);
+    data = TYPES[winner];
+    try {
+      localStorage.setItem('sg_type', winner);
+      localStorage.setItem('sg_code', d.join(''));
+      localStorage.setItem('sg_date', new Date().toLocaleDateString('ko-KR'));
+      localStorage.setItem('sg_scores', JSON.stringify(dimScores));
+    } catch(e) {}
+  }
+
+  document.getElementById('quiz-section').style.display = 'none';
+  document.querySelector('.progress-wrap').style.display = 'none';
+  document.querySelector('.back-btn-wrap').style.display = 'none';
+
+  const rs = document.getElementById('result-section');
+  rs.style.display = 'block';
+
+  if (savedWinner) {
+    const savedDate = localStorage.getItem('sg_date') || '';
+    const banner = document.createElement('div');
+    banner.style.cssText = 'background:rgba(197,165,114,0.1);border:1px solid rgba(197,165,114,0.3);border-radius:10px;padding:12px 16px;margin-bottom:16px;font-size:12px;color:var(--silver);text-align:center;';
+    banner.innerHTML = `✅ 저장된 결과 불러옴 · ${savedDate} · <button onclick="restartQuiz()" style="background:none;border:none;color:var(--gold);cursor:pointer;font-size:12px;text-decoration:underline;">다시 진단하기</button>`;
+    rs.insertBefore(banner, rs.firstChild);
+  }
+
+  document.getElementById('res-type').textContent = winner;
+  document.getElementById('res-type').style.color = data.color;
+  document.getElementById('res-function').textContent = data.function;
+  document.getElementById('res-code').textContent = `내부 코드: ${d[0]}${d[1]}${d[2]}${d[3]}`;
+  document.getElementById('res-light-header').style.color = data.color;
+  document.getElementById('res-light').textContent = data.light;
+  document.getElementById('res-shadow').textContent = data.shadow;
+  document.getElementById('res-pain').textContent = data.pain;
+  document.getElementById('res-preview').textContent = data.preview;
+  document.getElementById('res-cta-label').textContent = `쉐도우그램 솔로 · 레벨 1 · ${winner}`;
+  document.getElementById('res-cta-title').textContent = data.ctaTitle;
+  document.getElementById('res-cta-sub').textContent = data.ctaSub;
+  document.getElementById('res-buy-btn').href = PAYMENT_LINKS[winner];
+
+  let scoresForBar = dimScores;
+  if (savedWinner) {
+    try {
+      const saved = JSON.parse(localStorage.getItem('sg_scores') || 'null');
+      if (saved) scoresForBar = saved;
+    } catch(e) {}
+  }
+
+  // Score bars — 양방향 중심 기준 그래프
+  const dimNames = [
+    { a: '내향', b: '외향' },
+    { a: '감각', b: '직관' },
+    { a: '사고', b: '감정' },
+    { a: '판단', b: '인식' },
+  ];
+  const barRows = document.getElementById('score-bar-rows');
+  barRows.innerHTML = '';
+  scoresForBar.forEach((sc, i) => {
+    const isA = sc >= 4;
+    const strength = isA
+      ? Math.round(((sc - 3.5) / 3.5) * 50)
+      : Math.round(((3.5 - sc) / 3.5) * 50);
+    const fillPct = Math.max(7, strength);
+
+    barRows.innerHTML += `
+      <div class="bar-row">
+        <span class="bar-dim">${i + 1}</span>
+        <div style="flex:1">
+          <div class="bar-track">
+            ${isA
+              ? `<div class="bar-fill-a" style="width:${fillPct}%;background:${data.color};opacity:0.9"></div>`
+              : `<div class="bar-fill-b" style="width:${fillPct}%;background:${data.color};opacity:0.9"></div>`
+            }
+          </div>
+          <div class="bar-ends">
+            <span class="bar-label-a ${isA ? 'bar-label-active' : 'bar-label-inactive'}">${dimNames[i].a}</span>
+            <span class="bar-label-b ${!isA ? 'bar-label-active' : 'bar-label-inactive'}">${dimNames[i].b}</span>
+          </div>
+        </div>
+      </div>`;
+  });
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function restartQuiz() {
+  dimScores = [0, 0, 0, 0];
+  answers = new Array(QUESTIONS.length).fill(null);
+  current = 0;
+  document.getElementById('result-section').style.display = 'none';
+  document.getElementById('quiz-section').style.display = 'block';
+  document.querySelector('.progress-wrap').style.display = 'block';
+  document.querySelector('.back-btn-wrap').style.display = 'block';
+  document.getElementById('btn-prev').classList.add('hidden');
+  // 재시작 시 hero + meta + cred 다시 표시
+  const hero = document.querySelector('.hero');
+  const meta = document.querySelector('.hero-meta');
+  const cred = document.querySelector('.cred-section');
+  if (hero) hero.style.display = '';
+  if (meta) meta.style.display = '';
+  if (cred) cred.style.display = '';
+  buildQuiz();
+  updateProgress(0);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ═══════════════════════════════════════════════════════════════
+// 재방문 처리 — localStorage + URL 파라미터
+// ═══════════════════════════════════════════════════════════════
+function checkSavedResult() {
+  const params = new URLSearchParams(window.location.search);
+  const urlType = params.get('type');
+  if (urlType && TYPES[urlType.toUpperCase()]) {
+    showResult(urlType.toUpperCase());
+    return;
+  }
+  try {
+    const saved = localStorage.getItem('sg_type');
+    if (saved && TYPES[saved]) {
+      showResult(saved);
+      return;
+    }
+  } catch(e) {}
+}
+
+function saveMyLink() {
+  try {
+    const type = localStorage.getItem('sg_type');
+    if (!type) return;
+    const base = window.location.href.split('?')[0];
+    const link = `${base}?type=${type}`;
+    document.getElementById('saved-link-input').value = link;
+    document.getElementById('saved-link-box').style.display = 'block';
+    document.getElementById('btn-save-link').style.display = 'none';
+  } catch(e) {}
+}
+
+function copyLink() {
+  const input = document.getElementById('saved-link-input');
+  input.select();
+  try {
+    navigator.clipboard.writeText(input.value).then(() => {
+      const btn = input.nextElementSibling;
+      btn.textContent = '✅ 복사됨!';
+      setTimeout(() => btn.textContent = '복사', 2000);
+    });
+  } catch(e) {
+    document.execCommand('copy');
+  }
+}
+
+// INIT
+buildQuiz();
+updateProgress(0);
+checkSavedResult();
+</script>
+</body>
+</html>

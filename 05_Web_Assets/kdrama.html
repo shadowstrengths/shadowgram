@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+  <title>Qual personagem de "Pode Traduzir Esse Amor?" tem sua personalidade? | Shadowgram</title>
+  <meta name="description" content="Descubra qual personagem da série Netflix tem a mesma psicologia que você. Análise gratuita baseada em Shadowgram — o teste de personalidade das sombras."/>
+
+  <!-- OG / Social -->
+  <meta property="og:title" content="Qual personagem de 'Pode Traduzir Esse Amor?' é você?"/>
+  <meta property="og:description" content="8 personagens · 8 perfis psicológicos. Descubra o seu tipo e veja qual personagem da série Netflix tem a mesma essência que você."/>
+  <meta property="og:image" content="https://shadowgram.org/og-kdrama.jpg"/>
+  <meta property="og:url" content="https://shadowgram.org/kdrama"/>
+  <meta property="og:type" content="website"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root {
+      --gold:   #c5a572;
+      --white:  #f0e8d8;
+      --silver: #9baab8;
+      --bg:     #06060e;
+      --card:   rgba(255,255,255,0.04);
+      --border: rgba(255,255,255,0.09);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: 'Montserrat', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ─── 배경 그라디언트 ─── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 20% 10%, rgba(120,60,200,0.18) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 80%, rgba(197,165,114,0.1) 0%, transparent 55%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      text-align: center;
+      padding: 48px 0 32px;
+    }
+    .hero-badge {
+      display: inline-block;
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      color: rgba(197,165,114,0.8);
+      text-transform: uppercase;
+      font-weight: 700;
+      border: 1px solid rgba(197,165,114,0.3);
+      border-radius: 20px;
+      padding: 5px 14px;
+      margin-bottom: 18px;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(26px, 6vw, 36px);
+      line-height: 1.2;
+      color: var(--white);
+      margin-bottom: 14px;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .hero-sub {
+      font-size: 14px;
+      color: var(--silver);
+      line-height: 1.7;
+      max-width: 380px;
+      margin: 0 auto 24px;
+    }
+    .hero-cta-mini {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, rgba(197,165,114,0.2), rgba(120,60,200,0.2));
+      border: 1px solid rgba(197,165,114,0.4);
+      color: var(--gold);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 10px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .hero-cta-mini:hover {
+      background: linear-gradient(135deg, rgba(197,165,114,0.35), rgba(120,60,200,0.3));
+    }
+
+    /* ─── 드라마 소개 줄 ─── */
+    .drama-info {
+      text-align: center;
+      font-size: 11px;
+      color: rgba(155,170,184,0.55);
+      margin-bottom: 32px;
+      letter-spacing: 0.05em;
+    }
+    .drama-info span {
+      color: rgba(197,165,114,0.6);
+    }
+
+    /* ─── 캐릭터 카드 ─── */
+    .char-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px 18px;
+      margin-bottom: 14px;
+      transition: border-color 0.2s, transform 0.15s;
+      cursor: default;
+      position: relative;
+      overflow: hidden;
+    }
+    .char-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      border-radius: 16px 16px 0 0;
+    }
+    .char-card:hover {
+      border-color: rgba(197,165,114,0.35);
+      transform: translateY(-1px);
+    }
+
+    /* 유형별 컬러 */
+    .char-card[data-type="LOGIC"]   { border-color: rgba(96,165,250,0.25); }
+    .char-card[data-type="LOGIC"]::before   { background: linear-gradient(90deg,#3b82f6,#60a5fa); }
+    .char-card[data-type="SOUL"]    { border-color: rgba(244,114,182,0.25); }
+    .char-card[data-type="SOUL"]::before    { background: linear-gradient(90deg,#ec4899,#f472b6); }
+    .char-card[data-type="PLAYER"]  { border-color: rgba(251,146,60,0.25); }
+    .char-card[data-type="PLAYER"]::before  { background: linear-gradient(90deg,#f97316,#fb923c); }
+    .char-card[data-type="HARMONY"] { border-color: rgba(52,211,153,0.25); }
+    .char-card[data-type="HARMONY"]::before { background: linear-gradient(90deg,#10b981,#34d399); }
+    .char-card[data-type="STEADY"]  { border-color: rgba(167,139,250,0.25); }
+    .char-card[data-type="STEADY"]::before  { background: linear-gradient(90deg,#8b5cf6,#a78bfa); }
+    .char-card[data-type="LEADER"]  { border-color: rgba(251,191,36,0.25); }
+    .char-card[data-type="LEADER"]::before  { background: linear-gradient(90deg,#f59e0b,#fbbf24); }
+    .char-card[data-type="SPARK"]   { border-color: rgba(248,113,113,0.25); }
+    .char-card[data-type="SPARK"]::before   { background: linear-gradient(90deg,#ef4444,#f87171); }
+    .char-card[data-type="VISION"]  { border-color: rgba(197,165,114,0.3); }
+    .char-card[data-type="VISION"]::before  { background: linear-gradient(90deg,#c5a572,#e8d5a3); }
+
+    .char-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+    .char-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      flex-shrink: 0;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+    }
+    .char-meta {
+      flex: 1;
+    }
+    .char-type-badge {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      padding: 3px 9px;
+      border-radius: 10px;
+      margin-bottom: 5px;
+      background: rgba(255,255,255,0.07);
+      color: var(--silver);
+    }
+    .char-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 2px;
+    }
+    .char-actor {
+      font-size: 11px;
+      color: rgba(155,170,184,0.6);
+      letter-spacing: 0.03em;
+    }
+    .char-tagline {
+      font-size: 13px;
+      color: var(--gold);
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      margin-bottom: 8px;
+    }
+    .char-desc {
+      font-size: 13px;
+      color: var(--silver);
+      line-height: 1.65;
+    }
+    .char-shadow {
+      margin-top: 10px;
+      padding: 10px 12px;
+      background: rgba(0,0,0,0.25);
+      border-radius: 8px;
+      border-left: 2px solid rgba(197,165,114,0.35);
+    }
+    .char-shadow-label {
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(197,165,114,0.6);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .char-shadow-text {
+      font-size: 12px;
+      color: rgba(155,170,184,0.75);
+      line-height: 1.55;
+    }
+    .char-quiz-btn {
+      display: block;
+      text-align: center;
+      margin-top: 12px;
+      padding: 10px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 12px;
+      color: rgba(197,165,114,0.8);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .char-quiz-btn:hover {
+      background: rgba(197,165,114,0.1);
+    }
+
+    /* ─── 공유 섹션 ─── */
+    .share-section {
+      background: linear-gradient(135deg, rgba(15,10,30,0.9), rgba(25,15,50,0.9));
+      border: 1px solid rgba(197,165,114,0.3);
+      border-radius: 18px;
+      padding: 28px 22px;
+      text-align: center;
+      margin: 32px 0 0;
+    }
+    .share-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+    .share-sub {
+      font-size: 13px;
+      color: var(--silver);
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    .share-btns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .btn-share {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 13px 8px;
+      border-radius: 12px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      text-decoration: none;
+      color: #fff;
+      cursor: pointer;
+      border: none;
+      transition: opacity 0.2s;
+    }
+    .btn-share:hover { opacity: 0.85; }
+    .btn-wpp  { background: #25d366; }
+    .btn-ig   { background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
+    .btn-fb   { background: #1877f2; }
+    .btn-x    { background: #000; border: 1px solid #333; }
+    .btn-copy {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 12px;
+      background: transparent;
+      border: 1px solid rgba(197,165,114,0.4);
+      color: var(--gold);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      border-radius: 12px;
+      cursor: pointer;
+      letter-spacing: 0.04em;
+      transition: background 0.2s;
+    }
+    .btn-copy:hover { background: rgba(197,165,114,0.08); }
+
+    /* ─── CTA 퀴즈 배너 ─── */
+    .quiz-banner {
+      background: linear-gradient(135deg, rgba(197,165,114,0.12), rgba(120,60,200,0.12));
+      border: 1px solid rgba(197,165,114,0.35);
+      border-radius: 18px;
+      padding: 28px 22px;
+      text-align: center;
+      margin: 28px 0;
+    }
+    .quiz-banner-eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(197,165,114,0.7);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .quiz-banner-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+    .quiz-banner-sub {
+      font-size: 13px;
+      color: var(--silver);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .btn-quiz-main {
+      display: inline-block;
+      background: linear-gradient(135deg, #c5a572, #a07840);
+      color: #0a0a14;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      padding: 15px 32px;
+      border-radius: 14px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .btn-quiz-main:hover { opacity: 0.88; }
+
+    /* ─── 면책 ─── */
+    .disclaimer {
+      font-size: 10px;
+      color: rgba(155,170,184,0.4);
+      text-align: center;
+      margin-top: 28px;
+      line-height: 1.7;
+      padding: 0 10px;
+    }
+
+    /* ─── Footer ─── */
+    footer {
+      text-align: center;
+      font-size: 11px;
+      color: rgba(155,170,184,0.35);
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: rgba(197,165,114,0.5); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge">🎬 SHADOWGRAM × K-DRAMA</div>
+    <h1 class="hero-title">
+      Qual personagem de<br/>
+      <em>"Pode Traduzir Esse Amor?"</em><br/>
+      tem a sua psicologia?
+    </h1>
+    <p class="hero-sub">
+      8 personagens. 8 perfis psicológicos.<br/>
+      Cada um carrega uma sombra que define seus padrões — no amor e na vida.
+    </p>
+    <a href="https://shadowgram.org/shadowgram_pt.html" class="hero-cta-mini">
+      ✦ Descubra seu tipo real →
+    </a>
+  </div>
+
+  <p class="drama-info">
+    <span>이 사랑 통역 되나요?</span> · Netflix · Análise de personagens para fins educativos
+  </p>
+
+  <!-- ── CHARACTER CARDS ── -->
+  <div id="char-list"></div>
+
+  <!-- QUIZ CTA BANNER -->
+  <div class="quiz-banner">
+    <p class="quiz-banner-eyebrow">✦ DIAGNÓSTICO GRATUITO</p>
+    <h2 class="quiz-banner-title">Qual é o seu tipo Shadowgram?</h2>
+    <p class="quiz-banner-sub">
+      Cada um de nós carrega uma combinação única de luz e sombra.<br/>
+      Descubra o seu perfil completo em 3 minutos.
+    </p>
+    <a href="https://shadowgram.org/shadowgram_pt.html" class="btn-quiz-main">
+      FAZER O TESTE GRÁTIS →
+    </a>
+  </div>
+
+  <!-- SHARE SECTION -->
+  <div class="share-section">
+    <h2 class="share-title">Seu amigo parece com qual personagem? 👀</h2>
+    <p class="share-sub">Marque quem te lembra — e descubra o tipo dele também!</p>
+    <div class="share-btns">
+      <a id="btn-wpp" href="#" target="_blank" rel="noopener" class="btn-share btn-wpp">💬 WhatsApp</a>
+      <button id="btn-ig" class="btn-share btn-ig">📸 Instagram</button>
+      <a id="btn-fb" href="#" target="_blank" rel="noopener" class="btn-share btn-fb">📘 Facebook</a>
+      <a id="btn-x" href="#" target="_blank" rel="noopener" class="btn-share btn-x">✕ X</a>
+    </div>
+    <button id="btn-copy" class="btn-copy">🔗 Copiar link desta página</button>
+  </div>
+
+  <p class="disclaimer">
+    * Esta análise é baseada exclusivamente em características psicológicas observadas nos personagens da série,<br/>
+    com fins educativos e de entretenimento. Não representa opiniões dos atores, produtora ou plataforma.<br/>
+    Shadowgram não possui vínculo com a Netflix ou com a produção da série.
+  </p>
+
+  <footer>
+    © 2025 Shadowgram · <a href="https://shadowgram.org">shadowgram.org</a><br/>
+    <a href="https://shadowgram.org/shadowgram_pt.html">Fazer o teste completo</a>
+  </footer>
+
+</div><!-- /container -->
+
+<script>
+// ═══════════════════════════════════════════════════════════
+// 8유형 × 드라마 캐릭터 데이터
+// ═══════════════════════════════════════════════════════════
+const CHARS = [
+  {
+    type:    'LOGIC',
+    emoji:   '🧠',
+    name:    'Joo Ho-jin',
+    nameKr:  '주호진',
+    actor:   'Kim Seon-ho · 김선호',
+    tagline: '"O roteiro perfeito existe. Só preciso encontrá-lo."',
+    desc:    'Analítico, estruturado e perfeccionista. Ho-jin processa o mundo pela lógica — e o amor não é exceção. Planeja cada passo, mas sofre quando a realidade não segue o roteiro.',
+    shadow:  'Sua sombra: controla tanto que perde a espontaneidade. A frieza que protege também isola.',
+    color:   '#3b82f6'
+  },
+  {
+    type:    'SOUL',
+    emoji:   '🌊',
+    name:    'Cha Mu-hee',
+    nameKr:  '차무희',
+    actor:   'Go Youn-jung · 고윤정',
+    tagline: '"Eu sinto tudo — e não consigo fingir que não sinto."',
+    desc:    'Profundamente empática e intuitiva. Mu-hee vive com intensidade emocional, conecta-se às pessoas de forma visceral e carrega o peso dos sentimentos alheios como se fossem seus.',
+    shadow:  'Sua sombra: absorve tanta dor dos outros que se esquece de si mesma. Empatia sem limite vira autossacrifício.',
+    color:   '#ec4899'
+  },
+  {
+    type:    'PLAYER',
+    emoji:   '🎭',
+    name:    'Do-ra-mi',
+    nameKr:  '도라미',
+    actor:   'Go Youn-jung · 고윤정 (alter ego)',
+    tagline: '"Por que ser só uma versão de mim quando posso ser todas?"',
+    desc:    'Fluida, adaptável e cheia de camadas. Do-ra-mi transita entre identidades com naturalidade — não por falsidade, mas porque genuinamente enxerga múltiplas possibilidades em cada situação.',
+    shadow:  'Sua sombra: a flexibilidade infinita esconde o medo de se comprometer com uma identidade fixa.',
+    color:   '#f97316'
+  },
+  {
+    type:    'HARMONY',
+    emoji:   '🌸',
+    name:    'Hiro',
+    nameKr:  '히로',
+    actor:   'Fukushi Sota · 福士蒼汰',
+    tagline: '"Não precisa de conflito. Sempre tem um caminho no meio."',
+    desc:    'Gentil, conciliador e sensível ao ambiente ao redor. Hiro suaviza tensões sem esforço aparente — mas por dentro, guarda mais do que deixa transparecer.',
+    shadow:  'Sua sombra: evita conflito até o ponto de suprimir suas próprias necessidades. A paz que preserva pode ser uma prisão silenciosa.',
+    color:   '#10b981'
+  },
+  {
+    type:    'STEADY',
+    emoji:   '🏔️',
+    name:    'Kim Yong-woo',
+    nameKr:  '김용우',
+    actor:   'Choi Woo-sung · 최우성',
+    tagline: '"Aqui estou. Sempre estive. Sempre estarei."',
+    desc:    'Leal, constante e seguro como uma rocha. Yong-woo não precisa de grandes gestos — sua presença silenciosa é sua maior declaração. Não muda, não balança, não abandona.',
+    shadow:  'Sua sombra: a estabilidade pode virar resistência à mudança. Quando tudo muda ao redor, ele fica parado — e se isola.',
+    color:   '#8b5cf6'
+  },
+  {
+    type:    'LEADER',
+    emoji:   '⚡',
+    name:    'Shin Ji-seon',
+    nameKr:  '신지선',
+    actor:   'Lee I-dam · 이이담',
+    tagline: '"Se ninguém vai tomar a decisão, eu tomo."',
+    desc:    'Direta, determinada e incansável. Ji-seon não espera permissão — avança, decide, executa. Inspira pelo exemplo, mas raramente pede ajuda.',
+    shadow:  'Sua sombra: confunde controle com liderança. Debaixo da firmeza, há um medo profundo de perder o rumo.',
+    color:   '#f59e0b'
+  },
+  {
+    type:    'SPARK',
+    emoji:   '🔥',
+    name:    'Yoon Mi-jeong',
+    nameKr:  '윤미정',
+    actor:   'Choi Hee-jin · 최희진',
+    tagline: '"A vida não vale se não for intensa."',
+    desc:    'Espontânea, apaixonada e cheia de energia. Mi-jeong acende qualquer ambiente — traz vida, calor e entusiasmo contagiante. Sua presença é inconfundível.',
+    shadow:  'Sua sombra: a intensidade que atrai também esgota. Quando a chama baixa, vem o vazio — e ela vai acender outra fogueira para não sentir.',
+    color:   '#ef4444'
+  },
+  {
+    type:    'VISION',
+    emoji:   '🔭',
+    name:    'Kim Hae-hyo',
+    nameKr:  '김해효',
+    actor:   'Mentor de Ho-jin',
+    tagline: '"Você ainda não vê aonde isso vai chegar. Mas vai."',
+    desc:    'Sábio, distante e com um olhar que atravessa o óbvio. Kim Hae-hyo enxerga padrões onde outros veem caos, e carrega respostas que só fazem sentido anos depois de serem dadas.',
+    shadow:  'Sua sombra: vive tão no futuro que o presente passa sem ser vivido. A visão que ilumina os outros pode deixar a si mesmo no escuro.',
+    color:   '#c5a572'
+  }
+];
+
+// ─── Renderiza cards ───
+function renderChars() {
+  const el = document.getElementById('char-list');
+  el.innerHTML = CHARS.map(c => `
+    <div class="char-card" data-type="${c.type}">
+      <div class="char-top">
+        <div class="char-icon">${c.emoji}</div>
+        <div class="char-meta">
+          <div class="char-type-badge">${c.type}</div>
+          <div class="char-name">${c.name} <span style="font-size:14px;font-family:'Montserrat',sans-serif;color:rgba(155,170,184,0.6);">(${c.nameKr})</span></div>
+          <div class="char-actor">${c.actor}</div>
+        </div>
+      </div>
+      <div class="char-tagline">${c.tagline}</div>
+      <div class="char-desc">${c.desc}</div>
+      <div class="char-shadow">
+        <div class="char-shadow-label">◆ SOMBRA</div>
+        <div class="char-shadow-text">${c.shadow}</div>
+      </div>
+      <a href="https://shadowgram.org/shadowgram_pt.html" class="char-quiz-btn">
+        Sou tipo ${c.type} — fazer meu teste completo →
+      </a>
+    </div>
+  `).join('');
+}
+
+// ─── 공유 버튼 ───
+const PAGE_URL  = 'https://shadowgram.org/kdrama';
+const SHARE_MSG = '🎬 Qual personagem de "Pode Traduzir Esse Amor?" tem a SUA psicologia?\n\n8 perfis · análise gratuita · Shadowgram\n👇\n' + PAGE_URL;
+const SHORT_MSG = '🎬 Que personagem de "Pode Traduzir Esse Amor?" é você? Shadowgram revela → ' + PAGE_URL;
+
+document.getElementById('btn-wpp').href =
+  'https://wa.me/?text=' + encodeURIComponent(SHARE_MSG);
+
+document.getElementById('btn-fb').href =
+  'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(PAGE_URL) +
+  '&quote=' + encodeURIComponent(SHORT_MSG);
+
+document.getElementById('btn-x').href =
+  'https://twitter.com/intent/tweet?text=' + encodeURIComponent(SHORT_MSG);
+
+document.getElementById('btn-ig').addEventListener('click', function() {
+  navigator.clipboard && navigator.clipboard.writeText(PAGE_URL);
+  this.textContent = '✅ Link copiado!';
+  setTimeout(() => this.textContent = '📸 Instagram', 2500);
+});
+
+document.getElementById('btn-copy').addEventListener('click', function() {
+  navigator.clipboard && navigator.clipboard.writeText(PAGE_URL);
+  this.textContent = '✅ Link copiado!';
+  setTimeout(() => this.textContent = '🔗 Copiar link desta página', 2000);
+});
+
+// ─── init ───
+renderChars();
+</script>
+</body>
+</html>

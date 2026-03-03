@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 140" width="400" height="140">
+  <defs>
+    <!-- Gradient: light to shadow -->
+    <linearGradient id="ss-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F5E6A0;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#B8860B;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1A2030;stop-opacity:1" />
+    </linearGradient>
+    <!-- Shadow gradient for the circle -->
+    <linearGradient id="circle-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#F5E6A0;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#B8860B;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1A2030;stop-opacity:1" />
+    </linearGradient>
+    <!-- Clip for half circle -->
+    <clipPath id="left-half">
+      <rect x="0" y="0" width="55" height="110"/>
+    </clipPath>
+    <clipPath id="right-half">
+      <rect x="55" y="0" width="55" height="110"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background: dark -->
+  <rect width="400" height="140" fill="#1A2030" rx="12"/>
+
+  <!-- === ICON: Crescent / Yin-Yang inspired === -->
+  <!-- Outer full circle (gold) -->
+  <circle cx="70" cy="70" r="48" fill="#B8860B"/>
+  <!-- Inner shadow half (dark overlay from right) -->
+  <circle cx="70" cy="70" r="48" fill="#1A2030" clip-path="url(#right-half)"/>
+  <!-- Small light dot in dark half -->
+  <circle cx="82" cy="70" r="10" fill="#B8860B"/>
+  <!-- Small dark dot in light half -->
+  <circle cx="58" cy="70" r="10" fill="#1A2030"/>
+  <!-- Dividing line (vertical center) -->
+  <!-- S-curve: use a path for the yin-yang divider -->
+  <path d="M70,22 Q82,46 70,70 Q58,94 70,118" fill="none" stroke="#1A2030" stroke-width="2.5"/>
+  <!-- Outer ring -->
+  <circle cx="70" cy="70" r="48" fill="none" stroke="#B8860B" stroke-width="2"/>
+
+  <!-- === WORDMARK === -->
+  <!-- "Shining" -->
+  <text x="138" y="58"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="30"
+    font-weight="700"
+    letter-spacing="2"
+    fill="url(#ss-grad)">Shining</text>
+
+  <!-- "Shadow" -->
+  <text x="138" y="95"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="30"
+    font-weight="400"
+    font-style="italic"
+    letter-spacing="4"
+    fill="#D0D5E8">Shadow</text>
+
+  <!-- Tagline -->
+  <text x="140" y="118"
+    font-family="Arial, sans-serif"
+    font-size="10"
+    letter-spacing="3.5"
+    fill="#B8860B"
+    font-weight="400">KNOW YOUR WHOLE SELF</text>
+</svg>

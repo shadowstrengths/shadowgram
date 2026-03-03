@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 160" width="480" height="160">
+  <defs>
+    <linearGradient id="bgSG" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1A2030;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#0D1420;stop-opacity:1"/>
+    </linearGradient>
+
+    <!-- Shadowgram: 8각형 방사형 — 분석/지도 느낌 -->
+    <radialGradient id="sgCore" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#E8C96A;stop-opacity:1"/>
+      <stop offset="40%" style="stop-color:#B8860B;stop-opacity:0.9"/>
+      <stop offset="100%" style="stop-color:#7A5800;stop-opacity:0"/>
+    </radialGradient>
+
+    <radialGradient id="sgRing1" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#B8860B;stop-opacity:0.3"/>
+      <stop offset="100%" style="stop-color:#B8860B;stop-opacity:0"/>
+    </radialGradient>
+
+    <linearGradient id="sgText" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#E8C96A;stop-opacity:1"/>
+      <stop offset="60%" style="stop-color:#B8860B;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#7A5800;stop-opacity:1"/>
+    </linearGradient>
+
+    <filter id="sgGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- 배경 -->
+  <rect width="480" height="160" fill="url(#bgSG)" rx="12"/>
+
+  <!-- ══════════════════════ -->
+  <!-- 심볼: Shadowgram 다이어그램 -->
+  <!-- 중심에서 뻗어나가는 8개 축 (8유형 상징) -->
+  <!-- ══════════════════════ -->
+
+  <!-- 동심원 3개 (분석 지도 느낌) -->
+  <circle cx="80" cy="80" r="55" fill="none" stroke="#B8860B" stroke-width="0.5" opacity="0.25"/>
+  <circle cx="80" cy="80" r="38" fill="none" stroke="#B8860B" stroke-width="0.5" opacity="0.35"/>
+  <circle cx="80" cy="80" r="20" fill="none" stroke="#B8860B" stroke-width="0.7" opacity="0.45"/>
+
+  <!-- 8개 방사 축선 (8유형) -->
+  <!-- NE: 45° -->
+  <line x1="80" y1="80" x2="119" y2="41" stroke="#B8860B" stroke-width="0.8" opacity="0.4"/>
+  <!-- NI: 90° (위) -->
+  <line x1="80" y1="80" x2="80" y2="25" stroke="#B8860B" stroke-width="0.8" opacity="0.4"/>
+  <!-- SE: 135° -->
+  <line x1="80" y1="80" x2="41" y2="41" stroke="#B8860B" stroke-width="0.8" opacity="0.4"/>
+  <!-- SI: 180° (좌) -->
+  <line x1="80" y1="80" x2="25" y2="80" stroke="#B8860B" stroke-width="0.8" opacity="0.4"/>
+  <!-- TE: 225° -->
+  <line x1="80" y1="80" x2="41" y2="119" stroke="#B8860B" stroke-width="0.8" opacity="0.4"/>
+  <!-- TI: 270° (아래) -->
+  <line x1="80" y1="80" x2="80" y2="135" stroke="#B8860B" stroke-width="0.8" opacity="0.4"/>
+  <!-- FE: 315° -->
+  <line x1="80" y1="80" x2="119" y2="119" stroke="#B8860B" stroke-width="0.8" opacity="0.4"/>
+  <!-- FI: 0° (우) -->
+  <line x1="80" y1="80" x2="135" y2="80" stroke="#B8860B" stroke-width="0.8" opacity="0.4"/>
+
+  <!-- 8개 유형 끝점 점 (외곽 링 위) -->
+  <circle cx="119" cy="41" r="2.5" fill="#B8860B" opacity="0.6"/>
+  <circle cx="80" cy="25" r="2.5" fill="#B8860B" opacity="0.6"/>
+  <circle cx="41" cy="41" r="2.5" fill="#B8860B" opacity="0.6"/>
+  <circle cx="25" cy="80" r="2.5" fill="#B8860B" opacity="0.6"/>
+  <circle cx="41" cy="119" r="2.5" fill="#B8860B" opacity="0.6"/>
+  <circle cx="80" cy="135" r="2.5" fill="#B8860B" opacity="0.6"/>
+  <circle cx="119" cy="119" r="2.5" fill="#B8860B" opacity="0.6"/>
+  <circle cx="135" cy="80" r="2.5" fill="#B8860B" opacity="0.6"/>
+
+  <!-- 빛/그림자 분할 비대칭 커브 (ShiningShadow 심볼 연계) -->
+  <!-- 빛 영역 (좌상단) -->
+  <path d="
+    M 80 25
+    C 92 28, 108 44, 112 62
+    C 116 76, 108 90, 100 100
+    C 92 110, 80 118, 80 118
+    C 66 110, 52 96, 50 80
+    C 48 64, 56 48, 68 38
+    C 74 32, 78 25, 80 25 Z
+  " fill="#B8860B" opacity="0.07"/>
+
+  <!-- 중심 코어 (빛의 점) -->
+  <circle cx="80" cy="80" r="7" fill="url(#sgCore)" filter="url(#sgGlow)"/>
+  <circle cx="80" cy="80" r="3.5" fill="#FFE08A" opacity="0.95"/>
+  <circle cx="80" cy="80" r="1.5" fill="#FFFFFF"/>
+
+  <!-- ══════════════════════ -->
+  <!-- 워드마크 -->
+  <!-- ══════════════════════ -->
+
+  <!-- Shadow — 라이트 웨이트 -->
+  <text x="158" y="76"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="30"
+    font-weight="300"
+    letter-spacing="5"
+    fill="#8899AA">Shadow</text>
+
+  <!-- gram — 골드, 볼드 -->
+  <text x="158" y="110"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="30"
+    font-weight="700"
+    letter-spacing="5"
+    fill="url(#sgText)">gram</text>
+
+  <!-- 구분선 -->
+  <line x1="158" y1="116" x2="410" y2="116"
+    stroke="#B8860B" stroke-width="0.6" opacity="0.35"/>
+
+  <!-- 서브라인 -->
+  <text x="160" y="132"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="9"
+    font-weight="400"
+    letter-spacing="3"
+    fill="#8899AA"
+    opacity="0.7">8-Type Psyche Mapping  ·  by ShiningShadow</text>
+
+</svg>

@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 140" width="420" height="140">
+  <defs>
+    <linearGradient id="sg-text-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#9BB8D4;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="oct-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2A4A6E;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#0D1F35;stop-opacity:1"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="420" height="140" fill="#0D1F35" rx="12"/>
+
+  <!-- Octagon (8-type frame) -->
+  <polygon
+    points="70,24 103,34 116,67 103,100 70,110 37,100 24,67 37,34"
+    fill="url(#oct-grad)"
+    stroke="#3A7BD5"
+    stroke-width="1.5"/>
+
+  <!-- Inner octagon dashed -->
+  <polygon
+    points="70,38 93,45 100,68 93,91 70,98 47,91 40,68 47,45"
+    fill="none"
+    stroke="#3A7BD5"
+    stroke-width="0.8"
+    stroke-dasharray="2,2"
+    opacity="0.5"/>
+
+  <!-- 8 node dots -->
+  <circle cx="70"  cy="24"  r="4.5" fill="#F5E6A0" filter="url(#glow)"/>
+  <circle cx="103" cy="34"  r="4.5" fill="#E8A87C"/>
+  <circle cx="116" cy="67"  r="4.5" fill="#9BB8D4" filter="url(#glow)"/>
+  <circle cx="103" cy="100" r="4.5" fill="#88C9A1"/>
+  <circle cx="70"  cy="110" r="4.5" fill="#F5E6A0" filter="url(#glow)"/>
+  <circle cx="37"  cy="100" r="4.5" fill="#D4A0C8"/>
+  <circle cx="24"  cy="67"  r="4.5" fill="#9BB8D4" filter="url(#glow)"/>
+  <circle cx="37"  cy="34"  r="4.5" fill="#E8A87C"/>
+
+  <!-- Center dot -->
+  <circle cx="70" cy="67" r="6" fill="#3A7BD5" filter="url(#glow)"/>
+  <circle cx="70" cy="67" r="3" fill="#FFFFFF"/>
+
+  <!-- Lines from center to nodes -->
+  <line x1="70" y1="67" x2="70"  y2="24"  stroke="#F5E6A0" stroke-width="0.6" opacity="0.4"/>
+  <line x1="70" y1="67" x2="103" y2="34"  stroke="#E8A87C" stroke-width="0.6" opacity="0.4"/>
+  <line x1="70" y1="67" x2="116" y2="67"  stroke="#9BB8D4" stroke-width="0.6" opacity="0.4"/>
+  <line x1="70" y1="67" x2="103" y2="100" stroke="#88C9A1" stroke-width="0.6" opacity="0.4"/>
+  <line x1="70" y1="67" x2="70"  y2="110" stroke="#F5E6A0" stroke-width="0.6" opacity="0.4"/>
+  <line x1="70" y1="67" x2="37"  y2="100" stroke="#D4A0C8" stroke-width="0.6" opacity="0.4"/>
+  <line x1="70" y1="67" x2="24"  y2="67"  stroke="#9BB8D4" stroke-width="0.6" opacity="0.4"/>
+  <line x1="70" y1="67" x2="37"  y2="34"  stroke="#E8A87C" stroke-width="0.6" opacity="0.4"/>
+
+  <!-- Wordmark -->
+  <text x="142" y="58"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="30"
+    font-weight="700"
+    letter-spacing="1"
+    fill="#FFFFFF">Shadow<tspan font-weight="300" fill="#3A7BD5">gram</tspan></text>
+
+  <!-- 8-type row 1 -->
+  <text x="142" y="80"
+    font-family="Arial, sans-serif"
+    font-size="9"
+    letter-spacing="1.5"
+    fill="#9BB8D4">STEADY · SPARK · PLAYER · VISION</text>
+
+  <!-- 8-type row 2 -->
+  <text x="142" y="94"
+    font-family="Arial, sans-serif"
+    font-size="9"
+    letter-spacing="1.5"
+    fill="#9BB8D4">LOGIC · HARMONY · LEADER · SOUL</text>
+
+  <!-- Tagline -->
+  <text x="142" y="116"
+    font-family="Arial, sans-serif"
+    font-size="10"
+    letter-spacing="3"
+    fill="#3A7BD5">8-TYPE PERSONALITY ENGINE</text>
+</svg>

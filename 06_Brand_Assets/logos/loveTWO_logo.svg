@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 140" width="400" height="140">
+  <defs>
+    <linearGradient id="lt-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#C2185B;stop-opacity:1"/>
+      <stop offset="50%" style="stop-color:#E57373;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#FF8A65;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="lt-heart-l" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#C2185B;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#E57373;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="lt-heart-r" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E57373;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#FF8A65;stop-opacity:1"/>
+    </linearGradient>
+    <filter id="lt-glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <radialGradient id="bg-warm" cx="30%" cy="50%" r="70%">
+      <stop offset="0%" style="stop-color:#2C0A1A;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#1A0A0E;stop-opacity:1"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background (deep warm dark) -->
+  <rect width="400" height="140" fill="url(#bg-warm)" rx="12"/>
+
+  <!-- === ICON: Two overlapping hearts === -->
+  <!-- Left heart (deeper rose) -->
+  <path d="M52,55 C52,44 38,40 32,50 C26,60 32,72 52,85 C72,72 78,60 72,50 C66,40 52,44 52,55 Z"
+    fill="url(#lt-heart-l)"
+    opacity="0.85"
+    filter="url(#lt-glow)"/>
+
+  <!-- Right heart (warm coral) — offset, overlapping -->
+  <path d="M78,55 C78,44 64,40 58,50 C52,60 58,72 78,85 C98,72 104,60 98,50 C92,40 78,44 78,55 Z"
+    fill="url(#lt-heart-r)"
+    opacity="0.85"
+    filter="url(#lt-glow)"/>
+
+  <!-- Sparkle dots around hearts -->
+  <circle cx="28" cy="42" r="2" fill="#FFB3C1" opacity="0.7"/>
+  <circle cx="108" cy="42" r="2" fill="#FFCCBB" opacity="0.7"/>
+  <circle cx="18" cy="70" r="1.5" fill="#FFB3C1" opacity="0.5"/>
+  <circle cx="118" cy="68" r="1.5" fill="#FFCCBB" opacity="0.5"/>
+  <circle cx="65" cy="18" r="2.5" fill="#FF8A65" opacity="0.6"/>
+  <circle cx="45" cy="100" r="1.5" fill="#C2185B" opacity="0.5"/>
+  <circle cx="88" cy="102" r="1.5" fill="#C2185B" opacity="0.5"/>
+
+  <!-- === WORDMARK === -->
+  <!-- "love" — lowercase, script-feel via italic serif -->
+  <text x="136" y="74"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="38"
+    font-weight="400"
+    font-style="italic"
+    letter-spacing="1"
+    fill="#FFB3C1">love</text>
+
+  <!-- "TWO" — uppercase, bold, warm gradient -->
+  <text x="212" y="74"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="38"
+    font-weight="700"
+    letter-spacing="2"
+    fill="url(#lt-grad)">TWO</text>
+
+  <!-- Divider line -->
+  <line x1="136" y1="82" x2="348" y2="82" stroke="#C2185B" stroke-width="0.8" opacity="0.5"/>
+
+  <!-- Tagline -->
+  <text x="136" y="100"
+    font-family="Arial, sans-serif"
+    font-size="10"
+    letter-spacing="3.5"
+    fill="#E57373"
+    opacity="0.9">DISCOVER YOUR PAIR DYNAMIC</text>
+
+  <!-- Sub-tagline -->
+  <text x="136" y="118"
+    font-family="Arial, sans-serif"
+    font-size="9"
+    letter-spacing="2.5"
+    fill="#FF8A65"
+    opacity="0.6">SHARE · GROW · CONNECT</text>
+</svg>

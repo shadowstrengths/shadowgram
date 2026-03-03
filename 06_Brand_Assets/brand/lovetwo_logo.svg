@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 160" width="480" height="160">
+  <defs>
+    <!-- loveTWO: 따뜻하고 생동감 있는 톤 — 어둡지 않게, 바이럴 감각 -->
+    <linearGradient id="ltBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1A1428;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#0E0B1E;stop-opacity:1"/>
+    </linearGradient>
+
+    <!-- 빛 원 (따뜻한 앰버/골드) -->
+    <radialGradient id="ltLight" cx="42%" cy="38%" r="60%">
+      <stop offset="0%" style="stop-color:#FFD166;stop-opacity:1"/>
+      <stop offset="50%" style="stop-color:#F4A261;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#C1440E;stop-opacity:0.8"/>
+    </radialGradient>
+
+    <!-- 그림자 원 (쿨 블루/퍼플) -->
+    <radialGradient id="ltShadow" cx="58%" cy="62%" r="60%">
+      <stop offset="0%" style="stop-color:#7B61FF;stop-opacity:1"/>
+      <stop offset="50%" style="stop-color:#4A3F8A;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#1A1428;stop-opacity:0.8"/>
+    </radialGradient>
+
+    <!-- 교차 글로우 -->
+    <radialGradient id="ltGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#FFB347;stop-opacity:0.6"/>
+      <stop offset="100%" style="stop-color:#FFB347;stop-opacity:0"/>
+    </radialGradient>
+
+    <!-- love 텍스트 그라디언트 -->
+    <linearGradient id="ltLoveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FFD166;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#F4A261;stop-opacity:1"/>
+    </linearGradient>
+
+    <!-- TWO 텍스트 그라디언트 -->
+    <linearGradient id="ltTwoGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#A78BFA;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#7B61FF;stop-opacity:1"/>
+    </linearGradient>
+
+    <filter id="ltGlowF" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <clipPath id="ltLeftClip">
+      <circle cx="62" cy="80" r="46"/>
+    </clipPath>
+    <clipPath id="ltRightClip">
+      <circle cx="98" cy="80" r="46"/>
+    </clipPath>
+  </defs>
+
+  <!-- 배경 -->
+  <rect width="480" height="160" fill="url(#ltBg)" rx="12"/>
+
+  <!-- ══════════════════════ -->
+  <!-- 심볼: 두 원이 겹치는 구조 (2인 관계 상징) -->
+  <!-- ══════════════════════ -->
+
+  <!-- 왼쪽 원 (빛 — 따뜻한 앰버) -->
+  <circle cx="62" cy="80" r="46" fill="url(#ltLight)" opacity="0.92"/>
+
+  <!-- 오른쪽 원 (그림자 — 쿨 퍼플) -->
+  <circle cx="98" cy="80" r="46" fill="url(#ltShadow)" opacity="0.88"/>
+
+  <!-- 교차 영역 글로우 (두 사람이 만나는 지점) -->
+  <ellipse cx="80" cy="80" rx="18" ry="34"
+    fill="url(#ltGlow)" opacity="0.85"/>
+
+  <!-- 교차 영역 미세 하이라이트 -->
+  <ellipse cx="80" cy="72" rx="10" ry="14"
+    fill="#FFFFFF" opacity="0.08"/>
+
+  <!-- 왼쪽 원 외곽 링 -->
+  <circle cx="62" cy="80" r="46" fill="none"
+    stroke="#FFD166" stroke-width="1.2" opacity="0.5"/>
+
+  <!-- 오른쪽 원 외곽 링 -->
+  <circle cx="98" cy="80" r="46" fill="none"
+    stroke="#7B61FF" stroke-width="1.2" opacity="0.5"/>
+
+  <!-- 왼쪽 원 내부 빛의 핵심 -->
+  <circle cx="52" cy="66" r="6" fill="#FFE08A" opacity="0.9" filter="url(#ltGlowF)"/>
+  <circle cx="52" cy="66" r="3" fill="#FFFFFF" opacity="0.9"/>
+
+  <!-- 오른쪽 원 내부 그림자 핵심 -->
+  <circle cx="108" cy="94" r="5" fill="#1A1428" opacity="0.95"/>
+  <circle cx="108" cy="94" r="2.5" fill="#0E0B1E"/>
+  <circle cx="108" cy="94" r="5" fill="none" stroke="#7B61FF" stroke-width="0.8" opacity="0.6"/>
+
+  <!-- ══════════════════════ -->
+  <!-- 워드마크 -->
+  <!-- ══════════════════════ -->
+
+  <!-- love — 소문자, 따뜻한 골드 -->
+  <text x="162" y="90"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="48"
+    font-weight="400"
+    font-style="italic"
+    letter-spacing="2"
+    fill="url(#ltLoveGrad)">love</text>
+
+  <!-- TWO — 대문자, 퍼플, 볼드 -->
+  <text x="278" y="90"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="48"
+    font-weight="700"
+    letter-spacing="3"
+    fill="url(#ltTwoGrad)">TWO</text>
+
+  <!-- 구분선 -->
+  <line x1="162" y1="98" x2="440" y2="98"
+    stroke="#7B61FF" stroke-width="0.5" opacity="0.3"/>
+
+  <!-- 서브라인 -->
+  <text x="164" y="114"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="9"
+    font-weight="400"
+    letter-spacing="3"
+    fill="#8899AA"
+    opacity="0.7">Shadow Chemistry  ·  by ShiningShadow</text>
+
+</svg>

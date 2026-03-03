@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800">
+  <defs>
+    <!-- 배경 그라디언트 -->
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0f"/>
+      <stop offset="50%" style="stop-color:#12101a"/>
+      <stop offset="100%" style="stop-color:#0d0a14"/>
+    </linearGradient>
+    <!-- SPARK 골드 그라디언트 -->
+    <linearGradient id="sparkGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD700"/>
+      <stop offset="50%" style="stop-color:#FFA500"/>
+      <stop offset="100%" style="stop-color:#FF6B00"/>
+    </linearGradient>
+    <!-- 빛 방사 그라디언트 -->
+    <radialGradient id="glow" cx="50%" cy="45%" r="40%">
+      <stop offset="0%" style="stop-color:#FFD700;stop-opacity:0.15"/>
+      <stop offset="60%" style="stop-color:#FF6B00;stop-opacity:0.05"/>
+      <stop offset="100%" style="stop-color:#0a0a0f;stop-opacity:0"/>
+    </radialGradient>
+    <!-- 심볼 그라디언트 -->
+    <linearGradient id="symGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFE55C"/>
+      <stop offset="100%" style="stop-color:#FF6B00"/>
+    </linearGradient>
+    <!-- 외곽 발광 -->
+    <filter id="goldGlow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- 배경 -->
+  <rect width="800" height="800" fill="url(#bg)"/>
+  
+  <!-- 빛 방사 -->
+  <rect width="800" height="800" fill="url(#glow)"/>
+
+  <!-- 배경 파티클 (작은 점들) -->
+  <circle cx="120" cy="150" r="1.5" fill="#FFD700" opacity="0.4"/>
+  <circle cx="680" cy="200" r="1" fill="#FFA500" opacity="0.3"/>
+  <circle cx="200" cy="600" r="1.5" fill="#FFD700" opacity="0.35"/>
+  <circle cx="650" cy="650" r="1" fill="#FF6B00" opacity="0.3"/>
+  <circle cx="350" cy="100" r="1" fill="#FFE55C" opacity="0.25"/>
+  <circle cx="580" cy="120" r="1.5" fill="#FFD700" opacity="0.3"/>
+  <circle cx="100" cy="400" r="1" fill="#FFA500" opacity="0.2"/>
+  <circle cx="720" cy="450" r="1" fill="#FFD700" opacity="0.25"/>
+  <circle cx="450" cy="720" r="1.5" fill="#FF6B00" opacity="0.3"/>
+  <circle cx="160" cy="700" r="1" fill="#FFD700" opacity="0.2"/>
+
+  <!-- 중앙 심볼: 번개 + 원형 -->
+  <!-- 외곽 원 (얇은 골드) -->
+  <circle cx="400" cy="340" r="130" fill="none" stroke="url(#sparkGold)" stroke-width="1.5" opacity="0.4"/>
+  <circle cx="400" cy="340" r="115" fill="none" stroke="#FFD700" stroke-width="0.5" opacity="0.2"/>
+
+  <!-- 번개 심볼 (SPARK 아이콘) -->
+  <g filter="url(#softGlow)">
+    <!-- 메인 번개 -->
+    <polygon points="415,210 375,345 405,345 385,470 435,320 402,320 430,210" 
+             fill="url(#symGrad)" opacity="0.95"/>
+  </g>
+  
+  <!-- 번개 주변 방사선 (에너지 느낌) -->
+  <g stroke="url(#sparkGold)" stroke-width="1" opacity="0.3" filter="url(#goldGlow)">
+    <line x1="400" y1="175" x2="400" y2="155"/>
+    <line x1="454" y1="192" x2="465" y2="175"/>
+    <line x1="493" y1="230" x2="508" y2="218"/>
+    <line x1="506" y1="284" x2="524" y2="278"/>
+    <line x1="346" y1="192" x2="335" y2="175"/>
+    <line x1="307" y1="230" x2="292" y2="218"/>
+    <line x1="294" y1="284" x2="276" y2="278"/>
+  </g>
+
+  <!-- 구분선 -->
+  <line x1="200" y1="520" x2="600" y2="520" stroke="url(#sparkGold)" stroke-width="0.8" opacity="0.4"/>
+
+  <!-- SHADOWGRAM 상단 텍스트 -->
+  <text x="400" y="490" 
+        font-family="Georgia, serif" 
+        font-size="13" 
+        fill="#FFD700" 
+        text-anchor="middle" 
+        letter-spacing="6"
+        opacity="0.7">SHADOWGRAM</text>
+
+  <!-- 유형 라벨 -->
+  <text x="400" y="575" 
+        font-family="Georgia, serif" 
+        font-size="72" 
+        font-weight="bold"
+        fill="url(#sparkGold)" 
+        text-anchor="middle"
+        letter-spacing="2"
+        filter="url(#goldGlow)">SPARK</text>
+
+  <!-- 서브타이틀 -->
+  <text x="400" y="618" 
+        font-family="Georgia, serif" 
+        font-size="14" 
+        fill="#FFD700" 
+        text-anchor="middle"
+        letter-spacing="3"
+        opacity="0.65">Ne · Intuição Extrovertida</text>
+
+  <!-- Tier 뱃지 -->
+  <rect x="330" y="648" width="140" height="32" rx="16" 
+        fill="none" stroke="url(#sparkGold)" stroke-width="1" opacity="0.5"/>
+  <text x="400" y="669" 
+        font-family="Georgia, serif" 
+        font-size="12" 
+        fill="#FFD700" 
+        text-anchor="middle"
+        letter-spacing="3"
+        opacity="0.8">T1 · BASIC</text>
+
+  <!-- ShiningShadow 브랜드 (하단) -->
+  <text x="400" y="750" 
+        font-family="Georgia, serif" 
+        font-size="11" 
+        fill="#666" 
+        text-anchor="middle"
+        letter-spacing="4">SHININGSHADOW</text>
+</svg>

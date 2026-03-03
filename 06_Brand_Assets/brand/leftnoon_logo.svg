@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 160" width="480" height="160">
+  <defs>
+    <!-- leftnoon: 오후의 따뜻하고 성숙한 빛 — 앰버/시에나 톤 -->
+    <linearGradient id="lnBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1C1810;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#0E0C08;stop-opacity:1"/>
+    </linearGradient>
+
+    <!-- 태양 그라디언트 (오후 햇살 — 기울어진 빛) -->
+    <radialGradient id="lnSun" cx="45%" cy="40%" r="55%">
+      <stop offset="0%" style="stop-color:#FFD580;stop-opacity:1"/>
+      <stop offset="40%" style="stop-color:#E8A020;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#A05A00;stop-opacity:0.6"/>
+    </radialGradient>
+
+    <!-- 지평선 그라디언트 -->
+    <linearGradient id="lnHorizon" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E8A020;stop-opacity:0.4"/>
+      <stop offset="100%" style="stop-color:#1C1810;stop-opacity:0"/>
+    </linearGradient>
+
+    <!-- left (오전) 영역 — 차갑고 밝은 -->
+    <linearGradient id="lnMorning" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" style="stop-color:#1C1810;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#4A7A9B;stop-opacity:0.3"/>
+    </linearGradient>
+
+    <!-- noon (오후) 영역 — 따뜻하고 깊은 -->
+    <linearGradient id="lnAfternoon" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" style="stop-color:#1C1810;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#E8A020;stop-opacity:0.35"/>
+    </linearGradient>
+
+    <linearGradient id="lnTextLeft" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#8899AA;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#6B7A8D;stop-opacity:1"/>
+    </linearGradient>
+
+    <linearGradient id="lnTextNoon" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#E8A020;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#FFD580;stop-opacity:1"/>
+    </linearGradient>
+
+    <filter id="lnGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="3.5" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- 배경 -->
+  <rect width="480" height="160" fill="url(#lnBg)" rx="12"/>
+
+  <!-- ══════════════════════ -->
+  <!-- 심볼: 오후 12시 1분의 태양 — 지평선 위 낮게 걸린 태양 -->
+  <!-- ══════════════════════ -->
+
+  <!-- 지평선 라인 -->
+  <line x1="25" y1="100" x2="135" y2="100"
+    stroke="#E8A020" stroke-width="0.8" opacity="0.4"/>
+
+  <!-- 지평선 아래 그림자 영역 -->
+  <rect x="25" y="100" width="110" height="35" fill="#0E0C08" rx="0" opacity="0.6"/>
+
+  <!-- 지평선 위 오후 빛 영역 -->
+  <rect x="25" y="25" width="110" height="75"
+    fill="url(#lnAfternoon)" opacity="0.6"/>
+
+  <!-- 태양 (지평선 위, 중앙보다 살짝 오른쪽) — 오후의 위치 -->
+  <circle cx="80" cy="85" r="22" fill="url(#lnSun)" filter="url(#lnGlow)" opacity="0.95"/>
+  <circle cx="80" cy="85" r="14" fill="#FFE08A" opacity="0.9"/>
+  <circle cx="80" cy="85" r="8" fill="#FFFFFF" opacity="0.85"/>
+
+  <!-- 태양 광선 (4방향, 오후 느낌으로 기울어짐) -->
+  <!-- 상단 광선 -->
+  <line x1="80" y1="60" x2="80" y2="50" stroke="#E8A020" stroke-width="1.5" opacity="0.5" stroke-linecap="round"/>
+  <!-- 우상단 광선 -->
+  <line x1="96" y1="69" x2="103" y2="62" stroke="#E8A020" stroke-width="1.2" opacity="0.4" stroke-linecap="round"/>
+  <!-- 좌상단 광선 -->
+  <line x1="64" y1="69" x2="57" y2="62" stroke="#E8A020" stroke-width="1.2" opacity="0.4" stroke-linecap="round"/>
+  <!-- 우측 광선 -->
+  <line x1="102" y1="85" x2="112" y2="85" stroke="#E8A020" stroke-width="1.2" opacity="0.35" stroke-linecap="round"/>
+  <!-- 좌측 광선 -->
+  <line x1="58" y1="85" x2="48" y2="85" stroke="#E8A020" stroke-width="1.2" opacity="0.35" stroke-linecap="round"/>
+
+  <!-- 지평선 반사 (태양 아래 물결 느낌) -->
+  <ellipse cx="80" cy="102" rx="16" ry="4"
+    fill="#E8A020" opacity="0.15"/>
+
+  <!-- 지평선 미세 세로선 (오후의 그림자) -->
+  <line x1="80" y1="107" x2="80" y2="130"
+    stroke="#E8A020" stroke-width="0.6" opacity="0.15"/>
+
+  <!-- 외곽 프레임 (사각형 미니멀) -->
+  <rect x="25" y="22" width="110" height="116" fill="none"
+    stroke="#E8A020" stroke-width="0.6" opacity="0.2" rx="4"/>
+
+  <!-- ══════════════════════ -->
+  <!-- 워드마크 -->
+  <!-- ══════════════════════ -->
+
+  <!-- left — 쿨 그레이 (오전의 기억) -->
+  <text x="158" y="88"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="42"
+    font-weight="300"
+    letter-spacing="2"
+    fill="url(#lnTextLeft)">left</text>
+
+  <!-- noon — 골드 앰버 (오후의 현재) -->
+  <text x="258" y="88"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="42"
+    font-weight="700"
+    letter-spacing="2"
+    fill="url(#lnTextNoon)">noon</text>
+
+  <!-- 구분선 -->
+  <line x1="158" y1="96" x2="440" y2="96"
+    stroke="#E8A020" stroke-width="0.6" opacity="0.3"/>
+
+  <!-- 서브라인 -->
+  <text x="160" y="113"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="9"
+    font-weight="400"
+    letter-spacing="3"
+    fill="#8899AA"
+    opacity="0.7">인생의 오후를 살아가는 사람들의 커뮤니티</text>
+
+  <!-- 영문 서브 -->
+  <text x="160" y="128"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="8.5"
+    font-weight="400"
+    letter-spacing="2.5"
+    fill="#6B7A8D"
+    opacity="0.55">A Community for the Second Half of Life  ·  by ShiningShadow</text>
+
+</svg>

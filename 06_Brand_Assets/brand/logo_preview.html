@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShiningShadow — Brand Logo Preview</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0A0E18;
+      font-family: Georgia, 'Times New Roman', serif;
+      color: #8899AA;
+      padding: 48px 32px;
+    }
+    h1 {
+      text-align: center;
+      font-size: 13px;
+      letter-spacing: 6px;
+      color: #B8860B;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      text-align: center;
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: #4A5568;
+      margin-bottom: 56px;
+    }
+    .section {
+      margin-bottom: 64px;
+    }
+    .section-label {
+      font-size: 9px;
+      letter-spacing: 4px;
+      color: #4A5568;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      padding-left: 4px;
+    }
+    .logo-row {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .logo-box {
+      border: 1px solid #1E2A3A;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+    .logo-box:hover {
+      border-color: #B8860B;
+    }
+    .logo-box img {
+      display: block;
+    }
+    .logo-box-light {
+      border: 1px solid #E8E0D0;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    /* 심볼 단독 */
+    .symbol-row {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+    .symbol-box {
+      border: 1px solid #1E2A3A;
+      border-radius: 50%;
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+    .symbol-box:hover {
+      border-color: #B8860B;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #1A2030;
+      margin: 60px 0;
+    }
+
+    .color-palette {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+    .color-chip {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .color-swatch {
+      width: 56px;
+      height: 56px;
+      border-radius: 8px;
+      border: 1px solid #1E2A3A;
+    }
+    .color-label {
+      font-size: 8px;
+      letter-spacing: 1px;
+      color: #4A5568;
+      text-align: center;
+    }
+    .color-hex {
+      font-size: 9px;
+      color: #6B7A8D;
+      letter-spacing: 0.5px;
+    }
+
+    .brand-name {
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: #6B7A8D;
+      margin-top: 8px;
+      text-align: center;
+    }
+    .logo-item {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>ShiningShadow</h1>
+  <p class="subtitle">Brand Logo System · Preview</p>
+
+  <!-- ① 마스터 브랜드 -->
+  <div class="section">
+    <div class="section-label">01 · Master Brand — Dark Version</div>
+    <div class="logo-row">
+      <div class="logo-item">
+        <div class="logo-box">
+          <img src="shiningshadow_logo.svg" width="480" height="160" alt="ShiningShadow Dark"/>
+        </div>
+        <div class="brand-name">shiningshadow.org</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">02 · Master Brand — Light Version</div>
+    <div class="logo-row">
+      <div class="logo-item">
+        <div class="logo-box-light">
+          <img src="shiningshadow_logo_light.svg" width="480" height="160" alt="ShiningShadow Light"/>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">03 · Symbol Mark (Standalone)</div>
+    <div class="symbol-row">
+      <div class="logo-item">
+        <div class="symbol-box">
+          <img src="shiningshadow_symbol.svg" width="160" height="160" alt="ShiningShadow Symbol"/>
+        </div>
+        <div class="brand-name">App Icon · Favicon</div>
+      </div>
+    </div>
+  </div>
+
+  <hr/>
+
+  <!-- ② Shadowgram -->
+  <div class="section">
+    <div class="section-label">04 · Shadowgram — Psyche Mapping Tool</div>
+    <div class="logo-row">
+      <div class="logo-item">
+        <div class="logo-box">
+          <img src="shadowgram_logo.svg" width="480" height="160" alt="Shadowgram"/>
+        </div>
+        <div class="brand-name">검사도구 · 8-Type Psyche Mapping</div>
+      </div>
+    </div>
+  </div>
+
+  <hr/>
+
+  <!-- ③ loveTWO -->
+  <div class="section">
+    <div class="section-label">05 · loveTWO — 2人 Shadow Chemistry</div>
+    <div class="logo-row">
+      <div class="logo-item">
+        <div class="logo-box">
+          <img src="lovetwo_logo.svg" width="480" height="160" alt="loveTWO"/>
+        </div>
+        <div class="brand-name">lovetwo.app · 바이럴 커플 도구</div>
+      </div>
+    </div>
+  </div>
+
+  <hr/>
+
+  <!-- ④ leftnoon -->
+  <div class="section">
+    <div class="section-label">06 · leftnoon — Community</div>
+    <div class="logo-row">
+      <div class="logo-item">
+        <div class="logo-box">
+          <img src="leftnoon_logo.svg" width="480" height="160" alt="leftnoon"/>
+        </div>
+        <div class="brand-name">leftnoon.com · 유료 멤버십 커뮤니티</div>
+      </div>
+    </div>
+  </div>
+
+  <hr/>
+
+  <!-- 컬러 팔레트 -->
+  <div class="section">
+    <div class="section-label">07 · Brand Color Palette</div>
+    <div class="color-palette">
+      <div class="color-chip">
+        <div class="color-swatch" style="background:#1A2030;"></div>
+        <div class="color-label">Brand Dark</div>
+        <div class="color-hex">#1A2030</div>
+      </div>
+      <div class="color-chip">
+        <div class="color-swatch" style="background:#B8860B;"></div>
+        <div class="color-label">Gold</div>
+        <div class="color-hex">#B8860B</div>
+      </div>
+      <div class="color-chip">
+        <div class="color-swatch" style="background:#E8C96A; border-color:#3A3020;"></div>
+        <div class="color-label">Gold Light</div>
+        <div class="color-hex">#E8C96A</div>
+      </div>
+      <div class="color-chip">
+        <div class="color-swatch" style="background:#8899AA;"></div>
+        <div class="color-label">Silver</div>
+        <div class="color-hex">#8899AA</div>
+      </div>
+      <div class="color-chip">
+        <div class="color-swatch" style="background:#7B61FF;"></div>
+        <div class="color-label">loveTWO Purple</div>
+        <div class="color-hex">#7B61FF</div>
+      </div>
+      <div class="color-chip">
+        <div class="color-swatch" style="background:#F4A261; border-color:#3A2010;"></div>
+        <div class="color-label">loveTWO Amber</div>
+        <div class="color-hex">#F4A261</div>
+      </div>
+      <div class="color-chip">
+        <div class="color-swatch" style="background:#E8A020;"></div>
+        <div class="color-label">leftnoon Sun</div>
+        <div class="color-hex">#E8A020</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 브랜드 아키텍처 -->
+  <div class="section">
+    <div class="section-label">08 · Brand Architecture</div>
+    <div style="font-size:11px; line-height:2.2; letter-spacing:1px; color:#4A5568; margin-top:8px; padding-left:4px;">
+      <span style="color:#B8860B;">ShiningShadow</span> &nbsp;·&nbsp; Master Brand &nbsp;·&nbsp; shiningshadow.org<br/>
+      &nbsp;&nbsp;&nbsp;└── <span style="color:#8899AA;">Shadowgram</span> &nbsp;·&nbsp; 검사도구 (8-Type Psyche Mapping)<br/>
+      &nbsp;&nbsp;&nbsp;├── <span style="color:#8899AA;">ShiningShadow SOLO</span> &nbsp;·&nbsp; 1人 Self-Help 과정<br/>
+      &nbsp;&nbsp;&nbsp;├── <span style="color:#A78BFA;">loveTWO</span> &nbsp;·&nbsp; 2人 바이럴 커플 도구 &nbsp;·&nbsp; lovetwo.app<br/>
+      &nbsp;&nbsp;&nbsp;├── <span style="color:#8899AA;">ShiningShadow TEAM</span> &nbsp;·&nbsp; B2B 팀 다이나믹스<br/>
+      &nbsp;&nbsp;&nbsp;└── <span style="color:#E8A020;">leftnoon</span> &nbsp;·&nbsp; 유료 멤버십 커뮤니티 &nbsp;·&nbsp; leftnoon.com
+    </div>
+  </div>
+
+</body>
+</html>

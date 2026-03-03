@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>VISION · Relatório Shadowgram · Nível 1</title>
+<style>
+  :root {
+    --gold:    #C9A84C;
+    --navy:    #1A2B4A;
+    --blue:    #2E5F8A;
+    --light:   #F4F6F9;
+    --text:    #1a1a2e;
+    --muted:   #5a6a80;
+    --card-bg: #ffffff;
+    --border:  #e0e6ef;
+    --accent:  #9B8BB8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Georgia', 'Noto Serif', serif;
+    background: var(--light);
+    color: var(--text);
+    line-height: 1.8;
+    font-size: 17px;
+    -webkit-text-size-adjust: 100%;
+  }
+  .hero {
+    background: linear-gradient(160deg, var(--navy) 0%, #0d1b30 100%);
+    color: #fff;
+    padding: 56px 24px 48px;
+    text-align: center;
+  }
+  .hero-label {
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    font-family: sans-serif;
+  }
+  .hero-type {
+    font-size: clamp(64px, 20vw, 108px);
+    font-weight: 900;
+    color: var(--accent);
+    letter-spacing: -2px;
+    line-height: 1;
+    margin-bottom: 12px;
+    font-family: sans-serif;
+  }
+  .hero-subtitle {
+    font-size: clamp(18px, 5vw, 26px);
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 10px;
+    font-style: italic;
+  }
+  .hero-tagline {
+    font-size: clamp(13px, 3.5vw, 16px);
+    color: var(--gold);
+    letter-spacing: 1px;
+    font-family: sans-serif;
+  }
+  .section {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section:last-child { border-bottom: none; }
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-family: sans-serif;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  h2 {
+    font-size: clamp(20px, 5vw, 26px);
+    color: var(--navy);
+    margin-bottom: 20px;
+    line-height: 1.3;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+  .card-title {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-family: sans-serif;
+    margin-bottom: 16px;
+  }
+  .item-list {
+    list-style: none;
+  }
+  .item-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 15px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    line-height: 1.6;
+  }
+  .item-list li:last-child { border-bottom: none; }
+  .item-list li::before {
+    content: '✦';
+    color: var(--accent);
+    font-size: 11px;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+  .pain-card {
+    background: linear-gradient(135deg, #1A2B4A, #0d1b30);
+    color: #fff;
+    border-radius: 14px;
+    padding: 28px 24px;
+    margin-bottom: 20px;
+  }
+  .pain-card p {
+    font-size: 16px;
+    line-height: 1.9;
+    color: rgba(255,255,255,0.88);
+    font-style: italic;
+  }
+  .quest-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 10px 10px 0;
+    padding: 18px 20px;
+    margin-bottom: 12px;
+  }
+  .quest-day {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-family: sans-serif;
+    margin-bottom: 6px;
+  }
+  .quest-text {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .axis-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 12px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .axis-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+  .axis-name {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-family: sans-serif;
+    margin-bottom: 4px;
+  }
+  .axis-value {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .axis-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .t2-cta {
+    background: linear-gradient(135deg, var(--navy), #0d1b30);
+    color: #fff;
+    border-radius: 16px;
+    padding: 36px 28px;
+    text-align: center;
+    margin: 40px 20px;
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .t2-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-family: sans-serif;
+    margin-bottom: 14px;
+  }
+  .t2-title {
+    font-size: clamp(20px, 5vw, 26px);
+    font-weight: 700;
+    margin-bottom: 14px;
+    line-height: 1.3;
+  }
+  .t2-desc {
+    font-size: 14px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.8;
+    margin-bottom: 24px;
+  }
+  .btn-t2 {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--gold), #e8c96a);
+    color: #000;
+    font-size: 15px;
+    font-weight: 800;
+    font-family: sans-serif;
+    padding: 16px 32px;
+    border-radius: 50px;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+  }
+  footer {
+    text-align: center;
+    padding: 40px 20px 60px;
+    font-size: 12px;
+    color: var(--muted);
+    font-family: sans-serif;
+    line-height: 2;
+  }
+  @media (min-width: 600px) {
+    .hero { padding: 80px 40px 64px; }
+    .section { padding: 52px 40px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-label">SHADOWGRAM · RELATÓRIO NÍVEL 1</p>
+  <div class="hero-type">VISION</div>
+  <p class="hero-subtitle">O Visionário</p>
+  <p class="hero-tagline">A profundidade que enxerga além</p>
+</div>
+
+<!-- 핵심 기능 축 -->
+<div class="section">
+  <p class="section-label">Seus eixos de energia</p>
+  <h2>Como sua psique está configurada</h2>
+
+  <div class="axis-card">
+    <div class="axis-dot"></div>
+    <div>
+      <div class="axis-name">Função Dominante (sua luz)</div>
+      <div class="axis-value">Ni — Intuição Introvertida</div>
+      <div class="axis-desc">Seu modo natural de processar o mundo. Quando você está no fluxo, é isso que está ativo.</div>
+    </div>
+  </div>
+
+  <div class="axis-card" style="opacity:0.75">
+    <div class="axis-dot" style="background:#9BAAB8"></div>
+    <div>
+      <div class="axis-name">Função Inferior (sua sombra)</div>
+      <div class="axis-value">Se — Sensação Extrovertida</div>
+      <div class="axis-desc">A função menos desenvolvida — e por isso, a que mais sabota nos momentos de pressão.</div>
+    </div>
+  </div>
+</div>
+
+<!-- 빛 -->
+<div class="section">
+  <p class="section-label">Parte 1</p>
+  <h2>Sua luz — Ni dominante</h2>
+  <div class="card">
+    <div class="card-title">Seus 7 padrões de luz</div>
+    <ul class="item-list">
+            <li>Visão de padrões profundos que outros não veem</li>
+      <li>Insights sobre o futuro que se provam corretos</li>
+      <li>Capacidade de síntese complexa em clareza simples</li>
+      <li>Profundidade de foco e concentração singular</li>
+      <li>Bússola interna confiável para direções importantes</li>
+      <li>Habilidade de ver o símbolo por trás do literal</li>
+      <li>Presença magnética e misteriosa que atrai outros</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 그림자 -->
+<div class="section">
+  <p class="section-label">Parte 2</p>
+  <h2>Sua sombra — Se inferior</h2>
+  <div class="pain-card">
+    <p>Você carrega visões poderosas que nunca saem da cabeça. Sua sombra Se não integrada te mantém preso no mundo das ideias — perfeitas, elaboradas, mas nunca manifestadas. O preço da visão sem ação é a irrelevância de tudo que você poderia ter criado.</p>
+  </div>
+  <div class="card">
+    <div class="card-title">Seus 7 padrões de sombra</div>
+    <ul class="item-list">
+            <li>Desconexão do corpo e do presente físico</li>
+      <li>Dificuldade de agir no mundo real, não só nas ideias</li>
+      <li>Negligência das necessidades físicas básicas</li>
+      <li>Paralisia por análise quando a ação é necessária</li>
+      <li>Sensação de que o mundo externo é ruidoso e chato</li>
+      <li>Dificuldade de desfrutar o prazer sensorial simples</li>
+      <li>Isolamento progressivo do mundo e das pessoas</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 7일 퀘스트 -->
+<div class="section">
+  <p class="section-label">Parte 3 — Stage 1 Quest</p>
+  <h2>7 dias de autodescoberta</h2>
+    <div class="quest-item">
+    <div class="quest-day">Dia 1</div>
+    <div class="quest-text">Saia do seu espaço habitual. Caminhe 20 minutos sem fone.</div>
+  </div>
+  <div class="quest-item">
+    <div class="quest-day">Dia 2</div>
+    <div class="quest-text">Cozinhe ou faça algo com as mãos — fique presente no processo.</div>
+  </div>
+  <div class="quest-item">
+    <div class="quest-day">Dia 3</div>
+    <div class="quest-text">Identifique uma visão que está 'na cabeça' há muito tempo. Que primeiro passo físico ela pede?</div>
+  </div>
+  <div class="quest-item">
+    <div class="quest-day">Dia 4</div>
+    <div class="quest-text">Pratique estar totalmente presente em uma conversa — sem formular respostas enquanto o outro fala.</div>
+  </div>
+  <div class="quest-item">
+    <div class="quest-day">Dia 5</div>
+    <div class="quest-text">Faça exercício físico por 30 minutos. Note como seu corpo responde.</div>
+  </div>
+  <div class="quest-item">
+    <div class="quest-day">Dia 6</div>
+    <div class="quest-text">Transforme uma ideia abstrata em algo concreto — um rascunho, um protótipo, uma lista.</div>
+  </div>
+  <div class="quest-item">
+    <div class="quest-day">Dia 7</div>
+    <div class="quest-text">Escreva: que ação no mundo real minha sombra Se está pedindo?</div>
+  </div>
+</div>
+
+<!-- T2 CTA -->
+<div class="t2-cta">
+  <div class="t2-label">Próximo nível</div>
+  <div class="t2-title">Quer ir mais fundo no tipo VISION?</div>
+  <div class="t2-desc">
+    O Shadowgram Deep analisa seus 4 eixos completos,<br>
+    padrões de conflito e compatibilidade com todos os 8 tipos.
+  </div>
+  <a class="btn-t2" href="https://go.hotmart.com/Q104596575B?sck=VISION_T2" target="_blank">
+    Quero o Shadowgram Deep →
+  </a>
+</div>
+
+<footer>
+  <p>SHADOWGRAM · Shining Shadow</p>
+  <p>Este relatório é para uso pessoal exclusivo.</p>
+  <p style="margin-top:12px;font-size:10px;color:#aaa">
+    Shadowgram é um framework independente.<br>
+    MBTI® é marca registrada de The Myers &amp; Briggs Foundation.
+  </p>
+</footer>
+
+</body>
+</html>

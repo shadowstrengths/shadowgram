@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>SPARK · Relatório Shadowgram · Nível 1</title>
+<style>
+  :root {
+    --gold:    #C9A84C;
+    --navy:    #1A2B4A;
+    --blue:    #2E5F8A;
+    --light:   #F4F6F9;
+    --text:    #1a1a2e;
+    --muted:   #5a6a80;
+    --card-bg: #ffffff;
+    --border:  #e0e6ef;
+    --spark:   #E8A030;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Georgia', 'Noto Serif', serif;
+    background: var(--light);
+    color: var(--text);
+    line-height: 1.8;
+    font-size: 17px;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(160deg, var(--navy) 0%, #0d1b30 100%);
+    color: #fff;
+    padding: 56px 24px 48px;
+    text-align: center;
+  }
+  .hero-label {
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    font-family: sans-serif;
+  }
+  .hero-type {
+    font-size: clamp(64px, 20vw, 108px);
+    font-weight: 900;
+    color: var(--spark);
+    line-height: 1;
+    letter-spacing: -2px;
+    font-family: 'Arial Black', sans-serif;
+  }
+  .hero-name {
+    font-size: clamp(18px, 5vw, 26px);
+    color: rgba(255,255,255,0.85);
+    margin-top: 8px;
+    font-style: italic;
+  }
+  .hero-tagline {
+    font-size: clamp(15px, 4vw, 19px);
+    color: var(--gold);
+    margin-top: 20px;
+    font-weight: 600;
+    font-family: sans-serif;
+  }
+  .hero-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 8px;
+    font-family: sans-serif;
+  }
+
+  /* ── READER NOTE ── */
+  .reader-note {
+    background: var(--navy);
+    color: rgba(255,255,255,0.88);
+    padding: 28px 24px;
+    font-size: 15px;
+    line-height: 1.9;
+    border-left: 4px solid var(--gold);
+  }
+  .reader-note p + p { margin-top: 12px; }
+
+  /* ── TOC ── */
+  .toc {
+    background: var(--card-bg);
+    margin: 0;
+    padding: 28px 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .toc-title {
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-family: sans-serif;
+    margin-bottom: 16px;
+  }
+  .toc-item {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--border);
+    font-size: 15px;
+    font-family: sans-serif;
+  }
+  .toc-item:last-child { border-bottom: none; }
+  .toc-num {
+    background: var(--spark);
+    color: #fff;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    padding: 40px 24px;
+    background: var(--card-bg);
+    margin-top: 8px;
+  }
+  .section-tag {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-family: sans-serif;
+    margin-bottom: 6px;
+  }
+  .section-title {
+    font-size: clamp(20px, 5vw, 26px);
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .section-sub {
+    font-size: 15px;
+    color: var(--muted);
+    font-family: sans-serif;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--border);
+  }
+  p { margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── TABLE CARD ── */
+  .table-card {
+    background: var(--light);
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 20px 0;
+  }
+  .table-card .t-row {
+    padding: 16px 18px;
+    border-bottom: 1px solid var(--border);
+    font-size: 15px;
+    font-family: sans-serif;
+  }
+  .table-card .t-row:last-child { border-bottom: none; }
+  .table-card .t-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .table-card .t-value { color: var(--text); line-height: 1.6; }
+  .table-card .t-row.highlight { background: rgba(232,160,48,0.08); }
+
+  /* ── CLIMATE CARDS ── */
+  .climate-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 20px 0;
+  }
+  @media (max-width: 380px) {
+    .climate-grid { grid-template-columns: 1fr; }
+  }
+  .climate-card {
+    background: var(--light);
+    border-radius: 12px;
+    padding: 16px;
+    border-top: 3px solid var(--spark);
+  }
+  .climate-icon { font-size: 24px; margin-bottom: 8px; }
+  .climate-name { font-size: 13px; font-weight: 700; font-family: sans-serif; color: var(--navy); margin-bottom: 6px; }
+  .climate-when { font-size: 12px; color: var(--muted); font-family: sans-serif; margin-bottom: 6px; }
+  .climate-feel { font-size: 13px; line-height: 1.5; }
+
+  /* ── LIST ITEMS ── */
+  .dot-list { list-style: none; padding: 0; margin: 16px 0; }
+  .dot-list li {
+    padding: 10px 0 10px 28px;
+    position: relative;
+    border-bottom: 1px dashed var(--border);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  .dot-list li:last-child { border-bottom: none; }
+  .dot-list li::before {
+    content: '▸';
+    position: absolute; left: 0;
+    color: var(--spark);
+    font-size: 14px;
+  }
+  .dot-list li strong { color: var(--navy); }
+
+  /* ── GIFT/SHADOW ITEMS ── */
+  .gift-item, .shadow-item {
+    background: var(--light);
+    border-radius: 10px;
+    padding: 18px;
+    margin: 10px 0;
+    border-left: 4px solid var(--spark);
+  }
+  .shadow-item { border-left-color: #8B6A99; }
+  .item-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--navy);
+    font-family: sans-serif;
+    margin-bottom: 8px;
+  }
+  .item-body { font-size: 15px; line-height: 1.7; color: #2a2a3e; }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box {
+    background: linear-gradient(135deg, #1A2B4A 0%, #2E5F8A 100%);
+    color: #fff;
+    border-radius: 12px;
+    padding: 24px 20px;
+    margin: 24px 0;
+  }
+  .insight-box .i-icon { font-size: 22px; margin-bottom: 10px; }
+  .insight-box .i-title {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-family: sans-serif;
+    margin-bottom: 10px;
+  }
+  .insight-box p { font-size: 15px; line-height: 1.75; color: rgba(255,255,255,0.9); }
+
+  /* ── RELATIONSHIP TABLE ── */
+  .rel-item {
+    background: var(--light);
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin: 10px 0;
+    border-left: 4px solid var(--blue);
+  }
+  .rel-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .rel-type {
+    background: var(--navy);
+    color: var(--gold);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-family: sans-serif;
+  }
+  .rel-climate { font-size: 14px; color: var(--muted); font-family: sans-serif; }
+  .rel-row { font-size: 14px; line-height: 1.6; margin-top: 6px; }
+  .rel-row span { font-weight: 600; color: var(--navy); }
+
+  /* ── QUOTE BOX ── */
+  .quote-box {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 18px;
+    margin: 10px 0;
+  }
+  .quote-text { font-size: 16px; font-style: italic; color: var(--navy); margin-bottom: 8px; }
+  .quote-arrow { font-size: 13px; color: var(--muted); font-family: sans-serif; padding-left: 12px; border-left: 3px solid var(--spark); }
+
+  /* ── QUEST TABLE ── */
+  .quest-item {
+    background: var(--light);
+    border-radius: 10px;
+    padding: 18px;
+    margin: 10px 0;
+    position: relative;
+  }
+  .quest-day {
+    background: var(--spark);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    font-family: sans-serif;
+    padding: 3px 10px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+  .quest-name { font-size: 15px; font-weight: 700; color: var(--navy); font-family: sans-serif; margin-bottom: 6px; }
+  .quest-action { font-size: 14px; line-height: 1.65; margin-bottom: 8px; }
+  .quest-discover { font-size: 13px; color: var(--blue); font-family: sans-serif; }
+  .quest-discover::before { content: '→ '; }
+
+  /* ── REWARD BOX ── */
+  .reward-box {
+    background: linear-gradient(135deg, #C9A84C 0%, #e8c56a 100%);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    margin: 20px 0;
+  }
+  .reward-box .r-icon { font-size: 28px; margin-bottom: 8px; }
+  .reward-box .r-title { font-size: 15px; font-weight: 700; color: var(--navy); font-family: sans-serif; margin-bottom: 6px; }
+  .reward-box .r-body { font-size: 14px; color: var(--navy); line-height: 1.6; }
+
+  /* ── ROADMAP ── */
+  .roadmap-item {
+    display: flex;
+    gap: 16px;
+    margin: 16px 0;
+    align-items: flex-start;
+  }
+  .roadmap-stage {
+    background: var(--navy);
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: 700;
+    font-family: sans-serif;
+    padding: 6px 10px;
+    border-radius: 8px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .roadmap-content .r-name { font-size: 15px; font-weight: 700; color: var(--navy); font-family: sans-serif; margin-bottom: 4px; }
+  .roadmap-content .r-task { font-size: 14px; line-height: 1.6; }
+  .roadmap-content .r-need { font-size: 13px; color: var(--muted); font-family: sans-serif; }
+
+  /* ── MONEY TABLE ── */
+  .money-card {
+    background: var(--light);
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin: 10px 0;
+    border-top: 3px solid var(--gold);
+  }
+  .money-title { font-size: 15px; font-weight: 700; color: var(--navy); font-family: sans-serif; margin-bottom: 6px; }
+  .money-how { font-size: 14px; line-height: 1.65; margin-bottom: 6px; }
+  .money-form { font-size: 13px; color: var(--blue); font-family: sans-serif; }
+
+  /* ── CHECKLIST ── */
+  .checklist { list-style: none; padding: 0; margin: 12px 0; }
+  .checklist li {
+    padding: 8px 0 8px 32px;
+    position: relative;
+    font-size: 15px;
+    line-height: 1.6;
+    border-bottom: 1px dashed var(--border);
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist li::before {
+    content: '☐';
+    position: absolute; left: 4px;
+    color: var(--spark); font-size: 16px;
+  }
+
+  /* ── TIER2 CTA ── */
+  .tier2-cta {
+    background: linear-gradient(160deg, var(--navy) 0%, #0d1b30 100%);
+    color: #fff;
+    border-radius: 16px;
+    padding: 32px 24px;
+    text-align: center;
+    margin: 32px 0 0;
+  }
+  .tier2-cta .c-eyebrow { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-family: sans-serif; margin-bottom: 12px; }
+  .tier2-cta .c-title { font-size: clamp(20px, 5vw, 26px); font-weight: 700; margin-bottom: 12px; }
+  .tier2-cta .c-list { list-style: none; padding: 0; margin: 16px 0 24px; text-align: left; }
+  .tier2-cta .c-list li {
+    font-size: 14px; font-family: sans-serif;
+    padding: 6px 0 6px 22px; position: relative;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.85);
+  }
+  .tier2-cta .c-list li::before { content: '✦'; position: absolute; left: 0; color: var(--gold); font-size: 10px; top: 9px; }
+  .tier2-cta .c-list li:last-child { border-bottom: none; }
+  .btn-tier2 {
+    display: block;
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 15px;
+    font-weight: 800;
+    font-family: sans-serif;
+    padding: 16px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    margin-top: 4px;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── CLOSING ── */
+  .closing {
+    background: var(--navy);
+    color: #fff;
+    text-align: center;
+    padding: 48px 24px;
+  }
+  .closing .cl-quote { font-size: clamp(17px, 4.5vw, 22px); line-height: 1.7; font-style: italic; color: rgba(255,255,255,0.9); margin-bottom: 16px; }
+  .closing .cl-sub { font-size: 13px; color: var(--gold); font-family: sans-serif; letter-spacing: 1px; }
+
+  /* ── FOOTER ── */
+  footer { background: #0d1218; color: rgba(255,255,255,0.35); font-size: 12px; text-align: center; padding: 20px 24px; font-family: sans-serif; line-height: 1.8; }
+
+  /* ── DESKTOP ── */
+  @media (min-width: 600px) {
+    body { font-size: 18px; }
+    .hero { padding: 72px 48px 64px; }
+    .section { padding: 52px 48px; max-width: 720px; margin-left: auto; margin-right: auto; }
+    .reader-note { padding: 36px 48px; }
+    .toc { padding: 36px 48px; }
+    .climate-grid { grid-template-columns: 1fr 1fr; }
+    .tier2-cta { max-width: 640px; margin: 32px auto 0; }
+    .closing { padding: 64px 48px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">Shadowgram · Relatório de Tipo · Nível 1</div>
+  <div class="hero-type">SPARK</div>
+  <div class="hero-name">The Explorer &nbsp;|&nbsp; O Explorador</div>
+  <div class="hero-tagline">Sua intuição está aberta para o mundo</div>
+  <div class="hero-sub">ShiningShadow · Série Shadowgram</div>
+</div>
+
+<!-- READER NOTE -->
+<div class="reader-note">
+  <p>Este relatório não é uma ferramenta para classificar seu "tipo" de personalidade. Shadowgram mostra o clima da energia que flui dentro de você.</p>
+  <p>SPARK — Extroverted Intuition (Ne) — é sua função dominante. Essa intuição aberta para o mundo captura constantemente possibilidades e conexões. Seja ENFP ou ENTP, a janela mais fundamental para experimentar o mundo é essa energia Ne.</p>
+  <p>E do outro lado dessa luz está Si — Introverted Sensing — sua função inferior, onde se esconde o tesouro de crescimento maior, embora menos desenvolvido. Este relatório é um mapa do clima interior entre as duas energias.</p>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <div class="toc-title">📖 O que você descobrirá neste relatório</div>
+  <div class="toc-item"><span class="toc-num">1</span>Mapa de clima interior SPARK — Como funciona sua função dominante Ne</div>
+  <div class="toc-item"><span class="toc-num">2</span>Luz e sombra — 7 dons de Ne + 7 sombras de Si</div>
+  <div class="toc-item"><span class="toc-num">3</span>Mapa de clima de relacionamentos — Como você colide e se conecta</div>
+  <div class="toc-item"><span class="toc-num">4</span>Stage 1 Quest — Missão de autodescoberta de 7 dias</div>
+  <div class="toc-item"><span class="toc-num">5</span>Mapa climático do dinheiro — Como SPARK se encontra com o dinheiro</div>
+  <div class="toc-item"><span class="toc-num">6</span>Próxima navegação — Pré-visualização do caminho de crescimento</div>
+</div>
+
+<!-- PART 1 -->
+<div class="section">
+  <div class="section-tag">Parte 1</div>
+  <div class="section-title">Mapa de clima interior SPARK</div>
+  <div class="section-sub">Intuição Extrovertida — A antena de possibilidades aberta para o mundo</div>
+
+  <p>Ne (Intuição Extrovertida) é a função que capta possibilidades e padrões no mundo externo. Detecta intuitivamente as conexões atrás da realidade presente, possibilidades ainda por vir e similitudes em contextos completamente diferentes.</p>
+  <p>No Shadowgram, o tipo SPARK se refere a todas as pessoas que usam Ne como função dominante. De acordo com MBTI®, corresponde a ENFP e ENTP. Este relatório se concentra nos eixos centrais de sua energia: Ne (luz) e Si (sombra).</p>
+
+  <div class="table-card">
+    <div class="t-row highlight">
+      <div class="t-label">Função Dominante</div>
+      <div class="t-value"><strong>Ne · Intuição Extrovertida</strong><br>Captação de possibilidades, conexão de ideias, condução da mudança, resolução criativa de problemas</div>
+    </div>
+    <div class="t-row">
+      <div class="t-label">Função Inferior (sombra)</div>
+      <div class="t-value"><strong>Si · Sensação Introvertida</strong><br>Tesouro de crescimento: rotinas, detalhes, sabedoria de experiências passadas, poder de completar</div>
+    </div>
+  </div>
+
+  <p style="font-size:14px;color:var(--muted);font-style:italic;font-family:sans-serif;">* MBTI® é uma marca registrada da The Myers &amp; Briggs Foundation. Shadowgram é um framework independente.</p>
+
+  <div class="section-tag" style="margin-top:28px;">Padrões de clima interior</div>
+
+  <div class="climate-grid">
+    <div class="climate-card">
+      <div class="climate-icon">🌤</div>
+      <div class="climate-name">Brainstorm</div>
+      <div class="climate-when">Conversa livre, novo estímulo</div>
+      <div class="climate-feel">As ideias explodem em sua mente, emoção, sensação de que tudo está conectado</div>
+    </div>
+    <div class="climate-card">
+      <div class="climate-icon">🌊</div>
+      <div class="climate-name">Onda de possibilidades</div>
+      <div class="climate-when">Situação problemática, início de novo projeto</div>
+      <div class="climate-feel">Perguntas como 'E se fazemos assim?' transbordam, entusiasmo e carga de energia</div>
+    </div>
+    <div class="climate-card">
+      <div class="climate-icon">⛈</div>
+      <div class="climate-name">Tempestade de conclusão</div>
+      <div class="climate-when">Rotina, repetição, trabalho de detalhes</div>
+      <div class="climate-feel">Tédio, impulso de escapar, sensação de 'deve haver algo melhor'</div>
+    </div>
+    <div class="climate-card">
+      <div class="climate-icon">🌀</div>
+      <div class="climate-name">Redemoinho Si</div>
+      <div class="climate-when">Estresse extremo, responsabilidade avassaladora</div>
+      <div class="climate-feel">Obsessão por saúde, ruminação do passado, teimosia em coisas insignificantes</div>
+    </div>
+  </div>
+
+  <div class="section-tag" style="margin-top:28px;">Características-chave do tipo SPARK</div>
+  <ul class="dot-list">
+    <li><strong>Pensamento divergente:</strong> uma pergunta gera 10 novas perguntas</li>
+    <li><strong>Conexões entre domínios:</strong> conexão instintiva de ideias de campos completamente diferentes</li>
+    <li><strong>Prioridade de possibilidades:</strong> foco primeiro em possibilidades ideais antes das limitações</li>
+    <li><strong>Energia de mudança:</strong> recarregamento de energia a partir de estímulos novos e frescos</li>
+    <li><strong>Exploração linguística:</strong> o pensamento se desenvolve e se torna mais claro através da conversa</li>
+    <li><strong>Exploração por trás do fenômeno:</strong> ver primeiro o significado e padrão por trás da superfície</li>
+  </ul>
+</div>
+
+<!-- PART 2 -->
+<div class="section">
+  <div class="section-tag">Parte 2</div>
+  <div class="section-title">Luz e sombra</div>
+  <div class="section-sub">Os 7 dons de Ne · A luz que só você tem</div>
+
+  <p>Estes são os 7 dons de luz que se manifestam quando sua função dominante Ne funciona de forma saudável. Leia e marque o que ressoa como "Sou eu!".</p>
+
+  <div class="gift-item">
+    <div class="item-title">✨ Captação de possibilidades — Ver primeiro o que ainda não existe</div>
+    <div class="item-body">Quando outros veem obstáculos, você vê possibilidades além dele. A pergunta 'E se mudássemos isso desta forma?' flui naturalmente.</div>
+  </div>
+  <div class="gift-item">
+    <div class="item-title">✨ Conexão criativa — Descobrir pontos em comum entre coisas completamente diferentes</div>
+    <div class="item-body">O ponto em comum entre um polvo e uma startup, princípios similares entre jazz e negociação — você conecta intuitivamente padrões que outros não veem.</div>
+  </div>
+  <div class="gift-item">
+    <div class="item-title">✨ Resolução adaptativa de problemas — Quando há obstáculos, encontre outro caminho</div>
+    <div class="item-body">Mesmo quando os métodos existentes não funcionam, você não fica assustado. 'E se tentássemos este método?' se ativa automaticamente.</div>
+  </div>
+  <div class="gift-item">
+    <div class="item-title">✨ Propagação de paixão — O poder de mover pessoas com ideias</div>
+    <div class="item-body">Quando você se emociona, também emociona as pessoas ao seu redor. Você tem a capacidade de fazer as possibilidades ganhar vida vividamente.</div>
+  </div>
+  <div class="gift-item">
+    <div class="item-title">✨ Aprendizado rápido — A capacidade de se lançar diretamente em novos campos</div>
+    <div class="item-body">Mesmo se você não está completamente preparado, você se lança e aprende. Esta coragem é na verdade o método de aprendizagem mais rápido.</div>
+  </div>
+  <div class="gift-item">
+    <div class="item-title">✨ Pensamento flexível — Mudança de perspectiva que quebra marcos</div>
+    <div class="item-body">Frases como 'assim sempre se faz' soam como um desafio para você. A capacidade de questionar o óbvio é o que cria inovação.</div>
+  </div>
+  <div class="gift-item">
+    <div class="item-title">✨ Energia orientada para o futuro — Otimismo que olha para frente</div>
+    <div class="item-body">Mesmo se há dificuldades presentes, seu otimismo inato de que 'no final tudo dará certo' dá esperança às pessoas ao seu redor.</div>
+  </div>
+
+  <div class="section-tag" style="margin-top:36px;">Os 7 padrões da sombra Si · A escuridão que você deve confrontar</div>
+  <p>Estes são os padrões de sombra que aparecem quando a função inferior Si é suprimida ou muito ignorada. Quanto mais forte a luz, mais profunda a sombra.</p>
+
+  <div class="shadow-item">
+    <div class="item-title">🌑 Evasão de completar — Você começa bem, mas não termina</div>
+    <div class="item-body">Quando aparece uma ideia nova, você quer abandonar a anterior. Porque começar é muito mais emocionante que completar. Acumula-se um cemitério de projetos incompletos.</div>
+  </div>
+  <div class="shadow-item">
+    <div class="item-title">🌑 Colapso de rotinas — Você não consegue sustentar coisas repetitivas</div>
+    <div class="item-body">As rotinas de exercício, comida e sono dificilmente duram mais de 3 dias. No momento em que você se entedia, a energia desaparece.</div>
+  </div>
+  <div class="shadow-item">
+    <div class="item-title">🌑 Ignorância de detalhes — Você apenas vê o panorama geral</div>
+    <div class="item-body">Sua ideia é perfeita mas seu plano de execução tem muitos buracos. 'Vou pensar sobre isso mais tarde' se repete.</div>
+  </div>
+  <div class="shadow-item">
+    <div class="item-title">🌑 Ignorância de experiência passada — Você repete os mesmos erros</div>
+    <div class="item-body">Si é a função que extrai padrões de experiências passadas. Se Si é fraco, você tenta novamente métodos que não funcionaram antes.</div>
+  </div>
+  <div class="shadow-item">
+    <div class="item-title">🌑 Ignorância de sinais corporais — Você ignora advertências do seu corpo</div>
+    <div class="item-body">Quando você está absorto em algo interessante, não nota cansaço, fome ou dor. O esgotamento o surpreende de repente.</div>
+  </div>
+  <div class="shadow-item">
+    <div class="item-title">🌑 Explosão Si — Obsessão extrema com o passado e compulsão pela saúde</div>
+    <div class="item-body">Quando o estresse chega ao máximo, sua função inferior Si explode. De repente você se obsessiona com a saúde, rumina feridas antigas, ou fica teimoso com regras insignificantes.</div>
+  </div>
+  <div class="shadow-item">
+    <div class="item-title">🌑 Evasão de responsabilidade — "Sou um espírito livre" como escudo</div>
+    <div class="item-body">Para escapar de responsabilidades entediantes e repetitivas, você usa 'assim sou naturalmente' como escudo narrativo.</div>
+  </div>
+
+  <div class="insight-box">
+    <div class="i-icon">💡</div>
+    <div class="i-title">Ponto de partida do trabalho de sombra</div>
+    <p>A sombra Si não é um inimigo a eliminar. É a energia que você deve integrar. Para que a luz de Ne brilhe mais fortemente, a estabilidade de Si deve se tornar terra firme. Estes dois não estão em conflito, mas em uma relação de cooperação.</p>
+  </div>
+</div>
+
+<!-- PART 3 -->
+<div class="section">
+  <div class="section-tag">Parte 3</div>
+  <div class="section-title">Mapa de clima de relacionamentos</div>
+  <div class="section-sub">Tipo SPARK e outros tipos — O clima de conexão e choque</div>
+
+  <p>O tipo SPARK quer estímulo e possibilidade nas relações. Sua energia se abre para pessoas que o entendem profundamente e podem explorar ideias com você. Mas você também precisa saber como sua energia Ne é experimentada pela outra pessoa.</p>
+
+  <div class="rel-item">
+    <div class="rel-header"><span class="rel-type">VISION (NI)</span><span class="rel-climate">Visão profunda, quietude na tempestade</span></div>
+    <div class="rel-row"><span>Frustração:</span> SPARK fica impaciente com as conclusões lentas de VISION</div>
+    <div class="rel-row"><span>Conexão:</span> Possibilidade Ne + Direção Ni = Companheiro de visão mais poderoso</div>
+  </div>
+  <div class="rel-item">
+    <div class="rel-header"><span class="rel-type">SPARK (NE)</span><span class="rel-climate">Explosão de ideias, amplificação de energia</span></div>
+    <div class="rel-row"><span>Frustração:</span> Ambos acumulam apenas ideias sem execução</div>
+    <div class="rel-row"><span>Conexão:</span> Melhor colega para brainstorm, mas precisa de executor</div>
+  </div>
+  <div class="rel-item">
+    <div class="rel-header"><span class="rel-type">PLAYER (SE)</span><span class="rel-climate">Energia do presente, desfrute da improvisação</span></div>
+    <div class="rel-row"><span>Frustração:</span> O foco no presente de PLAYER interfere com os planos futuros de SPARK</div>
+    <div class="rel-row"><span>Conexão:</span> Ideia Ne + Execução imediata Se = Equipe explosiva</div>
+  </div>
+  <div class="rel-item">
+    <div class="rel-header"><span class="rel-type">STEADY (SI)</span><span class="rel-climate">Estável, confiança, previsível</span></div>
+    <div class="rel-row"><span>Frustração:</span> A resistência à mudança de STEADY é o que mais frustra SPARK</div>
+    <div class="rel-row"><span>Conexão:</span> STEADY valida e sustenta as ideias de inovação de SPARK</div>
+  </div>
+  <div class="rel-item">
+    <div class="rel-header"><span class="rel-type">LEADER (TE)</span><span class="rel-climate">Objetivo claro, velocidade rápida</span></div>
+    <div class="rel-row"><span>Frustração:</span> A pressão de eficiência de LEADER corta a exploração de SPARK</div>
+    <div class="rel-row"><span>Conexão:</span> Criatividade Ne + Poder de execução Te = Organização inovadora</div>
+  </div>
+  <div class="rel-item">
+    <div class="rel-header"><span class="rel-type">LOGIC (TI)</span><span class="rel-climate">Indagação lógica, análise profunda</span></div>
+    <div class="rel-row"><span>Frustração:</span> O pensamento prolongado de LOGIC colide com a conclusão rápida de SPARK</div>
+    <div class="rel-row"><span>Conexão:</span> Ideia Ne + Validação lógica Ti = Inovação sólida</div>
+  </div>
+  <div class="rel-item">
+    <div class="rel-header"><span class="rel-type">HARMONY (FE)</span><span class="rel-climate">Conexão calorosa, criador de ambiente</span></div>
+    <div class="rel-row"><span>Frustração:</span> O desejo de harmonia de HARMONY sufoca as ideias provocadoras de SPARK</div>
+    <div class="rel-row"><span>Conexão:</span> Visão Ne + Conexão de pessoas Fe = Liderança que impulsiona mudança</div>
+  </div>
+  <div class="rel-item">
+    <div class="rel-header"><span class="rel-type">SOUL (FI)</span><span class="rel-climate">Valor profundo, autenticidade</span></div>
+    <div class="rel-row"><span>Frustração:</span> O critério interno de SOUL faz SPARK sentir restrição moral</div>
+    <div class="rel-row"><span>Conexão:</span> Possibilidade Ne + Valor Fi = Criação significativa</div>
+  </div>
+
+  <div class="section-tag" style="margin-top:28px;">O que frequentemente ouve o tipo SPARK</div>
+
+  <div class="quote-box">
+    <div class="quote-text">"Então, qual é a conclusão?"</div>
+    <div class="quote-arrow">Choque quando Ne busca exploração em si mesma como propósito, mas o outro quer conclusão</div>
+  </div>
+  <div class="quote-box">
+    <div class="quote-text">"Você começa bem, mas nunca termina nada."</div>
+    <div class="quote-arrow">Observação precisa do padrão de evasão de conclusão causado pela função inferior Si</div>
+  </div>
+  <div class="quote-box">
+    <div class="quote-text">"Você sempre está buscando algo novo."</div>
+    <div class="quote-arrow">Quando o desejo de mudança de Ne é mal interpretado como instabilidade</div>
+  </div>
+  <div class="quote-box">
+    <div class="quote-text">"Falar com você me deixa tonto."</div>
+    <div class="quote-arrow">Sobrecarga que o outro sente quando Ne expõe muitas possibilidades simultaneamente</div>
+  </div>
+
+  <div class="section-tag" style="margin-top:28px;">Condições ótimas de relacionamento para SPARK</div>
+  <ul class="dot-list">
+    <li><strong>Companheiro explorador:</strong> alguém que pode responder 'que interessante, e então isso?'</li>
+    <li><strong>Liberdade e autonomia:</strong> ambiente que não controla tudo nem força rotinas</li>
+    <li><strong>Estimulação intelectual:</strong> novas perspectivas, histórias de outros campos, perguntas desafiadoras</li>
+    <li><strong>Companheiro executor:</strong> alguém que converte sua ideia em realidade</li>
+  </ul>
+</div>
+
+<!-- PART 4 -->
+<div class="section">
+  <div class="section-tag">Parte 4</div>
+  <div class="section-title">Stage 1 Quest</div>
+  <div class="section-sub">🗺 Primeiros passos do Explorador — Missão de 7 dias</div>
+
+  <p>Esta missão é um treinamento onde você usa Ne conscientemente enquanto enfrenta a sombra Si pela primeira vez. 5–15 minutos diários é suficiente. Observe sem julgar.</p>
+
+  <div class="reward-box">
+    <div class="r-icon">🏆</div>
+    <div class="r-title">Recompensa da Quest</div>
+    <div class="r-body">Ao completar 7 dias é emitida Medalha Stage 1 + Código de desconto Tier 2</div>
+  </div>
+
+  <div class="quest-item">
+    <div class="quest-day">Dia 1</div>
+    <div class="quest-name">Comece um diário de ideias</div>
+    <div class="quest-action">Escreva 10 ideias que passaram por sua mente hoje sem nenhum julgamento</div>
+    <div class="quest-discover">Quanto Ne opera em um dia</div>
+  </div>
+  <div class="quest-item">
+    <div class="quest-day">Dia 2</div>
+    <div class="quest-name">Revisão do histórico de conclusão</div>
+    <div class="quest-action">Faça uma lista do que você começou, mas não completou no último ano (sem julgar)</div>
+    <div class="quest-discover">Quanto a sombra Si operou</div>
+  </div>
+  <div class="quest-item">
+    <div class="quest-day">Dia 3</div>
+    <div class="quest-name">Experimento de rotina</div>
+    <div class="quest-action">Escolha a rotina mais pequena para começar hoje e manter durante 7 dias (ex: um copo de água pela manhã)</div>
+    <div class="quest-discover">Sensação de usar conscientemente a energia Si</div>
+  </div>
+  <div class="quest-item">
+    <div class="quest-day">Dia 4</div>
+    <div class="quest-name">Experimento de conexão de ideias</div>
+    <div class="quest-action">Encontre 3 princípios comuns entre dois campos completamente não relacionados (ex: culinária + marketing)</div>
+    <div class="quest-discover">Funcionamento real da habilidade de conexão criativa Ne</div>
+  </div>
+  <div class="quest-item">
+    <div class="quest-day">Dia 5</div>
+    <div class="quest-name">Confrontação de sombra Si</div>
+    <div class="quest-action">Capture e registre o momento de hoje onde 'você queria parar por tédio'. O que estava acontecendo?</div>
+    <div class="quest-discover">Em qual situação a sombra Si se ativa</div>
+  </div>
+  <div class="quest-item">
+    <div class="quest-day">Dia 6</div>
+    <div class="quest-name">Completar uma coisa</div>
+    <div class="quest-action">Complete a menor de sua lista de incompletos hoje (não precisa ser perfeita)</div>
+    <div class="quest-discover">Experimentar como se sente "completar"</div>
+  </div>
+  <div class="quest-item">
+    <div class="quest-day">Dia 7</div>
+    <div class="quest-name">Reflexão de 7 dias</div>
+    <div class="quest-action">Registre o momento desta semana quando Ne brilhou mais + o momento quando a sombra Si apareceu mais fortemente</div>
+    <div class="quest-discover">Padrão da minha luz e sombra</div>
+  </div>
+
+  <div class="insight-box" style="margin-top:20px;">
+    <div class="i-icon">📌</div>
+    <div class="i-title">Dica da Quest</div>
+    <p>Mantenha o experimento de rotina do dia 3 durante todos os 7 dias. Este é o núcleo da quest. Não precisa ser perfeito. O fato de que você 'tentou manter' é seu primeiro aperto de mão com Si.</p>
+  </div>
+</div>
+
+<!-- PART 5 -->
+<div class="section">
+  <div class="section-tag">Parte 5</div>
+  <div class="section-title">Mapa climático do dinheiro</div>
+  <div class="section-sub">Como o tipo SPARK se encontra com o dinheiro</div>
+
+  <p>O Ne do tipo SPARK é o olho que vê possibilidades. E este olho se torna sua arma mais poderosa para ganhar dinheiro. Ideias ainda não conectadas por ninguém, novos mercados, perspectivas que veem as coisas existentes de forma completamente diferente — isto é o motor de receita do tipo SPARK.</p>
+
+  <div class="section-tag" style="margin-top:24px;">① Motor de renda fundamental do tipo SPARK</div>
+
+  <div class="money-card">
+    <div class="money-title">💡 Venda de ideias</div>
+    <div class="money-how">Venda de insights, conhecimento e conexões em si mesmas como conteúdo</div>
+    <div class="money-form">Conferências, livros, cursos online, boletim</div>
+  </div>
+  <div class="money-card">
+    <div class="money-title">🚀 Exploração de novo mercado</div>
+    <div class="money-how">Descubra primeiro a lacuna que outros não veem e a ocupe</div>
+    <div class="money-form">Início de startup, planejamento de novos serviços</div>
+  </div>
+  <div class="money-card">
+    <div class="money-title">🔗 Intermediação de conexão</div>
+    <div class="money-how">Conexão de ideias, pessoas e recursos de domínios diferentes</div>
+    <div class="money-form">Consultoria, coaching, marketing, agência</div>
+  </div>
+
+  <div class="section-tag" style="margin-top:28px;">② Top 5 profissões que se ajustam bem ao tipo SPARK</div>
+  <ul class="dot-list">
+    <li><strong>Criador de conteúdo / Escritor / Instrutor</strong> — Desdobrar ideias em linguagem é a maior força desse tipo.</li>
+    <li><strong>Fundador de startup / Planejador</strong> — Papel de pioneiro que cria um mercado que ainda não existe.</li>
+    <li><strong>Profissional de Marketing / Estrategista de marca</strong> — Habilidade de conectar psicologia do consumidor e tendências.</li>
+    <li><strong>Coach / Consultor</strong> — Habilidade de reenquadrar problemas de uma nova perspectiva.</li>
+    <li><strong>Pesquisador / Jornalista / Curador</strong> — Papel de explorar informações vastas e descobrir conexões significativas.</li>
+  </ul>
+
+  <div class="section-tag" style="margin-top:28px;">③ A sombra do dinheiro do tipo SPARK</div>
+
+  <div class="shadow-item">
+    <div class="item-title">🌑 "Uma ideia nova aparece logo antes de completar" — Padrão de abandono bem antes de monetizar</div>
+    <div class="item-body">O tipo SPARK se destaca em iniciar ideias mas completar é o momento mais difícil. Justo antes do lançamento, justo antes de recrutar alunos — exatamente quando o dinheiro está para entrar, "uma ideia melhor" começa a aparecer. Isto não é preguiça. É porque a função inferior Si te faz sentir que "o completado fecha possibilidades".</div>
+  </div>
+
+  <div class="section-tag" style="margin-top:20px;">Checklist de reconhecimento</div>
+  <ul class="checklist">
+    <li>Você tem 3 ou mais projetos incompletos?</li>
+    <li>Você está adiando o lançamento pensando "se apenas estivesse um pouco mais preparado"?</li>
+    <li>Antes de completar essa ideia, você já está conceitualizando a próxima?</li>
+  </ul>
+
+  <div class="insight-box" style="margin-top:20px;">
+    <div class="i-icon">💬</div>
+    <div class="i-title">Para refletir</div>
+    <p>"Terminar não fecha possibilidades. Abre a porta para novas possibilidades. Quando algo é completado, surgem recursos e confiança para o próximo."</p>
+  </div>
+</div>
+
+<!-- PART 6 -->
+<div class="section">
+  <div class="section-tag">Parte 6</div>
+  <div class="section-title">Próxima navegação</div>
+  <div class="section-sub">Jornada de individuação em 3 etapas — Seu mapa de rota</div>
+
+  <p>A jornada de individuação do Shadowgram consiste em 3 etapas. Agora você está no ponto de partida do Stage 1.</p>
+
+  <div class="roadmap-item">
+    <div class="roadmap-stage">Stage 1</div>
+    <div class="roadmap-content">
+      <div class="r-name">Dique (Adaptação)</div>
+      <div class="r-task">Observe e nomeie Ne e Si pela primeira vez</div>
+      <div class="r-need">7 dias Quest + Diário de ideias · <strong>Você está aqui</strong></div>
+    </div>
+  </div>
+  <div class="roadmap-item">
+    <div class="roadmap-stage">Stage 2</div>
+    <div class="roadmap-content">
+      <div class="r-name">Inundação (Expansão)</div>
+      <div class="r-task">Confrontação direta com os 4 padrões profundos de sombra Si</div>
+      <div class="r-need">Tier 2 relatório profundo + Missão de 30 dias</div>
+    </div>
+  </div>
+  <div class="roadmap-item">
+    <div class="roadmap-stage">Stage 3</div>
+    <div class="roadmap-content">
+      <div class="r-name">Oceano (Integração)</div>
+      <div class="r-task">Criatividade Ne + Estabilidade Si integradas em um</div>
+      <div class="r-need">Tier 3 relatório mestre + Apêndice situacional</div>
+    </div>
+  </div>
+
+  <!-- TIER2 CTA -->
+  <div class="tier2-cta">
+    <div class="c-eyebrow">Próximo passo</div>
+    <div class="c-title">O que você descobrirá em Tier 2 Deep Report</div>
+    <ul class="c-list">
+      <li>Análise dos 4 padrões profundos de sombra Si</li>
+      <li>Função inferior Si — Armazém do tesouro onde se esconde o poder de completar</li>
+      <li>Como SPARK aparece em cada estágio de crescimento (20s / 30s / 40s)</li>
+      <li>Uso de SPARK em 4 grandes áreas (profissão / relação / criação / execução)</li>
+      <li>Stage 2 Quest — Missão de exploração profunda de 30 dias</li>
+    </ul>
+    <div style="font-size:13px;color:rgba(255,255,255,0.6);font-family:sans-serif;margin-bottom:16px;">Complete primeiro a Quest de Stage 1 antes de ir para Tier 2.</div>
+    <a class="btn-tier2" href="#" id="tier2-btn">QUERO O TIER 2 DEEP REPORT →</a>
+  </div>
+</div>
+
+<!-- CLOSING -->
+<div class="closing">
+  <div class="cl-quote">Sua possibilidade se torna realidade.<br>A asa de Ne e a raiz de Si,<br>ambas pertencem a você.</div>
+  <div class="cl-sub">ShiningShadow · Série Shadowgram · SPARK</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  © ShiningShadow · Série Shadowgram · Uso pessoal exclusivo<br>
+  MBTI® é marca registrada da The Myers &amp; Briggs Foundation. Shadowgram é um framework independente e não é afiliado à The Myers &amp; Briggs Foundation.
+</footer>
+
+</body>
+</html>

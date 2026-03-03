@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="160" height="160">
+  <defs>
+    <linearGradient id="bgG" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1A2030;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#0D1420;stop-opacity:1"/>
+    </linearGradient>
+    <radialGradient id="goldG" cx="40%" cy="35%" r="65%">
+      <stop offset="0%" style="stop-color:#E8C96A;stop-opacity:1"/>
+      <stop offset="55%" style="stop-color:#B8860B;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#7A5800;stop-opacity:1"/>
+    </radialGradient>
+    <radialGradient id="shadowG" cx="60%" cy="65%" r="65%">
+      <stop offset="0%" style="stop-color:#2E3D5A;stop-opacity:1"/>
+      <stop offset="60%" style="stop-color:#1A2030;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#0A1018;stop-opacity:1"/>
+    </radialGradient>
+    <linearGradient id="ringG" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#B8860B;stop-opacity:1"/>
+      <stop offset="50%" style="stop-color:#E8C96A;stop-opacity:0.7"/>
+      <stop offset="100%" style="stop-color:#7A5800;stop-opacity:1"/>
+    </linearGradient>
+    <radialGradient id="glowG" cx="38%" cy="32%" r="45%">
+      <stop offset="0%" style="stop-color:#FFE08A;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#FFE08A;stop-opacity:0"/>
+    </radialGradient>
+    <clipPath id="cc">
+      <circle cx="80" cy="80" r="66"/>
+    </clipPath>
+    <filter id="gGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- 배경 원 -->
+  <circle cx="80" cy="80" r="78" fill="url(#bgG)"/>
+
+  <!-- 그림자 반구 -->
+  <circle cx="80" cy="80" r="66" fill="url(#shadowG)" clip-path="url(#cc)"/>
+
+  <!-- 빛 반구 — 비대칭 커브 -->
+  <path d="
+    M 80 14
+    C 98 14, 132 35, 136 62
+    C 140 82, 124 104, 112 120
+    C 98 138, 80 146, 80 146
+    C 58 146, 24 124, 18 96
+    C 12 70, 24 44, 44 30
+    C 60 18, 72 14, 80 14 Z
+  " fill="url(#goldG)" clip-path="url(#cc)"/>
+
+  <!-- 광선 글로우 -->
+  <ellipse cx="64" cy="56" rx="32" ry="25"
+    fill="url(#glowG)" clip-path="url(#cc)" opacity="0.9"/>
+
+  <!-- 경계 커브 라인 -->
+  <path d="
+    M 80 14
+    C 98 14, 132 35, 136 62
+    C 140 82, 124 104, 112 120
+    C 98 138, 80 146, 80 146
+  " fill="none" stroke="#B8860B" stroke-width="1" opacity="0.5"/>
+
+  <!-- 외곽 링 -->
+  <circle cx="80" cy="80" r="66" fill="none"
+    stroke="url(#ringG)" stroke-width="2.5"/>
+
+  <!-- 빛의 핵심 -->
+  <circle cx="62" cy="54" r="9" fill="#FFE08A" opacity="0.95" filter="url(#gGlow)"/>
+  <circle cx="62" cy="54" r="5" fill="#FFFFFF" opacity="0.9"/>
+
+  <!-- 그림자의 핵심 -->
+  <circle cx="100" cy="108" r="8" fill="#0A1018" opacity="0.95"/>
+  <circle cx="100" cy="108" r="4" fill="#0D1420"/>
+  <circle cx="100" cy="108" r="8" fill="none" stroke="#B8860B" stroke-width="0.8" opacity="0.5"/>
+
+  <!-- 최외곽 미세 링 (골드) -->
+  <circle cx="80" cy="80" r="76" fill="none"
+    stroke="#B8860B" stroke-width="0.5" opacity="0.3"/>
+</svg>
