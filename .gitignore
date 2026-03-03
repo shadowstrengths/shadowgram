@@ -19,7 +19,8 @@ __pycache__/
 *.bak
 
 # 민감 정보 — 절대 커밋 금지
-# (Brevo API 키는 shadowgram_sheets_script.js에서 placeholder로 대체됨)
+# GAS 스크립트 (실제 Brevo API 키 포함 — GitHub 업로드 금지)
+05_Web_Assets/shadowgram_sheets_script.js
 
 # 아카이브 (용량 큼)
 _archive/
