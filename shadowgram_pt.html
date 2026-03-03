@@ -217,11 +217,27 @@
     }
     .ab-text { font-size: 16px; }
 
+    /* ── RESULT HERO IMAGE ── */
+    .result-hero-img {
+      display: block;
+      width: 100%;
+      max-width: 700px;
+      border-radius: 16px;
+      margin: 0 auto 24px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+      border: 1px solid var(--border);
+      animation: fadeIn .6s ease;
+    }
+    .result-hero-wrap {
+      text-align: center;
+      margin-bottom: 0;
+    }
+
     /* ── RESULT ── */
     #result-section {
       display: none;
       max-width: 700px; margin: 0 auto;
-      padding: 40px 20px 80px;
+      padding: 24px 20px 80px;
       animation: fadeIn .5s ease;
     }
     .result-label {
@@ -632,6 +648,11 @@
 
 <!-- RESULT -->
 <div id="result-section">
+
+  <!-- 결과 히어로 이미지 -->
+  <div class="result-hero-wrap">
+    <img id="result-hero-img" class="result-hero-img" src="" alt="" loading="eager"/>
+  </div>
 
   <!-- 실시간 카운터 배너 -->
   <div class="stats-banner" id="stats-banner">
@@ -1433,6 +1454,13 @@ function showResult(savedWinner) {
   document.getElementById('res-type').textContent = winner;
   document.getElementById('res-type').style.color = data.color;
   document.getElementById('res-function').textContent = data.function;
+
+  // 히어로 이미지 세팅
+  const heroImg = document.getElementById('result-hero-img');
+  if (heroImg) {
+    heroImg.src = `https://shadowgram.org/share_images/hero_${winner}.png`;
+    heroImg.alt = `Shadowgram tipo ${winner}`;
+  }
   document.getElementById('res-light-header').style.color = data.color;
   document.getElementById('res-light').textContent = data.light;
   document.getElementById('res-shadow').textContent = data.shadow;

@@ -8,7 +8,9 @@
   <!-- OG 메타 (WhatsApp/Facebook 미리보기) -->
   <meta property="og:title" id="og-title" content="Meu tipo Shadowgram 🔥"/>
   <meta property="og:description" id="og-desc" content="Fiz o diagnóstico e descobri minha sombra psicológica. E você?"/>
-  <meta property="og:image" content="https://shadowgram.org/logo.png"/>
+  <meta property="og:image" id="og-img" content="https://shadowgram.org/share_images/og_SPARK.png"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
   <meta property="og:url" content="https://shadowgram.org/share.html"/>
   <meta name="twitter:card" content="summary_large_image"/>
 
@@ -82,6 +84,21 @@
     }
     .friend-header h1 span {
       color: var(--gold);
+    }
+
+    /* ── 유형 히어로 이미지 ── */
+    .share-hero-img {
+      display: block;
+      width: 100%;
+      border-radius: 16px;
+      margin-bottom: 16px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.55);
+      border: 1px solid var(--border);
+      animation: heroFade .5s ease;
+    }
+    @keyframes heroFade {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
     /* ── 유형 카드 ── */
@@ -285,6 +302,9 @@
     <h1>Seu amigo é tipo <span id="header-type">...</span> 🔥<br>E você, qual é o seu?</h1>
   </div>
 
+  <!-- 유형 히어로 이미지 -->
+  <img id="share-hero-img" class="share-hero-img" src="" alt="" loading="eager"/>
+
   <!-- 유형 카드 -->
   <div class="type-card">
     <div class="type-card-header">
@@ -447,6 +467,15 @@ function renderType(typeName) {
   // OG 메타
   document.getElementById('og-title').setAttribute('content', `Sou tipo ${typeName} no Shadowgram 🔥 — E você?`);
   document.getElementById('og-desc').setAttribute('content', data.pain.substring(0, 100) + '...');
+  const ogImg = document.getElementById('og-img');
+  if (ogImg) ogImg.setAttribute('content', `https://shadowgram.org/share_images/og_${typeName}.png`);
+
+  // 히어로 이미지 세팅
+  const shareHero = document.getElementById('share-hero-img');
+  if (shareHero) {
+    shareHero.src = `https://shadowgram.org/share_images/hero_${typeName}.png`;
+    shareHero.alt = `Shadowgram tipo ${typeName}`;
+  }
 
   // 유형 카드
   const icon = document.getElementById('type-icon');
