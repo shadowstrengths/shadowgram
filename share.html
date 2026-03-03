@@ -167,13 +167,6 @@
       transform: scale(1.02);
       transition: transform .2s ease;
     }
-    .share-hero-hint {
-      text-align: center;
-      font-size: 13px;
-      color: var(--silver);
-      margin: -16px auto 24px;
-      opacity: 0.8;
-    }
     @keyframes cardPop {
       0%   { opacity:0; transform: scale(0.88); }
       100% { opacity:1; transform: scale(1); }
@@ -331,6 +324,65 @@
       color: var(--gold);
       text-decoration: underline;
       cursor: pointer;
+    }
+
+    /* ── 공유 초대 블록 ── */
+    .share-invite-block {
+      background: rgba(197,165,114,0.06);
+      border: 1px solid rgba(197,165,114,0.25);
+      border-radius: 18px;
+      padding: 24px 20px;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    .share-invite-title {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .share-invite-desc {
+      font-size: 14px;
+      color: var(--silver);
+      line-height: 1.7;
+      max-width: 380px;
+      margin: 0 auto;
+    }
+    .share-invite-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .share-invite-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 12px 10px;
+      border-radius: 12px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      text-decoration: none;
+      letter-spacing: 0.3px;
+    }
+    .share-invite-btn.whatsapp {
+      background: #25d366;
+      color: #fff;
+    }
+    .share-invite-btn.copy {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(197,165,114,0.35);
+      color: var(--gold);
+    }
+    .share-invite-copy-msg {
+      font-size: 13px;
+      color: #4caf8a;
+      font-weight: 700;
+      margin-top: 10px;
     }
 
     /* ── CTA — 나도 알아보기 ── */
@@ -520,11 +572,13 @@
   <img id="share-hero-img" class="share-hero-img" src="" alt="" loading="eager"
     onclick="document.getElementById('btn-quiz').scrollIntoView({behavior:'smooth'})"
     title="Clique para descobrir o seu tipo!"/>
-  <p class="share-hero-hint">👆 Toque na imagem e descubra o seu animal!</p>
 
-  <!-- 친구 유도 배너 -->
+  <!-- 공유 초대 배너 -->
   <div class="friend-nudge">
-    <p>E você — <span>qual é o seu tipo?</span> 👇</p>
+    <p>✦ Cada pessoa tem um tipo Shadowgram.</p>
+    <p style="margin-top:8px;font-size:13px;font-weight:500;color:var(--silver);font-style:italic;">
+      Conhecer o seu muda como você entende a si mesmo — e as pessoas ao redor.
+    </p>
   </div>
 
   <!-- 선언 카드 -->
@@ -591,6 +645,29 @@
       <span class="ask-q-arrow">▾</span>
       <div class="ask-q-answer" id="ask-q3-answer"></div>
     </div>
+  </div>
+
+  <!-- 공유 초대 메시지 블록 -->
+  <div class="share-invite-block">
+    <div class="share-invite-title">
+      ✦ Compartilhe o Shadowgram com quem você conhece
+    </div>
+    <p class="share-invite-desc">
+      Você acabou de descobrir seu tipo. Agora imagine saber o tipo das pessoas mais importantes da sua vida — o que as move, o que as bloqueia, como se conectar de verdade.
+    </p>
+    <p class="share-invite-desc" style="margin-top:10px;">
+      São 8 tipos diferentes. <strong style="color:var(--gold)">Cada um com sua luz e sua sombra.</strong><br>
+      O Shadowgram é gratuito — e leva menos de 5 minutos.
+    </p>
+    <div class="share-invite-actions">
+      <a class="share-invite-btn whatsapp" id="invite-whatsapp" href="#" target="_blank" rel="noopener">
+        💬 Enviar pelo WhatsApp
+      </a>
+      <a class="share-invite-btn copy" id="invite-copy" href="#" onclick="copyInviteLink(event)">
+        🔗 Copiar link
+      </a>
+    </div>
+    <p class="share-invite-copy-msg" id="invite-copy-msg" style="display:none;">✓ Link copiado!</p>
   </div>
 
   <!-- CTA — 나도 알아보기 -->
@@ -917,6 +994,11 @@ function renderType(typeName) {
     document.getElementById('ask-section').style.display = 'block';
   }
 
+  // ── 공유 초대 블록 — WhatsApp 메시지 세팅 ──
+  const inviteMsg = `Descobri o Shadowgram — um mapa de personalidade diferente de tudo que já vi.\n\nEle mostra sua LUZ (o que você tem de melhor) e sua SOMBRA (por que você repete os mesmos padrões).\n\nSão 28 perguntas, é grátis e o resultado aparece na hora. Curiosidade: qual é o seu tipo?\n\n👉 ${QUIZ_URL}?fresh=1`;
+  const waBtn = document.getElementById('invite-whatsapp');
+  if (waBtn) waBtn.href = `https://wa.me/?text=${encodeURIComponent(inviteMsg)}`;
+
   // 유형 카드
   const icon = document.getElementById('type-icon');
   icon.textContent = data.icon;
@@ -949,6 +1031,29 @@ function renderGrid(currentType) {
   });
 }
 
+// ── 초대 링크 복사 ──
+function copyInviteLink(e) {
+  e.preventDefault();
+  const link = `${QUIZ_URL}?fresh=1`;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(link).then(() => showCopyMsg());
+  } else {
+    const ta = document.createElement('textarea');
+    ta.value = link;
+    ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select(); document.execCommand('copy');
+    document.body.removeChild(ta);
+    showCopyMsg();
+  }
+}
+function showCopyMsg() {
+  const msg = document.getElementById('invite-copy-msg');
+  if (!msg) return;
+  msg.style.display = 'block';
+  setTimeout(() => { msg.style.display = 'none'; }, 2500);
+}
+
 // ── 호기심 질문 토글 ──
 function toggleAsk(el) {
   const isOpen = el.classList.contains('open');
@@ -961,6 +1066,12 @@ function toggleAsk(el) {
 // ── 초기화 ──
 (function init() {
   const typeName = getTypeFromURL();
+  // 유형 없어도 기본 WhatsApp 초대 링크 세팅
+  const defaultInviteMsg = `Descobri o Shadowgram — um mapa de personalidade diferente de tudo que já vi.\n\nEle mostra sua LUZ (o que você tem de melhor) e sua SOMBRA (por que você repete os mesmos padrões).\n\nSão 28 perguntas, é grátis e o resultado aparece na hora. Curiosidade: qual é o seu tipo?\n\n👉 ${QUIZ_URL}?fresh=1`;
+  const waBtn = document.getElementById('invite-whatsapp');
+  if (waBtn && !waBtn.href.includes('wa.me')) {
+    waBtn.href = `https://wa.me/?text=${encodeURIComponent(defaultInviteMsg)}`;
+  }
   if (typeName) {
     renderType(typeName);
     renderGrid(typeName);

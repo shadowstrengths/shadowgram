@@ -393,13 +393,10 @@
       font-weight: 700;
       color: #f0e6d0;
       line-height: 1.5;
-      cursor: pointer;
-      transition: border-color .2s, background .2s;
       display: flex;
       align-items: center;
       gap: 10px;
     }
-    .upsell-q:hover { border-color: var(--gold); background: rgba(197,165,114,0.07); }
     .upsell-q-icon { font-size: 18px; flex-shrink: 0; }
     .upsell-ask-sub {
       font-size: 12px;
@@ -740,10 +737,6 @@
         <span class="ico">→</span>
         <span>Introdução aos 8 tipos Shadowgram e como você se relaciona com cada um</span>
       </div>
-      <div class="email-capture-what-item">
-        <span class="ico">🎁</span>
-        <span>Acesso antecipado ao <strong style="color:var(--goldL)">Relatório Completo</strong> com desconto exclusivo</span>
-      </div>
     </div>
 
     <div id="email-form-wrap">
@@ -775,11 +768,10 @@
     </div>
   </div>
 
-  <!-- 업셀 호기심 질문 — 결제 유도 -->
+  <!-- 호기심 질문 — 유형별 인식 포인트 -->
   <div class="upsell-ask-section" id="upsell-ask-section" style="display:none;">
-    <p class="upsell-ask-title">💡 Antes de continuar — uma pergunta:</p>
+    <p class="upsell-ask-title">💡 Isso ressoa com você?</p>
     <div class="upsell-ask-questions" id="upsell-ask-questions"></div>
-    <p class="upsell-ask-sub">O relatório completo responde isso em detalhe — com o mapa exato do seu tipo.</p>
   </div>
 
   <!-- CTA -->
@@ -1521,7 +1513,7 @@ function showResult(savedWinner) {
   const uSection = document.getElementById('upsell-ask-section');
   if (uAsks && uContainer && uSection) {
     uContainer.innerHTML = uAsks.map(a =>
-      `<div class="upsell-q" onclick="document.querySelector('.cta-box').scrollIntoView({behavior:'smooth'})">
+      `<div class="upsell-q">
         <span class="upsell-q-icon">${a.icon}</span>
         <span>${a.q}</span>
       </div>`
