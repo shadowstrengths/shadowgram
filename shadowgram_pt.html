@@ -344,36 +344,6 @@
     .bar-label-active { color: #fff; font-weight: 700; }
     .bar-label-inactive { color: var(--silver); font-weight: 400; opacity: 0.5; }
 
-    /* ── PREVIEW BLUR ── */
-    .preview-blur-wrap {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 4px; overflow: hidden;
-      margin-bottom: 16px; position: relative;
-    }
-    .preview-blur-header {
-      padding: 16px 20px;
-      font-size: 12px; letter-spacing: 2px; font-weight: 700;
-      color: var(--silver);
-    }
-    .preview-blur-body {
-      padding: 18px 20px 28px;
-      filter: blur(5px); user-select: none;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 16px; line-height: 1.9; color: var(--goldL);
-      pointer-events: none;
-      white-space: pre-line;
-    }
-    .preview-blur-overlay {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      background: linear-gradient(transparent, var(--card) 70%);
-      height: 120px;
-      display: flex; align-items: flex-end; justify-content: center;
-      padding-bottom: 20px;
-    }
-    .preview-blur-label {
-      font-size: 13px; color: var(--silver);
-    }
-
     /* ── Stats counter ── */
     .stats-banner {
       background: rgba(184,134,11,0.06);
@@ -749,15 +719,6 @@
   <div class="pain-card">
     <p class="pain-card-header">⚠ O CUSTO DE IGNORAR SUA SOMBRA</p>
     <div class="pain-card-body" id="res-pain"></div>
-  </div>
-
-  <!-- Preview desfocado do relatório -->
-  <div class="preview-blur-wrap">
-    <div class="preview-blur-header">📄 PRÉVIA DO RELATÓRIO COMPLETO · NÍVEL 1</div>
-    <div class="preview-blur-body" id="res-preview"></div>
-    <div class="preview-blur-overlay">
-      <span class="preview-blur-label">🔒 CONTEÚDO COMPLETO NO RELATÓRIO</span>
-    </div>
   </div>
 
   <!-- EMAIL CAPTURE -->
@@ -1537,7 +1498,6 @@ function showResult(savedWinner) {
   document.getElementById('res-light').textContent = data.light;
   document.getElementById('res-shadow').textContent = data.shadow;
   document.getElementById('res-pain').textContent = data.pain;
-  document.getElementById('res-preview').textContent = data.preview;
   document.getElementById('res-cta-label').textContent = `SHADOWGRAM SELF · RELATÓRIO COMPLETO · ${winner}`;
   document.getElementById('res-cta-title').textContent = data.ctaTitle;
   document.getElementById('res-cta-sub').textContent = data.ctaSub;
