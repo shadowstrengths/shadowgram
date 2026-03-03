@@ -8,7 +8,9 @@
   <!-- OG 메타 (WhatsApp/Facebook 미리보기) -->
   <meta property="og:title" id="og-title" content="Meu tipo Shadowgram 🔥"/>
   <meta property="og:description" id="og-desc" content="Fiz o diagnóstico e descobri minha sombra psicológica. E você?"/>
-  <meta property="og:image" id="og-img" content="https://shadowgram.org/share_images/og_SPARK.png"/>
+  <meta property="og:image" id="og-img" content="https://shadowgram.org/share_images/card_SPARK.png"/>
+  <meta property="og:image:width" content="1080"/>
+  <meta property="og:image:height" content="1080"/>
   <meta property="og:image:width" content="1200"/>
   <meta property="og:image:height" content="630"/>
   <meta property="og:url" content="https://shadowgram.org/share.html"/>
@@ -90,11 +92,28 @@
     .share-hero-img {
       display: block;
       width: 100%;
-      border-radius: 16px;
-      margin-bottom: 16px;
-      box-shadow: 0 8px 40px rgba(0,0,0,0.55);
-      border: 1px solid var(--border);
-      animation: heroFade .5s ease;
+      max-width: 480px;
+      margin: 0 auto 24px;
+      border-radius: 20px;
+      box-shadow: 0 16px 64px rgba(0,0,0,0.75);
+      border: none;
+      animation: cardPop .5s cubic-bezier(.18,.89,.32,1.28);
+      cursor: pointer;
+    }
+    .share-hero-img:hover {
+      transform: scale(1.02);
+      transition: transform .2s ease;
+    }
+    .share-hero-hint {
+      text-align: center;
+      font-size: 13px;
+      color: var(--silver);
+      margin: -16px auto 24px;
+      opacity: 0.8;
+    }
+    @keyframes cardPop {
+      0%   { opacity:0; transform: scale(0.88); }
+      100% { opacity:1; transform: scale(1); }
     }
     @keyframes heroFade {
       from { opacity: 0; transform: translateY(8px); }
@@ -303,7 +322,10 @@
   </div>
 
   <!-- 유형 히어로 이미지 -->
-  <img id="share-hero-img" class="share-hero-img" src="" alt="" loading="eager"/>
+  <img id="share-hero-img" class="share-hero-img" src="" alt="" loading="eager"
+    onclick="document.getElementById('btn-quiz').scrollIntoView({behavior:'smooth'})"
+    title="Clique para descobrir o seu tipo!"/>
+  <p class="share-hero-hint">👆 Toque na imagem e descubra o seu animal!</p>
 
   <!-- 유형 카드 -->
   <div class="type-card">
@@ -460,21 +482,29 @@ function renderType(typeName) {
   const data = TYPES[typeName];
   if (!data) return;
 
-  // 헤더
+  // 동물 맵
+  const animalMap = {SPARK:'Beija-flor ⚡',VISION:'Pavão 🦚',STEADY:'Tartaruga 🐢',PLAYER:'Leopardo 🐆',HARMONY:'Golfinho 🐬',SOUL:'Borboleta 🦋',LOGIC:'Corvo 🐦',LEADER:'Águia 🦅'};
+  const animal = animalMap[typeName] || typeName;
+
+  // 헤더 & 타이틀
   document.getElementById('header-type').textContent = typeName;
-  document.title = `Meu tipo Shadowgram é ${typeName} 🔥 — E o seu?`;
+  document.title = `Meu animal Shadowgram é ${animal} — E o seu? 🔥`;
 
-  // OG 메타
-  document.getElementById('og-title').setAttribute('content', `Sou tipo ${typeName} no Shadowgram 🔥 — E você?`);
-  document.getElementById('og-desc').setAttribute('content', data.pain.substring(0, 100) + '...');
+  // OG 메타 — card_ 이미지로 SNS 미리보기
+  document.getElementById('og-title').setAttribute('content', `Meu animal é ${animal} no Shadowgram 🔥 — E o seu?`);
+  document.getElementById('og-desc').setAttribute('content', `Fiz o diagnóstico e descobri meu animal. ${data.light.substring(0, 80)}... Descubra o seu!`);
   const ogImg = document.getElementById('og-img');
-  if (ogImg) ogImg.setAttribute('content', `https://shadowgram.org/share_images/og_${typeName}.png`);
+  if (ogImg) ogImg.setAttribute('content', `https://shadowgram.org/share_images/card_${typeName}.png`);
 
-  // 히어로 이미지 세팅
+  // 히어로 이미지 세팅 — card_ 우선, fallback hero_
   const shareHero = document.getElementById('share-hero-img');
   if (shareHero) {
-    shareHero.src = `https://shadowgram.org/share_images/hero_${typeName}.png`;
-    shareHero.alt = `Shadowgram tipo ${typeName}`;
+    shareHero.src = `https://shadowgram.org/share_images/card_${typeName}.png`;
+    shareHero.alt = `Shadowgram ${typeName} — ${animal}`;
+    shareHero.onerror = function() {
+      this.src = `https://shadowgram.org/share_images/hero_${typeName}.png`;
+      this.onerror = null;
+    };
   }
 
   // 유형 카드

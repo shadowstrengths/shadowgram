@@ -221,16 +221,32 @@
     .result-hero-img {
       display: block;
       width: 100%;
-      max-width: 700px;
-      border-radius: 16px;
-      margin: 0 auto 24px;
-      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
-      border: 1px solid var(--border);
-      animation: fadeIn .6s ease;
+      max-width: 540px;
+      border-radius: 20px;
+      margin: 0 auto 32px;
+      box-shadow: 0 12px 60px rgba(0,0,0,0.7);
+      border: none;
+      animation: cardPop .5s cubic-bezier(.18,.89,.32,1.28);
+      cursor: pointer;
+    }
+    .result-hero-img:hover {
+      transform: scale(1.02);
+      transition: transform .2s ease;
     }
     .result-hero-wrap {
       text-align: center;
       margin-bottom: 0;
+    }
+    .result-share-hint {
+      text-align: center;
+      font-size: 13px;
+      color: var(--silver);
+      margin: -20px auto 24px;
+      opacity: 0.8;
+    }
+    @keyframes cardPop {
+      0%   { opacity:0; transform: scale(0.88); }
+      100% { opacity:1; transform: scale(1); }
     }
 
     /* ── RESULT ── */
@@ -651,8 +667,10 @@
 
   <!-- 결과 히어로 이미지 -->
   <div class="result-hero-wrap">
-    <img id="result-hero-img" class="result-hero-img" src="" alt="" loading="eager"/>
+    <img id="result-hero-img" class="result-hero-img" src="" alt="" loading="eager"
+      onclick="window.copyQuizLink && window.copyQuizLink()" title="Toque para copiar o link"/>
   </div>
+  <p class="result-share-hint">👆 Toque na imagem para copiar o link e compartilhar</p>
 
   <!-- 실시간 카운터 배너 -->
   <div class="stats-banner" id="stats-banner">
@@ -1455,11 +1473,15 @@ function showResult(savedWinner) {
   document.getElementById('res-type').style.color = data.color;
   document.getElementById('res-function').textContent = data.function;
 
-  // 히어로 이미지 세팅
+  // 히어로 이미지 세팅 — card_ 이미지 우선, fallback hero_
   const heroImg = document.getElementById('result-hero-img');
   if (heroImg) {
-    heroImg.src = `https://shadowgram.org/share_images/hero_${winner}.png`;
+    heroImg.src = `https://shadowgram.org/share_images/card_${winner}.png`;
     heroImg.alt = `Shadowgram tipo ${winner}`;
+    heroImg.onerror = function() {
+      this.src = `https://shadowgram.org/share_images/hero_${winner}.png`;
+      this.onerror = null;
+    };
   }
   document.getElementById('res-light-header').style.color = data.color;
   document.getElementById('res-light').textContent = data.light;
@@ -1484,8 +1506,10 @@ function showResult(savedWinner) {
   // SNS 공유 버튼 — share.html?type=유형 (바이럴 전용 페이지)
   const SHARE_URL = `https://shadowgram.org/share.html?type=${winner}`;
   const QUIZ_URL  = 'https://shadowgram.org/shadowgram_pt.html';
-  const shareMsg  = `Fiz o Shadowgram e sou tipo ${winner}! 🔥\nE você, qual é o seu?\n👇\n${SHARE_URL}`;
-  const shareMsgShort = `Sou tipo ${winner} no Shadowgram 🔥 E você? 👇 ${SHARE_URL}`;
+  const animalMap = {SPARK:'Beija-flor ⚡',VISION:'Pavão 🦚',STEADY:'Tartaruga 🐢',PLAYER:'Leopardo 🐆',HARMONY:'Golfinho 🐬',SOUL:'Borboleta 🦋',LOGIC:'Corvo 🐦',LEADER:'Águia 🦅'};
+  const animal = animalMap[winner] || winner;
+  const shareMsg  = `Fiz o teste Shadowgram e meu animal é ${animal}!\n\nVocê sabe qual é o seu?\n🔥 Descubra agora (é grátis):\n👇 ${SHARE_URL}`;
+  const shareMsgShort = `Meu animal Shadowgram é ${animal} — e o seu? 🔥 ${SHARE_URL}`;
 
   // WhatsApp
   document.getElementById('btn-whatsapp-share').href =
