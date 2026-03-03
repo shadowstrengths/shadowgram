@@ -827,39 +827,6 @@
       ">🔗 Copiar link do teste</button>
     </div>
 
-    <!-- 내 결과 저장 버튼 -->
-    <button class="btn-save-link" id="btn-save-link" onclick="saveMyLink()" style="
-      background: transparent;
-      border: 1px solid rgba(197,165,114,0.4);
-      color: var(--gold);
-      font-size: 12px;
-      letter-spacing: 1px;
-      padding: 10px 20px;
-      border-radius: 30px;
-      cursor: pointer;
-      font-family: 'Montserrat', sans-serif;
-      margin-top: 4px;
-      display: block;
-      width: 100%;
-    ">🔖 Salvar meu resultado (acessar depois sem refazer)</button>
-
-    <div id="saved-link-box" style="display:none; margin-top:12px; background:rgba(197,165,114,0.08); border:1px solid rgba(197,165,114,0.3); border-radius:10px; padding:14px;">
-      <p style="font-size:11px; color:var(--silver); margin-bottom:8px; letter-spacing:1px;">📎 MEU LINK PESSOAL — salve nos favoritos ou copie para qualquer lugar</p>
-      <div style="display:flex; gap:8px; align-items:center;">
-        <input id="saved-link-input" type="text" readonly style="
-          flex:1; background:rgba(255,255,255,0.05); border:1px solid var(--border);
-          color:var(--white); padding:8px 12px; border-radius:6px; font-size:12px;
-          font-family:monospace;
-        "/>
-        <button onclick="copyLink()" style="
-          background:var(--gold); color:#000; border:none; padding:8px 14px;
-          border-radius:6px; font-size:11px; font-weight:700; cursor:pointer;
-          font-family:'Montserrat',sans-serif; white-space:nowrap;
-        ">Copiar</button>
-      </div>
-      <p style="font-size:11px; color:var(--silver); margin-top:8px;">✅ Cole no WhatsApp, favoritos ou notas — acesso imediato sempre</p>
-    </div>
-
     <button class="btn-retry" onclick="restartQuiz()">Refazer o diagnóstico</button>
   </div>
 </div>
@@ -1680,32 +1647,6 @@ function checkSavedResult() {
   // 저장값 없으면 일반 퀴즈 시작
 }
 
-// 내 결과 링크 저장 버튼
-function saveMyLink() {
-  try {
-    const type = localStorage.getItem('sg_type');
-    if (!type) return;
-    const base = window.location.href.split('?')[0];
-    const link = `${base}?type=${type}`;
-    document.getElementById('saved-link-input').value = link;
-    document.getElementById('saved-link-box').style.display = 'block';
-    document.getElementById('btn-save-link').style.display = 'none';
-  } catch(e) {}
-}
-
-function copyLink() {
-  const input = document.getElementById('saved-link-input');
-  input.select();
-  try {
-    navigator.clipboard.writeText(input.value).then(() => {
-      const btn = input.nextElementSibling;
-      btn.textContent = '✅ Copiado!';
-      setTimeout(() => btn.textContent = 'Copiar', 2000);
-    });
-  } catch(e) {
-    document.execCommand('copy');
-  }
-}
 
 // INIT
 buildQuiz();
