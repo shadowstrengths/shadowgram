@@ -173,6 +173,25 @@
     }
     .what-card p { font-size: 14px; color: var(--silver); line-height: 1.7; }
 
+    /* ── KINDLE BADGE ── */
+    .kindle-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(184,134,11,0.07);
+      border: 1px solid rgba(184,134,11,0.25);
+      border-radius: 8px;
+      padding: 10px 18px;
+      margin-top: 20px;
+      font-size: 13px; color: var(--silver);
+      flex-wrap: wrap;
+    }
+    .kindle-icon { font-size: 16px; }
+    .kindle-link {
+      color: var(--gold); font-weight: 700;
+      text-decoration: none; white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+    .kindle-link:hover { opacity: 0.75; }
+
     /* ── 8 TYPES ── */
     .types-section { background: var(--dark2); }
     .types-grid {
@@ -312,6 +331,15 @@
     <p class="section-tag">✦ O que é o Shadowgram</p>
     <h2 class="section-title">Não é um teste de personalidade.<br>É um mapa da sua sombra.</h2>
     <p class="section-body">O Shadowgram integra a teoria das funções psicológicas de Jung com os estudos modernos do Big Five — reinterpretados para revelar não apenas quem você é, mas por que você age da forma que age.</p>
+
+    <div class="kindle-badge">
+      <span class="kindle-icon">📖</span>
+      <span class="kindle-text">A teoria por trás do Shadowgram está no livro do autor, disponível na</span>
+      <a class="kindle-link" href="https://a.co/d/06IXW2VS" target="_blank" rel="noopener">
+        Amazon Kindle →
+      </a>
+    </div>
+
     <div class="what-grid">
       <div class="what-card">
         <div class="what-icon">🔦</div>
@@ -344,40 +372,40 @@
     <h2 class="section-title">Qual é o seu tipo?</h2>
     <p class="section-body">Cada tipo tem uma função dominante (sua luz) e uma função inferior (sua sombra). Reconhecer os dois é o primeiro passo da integração.</p>
     <div class="types-grid">
-      <a class="type-card" href="/share.html?type=SPARK" style="border-color:rgba(232,168,74,0.3)">
-        <div class="type-emoji">⚡</div>
-        <div class="type-name" style="color:#E8A84A">SPARK</div>
-        <div class="type-sub">O Explorador<br>Ne · Intuição Extrovertida</div>
-      </a>
       <a class="type-card" href="/share.html?type=STEADY" style="border-color:rgba(123,158,168,0.3)">
         <div class="type-emoji">🏔</div>
         <div class="type-name" style="color:#7B9EA8">STEADY</div>
         <div class="type-sub">O Guardião<br>Si · Sensação Introvertida</div>
       </a>
-      <a class="type-card" href="/share.html?type=LEADER" style="border-color:rgba(107,142,107,0.3)">
-        <div class="type-emoji">👑</div>
-        <div class="type-name" style="color:#6B8E6B">LEADER</div>
-        <div class="type-sub">O Executor<br>Te · Pensamento Extrovertido</div>
+      <a class="type-card" href="/share.html?type=SPARK" style="border-color:rgba(232,168,74,0.3)">
+        <div class="type-emoji">⚡</div>
+        <div class="type-name" style="color:#E8A84A">SPARK</div>
+        <div class="type-sub">O Explorador<br>Ne · Intuição Extrovertida</div>
       </a>
-      <a class="type-card" href="/share.html?type=LOGIC" style="border-color:rgba(91,158,160,0.3)">
-        <div class="type-emoji">🔬</div>
-        <div class="type-name" style="color:#5B9EA0">LOGIC</div>
-        <div class="type-sub">O Analista<br>Ti · Pensamento Introvertido</div>
+      <a class="type-card" href="/share.html?type=PLAYER" style="border-color:rgba(224,112,96,0.3)">
+        <div class="type-emoji">🎯</div>
+        <div class="type-name" style="color:#E07060">PLAYER</div>
+        <div class="type-sub">O Intenso<br>Se · Sensação Extrovertida</div>
       </a>
       <a class="type-card" href="/share.html?type=VISION" style="border-color:rgba(139,123,184,0.3)">
         <div class="type-emoji">🔮</div>
         <div class="type-name" style="color:#8B7BB8">VISION</div>
         <div class="type-sub">O Visionário<br>Ni · Intuição Introvertida</div>
       </a>
+      <a class="type-card" href="/share.html?type=LOGIC" style="border-color:rgba(91,158,160,0.3)">
+        <div class="type-emoji">🔬</div>
+        <div class="type-name" style="color:#5B9EA0">LOGIC</div>
+        <div class="type-sub">O Analista<br>Ti · Pensamento Introvertido</div>
+      </a>
       <a class="type-card" href="/share.html?type=HARMONY" style="border-color:rgba(212,136,106,0.3)">
         <div class="type-emoji">🌊</div>
         <div class="type-name" style="color:#D4886A">HARMONY</div>
         <div class="type-sub">O Cuidador<br>Fe · Sentimento Extrovertido</div>
       </a>
-      <a class="type-card" href="/share.html?type=PLAYER" style="border-color:rgba(224,112,96,0.3)">
-        <div class="type-emoji">🎯</div>
-        <div class="type-name" style="color:#E07060">PLAYER</div>
-        <div class="type-sub">O Intenso<br>Se · Sensação Extrovertida</div>
+      <a class="type-card" href="/share.html?type=LEADER" style="border-color:rgba(107,142,107,0.3)">
+        <div class="type-emoji">👑</div>
+        <div class="type-name" style="color:#6B8E6B">LEADER</div>
+        <div class="type-sub">O Executor<br>Te · Pensamento Extrovertido</div>
       </a>
       <a class="type-card" href="/share.html?type=SOUL" style="border-color:rgba(184,123,168,0.3)">
         <div class="type-emoji">🌙</div>
