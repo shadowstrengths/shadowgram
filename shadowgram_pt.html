@@ -90,8 +90,31 @@
     }
     .hero-sub {
       color: var(--silver); font-size: 16px;
-      max-width: 520px; margin: 0 auto;
+      max-width: 520px; margin: 0 auto 28px;
       line-height: 2.0;
+    }
+    /* ── HERO CTA 버튼 ── */
+    .hero-cta-btn {
+      display: inline-block;
+      background: var(--gold);
+      color: #0F1119;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      padding: 18px 48px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-bottom: 16px;
+      width: 100%;
+      max-width: 400px;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+    .hero-cta-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+    .hero-cta-btn:active { transform: translateY(0); }
+    .hero-cta-sub {
+      color: var(--silver); font-size: 13px;
+      margin: 0 auto; letter-spacing: 0.5px;
     }
 
     /* ── CREDIBILITY BADGE ── */
@@ -626,27 +649,24 @@
   <h1 class="hero-title">Por que você continua repetindo<br>os mesmos erros?</h1>
   <p class="hero-sub">
     A resposta está na sua sombra psicológica.<br>
-    28 perguntas. Resultado imediato. Sem cadastro.
+    Descubra seu tipo em menos de 4 minutos.
   </p>
+  <!-- CTA 버튼 — 히어로에 바로 배치 -->
+  <button class="hero-cta-btn" onclick="document.getElementById('quiz-section').scrollIntoView({behavior:'smooth'}); window.scrollBy(0,-20);">
+    DESCOBRIR MEU TIPO →
+  </button>
+  <p class="hero-cta-sub">✓ Grátis &nbsp;·&nbsp; ✓ Resultado imediato &nbsp;·&nbsp; ✓ Sem cadastro</p>
 </div>
 
-<!-- CREDIBILITY -->
+<!-- CREDIBILITY (축소 버전) -->
 <div class="cred-bar">
   <div class="cred-inner">
     <div class="cred-icon">🔬</div>
     <div>
-      <p class="cred-title">BASE CIENTÍFICA · REINTERPRETAÇÃO APLICADA</p>
-      <p class="cred-desc">
-        Este diagnóstico integra a teoria das funções psicológicas de
-        <strong>Carl Gustav Jung</strong> (Tipos Psicológicos, 1921)
-        com os estudos modernos do <strong>Big Five (IPIP)</strong>,
-        reinterpretados por um especialista coreano com
-        <strong>20 anos de experiência</strong> em desenvolvimento humano e psicologia aplicada.
-        Não é um teste de personalidade comum — é um mapa da sua sombra.
-      </p>
+      <p class="cred-title">BASE CIENTÍFICA · 20 ANOS DE EXPERIÊNCIA</p>
       <div class="cred-sources">
         <span class="cred-tag">C.G. Jung · 1921</span>
-        <span class="cred-tag">IPIP Big Five · Domínio Público</span>
+        <span class="cred-tag">Big Five · IPIP</span>
         <span class="cred-tag">20 anos de prática</span>
         <span class="cred-tag">Framework Shadowgram</span>
       </div>
@@ -656,7 +676,7 @@
 
 <!-- META -->
 <div class="hero-meta">
-  <span>⏱ <strong>5–7 min</strong></span>
+  <span>⏱ <strong>~4 min</strong></span>
   <span>📋 <strong>28 perguntas</strong></span>
   <span>🎯 <strong>Resultado imediato</strong></span>
   <span>🔒 <strong>Sem cadastro</strong></span>

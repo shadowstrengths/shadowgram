@@ -90,8 +90,32 @@
     }
     .hero-sub {
       color: var(--silver); font-size: 16px;
-      max-width: 520px; margin: 0 auto;
+      max-width: 520px; margin: 0 auto 28px;
       line-height: 2.0;
+    }
+
+    /* ── HERO CTA 버튼 ── */
+    .hero-cta-btn {
+      display: inline-block;
+      background: var(--gold);
+      color: #0F1119;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      padding: 18px 48px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-bottom: 16px;
+      width: 100%;
+      max-width: 400px;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+    .hero-cta-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+    .hero-cta-btn:active { transform: translateY(0); }
+    .hero-cta-sub {
+      color: var(--silver); font-size: 13px;
+      margin: 0 auto; letter-spacing: 0.5px;
     }
 
     /* ── CREDIBILITY BADGE ── */
@@ -626,23 +650,21 @@
   <h1 class="hero-title">왜 같은 실수를<br>반복하는 걸까요?</h1>
   <p class="hero-sub">
     답은 당신의 심리적 그림자에 있습니다.<br>
-    28문항. 즉시 결과. 회원가입 불필요.
+    4분이면 알 수 있어요.
   </p>
+  <!-- CTA 버튼 — 히어로에 바로 배치 -->
+  <button class="hero-cta-btn" onclick="document.getElementById('quiz-section').scrollIntoView({behavior:'smooth'}); window.scrollBy(0,-20);">
+    내 유형 알아보기 →
+  </button>
+  <p class="hero-cta-sub">✓ 무료 &nbsp;·&nbsp; ✓ 즉시 결과 &nbsp;·&nbsp; ✓ 회원가입 불필요</p>
 </div>
 
-<!-- CREDIBILITY -->
+<!-- CREDIBILITY (축소 버전) -->
 <div class="cred-bar">
   <div class="cred-inner">
     <div class="cred-icon">🔬</div>
     <div>
-      <p class="cred-title">과학적 근거 · 실전 적용 프레임워크</p>
-      <p class="cred-desc">
-        이 진단은 <strong>칼 구스타프 융</strong>(심리 유형론, 1921)의
-        심리 기능 이론과 현대의 <strong>Big Five(IPIP)</strong> 연구를
-        통합하여, 인간 발달과 응용 심리학 분야에서
-        <strong>20년 경력</strong>의 전문가가 재해석한 것입니다.
-        일반 성격 테스트가 아닌 — 당신의 그림자 지도입니다.
-      </p>
+      <p class="cred-title">과학적 근거 · 20년 현장 경험</p>
       <div class="cred-sources">
         <span class="cred-tag">C.G. Jung · 1921</span>
         <span class="cred-tag">IPIP Big Five</span>
@@ -655,7 +677,7 @@
 
 <!-- META -->
 <div class="hero-meta">
-  <span>⏱ <strong>5–7분</strong></span>
+  <span>⏱ <strong>~4분</strong></span>
   <span>📋 <strong>28문항</strong></span>
   <span>🎯 <strong>즉시 결과 확인</strong></span>
   <span>🔒 <strong>회원가입 불필요</strong></span>
