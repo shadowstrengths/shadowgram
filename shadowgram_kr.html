@@ -748,60 +748,83 @@
     <div class="pain-card-body" id="res-pain"></div>
   </div>
 
-  <!-- EMAIL CAPTURE -->
-  <div class="email-capture-box" id="email-capture-box">
-    <p class="email-capture-label">✦ 무료 리포트 · 나의 유형 전용</p>
-    <h2 class="email-capture-title" id="email-capture-title">무료 리포트를<br>이메일로 받아보세요</h2>
-    <p class="email-capture-sub">나의 유형에 맞춘 개인화 가이드 — 몇 분 안에 이메일로 전달됩니다.</p>
+  <!-- ══ HOTMART CTA — 완전판 구매 ══ -->
+  <div class="cta-box" id="buy-box" style="
+    margin-top:32px;
+    background:linear-gradient(160deg,#1a2235 0%,#1e2840 100%);
+    border:1px solid rgba(197,165,114,0.4);
+    border-radius:12px;
+    padding:32px 20px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  ">
+    <!-- 상단 골드 라인 -->
+    <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent);"></div>
 
-    <div class="email-capture-what">
-      <div class="email-capture-what-item">
-        <span class="ico">✦</span>
-        <span>나의 <strong style="color:var(--goldL)">빛</strong>(주기능) 완전 분석 — 내 삶에서 어떻게 작동하는지</span>
+    <p style="font-size:11px;letter-spacing:3px;color:var(--gold);font-weight:800;margin-bottom:14px;">
+      ✦ 완전판 리포트 · <span id="buy-type-label"></span> 유형
+    </p>
+
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(22px,5.5vw,30px);font-weight:600;line-height:1.45;margin-bottom:18px;">
+      지금 본 건 표면뿐입니다.<br>완전판은 훨씬 깊이 들어갑니다.
+    </h2>
+
+    <!-- 혜택 리스트 -->
+    <div style="text-align:left;max-width:400px;margin:0 auto 24px;display:flex;flex-direction:column;gap:12px;">
+      <div style="display:flex;gap:12px;align-items:flex-start;">
+        <span style="color:var(--gold);font-size:16px;margin-top:2px;flex-shrink:0;">✦</span>
+        <span style="font-size:15px;line-height:1.6;color:var(--white);">나의 유형에서 나타나는 <strong style="color:var(--goldL);">4가지 그림자 패턴</strong> — 일·관계·돈에서 어떻게 나타나는지</span>
       </div>
-      <div class="email-capture-what-item">
-        <span class="ico">◆</span>
-        <span>나의 <strong style="color:var(--goldL)">그림자</strong> 패턴 — 왜 같은 실수를 반복하는가</span>
+      <div style="display:flex;gap:12px;align-items:flex-start;">
+        <span style="color:var(--gold);font-size:16px;margin-top:2px;flex-shrink:0;">✦</span>
+        <span style="font-size:15px;line-height:1.6;color:var(--white);"><strong style="color:var(--goldL);">열등기능의 보물창고</strong> — 아직 내 안에서 꺼내지 못한 잠재력</span>
       </div>
-      <div class="email-capture-what-item">
-        <span class="ico">→</span>
-        <span>섀도우그램 8유형 소개 — 나와 다른 유형들의 관계 패턴</span>
+      <div style="display:flex;gap:12px;align-items:flex-start;">
+        <span style="color:var(--gold);font-size:16px;margin-top:2px;flex-shrink:0;">✦</span>
+        <span style="font-size:15px;line-height:1.6;color:var(--white);">그림자를 통합하는 <strong style="color:var(--goldL);">30일 프로토콜</strong> — 반복되는 패턴을 끊는 구체적 방법</span>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start;">
+        <span style="color:var(--gold);font-size:16px;margin-top:2px;flex-shrink:0;">✦</span>
+        <span style="font-size:15px;line-height:1.6;color:var(--white);">나의 유형과 <strong style="color:var(--goldL);">나머지 7개 유형</strong>의 관계 패턴 — 갈등과 끌림의 이유</span>
       </div>
     </div>
 
-    <div id="email-form-wrap">
-      <div class="email-input-row">
-        <input class="email-input" type="email" id="email-input"
-          placeholder="이메일 주소 입력" autocomplete="email" inputmode="email"/>
-        <button class="email-submit-btn" onclick="submitEmail()">
-          받기 →
-        </button>
-      </div>
-      <div class="lgpd-consent">
-        <input type="checkbox" id="lgpd-checkbox"/>
-        <label for="lgpd-checkbox">
-          섀도우그램의 리포트 및 관련 콘텐츠 이메일 수신에 동의합니다.
-          언제든지 구독 취소할 수 있습니다. 개인정보는
-          <a href="https://shadowgram.org/privacidade" target="_blank" rel="noopener">개인정보처리방침</a>에
-          따라 처리됩니다.
-        </label>
-      </div>
-      <p class="lgpd-error" id="lgpd-error">계속하려면 약관에 동의해 주세요.</p>
-      <p class="email-privacy">🔒 스팸 없음. 클릭 한 번으로 구독 취소. 개인정보 안전 보호.</p>
+    <!-- 가격 -->
+    <div style="margin-bottom:8px;">
+      <span style="font-size:13px;color:var(--silver);text-decoration:line-through;">₩ 39,000</span>
     </div>
-
-    <div class="email-success-msg" id="email-success-msg">
-      <div class="check">📬</div>
-      <h3>리포트가 전송됐어요!</h3>
-      <p>받은 편지함을 확인하세요 (스팸함도 확인해 주세요).<br>
-      <strong id="email-success-type" style="color:var(--gold)"></strong> 유형 리포트가 곧 도착합니다.</p>
+    <div style="display:flex;justify-content:center;align-items:baseline;gap:6px;margin-bottom:6px;">
+      <span style="font-size:18px;font-weight:600;color:var(--silver);">₩</span>
+      <span style="font-size:58px;font-weight:900;color:var(--gold);line-height:1;">19,000</span>
     </div>
-  </div>
+    <p style="font-size:13px;color:var(--silver);margin-bottom:28px;line-height:1.7;">
+      평생 소장 · 결제 후 즉시 PDF 다운로드<br>
+      🔒 Hotmart 안전 결제
+    </p>
 
-  <!-- 호기심 질문 -->
-  <div class="upsell-ask-section" id="upsell-ask-section" style="display:none;">
-    <p class="upsell-ask-title">💡 이런 경험이 있으신가요?</p>
-    <div class="upsell-ask-questions" id="upsell-ask-questions"></div>
+    <!-- 메인 CTA 버튼 -->
+    <a id="btn-buy-main" href="#" target="_blank" rel="noopener" style="
+      display:block;
+      background:var(--gold);
+      color:#0F1119;
+      font-family:'Montserrat',sans-serif;
+      font-size:17px;font-weight:900;
+      letter-spacing:1px;
+      padding:20px 24px;
+      border-radius:6px;
+      text-decoration:none;
+      max-width:420px;
+      margin:0 auto 16px;
+      transition:opacity .2s,transform .15s;
+    " onmouseenter="this.style.opacity='.88';this.style.transform='translateY(-1px)'"
+       onmouseleave="this.style.opacity='1';this.style.transform='none'">
+      나의 완전판 리포트 보기 →
+    </a>
+
+    <p style="font-size:13px;color:var(--silver);margin-bottom:8px;">
+      ✓ 7일 환불 보장 &nbsp;·&nbsp; ✓ 결제 후 즉시 접근
+    </p>
   </div>
 
   <!-- 공유 섹션 -->
@@ -1487,37 +1510,11 @@ function showResult(savedWinner) {
   // 실시간 통계 로드
   loadStats(winner);
 
-  // 업셀 호기심 질문 렌더링
-  const UPSELL_ASKS = {
-    SPARK:   [{icon:'🔥',q:'온 에너지로 시작했다가 끝내기 직전에 멈추는 이유가 뭘까요?'},{icon:'💔',q:'가까운 사람에게 약속을 지키지 못한다는 말을 들은 적 있나요?'},{icon:'🧩',q:'시작한 것을 포기하게 만드는 4가지 트리거를 알고 있나요?'}],
-    VISION:  [{icon:'🌀',q:'모든 것이 명확하게 보이는데 — 행동으로 옮기기 어려운 이유는 뭘까요?'},{icon:'💔',q:'가까운 사람에게 "이해하기 어렵다"는 말을 들은 적 있나요?'},{icon:'🧩',q:'VISION 유형을 위한 현실 착지 방법을 알고 있나요?'}],
-    STEADY:  [{icon:'🔥',q:'더 성장할 수 있을 것 같은데 — 뭔가 보이지 않는 것이 붙잡는 느낌인가요?'},{icon:'💔',q:'불편한 것을 말하지 않고 저절로 지나가기를 기다리나요?'},{icon:'🧩',q:'안정이 정체로 바뀌는 순간을 알아챌 수 있나요?'}],
-    PLAYER:  [{icon:'🔥',q:'성취한 것이 왜 오래 충분하다는 느낌이 들지 않나요?'},{icon:'💔',q:'충동적으로 행동하다 중요한 관계를 잃은 적 있나요?'},{icon:'🧩',q:'PLAYER 유형이 같은 실수를 반복하게 만드는 4가지 패턴을 알고 있나요?'}],
-    HARMONY: [{icon:'🔥',q:'모두를 돌보는데 — 아무도 나를 돌봐주지 않는 것 같은 이유는 뭘까요?'},{icon:'💔',q:'도와준 사람에게 화가 났지만 말하지 못한 적 있나요?'},{icon:'🧩',q:'HARMONY 유형으로서 죄책감 없이 거절하는 방법을 알고 있나요?'}],
-    SOUL:    [{icon:'🔥',q:'제공할 것이 많은데 — 세상이 알아주지 않는 것 같은 이유는 뭘까요?'},{icon:'💔',q:'"내면에서 맞지 않는다"는 이유로 중요한 것을 포기한 적 있나요?'},{icon:'🧩',q:'진정한 가치와 진정성으로 위장한 회피의 차이를 알고 있나요?'}],
-    LOGIC:   [{icon:'🔥',q:'정밀함이 가장 가까이 두고 싶은 사람들을 멀어지게 하는 이유는 뭘까요?'},{icon:'💔',q:'"차갑다" 또는 "거리감 있다"는 말을 듣고 이해하지 못한 적 있나요?'},{icon:'🧩',q:'LOGIC 유형이 자신도 모르게 닫히는 3가지 순간을 알고 있나요?'}],
-    LEADER:  [{icon:'🔥',q:'모두를 위한 결과를 만드는데 — 내면에서 공허함을 느끼는 이유는 뭘까요?'},{icon:'💔',q:'주변 사람들이 당신을 어려워하거나 거리를 두나요?'},{icon:'🧩',q:'당신의 효율성이 자신으로부터 무엇을 숨기고 있는지 알고 있나요?'}],
-  };
-  const uAsks = UPSELL_ASKS[winner];
-  const uContainer = document.getElementById('upsell-ask-questions');
-  const uSection = document.getElementById('upsell-ask-section');
-  if (uAsks && uContainer && uSection) {
-    uContainer.innerHTML = uAsks.map(a =>
-      `<div class="upsell-q">
-        <span class="upsell-q-icon">${a.icon}</span>
-        <span>${a.q}</span>
-      </div>`
-    ).join('');
-    uSection.style.display = 'block';
-  }
-
-  // 이메일 캡처 — 유형별 타이틀 업데이트 & 상태 리셋
-  _currentType = winner;
-  document.getElementById('email-capture-title').innerHTML =
-    `<strong style="color:var(--gold)">${winner}</strong> 유형 무료 리포트를<br>이메일로 받아보세요`;
-  document.getElementById('email-form-wrap').style.display = 'block';
-  document.getElementById('email-success-msg').style.display = 'none';
-  document.getElementById('email-input').value = '';
+  // ── Hotmart CTA 버튼 동적 연결
+  const buyBtn = document.getElementById('btn-buy-main');
+  const buyLabel = document.getElementById('buy-type-label');
+  if (buyBtn) buyBtn.href = getHotmartLink(winner);
+  if (buyLabel) buyLabel.textContent = winner;
 
   // SNS 공유 버튼 — share.html?type=유형 (바이럴 전용 페이지)
   const SHARE_URL = `https://shadowgram.org/shadowgram_kr.html`;
