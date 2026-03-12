@@ -58,80 +58,16 @@
     }
     .nav-back:active { color: var(--gold); }
 
-    /* ── HERO ── */
-    .hero {
-      text-align: center;
-      padding: 48px 20px 36px;
-      border-bottom: 1px solid var(--border);
-      background: linear-gradient(160deg, #FAFAF7 60%, #F5EDD8 100%);
-    }
-    .hero-label {
-      font-size: 12px; letter-spacing: 3px; color: var(--gold);
-      font-weight: 700; margin-bottom: 20px;
-    }
-    .hero-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(32px, 7vw, 52px);
-      font-weight: 600; line-height: 1.35;
-      margin-bottom: 18px;
-      color: var(--text);
-    }
-    .hero-sub {
-      color: var(--silver); font-size: 16px;
-      max-width: 520px; margin: 0 auto;
-      line-height: 2.0;
-    }
-
-    /* ── CREDIBILITY BADGE ── */
-    .cred-bar {
+    /* ── QUIZ 상단 여백 축소 ── */
+    #quiz-section {
       max-width: 680px; margin: 0 auto;
-      padding: 28px 20px;
-      border-bottom: 1px solid var(--border);
+      padding: 20px 20px 80px;
     }
-    .cred-inner {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 22px 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      align-items: flex-start;
-      box-shadow: var(--shadow);
-    }
-    .cred-icon { font-size: 32px; flex-shrink: 0; }
-    .cred-title {
-      font-size: 12px; letter-spacing: 2px; color: var(--gold);
-      font-weight: 700; margin-bottom: 10px;
-    }
-    .cred-desc {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 16px; line-height: 1.9; color: var(--text);
-    }
-    .cred-sources {
-      margin-top: 14px;
-      display: flex; gap: 8px; flex-wrap: wrap;
-    }
-    .cred-tag {
-      font-size: 12px; color: var(--silver);
-      border: 1px solid var(--border); border-radius: 4px;
-      padding: 6px 12px; background: var(--bg2);
-    }
-
-    /* ── META ── */
-    .hero-meta {
-      max-width: 680px; margin: 0 auto;
-      padding: 24px 20px 0;
-      display: flex; justify-content: center; gap: 16px;
-      flex-wrap: wrap;
-    }
-    .hero-meta span { font-size: 13px; color: var(--silver); }
-    .hero-meta strong { color: var(--gold); }
 
     /* ── BACK BUTTON ── */
     .back-btn-wrap {
       max-width: 680px; margin: 0 auto;
-      padding: 16px 20px 0;
+      padding: 10px 20px 0;
     }
     .btn-prev {
       background: none; border: none;
@@ -168,10 +104,6 @@
     }
 
     /* ── QUIZ ── */
-    #quiz-section {
-      max-width: 680px; margin: 0 auto;
-      padding: 32px 20px 80px;
-    }
     .question-block { display: none; }
     .question-block.active { display: block; animation: fadeIn .3s ease; }
 
@@ -575,46 +507,9 @@
   </a>
 </nav>
 
-<!-- HERO -->
-<div class="hero">
-  <p class="hero-label">SHADOWGRAM · GATILHO DE POTENCIAL</p>
-  <h1 class="hero-title">Você já foi elogiado por algo —<br>e criticado pelo mesmo traço?</h1>
-  <p class="hero-sub">
-    Esse traço não é um defeito. É o seu potencial que ainda não despertou.<br>
-    28 perguntas. Descubra seu tipo e receba seu plano de ação.
-  </p>
-</div>
-
-<!-- CREDIBILITY -->
-<div class="cred-bar">
-  <div class="cred-inner">
-    <div class="cred-icon">🔬</div>
-    <div>
-      <p class="cred-title">BASE CIENTÍFICA · REINTERPRETAÇÃO APLICADA</p>
-      <p class="cred-desc">
-        Este diagnóstico integra a teoria das funções psicológicas de
-        <strong>Carl Gustav Jung</strong> (Tipos Psicológicos, 1921)
-        com os estudos modernos do <strong>Big Five (IPIP)</strong>,
-        reinterpretados por um especialista coreano com
-        <strong>20 anos de experiência</strong> em desenvolvimento humano e psicologia aplicada.
-        Não é só um teste de personalidade — é um diagnóstico + plano de ação para ativar o seu potencial.
-      </p>
-      <div class="cred-sources">
-        <span class="cred-tag">C.G. Jung · 1921</span>
-        <span class="cred-tag">IPIP Big Five · Domínio Público</span>
-        <span class="cred-tag">20 anos de prática</span>
-        <span class="cred-tag">Framework Shadowgram</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- META -->
-<div class="hero-meta">
-  <span>⏱ <strong>5–7 min</strong></span>
-  <span>📋 <strong>28 perguntas</strong></span>
-  <span>🎯 <strong>Resultado imediato</strong></span>
-  <span>🔒 <strong>Sem cadastro</strong></span>
+<!-- MINI HEADER (퀴즈 위 최소 표시) -->
+<div style="text-align:center; padding: 12px 20px 0; font-size:11px; letter-spacing:2px; color:var(--silver);">
+  ⏱ 5–7 MIN &nbsp;·&nbsp; 28 PERGUNTAS &nbsp;·&nbsp; 🔒 SEM CADASTRO
 </div>
 
 <!-- BACK BUTTON -->
