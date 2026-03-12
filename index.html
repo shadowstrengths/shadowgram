@@ -1,29 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4022931899109648" crossorigin="anonymous"></script>
-  <!-- Meta Pixel Code -->
-  <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '929880876641762');
-  fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=929880876641762&ev=PageView&noscript=1"/></noscript>
-  <!-- End Meta Pixel Code -->
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Shadowgram — Descubra o Padrão que Sabota Sua Vida</title>
-  <meta name="description" content="Shadowgram: diagnóstico psicológico baseado em Jung e Big Five. 28 perguntas. Resultado imediato. Desenvolvido por especialista coreano com 20 anos de experiência."/>
-  <meta property="og:title" content="Shadowgram — Shadowgram"/>
-  <meta property="og:description" content="Descubra o padrão oculto que sabota sua vida. Diagnóstico gratuito baseado em Jung."/>
+  <title>Shadowgram — Descubra o Potencial que Ainda Não Despertou em Você</title>
+  <meta name="description" content="Shadowgram: descubra seu tipo, entenda seu potencial e receba um plano de ação baseado em Jung. 28 perguntas. Resultado imediato. Desenvolvido por especialista coreano com 20 anos de experiência."/>
+  <meta property="og:title" content="Shadowgram — Descubra Seu Potencial"/>
+  <meta property="og:description" content="Você já foi elogiado por algo — e criticado pelo mesmo traço? Descubra o potencial que ainda não despertou em você. Baseado em Jung."/>
   <meta property="og:image" content="https://shadowgram.org/shadowgram_cover_sq.png"/>
   <meta property="og:url" content="https://shadowgram.org"/>
   <meta name="twitter:card" content="summary_large_image"/>
@@ -32,19 +15,21 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --dark:   #0F1119;
-      --dark2:  #1A1F2E;
-      --card:   #161B28;
-      --gold:   #C5A572;
-      --goldL:  #E8D4A8;
-      --white:  #FFFFFF;
-      --silver: #9BAAB8;
-      --border: rgba(197,165,114,0.18);
+      --bg:     #FAFAF7;
+      --bg2:    #F2EEE6;
+      --card:   #FFFFFF;
+      --text:   #1A2030;
+      --gold:   #B8860B;
+      --goldL:  #D4A017;
+      --goldHL: #C5A030;
+      --silver: #5A6A7A;
+      --border: rgba(184,134,11,0.15);
+      --shadow: 0 2px 16px rgba(26,32,48,0.08);
     }
     html { scroll-behavior: smooth; font-size: 16px; }
     body {
-      background: var(--dark);
-      color: var(--white);
+      background: var(--bg);
+      color: var(--text);
       font-family: 'Montserrat', sans-serif;
       -webkit-text-size-adjust: 100%;
     }
@@ -55,7 +40,7 @@
       padding: 18px 24px;
       border-bottom: 1px solid var(--border);
       position: sticky; top: 0;
-      background: rgba(15,17,25,0.95);
+      background: rgba(250,250,247,0.96);
       backdrop-filter: blur(10px);
       z-index: 100;
     }
@@ -63,16 +48,16 @@
     .nav-logo img { width: 36px; height: 36px; border-radius: 50%; }
     .nav-logo-text { font-size: 15px; letter-spacing: 3px; }
     .nav-logo .s1 { color: var(--gold); font-weight: 300; }
-    .nav-logo .s2 { color: var(--white); font-weight: 900; }
+    .nav-logo .s2 { color: var(--text); font-weight: 900; }
     .nav-links { display: flex; align-items: center; gap: 24px; }
     .nav-link {
-      color: rgba(255,255,255,0.6); font-size: 12px; font-weight: 400;
+      color: var(--silver); font-size: 12px; font-weight: 400;
       letter-spacing: 2px; text-decoration: none; text-transform: uppercase;
       transition: color 0.2s;
     }
     .nav-link:hover { color: var(--gold); }
     .nav-cta {
-      background: var(--gold); color: #0F1119;
+      background: var(--gold); color: #FFFFFF;
       font-size: 12px; font-weight: 800; letter-spacing: 1px;
       padding: 10px 20px; border-radius: 30px;
       text-decoration: none; text-transform: uppercase;
@@ -89,16 +74,18 @@
       padding: 60px 24px;
       position: relative;
       overflow: hidden;
+      background: linear-gradient(160deg, #FAFAF7 60%, #F5EDD8 100%);
     }
     .hero::before {
       content: '';
       position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 50% 40%, rgba(197,165,114,0.08) 0%, transparent 70%);
+      background: radial-gradient(ellipse at 50% 40%, rgba(184,134,11,0.06) 0%, transparent 70%);
       pointer-events: none;
     }
     .hero-tag {
       display: inline-block;
-      border: 1px solid rgba(197,165,114,0.4);
+      border: 1px solid rgba(184,134,11,0.35);
+      background: rgba(184,134,11,0.06);
       color: var(--gold); font-size: 11px;
       letter-spacing: 2.5px; text-transform: uppercase;
       padding: 6px 18px; border-radius: 20px;
@@ -110,6 +97,7 @@
       font-weight: 600; line-height: 1.2;
       margin-bottom: 24px;
       max-width: 720px;
+      color: var(--text);
     }
     .hero h1 em { color: var(--gold); font-style: italic; }
     .hero p {
@@ -119,17 +107,17 @@
     }
     .btn-hero {
       display: inline-block;
-      background: linear-gradient(135deg, #C5A572, #E8D4A8);
-      color: #0F1119; font-size: 15px; font-weight: 900;
+      background: linear-gradient(135deg, #B8860B, #D4A017);
+      color: #FFFFFF; font-size: 15px; font-weight: 900;
       letter-spacing: 0.5px;
       padding: 20px 44px; border-radius: 50px;
       text-decoration: none;
-      box-shadow: 0 8px 40px rgba(197,165,114,0.3);
+      box-shadow: 0 8px 32px rgba(184,134,11,0.28);
       transition: transform 0.2s, box-shadow 0.2s;
     }
     .btn-hero:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 50px rgba(197,165,114,0.4);
+      box-shadow: 0 12px 44px rgba(184,134,11,0.38);
     }
     .hero-meta {
       margin-top: 24px;
@@ -141,10 +129,10 @@
     .cred-strip {
       display: flex; flex-wrap: wrap;
       justify-content: center; gap: 24px;
-      padding: 28px 24px;
+      padding: 24px 24px;
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
-      background: var(--dark2);
+      background: var(--bg2);
     }
     .cred-item {
       display: flex; align-items: center; gap: 10px;
@@ -164,6 +152,7 @@
       font-size: clamp(28px, 5vw, 44px);
       font-weight: 600; line-height: 1.3;
       margin-bottom: 20px;
+      color: var(--text);
     }
     .section-body {
       font-size: 16px; color: var(--silver);
@@ -171,72 +160,7 @@
     }
 
     /* ── WHAT IS ── */
-    .what-is { background: var(--dark); }
-    /* ── KINDLE CARD ── */
-    .kindle-card {
-      display: flex; align-items: stretch; gap: 0;
-      background: linear-gradient(120deg, rgba(184,134,11,0.07) 0%, rgba(20,24,36,0.9) 100%);
-      border: 1px solid rgba(184,134,11,0.35);
-      border-radius: 16px;
-      margin-top: 32px;
-      text-decoration: none;
-      overflow: hidden;
-      transition: border-color 0.25s, box-shadow 0.25s;
-    }
-    .kindle-card:hover {
-      border-color: rgba(184,134,11,0.7);
-      box-shadow: 0 8px 32px rgba(184,134,11,0.12);
-    }
-    .kindle-cover-wrap {
-      flex-shrink: 0; width: 130px;
-      background: #0a0d14;
-      display: flex; align-items: center; justify-content: center;
-      padding: 20px 16px;
-    }
-    .kindle-cover {
-      width: 100%;
-      border-radius: 4px;
-      box-shadow: 4px 6px 20px rgba(0,0,0,0.7), 0 2px 8px rgba(184,134,11,0.25);
-      display: block;
-    }
-    .kindle-info {
-      flex: 1; min-width: 0;
-      padding: 24px 24px 24px 20px;
-      display: flex; flex-direction: column; justify-content: center;
-    }
-    .kindle-eyebrow {
-      font-size: 10px; letter-spacing: 3px; font-weight: 700;
-      color: var(--gold); text-transform: uppercase; margin-bottom: 8px;
-    }
-    .kindle-title {
-      font-size: 22px; font-weight: 900; color: #fff;
-      line-height: 1.2; margin-bottom: 6px;
-      font-family: Georgia, serif;
-    }
-    .kindle-author {
-      font-size: 12px; color: rgba(155,170,184,0.6);
-      margin-bottom: 10px; letter-spacing: 0.5px;
-    }
-    .kindle-sub {
-      font-size: 13px; color: var(--silver); margin-bottom: 18px; line-height: 1.6;
-    }
-    .kindle-cta {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: 12px; font-weight: 800; color: var(--gold);
-      letter-spacing: 1px; text-transform: uppercase;
-      border: 1px solid rgba(184,134,11,0.4);
-      border-radius: 4px; padding: 7px 14px;
-      width: fit-content;
-      transition: background 0.2s;
-    }
-    .kindle-card:hover .kindle-cta {
-      background: rgba(184,134,11,0.12);
-    }
-    @media (max-width: 540px) {
-      .kindle-cover-wrap { width: 100px; padding: 16px 12px; }
-      .kindle-title { font-size: 18px; }
-      .kindle-info { padding: 18px 16px; }
-    }
+    .what-is { background: var(--bg); }
     .what-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -246,6 +170,7 @@
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 16px; padding: 28px 24px;
+      box-shadow: var(--shadow);
     }
     .what-icon { font-size: 28px; margin-bottom: 14px; }
     .what-card h3 {
@@ -255,8 +180,27 @@
     }
     .what-card p { font-size: 14px; color: var(--silver); line-height: 1.7; }
 
+    /* ── KINDLE BADGE ── */
+    .kindle-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(184,134,11,0.05);
+      border: 1px solid rgba(184,134,11,0.2);
+      border-radius: 8px;
+      padding: 10px 18px;
+      margin-top: 20px;
+      font-size: 13px; color: var(--silver);
+      flex-wrap: wrap;
+    }
+    .kindle-icon { font-size: 16px; }
+    .kindle-link {
+      color: var(--gold); font-weight: 700;
+      text-decoration: none; white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+    .kindle-link:hover { opacity: 0.75; }
+
     /* ── 8 TYPES ── */
-    .types-section { background: var(--dark2); }
+    .types-section { background: var(--bg2); }
     .types-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -268,10 +212,11 @@
       border-radius: 14px; padding: 22px 18px;
       text-align: center;
       text-decoration: none;
-      transition: border-color 0.2s, transform 0.2s;
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
       display: block;
+      box-shadow: var(--shadow);
     }
-    .type-card:hover { transform: translateY(-3px); }
+    .type-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(26,32,48,0.12); }
     .type-emoji { font-size: 32px; margin-bottom: 10px; }
     .type-name {
       font-size: 16px; font-weight: 900;
@@ -280,7 +225,7 @@
     .type-sub { font-size: 11px; color: var(--silver); line-height: 1.4; }
 
     /* ── SCIENCE ── */
-    .science { background: var(--dark); }
+    .science { background: var(--bg); }
     .sci-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -291,13 +236,14 @@
       border: 1px solid var(--border);
       border-radius: 14px; padding: 24px 20px;
       text-align: center;
+      box-shadow: var(--shadow);
     }
     .sci-card .sci-icon { font-size: 36px; margin-bottom: 12px; }
     .sci-card h4 { font-size: 13px; font-weight: 800; color: var(--gold); margin-bottom: 8px; letter-spacing: 1px; }
     .sci-card p { font-size: 13px; color: var(--silver); line-height: 1.6; }
 
     /* ── AUTHOR ── */
-    .author { background: var(--dark2); }
+    .author { background: var(--bg2); }
     .author-inner {
       max-width: 680px; margin: 0 auto;
       text-align: center;
@@ -308,11 +254,12 @@
       background: linear-gradient(135deg, var(--gold), var(--goldL));
       display: flex; align-items: center; justify-content: center;
       font-size: 32px; margin: 0 auto 24px;
-      color: #0F1119; font-weight: 900;
+      color: #FFFFFF; font-weight: 900;
     }
     .author-name {
       font-size: 20px; font-weight: 800;
       letter-spacing: 1px; margin-bottom: 6px;
+      color: var(--text);
     }
     .author-title {
       font-size: 13px; color: var(--gold);
@@ -332,7 +279,7 @@
 
     /* ── CTA FINAL ── */
     .cta-final {
-      background: var(--dark);
+      background: linear-gradient(160deg, #F5EDD8 0%, #FAFAF7 100%);
       text-align: center; padding: 100px 24px;
     }
     .cta-final h2 {
@@ -340,6 +287,7 @@
       font-size: clamp(28px, 6vw, 52px);
       font-weight: 600; line-height: 1.3;
       margin-bottom: 20px;
+      color: var(--text);
     }
     .cta-final p {
       font-size: 16px; color: var(--silver);
@@ -351,7 +299,8 @@
       border-top: 1px solid var(--border);
       padding: 32px 24px;
       text-align: center;
-      font-size: 12px; color: #444;
+      background: var(--bg2);
+      font-size: 12px; color: var(--silver);
       line-height: 1.8;
     }
   </style>
@@ -373,10 +322,10 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-tag">✦ Diagnóstico Psicológico · Framework Shadowgram</div>
-  <h1>Por que você continua repetindo<br><em>os mesmos erros?</em></h1>
-  <p>A resposta está na sua sombra psicológica. O Shadowgram revela o padrão oculto que sabota sua vida — em 28 perguntas, resultado imediato.</p>
-  <a class="btn-hero" href="/shadowgram_pt.html?fresh=1">Fazer o Diagnóstico Gratuito →</a>
+  <div class="hero-tag">✦ Gatilho de Potencial · Framework Shadowgram</div>
+  <h1>Você já foi elogiado por algo —<br><em>e criticado pelo mesmo traço?</em></h1>
+  <p>Esse traço não é um defeito. É o seu potencial que ainda não despertou. O Shadowgram revela seu tipo, seu potencial e o caminho para ativá-lo — em 28 perguntas, resultado imediato.</p>
+  <a class="btn-hero" href="/shadowgram_pt.html?fresh=1">Descobrir Meu Potencial →</a>
   <p class="hero-meta">⏱ 5–7 min &nbsp;·&nbsp; 📋 28 perguntas &nbsp;·&nbsp; 🔒 Sem cadastro</p>
 </section>
 
@@ -392,21 +341,16 @@
 <section class="what-is">
   <div class="section-inner">
     <p class="section-tag">✦ O que é o Shadowgram</p>
-    <h2 class="section-title">Não é um teste de personalidade.<br>É um mapa da sua sombra.</h2>
-    <p class="section-body">O Shadowgram integra a teoria das funções psicológicas de Jung com os estudos modernos do Big Five — reinterpretados para revelar não apenas quem você é, mas por que você age da forma que age.</p>
+    <h2 class="section-title">Não é só um teste de personalidade.<br>É um diagnóstico + plano de ação.</h2>
+    <p class="section-body">Outros testes dizem quem você é — e param por aí. O Shadowgram vai além: revela seu potencial, explica por que você age da forma que age, e entrega um caminho concreto para ativar o que ainda está adormecido em você.</p>
 
-    <a class="kindle-card" href="https://a.co/d/06IXW2VS" target="_blank" rel="noopener">
-      <div class="kindle-cover-wrap">
-        <img class="kindle-cover" src="/kindle_cover.png" alt="Luz e Sombra — M. C. Cho">
-      </div>
-      <div class="kindle-info">
-        <p class="kindle-eyebrow">✦ Livro do autor · Amazon Kindle</p>
-        <p class="kindle-title">Luz e Sombra</p>
-        <p class="kindle-author">M. C. Cho</p>
-        <p class="kindle-sub">O livro que fundamenta o framework Shadowgram — a teoria por trás dos 8 tipos.</p>
-        <span class="kindle-cta">Ler na Amazon →</span>
-      </div>
-    </a>
+    <div class="kindle-badge">
+      <span class="kindle-icon">📖</span>
+      <span class="kindle-text">A teoria por trás do Shadowgram está no livro do autor, disponível na</span>
+      <a class="kindle-link" href="https://a.co/d/06IXW2VS" target="_blank" rel="noopener">
+        Amazon Kindle →
+      </a>
+    </div>
 
     <div class="what-grid">
       <div class="what-card">
@@ -415,14 +359,14 @@
         <p>Sua função dominante — o que você faz naturalmente bem, com fluidez e energia genuína.</p>
       </div>
       <div class="what-card">
-        <div class="what-icon">◆</div>
-        <h3>Sua Sombra</h3>
-        <p>Sua função inferior — o padrão inconsciente que sabota seus relacionamentos, projetos e decisões.</p>
+        <div class="what-icon">⚡</div>
+        <h3>Seu Potencial</h3>
+        <p>O que ainda não despertou em você — o traço que outros já perceberam, mas você ainda não ativou por completo.</p>
       </div>
       <div class="what-card">
         <div class="what-icon">🗺</div>
-        <h3>Seu Mapa</h3>
-        <p>O caminho de integração específico para o seu tipo — não teoria genérica, mas prática direcionada.</p>
+        <h3>Seu Plano</h3>
+        <p>O caminho de ativação específico para o seu tipo — não teoria genérica, mas passos concretos para o seu perfil.</p>
       </div>
       <div class="what-card">
         <div class="what-icon">🎯</div>
@@ -438,7 +382,7 @@
   <div class="section-inner">
     <p class="section-tag">✦ Os 8 Tipos Shadowgram</p>
     <h2 class="section-title">Qual é o seu tipo?</h2>
-    <p class="section-body">Cada tipo tem uma função dominante (sua luz) e uma função inferior (sua sombra). Reconhecer os dois é o primeiro passo da integração.</p>
+    <p class="section-body">Cada tipo tem uma função dominante (sua luz) e um potencial ainda adormecido. Conhecer os dois é o primeiro passo para ativar o que há de melhor em você.</p>
     <div class="types-grid">
       <a class="type-card" href="/share.html?type=STEADY" style="border-color:rgba(123,158,168,0.3)">
         <div class="type-emoji">🏔</div>
@@ -523,16 +467,16 @@
     <div class="author-name">Mincheol Cho</div>
     <div class="author-title">Especialista em Psicologia Aplicada · Coreia do Sul</div>
     <div class="gold-divider"></div>
-    <p class="author-bio">"Ao longo de 20 anos, uma pergunta me perseguiu: por que pessoas inteligentes continuam repetindo os mesmos erros, mesmo sabendo o que fazem de errado? A resposta não estava na força de vontade. Estava na sombra. O Shadowgram nasceu dessa descoberta."</p>
+    <p class="author-bio">"Ao longo de 20 anos, uma pergunta me perseguiu: por que pessoas talentosas não conseguem ativar todo o seu potencial, mesmo se esforçando muito? A resposta não estava na falta de capacidade. Estava num potencial ainda adormecido. O Shadowgram nasceu para despertar isso."</p>
   </div>
 </section>
 
 <!-- CTA FINAL -->
 <section class="cta-final">
-  <h2>Descubra o padrão oculto<br>que sabota <em style="color:var(--gold);font-style:italic">sua</em> vida.</h2>
-  <p>28 perguntas. Resultado imediato. Sem cadastro.<br>Baseado em Jung (1921) e IPIP Big Five.</p>
-  <a class="btn-hero" href="/shadowgram_pt.html?fresh=1">Fazer o Diagnóstico Gratuito →</a>
-  <p style="margin-top:20px;font-size:12px;color:#555;letter-spacing:1px">
+  <h2>Descubra o potencial<br>que ainda não despertou em <em style="color:var(--gold);font-style:italic">você.</em></h2>
+  <p>28 perguntas. Resultado imediato. Sem cadastro.<br>Diagnóstico + plano de ação baseado em Jung.</p>
+  <a class="btn-hero" href="/shadowgram_pt.html?fresh=1">Descobrir Meu Potencial →</a>
+  <p style="margin-top:20px;font-size:12px;color:var(--silver);letter-spacing:1px">
     GRATUITO · SEM CADASTRO · RESULTADO IMEDIATO
   </p>
 </section>
@@ -545,9 +489,6 @@
     Diagnóstico baseado em Jung (1921) e IPIP Big Five (domínio público).<br>
     Shadowgram é um framework independente de desenvolvimento humano.<br>
     Não é afiliado a The Myers &amp; Briggs Foundation.
-  </p>
-  <p style="margin-top:16px;font-size:12px">
-    <a href="/privacidade.html" style="color:var(--silver);text-decoration:none;opacity:0.7;transition:opacity 0.2s" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">Política de Privacidade</a>
   </p>
 </footer>
 

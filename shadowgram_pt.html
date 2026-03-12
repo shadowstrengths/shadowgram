@@ -1,31 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4022931899109648" crossorigin="anonymous"></script>
-  <!-- Meta Pixel Code -->
-  <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '929880876641762');
-  fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=929880876641762&ev=PageView&noscript=1"/></noscript>
-  <!-- End Meta Pixel Code -->
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Shadowgram — Descubra seu tipo</title>
   <meta name="description" content="Diagnóstico de personalidade baseado em Jung e Big Five. 28 perguntas. Resultado instantâneo. Desenvolvido por especialista coreano com 20 anos de experiência."/>
   <link rel="canonical" href="https://shadowgram.org/shadowgram_pt.html"/>
   <meta property="og:url" content="https://shadowgram.org/shadowgram_pt.html"/>
-  <meta property="og:title" content="Shadowgram — Descubra o Padrão que Sabota Sua Vida"/>
-  <meta property="og:description" content="Descubra o padrão oculto que sabota sua vida. Diagnóstico gratuito baseado em Jung. 28 perguntas. Resultado imediato."/>
+  <meta property="og:title" content="Shadowgram — Descubra o Potencial que Ainda Não Despertou em Você"/>
+  <meta property="og:description" content="Você já foi elogiado por algo — e criticado pelo mesmo traço? Descubra seu potencial e receba um plano de ação. Gratuito. Baseado em Jung. 28 perguntas."/>
   <meta property="og:image" content="https://shadowgram.org/shadowgram_cover_sq.png"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="robots" content="index, follow"/>
@@ -35,22 +18,24 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --dark:  #0F1119;
-      --dark2: #1A1F2E;
-      --card:  #161B28;
-      --gold:  #C5A572;
-      --goldL: #E8D4A8;
+      --bg:    #FAFAF7;
+      --bg2:   #F2EEE6;
+      --card:  #FFFFFF;
+      --text:  #1A2030;
+      --gold:  #B8860B;
+      --goldL: #D4A017;
       --white: #FFFFFF;
-      --silver:#9BAAB8;
-      --border:rgba(197,165,114,0.18);
-      --red:   #E05555;
+      --silver:#5A6A7A;
+      --border:rgba(184,134,11,0.15);
+      --shadow:0 2px 16px rgba(26,32,48,0.08);
+      --red:   #C0392B;
     }
 
     /* ── 모바일 우선 베이스 ── */
     html { scroll-behavior: smooth; font-size: 16px; }
     body {
-      background: var(--dark);
-      color: var(--white);
+      background: var(--bg);
+      color: var(--text);
       font-family: 'Montserrat', sans-serif;
       min-height: 100vh;
       -webkit-text-size-adjust: 100%;
@@ -61,11 +46,12 @@
       display: flex; align-items: center; justify-content: space-between;
       padding: 18px 20px;
       border-bottom: 1px solid var(--border);
+      background: rgba(250,250,247,0.96);
     }
     .nav-logo { text-decoration: none; font-size: 14px; letter-spacing: 3px; display: flex; align-items: center; gap: 10px; }
     .nav-logo img { width: 34px; height: 34px; border-radius: 50%; }
     .nav-logo .s1 { color: var(--gold); font-weight: 300; }
-    .nav-logo .s2 { color: var(--white); font-weight: 900; }
+    .nav-logo .s2 { color: var(--text); font-weight: 900; }
     .nav-back {
       font-size: 13px; color: var(--silver);
       text-decoration: none; transition: color .2s;
@@ -77,6 +63,7 @@
       text-align: center;
       padding: 48px 20px 36px;
       border-bottom: 1px solid var(--border);
+      background: linear-gradient(160deg, #FAFAF7 60%, #F5EDD8 100%);
     }
     .hero-label {
       font-size: 12px; letter-spacing: 3px; color: var(--gold);
@@ -87,34 +74,12 @@
       font-size: clamp(32px, 7vw, 52px);
       font-weight: 600; line-height: 1.35;
       margin-bottom: 18px;
+      color: var(--text);
     }
     .hero-sub {
       color: var(--silver); font-size: 16px;
-      max-width: 520px; margin: 0 auto 28px;
+      max-width: 520px; margin: 0 auto;
       line-height: 2.0;
-    }
-    /* ── HERO CTA 버튼 ── */
-    .hero-cta-btn {
-      display: inline-block;
-      background: var(--gold);
-      color: #0F1119;
-      font-size: 18px;
-      font-weight: 800;
-      letter-spacing: 1.5px;
-      padding: 18px 48px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      margin-bottom: 16px;
-      width: 100%;
-      max-width: 400px;
-      transition: opacity 0.2s, transform 0.15s;
-    }
-    .hero-cta-btn:hover { opacity: 0.88; transform: translateY(-1px); }
-    .hero-cta-btn:active { transform: translateY(0); }
-    .hero-cta-sub {
-      color: var(--silver); font-size: 13px;
-      margin: 0 auto; letter-spacing: 0.5px;
     }
 
     /* ── CREDIBILITY BADGE ── */
@@ -126,12 +91,13 @@
     .cred-inner {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 4px;
+      border-radius: 8px;
       padding: 22px 20px;
       display: flex;
       flex-direction: column;
       gap: 16px;
       align-items: flex-start;
+      box-shadow: var(--shadow);
     }
     .cred-icon { font-size: 32px; flex-shrink: 0; }
     .cred-title {
@@ -140,7 +106,7 @@
     }
     .cred-desc {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 16px; line-height: 1.9; color: var(--goldL);
+      font-size: 16px; line-height: 1.9; color: var(--text);
     }
     .cred-sources {
       margin-top: 14px;
@@ -148,8 +114,8 @@
     }
     .cred-tag {
       font-size: 12px; color: var(--silver);
-      border: 1px solid var(--border); border-radius: 2px;
-      padding: 6px 12px;
+      border: 1px solid var(--border); border-radius: 4px;
+      padding: 6px 12px; background: var(--bg2);
     }
 
     /* ── META ── */
@@ -228,22 +194,27 @@
     .ab-btn {
       background: var(--card);
       border: 1px solid var(--border);
-      color: var(--white);
+      color: var(--text);
       padding: 20px 20px;
       text-align: left; cursor: pointer;
-      border-radius: 4px;
+      border-radius: 8px;
       font-family: 'Montserrat', sans-serif;
       font-size: 16px; line-height: 1.7;
-      transition: border-color .2s, background .2s;
+      transition: border-color .2s, background .2s, box-shadow .2s;
       display: flex; align-items: flex-start; gap: 16px; width: 100%;
+      box-shadow: var(--shadow);
+    }
+    .ab-btn:hover {
+      border-color: rgba(184,134,11,0.4);
+      box-shadow: 0 4px 20px rgba(184,134,11,0.12);
     }
     .ab-btn:active {
       border-color: var(--gold);
-      background: rgba(197,165,114,0.13);
+      background: rgba(184,134,11,0.06);
     }
     .ab-btn.selected {
       border-color: var(--gold);
-      background: rgba(197,165,114,0.13);
+      background: rgba(184,134,11,0.06);
     }
     .ab-label {
       flex-shrink: 0; width: 36px; height: 36px;
@@ -253,40 +224,15 @@
       margin-top: 2px;
     }
     .ab-btn.selected .ab-label {
-      background: var(--gold); color: var(--dark); border-color: var(--gold);
+      background: var(--gold); color: #FFFFFF; border-color: var(--gold);
     }
     .ab-text { font-size: 16px; }
-
-    /* ── RESULT HERO IMAGE ── */
-    .result-hero-img {
-      display: block;
-      width: 100%;
-      max-width: 540px;
-      border-radius: 20px;
-      margin: 0 auto 32px;
-      box-shadow: 0 12px 60px rgba(0,0,0,0.7);
-      border: none;
-      animation: cardPop .5s cubic-bezier(.18,.89,.32,1.28);
-      cursor: pointer;
-    }
-    .result-hero-img:hover {
-      transform: scale(1.02);
-      transition: transform .2s ease;
-    }
-    .result-hero-wrap {
-      text-align: center;
-      margin-bottom: 0;
-    }
-    @keyframes cardPop {
-      0%   { opacity:0; transform: scale(0.88); }
-      100% { opacity:1; transform: scale(1); }
-    }
 
     /* ── RESULT ── */
     #result-section {
       display: none;
       max-width: 700px; margin: 0 auto;
-      padding: 24px 20px 80px;
+      padding: 40px 20px 80px;
       animation: fadeIn .5s ease;
     }
     .result-label {
@@ -305,18 +251,25 @@
       font-size: 14px; letter-spacing: 1px; color: var(--silver);
       margin-bottom: 8px; line-height: 1.6;
     }
+    .result-code {
+      text-align: center;
+      font-size: 12px; letter-spacing: 2px; color: rgba(184,134,11,0.4);
+      margin-bottom: 32px;
+    }
     .result-card {
       background: var(--card); border: 1px solid var(--border);
-      border-radius: 4px; overflow: hidden; margin-bottom: 16px;
+      border-radius: 8px; overflow: hidden; margin-bottom: 16px;
+      box-shadow: var(--shadow);
     }
     .result-card-header {
       padding: 16px 20px;
       font-size: 12px; letter-spacing: 2px; font-weight: 700;
+      background: var(--bg2);
     }
     .result-card-body {
       padding: 18px 20px 22px;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 17px; line-height: 1.95; color: var(--goldL);
+      font-size: 17px; line-height: 1.95; color: var(--text);
     }
     .result-shadow-body {
       padding: 18px 20px 22px;
@@ -324,26 +277,27 @@
       font-size: 17px; line-height: 1.95; color: var(--silver);
     }
 
-    /* ── PAIN POINT CARD ── */
+    /* ── POTENTIAL POINT CARD (구 Pain Card → 포텐 프레임으로 전환) ── */
     .pain-card {
-      background: rgba(224,85,85,0.07);
-      border: 1px solid rgba(224,85,85,0.3);
-      border-radius: 4px; padding: 22px 20px;
+      background: rgba(184,134,11,0.05);
+      border: 1px solid rgba(184,134,11,0.25);
+      border-radius: 8px; padding: 22px 20px;
       margin-bottom: 16px;
     }
     .pain-card-header {
       font-size: 12px; letter-spacing: 2px; font-weight: 700;
-      color: var(--red); margin-bottom: 14px;
+      color: var(--gold); margin-bottom: 14px;
     }
     .pain-card-body {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 17px; line-height: 1.95; color: #f0c0c0;
+      font-size: 17px; line-height: 1.95; color: var(--text);
     }
 
     /* ── Score bars (양방향 중심 기준) ── */
     .score-bars {
       background: var(--card); border: 1px solid var(--border);
-      border-radius: 4px; padding: 22px 20px; margin-bottom: 16px;
+      border-radius: 8px; padding: 22px 20px; margin-bottom: 16px;
+      box-shadow: var(--shadow);
     }
     .score-bar-label {
       font-size: 12px; letter-spacing: 2px; color: var(--gold);
@@ -358,7 +312,7 @@
     .bar-track::after {
       content: ''; position: absolute;
       left: 50%; top: -4px; width: 1px; height: 16px;
-      background: rgba(255,255,255,0.3);
+      background: rgba(26,32,48,0.15);
     }
     .bar-fill-a {
       position: absolute; top: 0; height: 100%; border-radius: 4px 0 0 4px;
@@ -374,76 +328,46 @@
       margin-top: 8px;
     }
     .bar-label-a, .bar-label-b { transition: all 0.3s; }
-    .bar-label-active { color: #fff; font-weight: 700; }
+    .bar-label-active { color: var(--text); font-weight: 700; }
     .bar-label-inactive { color: var(--silver); font-weight: 400; opacity: 0.5; }
 
-    /* ── Stats counter ── */
-    .stats-banner {
-      background: rgba(184,134,11,0.06);
-      border: 1px solid rgba(184,134,11,0.2);
-      border-radius: 8px;
-      padding: 14px 20px;
-      margin-bottom: 20px;
-      text-align: center;
-      display: none; /* JS로 표시 */
+    /* ── PREVIEW BLUR ── */
+    .preview-blur-wrap {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 8px; overflow: hidden;
+      margin-bottom: 16px; position: relative;
+      box-shadow: var(--shadow);
     }
-    .stats-total {
-      font-size: 13px; color: var(--silver); line-height: 1.7;
+    .preview-blur-header {
+      padding: 16px 20px;
+      font-size: 12px; letter-spacing: 2px; font-weight: 700;
+      color: var(--silver); background: var(--bg2);
     }
-    .stats-total strong {
-      color: var(--gold); font-size: 18px; font-weight: 900;
+    .preview-blur-body {
+      padding: 18px 20px 28px;
+      filter: blur(5px); user-select: none;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px; line-height: 1.9; color: var(--text);
+      pointer-events: none;
+      white-space: pre-line;
     }
-    .stats-type {
-      font-size: 12px; color: rgba(155,170,184,0.6);
-      margin-top: 4px; letter-spacing: 0.5px;
+    .preview-blur-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, var(--card) 70%);
+      height: 120px;
+      display: flex; align-items: flex-end; justify-content: center;
+      padding-bottom: 20px;
     }
-    .stats-type em { color: var(--goldL); font-style: normal; font-weight: 700; }
-
-    /* ── 업셀 호기심 질문 ── */
-    .upsell-ask-section {
-      margin: 32px 0 8px;
-      background: rgba(197,165,114,0.05);
-      border: 1px solid rgba(197,165,114,0.25);
-      border-radius: 18px;
-      padding: 22px 20px 16px;
-    }
-    .upsell-ask-title {
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: 1px;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 14px;
-      text-align: center;
-    }
-    .upsell-q {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 14px 16px;
-      margin-bottom: 8px;
-      font-size: 14.5px;
-      font-weight: 700;
-      color: #f0e6d0;
-      line-height: 1.5;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .upsell-q-icon { font-size: 18px; flex-shrink: 0; }
-    .upsell-ask-sub {
-      font-size: 12px;
-      color: var(--silver);
-      text-align: center;
-      margin-top: 12px;
-      line-height: 1.5;
+    .preview-blur-label {
+      font-size: 13px; color: var(--silver);
     }
 
     /* ── CTA box ── */
     .cta-box {
       margin-top: 40px;
-      background: var(--dark2); border: 1px solid var(--border);
-      border-radius: 4px; padding: 32px 20px; text-align: center;
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 8px; padding: 32px 20px; text-align: center;
+      box-shadow: var(--shadow);
     }
     .cta-box-label {
       font-size: 11px; letter-spacing: 2px; color: var(--gold);
@@ -453,6 +377,7 @@
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(22px, 5.5vw, 30px);
       font-weight: 600; line-height: 1.45; margin-bottom: 14px;
+      color: var(--text);
     }
     .cta-box-sub {
       color: var(--silver); font-size: 16px;
@@ -474,14 +399,16 @@
 
     .btn-buy {
       display: inline-block; padding: 20px 32px;
-      background: var(--gold); color: var(--dark);
+      background: var(--gold); color: #FFFFFF;
       font-family: 'Montserrat', sans-serif;
       font-size: 16px; font-weight: 800; letter-spacing: 1px;
       text-decoration: none;
-      border-radius: 2px;
-      transition: background .2s;
+      border-radius: 8px;
+      transition: background .2s, box-shadow .2s;
       width: 100%; max-width: 420px;
+      box-shadow: 0 4px 20px rgba(184,134,11,0.25);
     }
+    .btn-buy:hover { background: var(--goldL); box-shadow: 0 6px 28px rgba(184,134,11,0.35); }
     .btn-buy:active { background: var(--goldL); }
 
     .btn-retry {
@@ -495,20 +422,22 @@
     .btn-retry:active { color: var(--gold); }
     .guarantee {
       margin-top: 18px;
-      font-size: 13px; color: rgba(155,170,184,0.5);
+      font-size: 13px; color: var(--silver);
+      opacity: 0.6;
       line-height: 1.7;
     }
 
     /* ── EMAIL CAPTURE BOX ── */
     .email-capture-box {
       margin-top: 32px;
-      background: linear-gradient(135deg, rgba(197,165,114,0.08) 0%, rgba(26,31,46,0.95) 100%);
-      border: 1px solid rgba(197,165,114,0.35);
+      background: var(--bg2);
+      border: 1px solid var(--border);
       border-radius: 8px;
       padding: 32px 24px;
       text-align: center;
       position: relative;
       overflow: hidden;
+      box-shadow: var(--shadow);
     }
     .email-capture-box::before {
       content: '';
@@ -523,7 +452,7 @@
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(20px, 5vw, 26px);
       font-weight: 600; line-height: 1.45;
-      margin-bottom: 10px; color: var(--white);
+      margin-bottom: 10px; color: var(--text);
     }
     .email-capture-sub {
       font-size: 14px; color: var(--silver);
@@ -549,29 +478,30 @@
     }
     .email-input {
       flex: 1;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(197,165,114,0.3);
-      color: var(--white);
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
       font-family: 'Montserrat', sans-serif;
       font-size: 15px;
       padding: 14px 16px;
-      border-radius: 4px;
+      border-radius: 6px;
       outline: none;
-      transition: border-color .2s;
+      transition: border-color .2s, box-shadow .2s;
     }
-    .email-input::placeholder { color: rgba(155,170,184,0.5); }
-    .email-input:focus { border-color: var(--gold); }
+    .email-input::placeholder { color: var(--silver); opacity: 0.5; }
+    .email-input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(184,134,11,0.1); }
     .email-submit-btn {
-      background: var(--gold); color: var(--dark);
+      background: var(--gold); color: #FFFFFF;
       font-family: 'Montserrat', sans-serif;
       font-size: 14px; font-weight: 800; letter-spacing: 0.5px;
-      padding: 14px 22px; border: none; border-radius: 4px;
+      padding: 14px 22px; border: none; border-radius: 6px;
       cursor: pointer; white-space: nowrap;
       transition: background .2s, transform .1s;
     }
     .email-submit-btn:active { transform: scale(0.98); background: var(--goldL); }
     .email-privacy {
-      font-size: 11px; color: rgba(155,170,184,0.4);
+      font-size: 11px; color: var(--silver);
+      opacity: 0.6;
       margin-top: 12px; line-height: 1.6;
     }
     .lgpd-consent {
@@ -581,8 +511,8 @@
     .lgpd-consent input[type="checkbox"] {
       appearance: none; -webkit-appearance: none;
       width: 18px; height: 18px; min-width: 18px;
-      border: 1px solid rgba(197,165,114,0.5);
-      border-radius: 3px; background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(184,134,11,0.4);
+      border-radius: 3px; background: var(--card);
       cursor: pointer; margin-top: 1px;
       display: flex; align-items: center; justify-content: center;
       transition: background .15s, border-color .15s;
@@ -591,15 +521,15 @@
       background: var(--gold); border-color: var(--gold);
     }
     .lgpd-consent input[type="checkbox"]:checked::after {
-      content: '✓'; color: #0D1118; font-size: 12px; font-weight: 900;
+      content: '✓'; color: #FFFFFF; font-size: 12px; font-weight: 900;
       display: block; text-align: center; line-height: 18px;
     }
     .lgpd-consent label {
-      font-size: 11px; color: rgba(155,170,184,0.55); line-height: 1.6; cursor: pointer;
+      font-size: 11px; color: var(--silver); opacity: 0.7; line-height: 1.6; cursor: pointer;
     }
-    .lgpd-consent label a { color: rgba(184,134,11,0.7); text-decoration: underline; }
+    .lgpd-consent label a { color: var(--gold); text-decoration: underline; }
     .lgpd-error {
-      font-size: 11px; color: #e05555; margin-top: 6px; display: none;
+      font-size: 11px; color: var(--red); margin-top: 6px; display: none;
     }
     .email-success-msg {
       display: none;
@@ -617,7 +547,9 @@
     footer {
       border-top: 1px solid var(--border);
       padding: 36px 20px; text-align: center;
-      font-size: 13px; color: rgba(155,170,184,0.4);
+      background: var(--bg2);
+      font-size: 13px; color: var(--silver);
+      opacity: 0.8;
       line-height: 2.0;
     }
 
@@ -635,33 +567,41 @@
 </head>
 <body>
 
-<!-- NAV (퀴즈 중/결과 시 로고만) -->
-<nav id="main-nav">
+<!-- NAV -->
+<nav>
   <a class="nav-logo" href="https://shadowgram.org">
     <img src="https://shadowgram.org/logo.png" alt="Shadowgram Logo">
     <span><span class="s1">SHADOW</span><span class="s2">GRAM</span></span>
   </a>
 </nav>
 
-<!-- HERO / CRED / META — 기본 숨김, 결과 후 재시작 시에만 표시 -->
-<div class="hero" id="hero-block" style="display:none;">
-  <p class="hero-label">SHADOWGRAM · DIAGNÓSTICO GRATUITO</p>
-  <h1 class="hero-title">Por que você continua repetindo<br>os mesmos erros?</h1>
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-label">SHADOWGRAM · GATILHO DE POTENCIAL</p>
+  <h1 class="hero-title">Você já foi elogiado por algo —<br>e criticado pelo mesmo traço?</h1>
   <p class="hero-sub">
-    A resposta está na sua sombra psicológica.<br>
-    Descubra seu tipo em menos de 4 minutos.
+    Esse traço não é um defeito. É o seu potencial que ainda não despertou.<br>
+    28 perguntas. Descubra seu tipo e receba seu plano de ação.
   </p>
-  <p class="hero-cta-sub">✓ Grátis &nbsp;·&nbsp; ✓ Resultado imediato &nbsp;·&nbsp; ✓ Sem cadastro</p>
 </div>
 
-<div class="cred-bar" id="cred-block" style="display:none;">
+<!-- CREDIBILITY -->
+<div class="cred-bar">
   <div class="cred-inner">
     <div class="cred-icon">🔬</div>
     <div>
-      <p class="cred-title">BASE CIENTÍFICA · 20 ANOS DE EXPERIÊNCIA</p>
+      <p class="cred-title">BASE CIENTÍFICA · REINTERPRETAÇÃO APLICADA</p>
+      <p class="cred-desc">
+        Este diagnóstico integra a teoria das funções psicológicas de
+        <strong>Carl Gustav Jung</strong> (Tipos Psicológicos, 1921)
+        com os estudos modernos do <strong>Big Five (IPIP)</strong>,
+        reinterpretados por um especialista coreano com
+        <strong>20 anos de experiência</strong> em desenvolvimento humano e psicologia aplicada.
+        Não é só um teste de personalidade — é um diagnóstico + plano de ação para ativar o seu potencial.
+      </p>
       <div class="cred-sources">
         <span class="cred-tag">C.G. Jung · 1921</span>
-        <span class="cred-tag">Big Five · IPIP</span>
+        <span class="cred-tag">IPIP Big Five · Domínio Público</span>
         <span class="cred-tag">20 anos de prática</span>
         <span class="cred-tag">Framework Shadowgram</span>
       </div>
@@ -669,8 +609,9 @@
   </div>
 </div>
 
-<div class="hero-meta" id="meta-block" style="display:none;">
-  <span>⏱ <strong>~4 min</strong></span>
+<!-- META -->
+<div class="hero-meta">
+  <span>⏱ <strong>5–7 min</strong></span>
   <span>📋 <strong>28 perguntas</strong></span>
   <span>🎯 <strong>Resultado imediato</strong></span>
   <span>🔒 <strong>Sem cadastro</strong></span>
@@ -679,12 +620,6 @@
 <!-- BACK BUTTON -->
 <div class="back-btn-wrap">
   <button class="btn-prev hidden" id="btn-prev" onclick="goPrev()">← Pergunta anterior</button>
-</div>
-
-<!-- QUIZ 상단 브랜드 미니 헤더 -->
-<div style="max-width:680px;margin:0 auto;padding:14px 20px 0;display:flex;align-items:center;justify-content:space-between;">
-  <span style="font-size:12px;letter-spacing:2px;color:var(--gold);font-weight:700;">SHADOWGRAM</span>
-  <span style="font-size:12px;color:var(--silver);">Diagnóstico Gratuito · ✓ Sem cadastro</span>
 </div>
 
 <!-- PROGRESS -->
@@ -704,24 +639,10 @@
 
 <!-- RESULT -->
 <div id="result-section">
-
-  <!-- 결과 히어로 이미지 -->
-  <div class="result-hero-wrap">
-    <img id="result-hero-img" class="result-hero-img" src="" alt="" loading="eager"
-      onclick="window.copyQuizLink && window.copyQuizLink()" title="Toque para copiar o link"/>
-  </div>
-
-  <!-- 실시간 카운터 배너 -->
-  <div class="stats-banner" id="stats-banner">
-    <div class="stats-total">
-      <strong id="stats-total-num">—</strong> pessoas descobriram sua sombra
-    </div>
-    <div class="stats-type" id="stats-type-line"></div>
-  </div>
-
   <p class="result-label">SEU TIPO SHADOWGRAM</p>
   <div class="result-type-name" id="res-type"></div>
   <p class="result-function" id="res-function"></p>
+  <p class="result-code" id="res-code"></p>
 
   <!-- Score bars -->
   <div class="score-bars">
@@ -735,123 +656,105 @@
     <div class="result-card-body" id="res-light"></div>
   </div>
 
-  <!-- Sombra -->
+  <!-- Potencial adormecido -->
   <div class="result-card">
-    <div class="result-card-header" style="color:var(--silver);">◆ SUA SOMBRA — Função Inferior</div>
+    <div class="result-card-header" style="color:var(--silver);">⚡ SEU POTENCIAL — Função a Despertar</div>
     <div class="result-shadow-body" id="res-shadow"></div>
   </div>
 
-  <!-- Pain point — custo da sombra não integrada -->
+  <!-- Gatilho de ativação -->
   <div class="pain-card">
-    <p class="pain-card-header">⚠ O CUSTO DE IGNORAR SUA SOMBRA</p>
+    <p class="pain-card-header">✦ GATILHO DE ATIVAÇÃO — O que ainda está adormecido em você</p>
     <div class="pain-card-body" id="res-pain"></div>
   </div>
 
-  <!-- ══ HOTMART CTA — 풀 세트 구매 ══ -->
-  <div class="cta-box" id="buy-box" style="
-    margin-top:32px;
-    background:linear-gradient(160deg,#1a2235 0%,#1e2840 100%);
-    border:1px solid rgba(197,165,114,0.4);
-    border-radius:12px;
-    padding:32px 20px;
-    text-align:center;
-    position:relative;
-    overflow:hidden;
-  ">
-    <!-- 상단 골드 라인 -->
-    <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent);"></div>
-
-    <p style="font-size:11px;letter-spacing:3px;color:var(--gold);font-weight:800;margin-bottom:14px;">
-      ✦ RELATÓRIO COMPLETO · TIPO <span id="buy-type-label"></span>
-    </p>
-
-    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(22px,5.5vw,30px);font-weight:600;line-height:1.45;margin-bottom:18px;">
-      Você viu apenas a superfície.<br>O relatório completo vai fundo.
-    </h2>
-
-    <!-- 혜택 리스트 -->
-    <div style="text-align:left;max-width:400px;margin:0 auto 24px;display:flex;flex-direction:column;gap:12px;">
-      <div style="display:flex;gap:12px;align-items:flex-start;">
-        <span style="color:var(--gold);font-size:16px;margin-top:2px;flex-shrink:0;">✦</span>
-        <span style="font-size:15px;line-height:1.6;color:var(--white);">Os <strong style="color:var(--goldL);">4 padrões de sombra</strong> específicos do seu tipo — como aparecem no trabalho, nas relações e no dinheiro</span>
-      </div>
-      <div style="display:flex;gap:12px;align-items:flex-start;">
-        <span style="color:var(--gold);font-size:16px;margin-top:2px;flex-shrink:0;">✦</span>
-        <span style="font-size:15px;line-height:1.6;color:var(--white);">O <strong style="color:var(--goldL);">tesouro da função inferior</strong> — o que você ainda não sabe que tem dentro de você</span>
-      </div>
-      <div style="display:flex;gap:12px;align-items:flex-start;">
-        <span style="color:var(--gold);font-size:16px;margin-top:2px;flex-shrink:0;">✦</span>
-        <span style="font-size:15px;line-height:1.6;color:var(--white);"><strong style="color:var(--goldL);">Protocolo de 30 dias</strong> para integrar sua sombra e parar o ciclo de sabotagem</span>
-      </div>
-      <div style="display:flex;gap:12px;align-items:flex-start;">
-        <span style="color:var(--gold);font-size:16px;margin-top:2px;flex-shrink:0;">✦</span>
-        <span style="font-size:15px;line-height:1.6;color:var(--white);">Como seu tipo se relaciona com os <strong style="color:var(--goldL);">outros 7 tipos</strong> — conflitos e atrações</span>
-      </div>
+  <!-- Preview desfocado do relatório -->
+  <div class="preview-blur-wrap">
+    <div class="preview-blur-header">📄 PRÉVIA DO RELATÓRIO COMPLETO · NÍVEL 1</div>
+    <div class="preview-blur-body" id="res-preview"></div>
+    <div class="preview-blur-overlay">
+      <span class="preview-blur-label">🔒 CONTEÚDO COMPLETO NO RELATÓRIO</span>
     </div>
-
-    <!-- 앵커 문구 박스 (C안) -->
-    <div style="
-      background:rgba(197,165,114,0.08);
-      border:1px dashed rgba(197,165,114,0.35);
-      border-radius:10px;
-      padding:14px 20px;
-      margin:0 auto 20px;
-      max-width:400px;
-    ">
-      <p style="font-size:14px;color:var(--goldL);line-height:1.7;margin:0;">
-        🍔 <strong>Pelo preço de um combo no McDonald's</strong><br>
-        <span style="color:var(--silver);">e se você finalmente entendesse por que repete os mesmos padrões a vida toda?</span>
-      </p>
-    </div>
-
-    <!-- 가격 -->
-    <div style="margin-bottom:8px;">
-      <span style="font-size:13px;color:var(--silver);text-decoration:line-through;">R$ 97</span>
-    </div>
-    <div style="display:flex;justify-content:center;align-items:baseline;gap:6px;margin-bottom:6px;">
-      <span style="font-size:18px;font-weight:600;color:var(--silver);">R$</span>
-      <span style="font-size:58px;font-weight:900;color:var(--gold);line-height:1;">37</span>
-    </div>
-    <p style="font-size:13px;color:var(--silver);margin-bottom:28px;line-height:1.7;">
-      Acesso vitalício · PDF imediato após pagamento<br>
-      🔒 Pagamento seguro via Hotmart
-    </p>
-
-    <!-- 메인 CTA 버튼 -->
-    <a id="btn-buy-main" href="#" target="_blank" rel="noopener" style="
-      display:block;
-      background:var(--gold);
-      color:#0F1119;
-      font-family:'Montserrat',sans-serif;
-      font-size:17px;font-weight:900;
-      letter-spacing:1px;
-      padding:20px 24px;
-      border-radius:6px;
-      text-decoration:none;
-      max-width:420px;
-      margin:0 auto 16px;
-      transition:opacity .2s,transform .15s;
-    " onmouseenter="this.style.opacity='.88';this.style.transform='translateY(-1px)'"
-       onmouseleave="this.style.opacity='1';this.style.transform='none'">
-      VER MEU RELATÓRIO COMPLETO →
-    </a>
-
-    <p style="font-size:13px;color:var(--silver);margin-bottom:8px;">
-      ✓ Garantia de 7 dias &nbsp;·&nbsp; ✓ Acesso imediato
-    </p>
   </div>
 
-  <!-- 공유 섹션 -->
-  <div class="cta-box" style="margin-top:16px;">
+  <!-- EMAIL CAPTURE -->
+  <div class="email-capture-box" id="email-capture-box">
+    <p class="email-capture-label">✦ RELATÓRIO GRATUITO · EXCLUSIVO PARA SEU TIPO</p>
+    <h2 class="email-capture-title" id="email-capture-title">Receba seu Relatório Completo<br>gratuitamente por e-mail</h2>
+    <p class="email-capture-sub">Um guia personalizado para o seu tipo — entregue direto no seu e-mail em minutos.</p>
 
-    <p class="cta-box-label">✦ COMPARTILHE COM QUEM IMPORTA</p>
-    <h2 class="cta-box-title" style="font-size:clamp(18px,4.5vw,24px);">Seus amigos também têm um tipo Shadowgram.</h2>
-    <p class="cta-box-sub" style="font-size:14px;">Descubra o tipo das pessoas mais importantes da sua vida — e entenda o que as move por dentro.</p>
+    <div class="email-capture-what">
+      <div class="email-capture-what-item">
+        <span class="ico">✦</span>
+        <span>Análise completa da sua <strong style="color:var(--gold)">Luz</strong> (função dominante) e como ativá-la na sua vida</span>
+      </div>
+      <div class="email-capture-what-item">
+        <span class="ico">⚡</span>
+        <span>Seu <strong style="color:var(--gold)">Potencial adormecido</strong> — o traço que outros já perceberam em você, mas você ainda não ativou</span>
+      </div>
+      <div class="email-capture-what-item">
+        <span class="ico">→</span>
+        <span>Plano de ativação específico para o seu tipo — não teoria genérica, mas passos concretos</span>
+      </div>
+      <div class="email-capture-what-item">
+        <span class="ico">🎁</span>
+        <span>Acesso antecipado ao <strong style="color:var(--gold)">Relatório Completo</strong> com diagnóstico aprofundado</span>
+      </div>
+    </div>
+
+    <div id="email-form-wrap">
+      <div class="email-input-row">
+        <input class="email-input" type="email" id="email-input"
+          placeholder="seu@email.com" autocomplete="email" inputmode="email"/>
+        <button class="email-submit-btn" onclick="submitEmail()">
+          ENVIAR AGORA →
+        </button>
+      </div>
+      <div class="lgpd-consent">
+        <input type="checkbox" id="lgpd-checkbox"/>
+        <label for="lgpd-checkbox">
+          Concordo em receber e-mails da Shadowgram com meu relatório e conteúdos relacionados.
+          Posso cancelar a qualquer momento. Seus dados são tratados conforme a
+          <a href="https://shadowgram.org/privacidade" target="_blank" rel="noopener">Política de Privacidade</a>
+          (LGPD · Lei 13.709/2018).
+        </label>
+      </div>
+      <p class="lgpd-error" id="lgpd-error">Por favor, aceite os termos para continuar.</p>
+      <p class="email-privacy">🔒 Sem spam. Cancelamento em 1 clique. Seus dados ficam seguros.</p>
+    </div>
+
+    <div class="email-success-msg" id="email-success-msg">
+      <div class="check">📬</div>
+      <h3>Relatório enviado!</h3>
+      <p>Verifique sua caixa de entrada (e a pasta de spam, só por garantia).<br>
+      O relatório do seu tipo <strong id="email-success-type" style="color:var(--gold)"></strong> está a caminho.</p>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-box">
+
+    <p class="cta-box-label" id="res-cta-label">SHADOWGRAM SELF · RELATÓRIO COMPLETO</p>
+    <h2 class="cta-box-title" id="res-cta-title"></h2>
+    <p class="cta-box-sub" id="res-cta-sub"></p>
+
+    <!-- Preço + CTA -->
+    <div class="price-row">
+      <span class="price-currency">R$</span>
+      <span class="price-main">37</span>
+    </div>
+    <span class="price-note">
+      <span style="text-decoration:line-through;color:rgba(155,170,184,0.5);margin-right:6px;">R$ 47 no Kindle</span>
+      O eBook da Amazon ensina a teoria. Este relatório diz o que <em>fazer</em> com ela — ritual, plano e prática personalizados para o seu tipo.<br>
+      <em style="font-size:12px;">Preço de lançamento · Pode aumentar a qualquer momento</em>
+    </span>
+    <a id="res-cta-btn" href="#" target="_blank" class="btn-buy">Quero o Relatório + Ritual →</a>
+    <p class="guarantee">🔒 Pagamento seguro via Hotmart · Acesso imediato · PDF personalizado por tipo</p>
 
     <!-- SNS 공유 버튼 -->
     <div style="margin-top:16px;">
-      <p style="font-size:12px;color:#aaa;text-align:center;margin:0 0 12px;letter-spacing:0.08em;text-transform:uppercase;font-weight:700;">
-        Envie o teste — é gratuito e leva 4 minutos
+      <p style="font-size:12px;color:var(--silver);text-align:center;margin:0 0 12px;letter-spacing:0.08em;text-transform:uppercase;font-weight:700;">
+        ✦ Compartilhe — seus amigos descobrem o tipo deles
       </p>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
         <!-- WhatsApp -->
@@ -892,6 +795,39 @@
         font-size:13px;font-weight:700;
         padding:12px;border-radius:12px;cursor:pointer;
       ">🔗 Copiar link do teste</button>
+    </div>
+
+    <!-- 내 결과 저장 버튼 -->
+    <button class="btn-save-link" id="btn-save-link" onclick="saveMyLink()" style="
+      background: transparent;
+      border: 1px solid rgba(197,165,114,0.4);
+      color: var(--gold);
+      font-size: 12px;
+      letter-spacing: 1px;
+      padding: 10px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-family: 'Montserrat', sans-serif;
+      margin-top: 4px;
+      display: block;
+      width: 100%;
+    ">🔖 Salvar meu resultado (acessar depois sem refazer)</button>
+
+    <div id="saved-link-box" style="display:none; margin-top:12px; background:rgba(197,165,114,0.08); border:1px solid rgba(197,165,114,0.3); border-radius:10px; padding:14px;">
+      <p style="font-size:11px; color:var(--silver); margin-bottom:8px; letter-spacing:1px;">📎 MEU LINK PESSOAL — salve nos favoritos ou copie para qualquer lugar</p>
+      <div style="display:flex; gap:8px; align-items:center;">
+        <input id="saved-link-input" type="text" readonly style="
+          flex:1; background:var(--bg2); border:1px solid var(--border);
+          color:var(--text); padding:8px 12px; border-radius:6px; font-size:12px;
+          font-family:monospace;
+        "/>
+        <button onclick="copyLink()" style="
+          background:var(--gold); color:#fff; border:none; padding:8px 14px;
+          border-radius:6px; font-size:11px; font-weight:700; cursor:pointer;
+          font-family:'Montserrat',sans-serif; white-space:nowrap;
+        ">Copiar</button>
+      </div>
+      <p style="font-size:11px; color:var(--silver); margin-top:8px;">✅ Cole no WhatsApp, favoritos ou notas — acesso imediato sempre</p>
     </div>
 
     <button class="btn-retry" onclick="restartQuiz()">Refazer o diagnóstico</button>
@@ -935,78 +871,9 @@ function getHotmartLink(tipo) {
 // EMAIL CAPTURE — Google Apps Script 경유 → Brevo 자동 발송
 // API 키는 Apps Script 안에만 보관 (프론트엔드 노출 없음)
 // ═══════════════════════════════════════════════════════════════
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbys-Y9-EUh6pHBWmIHxSJPbCGpErvw714zM2q8xaEuDj1qcMgRVlMMKwgdk1ChDzRL-1A/exec';
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbw4gdZ0y8L47fo1p9HGcIb7JTkaDKEN6MQe2b75SIdoXj3zMnZjIR6xnRLBVgatRJ2h1w/exec';
 
 let _currentType = '';  // showResult()에서 세팅됨
-
-// ── 시드 데이터 (GAS 연결 전 / 폴백용) ──
-const SEED_TOTAL = 1000;
-const SEED_PCT = { SPARK:13, VISION:13, STEADY:13, PLAYER:13, HARMONY:12, SOUL:12, LOGIC:12, LEADER:12 };
-
-// ── 통계 배너 렌더 ──
-function renderStats(tipo, total, pct, rank) {
-  animateCount(document.getElementById('stats-total-num'), total);
-  let msg = '';
-  if (pct != null) msg += '<em>' + pct + '%</em> dos usuários são tipo ' + tipo;
-  if (rank <= 3) { const m = ['🥇','🥈','🥉']; msg += ' · ' + m[rank-1] + ' ' + rank + 'º mais comum'; }
-  else msg += ' · ' + rank + 'º entre os 8 tipos';
-  document.getElementById('stats-type-line').innerHTML = msg;
-  document.getElementById('stats-banner').style.display = 'block';
-}
-
-// ── 실시간 통계 로드 (JSONP) — 실패 시 시드 폴백 ──
-function loadStats(tipo) {
-  // 시드로 먼저 즉시 표시
-  renderStats(tipo, SEED_TOTAL, SEED_PCT[tipo] || 13, 4);
-
-  // GAS에서 실제 데이터 가져오기 시도
-  const callbackName = '_sgStats_' + Date.now();
-  const script = document.createElement('script');
-  script.src = GAS_URL + '?action=stats&callback=' + callbackName;
-
-  const timer = setTimeout(function() {
-    // 5초 내 응답 없으면 시드 유지
-    delete window[callbackName];
-    if (script.parentNode) script.parentNode.removeChild(script);
-  }, 5000);
-
-  window[callbackName] = function(data) {
-    clearTimeout(timer);
-    try {
-      const total = data.total || SEED_TOTAL;
-      const pct   = (data.pctByType && data.pctByType[tipo]) != null
-                    ? data.pctByType[tipo] : SEED_PCT[tipo] || 13;
-      const rankObj = data.ranking ? data.ranking.find(function(r){ return r.type === tipo; }) : null;
-      const rank = rankObj ? rankObj.rank : 4;
-      renderStats(tipo, total, pct, rank);
-    } catch(e) {}
-    delete window[callbackName];
-    if (script.parentNode) script.parentNode.removeChild(script);
-  };
-
-  script.onerror = function() {
-    clearTimeout(timer);
-    delete window[callbackName];
-    if (script.parentNode) script.parentNode.removeChild(script);
-  };
-
-  document.head.appendChild(script);
-}
-
-// 숫자 카운트 업 애니메이션
-function animateCount(el, target) {
-  if (!el || target === 0) { if(el) el.textContent = target.toLocaleString('pt-BR'); return; }
-  const duration = 1200;
-  const start = Date.now();
-  const from = Math.max(0, target - Math.min(target, 80));
-  function tick() {
-    const p = Math.min(1, (Date.now() - start) / duration);
-    const ease = 1 - Math.pow(1 - p, 3);
-    el.textContent = Math.round(from + (target - from) * ease).toLocaleString('pt-BR');
-    if (p < 1) requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
-}
 
 // 타임존 → 국가 코드 추정 (브라우저 Intl API 기반)
 function _guessCountry() {
@@ -1360,9 +1227,16 @@ function buildQuiz() {
 }
 
 function selectOption(qIdx, choice, btn) {
-  // 퀴즈 시작 시간 기록 (첫 선택 시)
+  // 첫 번째 답 선택 시 hero + meta + cred 숨기기
   if (qIdx === 0 && answers[qIdx] === null) {
+    // 퀴즈 시작 시간 기록
     if (!window._sgQuizStart) window._sgQuizStart = Date.now();
+    const hero = document.querySelector('.hero');
+    const meta = document.querySelector('.hero-meta');
+    const cred = document.querySelector('.cred-bar');
+    if (hero) hero.style.display = 'none';
+    if (meta) meta.style.display = 'none';
+    if (cred) cred.style.display = 'none';
   }
   document.querySelectorAll(`#q-${qIdx} .ab-btn`).forEach(b => b.classList.remove('selected'));
   btn.classList.add('selected');
@@ -1483,18 +1357,13 @@ function showResult(savedWinner) {
         utm_term:     utmParams.get('utm_term') || '',
         page_url:     window.location.href.split('?')[0]
       };
-      fetch('https://script.google.com/macros/s/AKfycbys-Y9-EUh6pHBWmIHxSJPbCGpErvw714zM2q8xaEuDj1qcMgRVlMMKwgdk1ChDzRL-1A/exec', {
+      fetch('https://script.google.com/macros/s/AKfycbw4gdZ0y8L47fo1p9HGcIb7JTkaDKEN6MQe2b75SIdoXj3zMnZjIR6xnRLBVgatRJ2h1w/exec', {
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       }).catch(() => {});
     } catch(e) {}
-  }
-
-  // Meta Pixel - 검사 완료 이벤트
-  if (typeof fbq !== 'undefined') {
-    fbq('track', 'Lead');
   }
 
   document.getElementById('quiz-section').style.display = 'none';
@@ -1507,37 +1376,36 @@ function showResult(savedWinner) {
   document.getElementById('res-type').textContent = winner;
   document.getElementById('res-type').style.color = data.color;
   document.getElementById('res-function').textContent = data.function;
-
-  // 히어로 이미지 세팅 — card_ 이미지 우선, fallback hero_
-  const heroImg = document.getElementById('result-hero-img');
-  if (heroImg) {
-    heroImg.src = `https://shadowgram.org/share_images/card_${winner}.png`;
-    heroImg.alt = `Shadowgram tipo ${winner}`;
-    heroImg.onerror = function() {
-      this.src = `https://shadowgram.org/share_images/hero_${winner}.png`;
-      this.onerror = null;
-    };
-  }
+  document.getElementById('res-code').textContent = `código: ${d[0]}${d[1]}${d[2]}${d[3]}`;
   document.getElementById('res-light-header').style.color = data.color;
   document.getElementById('res-light').textContent = data.light;
   document.getElementById('res-shadow').textContent = data.shadow;
   document.getElementById('res-pain').textContent = data.pain;
-  // 실시간 통계 로드
-  loadStats(winner);
+  document.getElementById('res-preview').textContent = data.preview;
+  document.getElementById('res-cta-label').textContent = `SHADOWGRAM SELF · RELATÓRIO COMPLETO · ${winner}`;
+  document.getElementById('res-cta-title').textContent = data.ctaTitle;
+  document.getElementById('res-cta-sub').textContent = data.ctaSub;
 
-  // ── Hotmart CTA 버튼 동적 연결
-  const buyBtn = document.getElementById('btn-buy-main');
-  const buyLabel = document.getElementById('buy-type-label');
-  if (buyBtn) buyBtn.href = getHotmartLink(winner);
-  if (buyLabel) buyLabel.textContent = winner;
+  // 이메일 캡처 — 유형별 타이틀 업데이트 & 상태 리셋
+  _currentType = winner;
+
+  // CTA 버튼 — 유형별 Hotmart URL 연결
+  const _ctaBtn = document.getElementById('res-cta-btn');
+  if (_ctaBtn && HOTMART_LINKS[winner]) {
+    _ctaBtn.href = HOTMART_LINKS[winner];
+  }
+
+  document.getElementById('email-capture-title').innerHTML =
+    `Receba seu Relatório <strong style="color:var(--gold)">${winner}</strong><br>gratuitamente por e-mail`;
+  document.getElementById('email-form-wrap').style.display = 'block';
+  document.getElementById('email-success-msg').style.display = 'none';
+  document.getElementById('email-input').value = '';
 
   // SNS 공유 버튼 — share.html?type=유형 (바이럴 전용 페이지)
-  const SHARE_URL = `https://shadowgram.org/share.html?type=${winner}`;
+  const SHARE_URL = `https://shadowgram.org/shadowgram_pt.html?type=${winner}&fresh=0`;
   const QUIZ_URL  = 'https://shadowgram.org/shadowgram_pt.html';
-  const animalMap = {SPARK:'Beija-flor ⚡',VISION:'Pavão 🦚',STEADY:'Tartaruga 🐢',PLAYER:'Leopardo 🐆',HARMONY:'Golfinho 🐬',SOUL:'Borboleta 🦋',LOGIC:'Corvo 🐦',LEADER:'Águia 🦅'};
-  const animal = animalMap[winner] || winner;
-  const shareMsg  = `Fiz o teste Shadowgram e meu animal é ${animal}!\n\nVocê sabe qual é o seu?\n🔥 Descubra agora (é grátis):\n👇 ${SHARE_URL}`;
-  const shareMsgShort = `Meu animal Shadowgram é ${animal} — e o seu? 🔥 ${SHARE_URL}`;
+  const shareMsg  = `Fiz o Shadowgram e sou tipo ${winner}! 🔥\nE você, qual é o seu?\n👇\n${SHARE_URL}`;
+  const shareMsgShort = `Sou tipo ${winner} no Shadowgram 🔥 E você? 👇 ${SHARE_URL}`;
 
   // WhatsApp
   document.getElementById('btn-whatsapp-share').href =
@@ -1573,7 +1441,7 @@ function showResult(savedWinner) {
   if (savedWinner) {
     const savedDate = localStorage.getItem('sg_date') || '';
     const banner = document.createElement('div');
-    banner.style.cssText = 'background:rgba(197,165,114,0.1);border:1px solid rgba(197,165,114,0.3);border-radius:10px;padding:12px 16px;margin-bottom:16px;font-size:12px;color:var(--silver);text-align:center;';
+    banner.style.cssText = 'background:rgba(184,134,11,0.06);border:1px solid rgba(184,134,11,0.2);border-radius:10px;padding:12px 16px;margin-bottom:16px;font-size:12px;color:var(--silver);text-align:center;';
     banner.innerHTML = `✅ Seu resultado salvo · ${savedDate} · <button onclick="restartQuiz()" style="background:none;border:none;color:var(--gold);cursor:pointer;font-size:12px;text-decoration:underline;">Refazer diagnóstico</button>`;
     const rs = document.getElementById('result-section');
     rs.insertBefore(banner, rs.firstChild);
@@ -1636,7 +1504,13 @@ function restartQuiz() {
   document.querySelector('.progress-wrap').style.display = 'block';
   document.querySelector('.back-btn-wrap').style.display = 'block';
   document.getElementById('btn-prev').classList.add('hidden');
-  // hero/cred/meta는 숨긴 채로 유지 (퀴즈 바로 시작)
+  // 재시작 시 hero + meta + cred 다시 표시
+  const hero = document.querySelector('.hero');
+  const meta = document.querySelector('.hero-meta');
+  const cred = document.querySelector('.cred-bar');
+  if (hero) hero.style.display = '';
+  if (meta) meta.style.display = '';
+  if (cred) cred.style.display = '';
   buildQuiz();
   updateProgress(0);
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1676,6 +1550,32 @@ function checkSavedResult() {
   // 저장값 없으면 일반 퀴즈 시작
 }
 
+// 내 결과 링크 저장 버튼
+function saveMyLink() {
+  try {
+    const type = localStorage.getItem('sg_type');
+    if (!type) return;
+    const base = window.location.href.split('?')[0];
+    const link = `${base}?type=${type}`;
+    document.getElementById('saved-link-input').value = link;
+    document.getElementById('saved-link-box').style.display = 'block';
+    document.getElementById('btn-save-link').style.display = 'none';
+  } catch(e) {}
+}
+
+function copyLink() {
+  const input = document.getElementById('saved-link-input');
+  input.select();
+  try {
+    navigator.clipboard.writeText(input.value).then(() => {
+      const btn = input.nextElementSibling;
+      btn.textContent = '✅ Copiado!';
+      setTimeout(() => btn.textContent = 'Copiar', 2000);
+    });
+  } catch(e) {
+    document.execCommand('copy');
+  }
+}
 
 // INIT
 buildQuiz();
