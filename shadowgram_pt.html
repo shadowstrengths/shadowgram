@@ -572,58 +572,35 @@
     </div>
   </div>
 
-  <!-- EMAIL CAPTURE -->
-  <div class="email-capture-box" id="email-capture-box">
-    <p class="email-capture-label">✦ RELATÓRIO GRATUITO · EXCLUSIVO PARA SEU TIPO</p>
-    <h2 class="email-capture-title" id="email-capture-title">Receba seu Relatório Completo<br>gratuitamente por e-mail</h2>
-    <p class="email-capture-sub">Um guia personalizado para o seu tipo — entregue direto no seu e-mail em minutos.</p>
 
-    <div class="email-capture-what">
-      <div class="email-capture-what-item">
-        <span class="ico">✦</span>
-        <span>Análise completa da sua <strong style="color:var(--gold)">Luz</strong> (função dominante) e como ativá-la na sua vida</span>
-      </div>
-      <div class="email-capture-what-item">
-        <span class="ico">⚡</span>
-        <span>Seu <strong style="color:var(--gold)">Potencial adormecido</strong> — o traço que outros já perceberam em você, mas você ainda não ativou</span>
-      </div>
-      <div class="email-capture-what-item">
-        <span class="ico">→</span>
-        <span>Plano de ativação específico para o seu tipo — não teoria genérica, mas passos concretos</span>
-      </div>
-      <div class="email-capture-what-item">
-        <span class="ico">🎁</span>
-        <span>Acesso antecipado ao <strong style="color:var(--gold)">Relatório Completo</strong> com diagnóstico aprofundado</span>
-      </div>
-    </div>
-
-    <div id="email-form-wrap">
-      <div class="email-input-row">
-        <input class="email-input" type="email" id="email-input"
-          placeholder="seu@email.com" autocomplete="email" inputmode="email"/>
-        <button class="email-submit-btn" onclick="submitEmail()">
-          ENVIAR AGORA →
-        </button>
-      </div>
-      <div class="lgpd-consent">
-        <input type="checkbox" id="lgpd-checkbox"/>
-        <label for="lgpd-checkbox">
-          Concordo em receber e-mails da Shadowgram com meu relatório e conteúdos relacionados.
-          Posso cancelar a qualquer momento. Seus dados são tratados conforme a
-          <a href="https://shadowgram.org/privacidade" target="_blank" rel="noopener">Política de Privacidade</a>
-          (LGPD · Lei 13.709/2018).
-        </label>
-      </div>
-      <p class="lgpd-error" id="lgpd-error">Por favor, aceite os termos para continuar.</p>
-      <p class="email-privacy">🔒 Sem spam. Cancelamento em 1 clique. Seus dados ficam seguros.</p>
-    </div>
-
-    <div class="email-success-msg" id="email-success-msg">
-      <div class="check">📬</div>
-      <h3>Relatório enviado!</h3>
-      <p>Verifique sua caixa de entrada (e a pasta de spam, só por garantia).<br>
-      O relatório do seu tipo <strong id="email-success-type" style="color:var(--gold)"></strong> está a caminho.</p>
-    </div>
+  <!-- KINDLE BOOK BANNER -->
+  <div style="max-width:480px;margin:0 auto 16px;padding:0 20px;">
+    <a href="https://a.co/d/06IXW2VS" target="_blank" rel="noopener"
+       style="display:flex;align-items:center;gap:14px;
+              background:rgba(184,134,11,0.07);
+              border:1px solid rgba(184,134,11,0.25);
+              border-radius:12px;padding:14px 18px;
+              text-decoration:none;color:inherit;">
+      <span style="font-size:28px;flex-shrink:0;">📖</span>
+      <span style="flex:1;min-width:0;">
+        <span style="display:block;font-size:11px;font-weight:700;
+                     letter-spacing:0.1em;text-transform:uppercase;
+                     color:rgba(184,134,11,0.7);margin-bottom:3px;">
+          LIVRO DO AUTOR · AMAZON KINDLE
+        </span>
+        <span style="display:block;font-size:14px;font-weight:600;
+                     color:#ddd;line-height:1.4;">
+          A teoria por trás do Shadowgram — disponível na Amazon
+        </span>
+      </span>
+      <span style="display:flex;flex-direction:column;align-items:flex-end;
+                   flex-shrink:0;gap:2px;">
+        <span style="font-size:15px;font-weight:900;color:#B8860B;">R$ 47</span>
+        <span style="font-size:11px;color:rgba(136,153,170,0.8);white-space:nowrap;">
+          Amazon Kindle →
+        </span>
+      </span>
+    </a>
   </div>
 
   <!-- CTA -->
@@ -636,14 +613,14 @@
     <!-- Preço + CTA -->
     <div class="price-row">
       <span class="price-currency">R$</span>
-      <span class="price-main">37</span>
+      <span class="price-main">9,90</span>
     </div>
     <span class="price-note">
-      <span style="text-decoration:line-through;color:rgba(155,170,184,0.5);margin-right:6px;">R$ 47 no Kindle</span>
-      O eBook da Amazon ensina a teoria. Este relatório diz o que <em>fazer</em> com ela — ritual, plano e prática personalizados para o seu tipo.<br>
+      <span style="text-decoration:line-through;color:rgba(155,170,184,0.5);margin-right:6px;">R$ 37</span>
+      Relatório personalizado para o seu tipo — T1 Essencial + Apêndice A: Guia de Ação em Crise.<br>
       <em style="font-size:12px;">Preço de lançamento · Pode aumentar a qualquer momento</em>
     </span>
-    <a id="res-cta-btn" href="#" target="_blank" class="btn-buy">Quero o Relatório + Ritual →</a>
+    <a id="res-cta-btn" href="#" target="_blank" class="btn-buy">Quero meu Relatório →</a>
     <p class="guarantee">🔒 Pagamento seguro via Hotmart · Acesso imediato · PDF personalizado por tipo</p>
 
     <!-- SNS 공유 버튼 -->
@@ -796,64 +773,6 @@ function _guessCountry() {
   } catch(e) { return 'unknown'; }
 }
 
-async function submitEmail() {
-  const input = document.getElementById('email-input');
-  const email = input.value.trim();
-  const checkbox = document.getElementById('lgpd-checkbox');
-  const lgpdError = document.getElementById('lgpd-error');
-
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    input.style.borderColor = '#e05555';
-    input.placeholder = 'Digite um e-mail válido';
-    setTimeout(() => { input.style.borderColor = ''; input.placeholder = 'seu@email.com'; }, 2000);
-    return;
-  }
-
-  if (!checkbox.checked) {
-    lgpdError.style.display = 'block';
-    checkbox.closest('.lgpd-consent').scrollIntoView({ behavior: 'smooth', block: 'center' });
-    setTimeout(() => { lgpdError.style.display = 'none'; }, 3000);
-    return;
-  }
-  lgpdError.style.display = 'none';
-
-  const btn = document.querySelector('.email-submit-btn');
-  btn.textContent = 'Enviando...';
-  btn.disabled = true;
-
-  const utmParams = new URLSearchParams(window.location.search);
-
-  // Google Apps Script로 전송 (Brevo 이메일 발송 + Sheets 기록)
-  fetch(GAS_URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      event:        'email_capture',
-      email:        email,
-      tipo:         _currentType,
-      ts:           new Date().toISOString(),
-      country:      _guessCountry(),
-      lang:         navigator.language || 'unknown',
-      timezone:     Intl.DateTimeFormat().resolvedOptions().timeZone || 'unknown',
-      utm_source:   utmParams.get('utm_source') || '',
-      utm_medium:   utmParams.get('utm_medium') || '',
-      utm_campaign: utmParams.get('utm_campaign') || '',
-      lgpd_consent: true,
-      consent_ts:   new Date().toISOString(),
-      page_url:     window.location.href.split('?')[0]
-    })
-  }).catch(() => {});
-
-  // no-cors라 응답 확인 불가 → UX 우선 성공 처리
-  document.getElementById('email-form-wrap').style.display = 'none';
-  document.getElementById('email-success-msg').style.display = 'block';
-  document.getElementById('email-success-type').textContent = _currentType;
-
-  setTimeout(() => {
-    document.querySelector('.cta-box').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, 1200);
-}
 
 // ═══════════════════════════════════════════════════════════════
 // 4 DIMENSÕES (eixos internos)
@@ -1289,12 +1208,6 @@ function showResult(savedWinner) {
   if (_ctaBtn && HOTMART_LINKS[winner]) {
     _ctaBtn.href = HOTMART_LINKS[winner];
   }
-
-  document.getElementById('email-capture-title').innerHTML =
-    `Receba seu Relatório <strong style="color:var(--gold)">${winner}</strong><br>gratuitamente por e-mail`;
-  document.getElementById('email-form-wrap').style.display = 'block';
-  document.getElementById('email-success-msg').style.display = 'none';
-  document.getElementById('email-input').value = '';
 
   // SNS 공유 버튼 — share.html?type=유형 (바이럴 전용 페이지)
   const SHARE_URL = `https://shadowgram.org/shadowgram_pt.html?type=${winner}&fresh=0`;
