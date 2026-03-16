@@ -228,8 +228,13 @@
     }
 
     /* ── LANG HIDE ── */
-    .lang-en, .lang-pt { display: none; }
-    .lang-ko { display: initial; }
+    .lang-en, .lang-pt { display: none !important; }
+    /* block 요소 */
+    h1.lang-ko, p.lang-ko, div.lang-ko, li.lang-ko, span.lang-ko { display: block; }
+    /* inline-flex 복원 (hero-cta) */
+    a.lang-ko { display: inline-flex; }
+    /* inline-block 복원 (hero-badge 등) */
+    .hero-badge.lang-ko { display: inline-block; }
   </style>
 </head>
 <body>
@@ -264,9 +269,9 @@
     <p class="hero-desc lang-en">Not Big 5. Shadowgram's 8 cognitive-function types reveal<br>the exact dynamics between you two.</p>
     <p class="hero-desc lang-pt">Não é Big 5. Os 8 tipos de funções cognitivas do Shadowgram<br>revelam a dinâmica exata entre vocês dois.</p>
 
-    <a href="duo_intake.html" class="hero-cta lang-ko">우리 해보자 →</a>
-    <a href="duo_intake.html" class="hero-cta lang-en">Let's Do This →</a>
-    <a href="duo_intake.html" class="hero-cta lang-pt">Vamos Descobrir →</a>
+    <a href="intake.html" class="hero-cta lang-ko">우리 해보자 →</a>
+    <a href="intake.html" class="hero-cta lang-en">Let's Do This →</a>
+    <a href="intake.html" class="hero-cta lang-pt">Vamos Descobrir →</a>
 
     <p class="hero-note lang-ko">⏱ 5분 · 28문항 · 무료 체험</p>
     <p class="hero-note lang-en">⏱ 5 min · 28 questions · Free preview</p>
@@ -570,9 +575,9 @@
     <p class="lang-en">5 minutes. 28 questions. The full picture of your relationship.<br>Once you know the type, conflict turns into understanding.</p>
     <p class="lang-pt">5 minutos. 28 perguntas. O quadro completo do relacionamento de vocês.<br>Quando você conhece o tipo, o conflito se torna compreensão.</p>
 
-    <a href="duo_intake.html" class="cta-big lang-ko">우리 해보자 →</a>
-    <a href="duo_intake.html" class="cta-big lang-en">Let's Do This →</a>
-    <a href="duo_intake.html" class="cta-big lang-pt">Vamos Descobrir →</a>
+    <a href="intake.html" class="cta-big lang-ko">우리 해보자 →</a>
+    <a href="intake.html" class="cta-big lang-en">Let's Do This →</a>
+    <a href="intake.html" class="cta-big lang-pt">Vamos Descobrir →</a>
 
     <p style="margin-top: 24px; font-size: 13px; color: var(--text-muted);" class="lang-ko">⏱ 5분 · 완전 무료 체험 · 결과는 바로 확인</p>
     <p style="margin-top: 24px; font-size: 13px; color: var(--text-muted);" class="lang-en">⏱ 5 min · Completely free preview · Instant results</p>
