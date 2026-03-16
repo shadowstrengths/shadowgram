@@ -607,12 +607,7 @@
     ['ko','en','pt'].forEach(l => {
       const show = (l === lang);
       document.querySelectorAll('.lang-' + l).forEach(el => {
-        if (show) {
-          el.style.removeProperty('display');
-          el.style.display = getDisplayFor(el);
-        } else {
-          el.style.display = 'none';
-        }
+        el.style.display = show ? getDisplayFor(el) : 'none';
       });
     });
     // tabs
