@@ -65,7 +65,12 @@
                   var(--bg);
       padding-left: 20px; padding-right: 20px;
     }
-    .hero-inner { max-width: 720px; }
+    .hero-inner {
+      max-width: 720px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
     .hero-badge {
       display: inline-block;
       border: 1px solid rgba(232,168,74,0.4);
@@ -594,12 +599,22 @@
   // ── LANGUAGE ENGINE ──
   let currentLang = 'ko';
 
+  function getDisplayFor(el) {
+    // 각 요소의 자연스러운 display 값 반환
+    if (el.tagName === 'A' && el.classList.contains('hero-cta')) return 'inline-flex';
+    if (el.tagName === 'A' && el.classList.contains('cta-big')) return 'inline-flex';
+    if (el.classList.contains('hero-badge')) return 'inline-block';
+    if (el.tagName === 'A') return 'inline-block';
+    if (el.tagName === 'SPAN') return 'inline';
+    return 'block';
+  }
+
   function setLang(lang) {
     currentLang = lang;
     // show/hide
     ['ko','en','pt'].forEach(l => {
       const els = document.querySelectorAll('.lang-' + l);
-      els.forEach(el => el.style.display = (l === lang) ? '' : 'none');
+      els.forEach(el => el.style.display = (l === lang) ? getDisplayFor(el) : 'none');
     });
     // tabs
     ['ko','en','pt'].forEach(l => {
