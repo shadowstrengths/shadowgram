@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shadowgram Duo — 두 사람의 빛이 만날 때</title>
+  <meta name="description" content="두 사람의 인지기능 유형을 분석해 관계 역학을 이해하는 Shadowgram Duo">
+  <meta property="og:title" content="Shadowgram Duo">
+  <meta property="og:description" content="우리가 자꾸 부딪히는 진짜 이유 — 5분이면 알 수 있어요">
+  <meta property="og:url" content="https://shadowgram.org/duo">
+  <style>
+    :root {
+      --dark: #1A2030;
+      --gold: #E8A84A;
+      --gold-light: #F5C96A;
+      --silver: #8899AA;
+      --bg: #0F1520;
+      --card: #1E2840;
+      --card2: #232D45;
+      --white: #F0EDE6;
+      --text-muted: #7A8BA0;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--white);
+      line-height: 1.6;
+    }
+
+    /* ── LANG BAR ── */
+    .lang-bar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(15,21,32,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(232,168,74,0.15);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 24px; height: 52px;
+    }
+    .lang-logo {
+      font-size: 18px; font-weight: 800; letter-spacing: -0.5px;
+      color: var(--white);
+    }
+    .lang-logo span { color: var(--gold); }
+    .lang-tabs { display: flex; gap: 4px; }
+    .lang-tab {
+      padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600;
+      cursor: pointer; transition: all 0.2s;
+      border: 1px solid transparent; color: var(--text-muted);
+      background: none;
+    }
+    .lang-tab.active {
+      background: var(--gold); color: var(--dark); border-color: var(--gold);
+    }
+    .lang-tab:not(.active):hover { color: var(--white); border-color: rgba(232,168,74,0.3); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh; padding-top: 52px;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      background: radial-gradient(ellipse at 50% 0%, rgba(232,168,74,0.12) 0%, transparent 60%),
+                  radial-gradient(ellipse at 80% 100%, rgba(155,127,212,0.08) 0%, transparent 50%),
+                  var(--bg);
+      padding-left: 20px; padding-right: 20px;
+    }
+    .hero-inner { max-width: 720px; }
+    .hero-badge {
+      display: inline-block;
+      border: 1px solid rgba(232,168,74,0.4);
+      color: var(--gold); font-size: 13px; font-weight: 600;
+      padding: 6px 16px; border-radius: 20px; margin-bottom: 32px;
+      letter-spacing: 0.5px;
+    }
+    .hero-brand {
+      font-size: clamp(52px, 10vw, 88px);
+      font-weight: 900; letter-spacing: -3px; line-height: 1;
+      margin-bottom: 8px;
+    }
+    .hero-brand span { color: var(--gold); }
+    .hero-sub-brand {
+      font-size: 14px; font-weight: 600; letter-spacing: 4px;
+      color: var(--text-muted); text-transform: uppercase; margin-bottom: 36px;
+    }
+    .hero-headline {
+      font-size: clamp(22px, 4vw, 32px);
+      font-weight: 700; line-height: 1.35;
+      margin-bottom: 20px; color: var(--white);
+    }
+    .hero-desc {
+      font-size: 17px; color: var(--text-muted); line-height: 1.75;
+      margin-bottom: 48px;
+    }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--gold); color: var(--dark);
+      padding: 18px 48px; border-radius: 50px;
+      font-size: 18px; font-weight: 800;
+      text-decoration: none; transition: all 0.3s;
+      box-shadow: 0 0 40px rgba(232,168,74,0.3);
+    }
+    .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 0 60px rgba(232,168,74,0.45); }
+    .hero-note { margin-top: 20px; font-size: 13px; color: var(--text-muted); }
+
+    /* ── TYPES GRID ── */
+    .section { padding: 100px 20px; max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: 12px; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 16px;
+    }
+    .section-title {
+      font-size: clamp(28px, 5vw, 42px); font-weight: 800;
+      line-height: 1.25; margin-bottom: 16px;
+    }
+    .section-desc { font-size: 17px; color: var(--text-muted); max-width: 600px; line-height: 1.7; margin-bottom: 60px; }
+
+    .types-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .type-card {
+      background: var(--card);
+      border-radius: 16px; padding: 24px 16px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: all 0.3s;
+    }
+    .type-card:hover { transform: translateY(-4px); border-color: var(--gold); }
+    .type-icon { font-size: 32px; margin-bottom: 12px; }
+    .type-name { font-size: 18px; font-weight: 800; margin-bottom: 4px; }
+    .type-func { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
+    .type-desc { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+    /* type colors */
+    .t-spark .type-name { color: #5DC87A; }
+    .t-vision .type-name { color: #9B7FD4; }
+    .t-steady .type-name { color: #4ABFCB; }
+    .t-player .type-name { color: #F28A30; }
+    .t-harmony .type-name { color: #E86A8A; }
+    .t-soul .type-name { color: #5DC8A8; }
+    .t-logic .type-name { color: #5AAFD4; }
+    .t-leader .type-name { color: #D4A030; }
+
+    /* ── BEFORE AFTER ── */
+    .ba-section {
+      background: var(--card);
+      border-radius: 30px; padding: 60px 40px;
+      border: 1px solid rgba(232,168,74,0.1);
+      margin: 0 0 60px;
+    }
+    .ba-section h3 {
+      text-align: center; font-size: clamp(22px,4vw,32px);
+      font-weight: 800; margin-bottom: 48px;
+    }
+    .ba-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+    .ba-card { background: var(--card2); border-radius: 20px; padding: 32px; }
+    .ba-label { font-size: 16px; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+    .ba-label.before { color: #E86A8A; }
+    .ba-label.after { color: #5DC87A; }
+    .ba-card li { list-style: none; margin-bottom: 12px; padding-left: 24px; position: relative; font-size: 15px; color: var(--text-muted); line-height: 1.6; }
+    .ba-card li::before { position: absolute; left: 0; }
+    .before li::before { content: "❌"; }
+    .after li::before { content: "✅"; }
+
+    /* ── HOW IT WORKS ── */
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .step-card {
+      background: var(--card); border-radius: 20px; padding: 36px 28px;
+      border: 1px solid rgba(255,255,255,0.05);
+      position: relative;
+    }
+    .step-num {
+      position: absolute; top: 20px; right: 20px;
+      font-size: 56px; font-weight: 900; color: rgba(232,168,74,0.07);
+      line-height: 1;
+    }
+    .step-icon { font-size: 40px; margin-bottom: 20px; }
+    .step-title { font-size: 20px; font-weight: 700; margin-bottom: 10px; }
+    .step-desc { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+    /* ── COMBO PREVIEW ── */
+    .combo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .combo-card {
+      background: var(--card); border-radius: 16px; padding: 24px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .combo-types { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
+    .combo-tag { display: inline-block; background: rgba(232,168,74,0.1); color: var(--gold); font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 10px; margin-bottom: 12px; }
+    .combo-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+    /* ── CTA SECTION ── */
+    .cta-section {
+      text-align: center;
+      background: radial-gradient(ellipse at center, rgba(232,168,74,0.12), transparent 70%),
+                  var(--card);
+      border-radius: 30px; padding: 80px 40px;
+      border: 1px solid rgba(232,168,74,0.2);
+    }
+    .cta-section h2 { font-size: clamp(28px,5vw,42px); font-weight: 800; margin-bottom: 20px; }
+    .cta-section p { font-size: 17px; color: var(--text-muted); margin-bottom: 48px; line-height: 1.7; }
+    .cta-big {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--gold); color: var(--dark);
+      padding: 22px 60px; border-radius: 50px;
+      font-size: 20px; font-weight: 800;
+      text-decoration: none; transition: all 0.3s;
+      box-shadow: 0 0 50px rgba(232,168,74,0.35);
+    }
+    .cta-big:hover { transform: translateY(-3px); box-shadow: 0 0 70px rgba(232,168,74,0.5); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark); border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 40px 20px; text-align: center;
+      font-size: 13px; color: var(--text-muted);
+    }
+    footer a { color: var(--gold); text-decoration: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .types-grid { grid-template-columns: repeat(2, 1fr); }
+      .ba-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
+      .combo-grid { grid-template-columns: 1fr; }
+      .ba-section { padding: 40px 24px; }
+    }
+
+    /* ── LANG HIDE ── */
+    .lang-ko, .lang-en, .lang-pt { display: none; }
+  </style>
+</head>
+<body>
+
+<!-- LANG BAR -->
+<nav class="lang-bar">
+  <div class="lang-logo">Shadow<span>gram</span> Duo</div>
+  <div class="lang-tabs">
+    <button class="lang-tab" onclick="setLang('ko')" id="tab-ko">한국어</button>
+    <button class="lang-tab" onclick="setLang('en')" id="tab-en">English</button>
+    <button class="lang-tab" onclick="setLang('pt')" id="tab-pt">Português</button>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════
+     HERO
+══════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge lang-ko">✦ 인지기능 기반 커플 분석 서비스</div>
+    <div class="hero-badge lang-en">✦ Cognitive-Function Couple Analysis</div>
+    <div class="hero-badge lang-pt">✦ Análise de Casal por Funções Cognitivas</div>
+
+    <div class="hero-brand">Shadow<span>gram</span></div>
+    <div class="hero-sub-brand">D U O</div>
+
+    <h1 class="hero-headline lang-ko">우리가 자꾸 부딪히는 진짜 이유,<br>5분이면 알 수 있어요</h1>
+    <h1 class="hero-headline lang-en">Why We Keep Clashing—<br>Understand It in 5 Minutes</h1>
+    <h1 class="hero-headline lang-pt">Por que a gente sempre briga?<br>Descubra em 5 minutos</h1>
+
+    <p class="hero-desc lang-ko">Big 5가 아니에요. Shadowgram의 8가지 인지기능 유형으로<br>두 사람 사이의 역학을 정확하게 읽어드립니다.</p>
+    <p class="hero-desc lang-en">Not Big 5. Shadowgram's 8 cognitive-function types reveal<br>the exact dynamics between you two.</p>
+    <p class="hero-desc lang-pt">Não é Big 5. Os 8 tipos de funções cognitivas do Shadowgram<br>revelam a dinâmica exata entre vocês dois.</p>
+
+    <a href="duo_intake.html" class="hero-cta lang-ko">우리 해보자 →</a>
+    <a href="duo_intake.html" class="hero-cta lang-en">Let's Do This →</a>
+    <a href="duo_intake.html" class="hero-cta lang-pt">Vamos Descobrir →</a>
+
+    <p class="hero-note lang-ko">⏱ 5분 · 28문항 · 무료 체험</p>
+    <p class="hero-note lang-en">⏱ 5 min · 28 questions · Free preview</p>
+    <p class="hero-note lang-pt">⏱ 5 min · 28 perguntas · Prévia gratuita</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     8 TYPES
+══════════════════════════════════ -->
+<div style="max-width:1100px; margin:0 auto; padding: 100px 20px 0;">
+  <div class="section-label lang-ko">8가지 유형</div>
+  <div class="section-label lang-en">8 Types</div>
+  <div class="section-label lang-pt">8 Tipos</div>
+
+  <h2 class="section-title lang-ko">당신은 어떤 빛을 가졌나요?</h2>
+  <h2 class="section-title lang-en">Which Light Are You?</h2>
+  <h2 class="section-title lang-pt">Qual é a sua luz?</h2>
+
+  <p class="section-desc lang-ko">Shadowgram은 MBTI® 유형을 인지기능 축으로 분류한 8가지 고유 유형을 사용합니다. 각 유형은 주기능(빛)과 열등기능(그림자)의 축으로 구성됩니다.</p>
+  <p class="section-desc lang-en">Shadowgram uses 8 unique types defined by cognitive-function axes. Each type is shaped by its dominant function (Light) and inferior function (Shadow).</p>
+  <p class="section-desc lang-pt">O Shadowgram usa 8 tipos únicos definidos por eixos de funções cognitivas. Cada tipo é moldado por sua função dominante (Luz) e função inferior (Sombra).</p>
+
+  <div class="types-grid">
+    <div class="type-card t-spark">
+      <div class="type-icon">⚡</div>
+      <div class="type-name">SPARK</div>
+      <div class="type-func">Ne / Si · ENFP · ENTP</div>
+      <div class="type-desc lang-ko">가능성을 보는 빛 · 연결의 천재</div>
+      <div class="type-desc lang-en">Sees possibilities · Master of connection</div>
+      <div class="type-desc lang-pt">Vê possibilidades · Mestre da conexão</div>
+    </div>
+    <div class="type-card t-vision">
+      <div class="type-icon">🔮</div>
+      <div class="type-name">VISION</div>
+      <div class="type-func">Ni / Se · INFJ · INTJ</div>
+      <div class="type-desc lang-ko">미래를 꿰뚫는 빛 · 통찰의 건축가</div>
+      <div class="type-desc lang-en">Pierces the future · Architect of insight</div>
+      <div class="type-desc lang-pt">Enxerga o futuro · Arquiteto da intuição</div>
+    </div>
+    <div class="type-card t-steady">
+      <div class="type-icon">🏔️</div>
+      <div class="type-name">STEADY</div>
+      <div class="type-func">Si / Ne · ISFJ · ISTJ</div>
+      <div class="type-desc lang-ko">지키는 빛 · 신뢰의 기둥</div>
+      <div class="type-desc lang-en">Preserves & protects · Pillar of trust</div>
+      <div class="type-desc lang-pt">Preserva e protege · Pilar de confiança</div>
+    </div>
+    <div class="type-card t-player">
+      <div class="type-icon">🎯</div>
+      <div class="type-name">PLAYER</div>
+      <div class="type-func">Se / Ni · ESFP · ESTP</div>
+      <div class="type-desc lang-ko">지금 이 순간의 빛 · 현장의 마스터</div>
+      <div class="type-desc lang-en">Lives in the now · Master of the moment</div>
+      <div class="type-desc lang-pt">Vive o agora · Mestre do momento</div>
+    </div>
+    <div class="type-card t-harmony">
+      <div class="type-icon">🌸</div>
+      <div class="type-name">HARMONY</div>
+      <div class="type-func">Fe / Ti · ESFJ · ENFJ</div>
+      <div class="type-desc lang-ko">연결하는 빛 · 공동체의 심장</div>
+      <div class="type-desc lang-en">Creates belonging · Heart of the community</div>
+      <div class="type-desc lang-pt">Cria pertencimento · Coração da comunidade</div>
+    </div>
+    <div class="type-card t-soul">
+      <div class="type-icon">🌊</div>
+      <div class="type-name">SOUL</div>
+      <div class="type-func">Fi / Te · INFP · ISFP</div>
+      <div class="type-desc lang-ko">진심의 빛 · 가치의 수호자</div>
+      <div class="type-desc lang-en">Authentic depth · Guardian of values</div>
+      <div class="type-desc lang-pt">Profundidade autêntica · Guardião dos valores</div>
+    </div>
+    <div class="type-card t-logic">
+      <div class="type-icon">🔬</div>
+      <div class="type-name">LOGIC</div>
+      <div class="type-func">Ti / Fe · INTP · ISTP</div>
+      <div class="type-desc lang-ko">분석하는 빛 · 원리의 탐구자</div>
+      <div class="type-desc lang-en">Analytical light · Explorer of principles</div>
+      <div class="type-desc lang-pt">Luz analítica · Explorador de princípios</div>
+    </div>
+    <div class="type-card t-leader">
+      <div class="type-icon">👑</div>
+      <div class="type-name">LEADER</div>
+      <div class="type-func">Te / Fi · ESTJ · ENTJ</div>
+      <div class="type-desc lang-ko">실행하는 빛 · 결과의 지휘자</div>
+      <div class="type-desc lang-en">Drives results · Commander of outcomes</div>
+      <div class="type-desc lang-pt">Gera resultados · Comandante de conquistas</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     BEFORE / AFTER
+══════════════════════════════════ -->
+<div style="max-width:1100px; margin: 80px auto 0; padding: 0 20px;">
+  <div class="ba-section">
+    <h3 class="lang-ko">검사 전 vs 검사 후</h3>
+    <h3 class="lang-en">Before vs After</h3>
+    <h3 class="lang-pt">Antes vs Depois</h3>
+    <div class="ba-grid">
+      <div class="ba-card">
+        <div class="ba-label before lang-ko">❌ 검사 전</div>
+        <div class="ba-label before lang-en">❌ Before</div>
+        <div class="ba-label before lang-pt">❌ Antes</div>
+        <ul class="before lang-ko">
+          <li>"왜 말을 안 해?" → 답답함</li>
+          <li>"너는 왜 계속 그래?" → 피로감</li>
+          <li>"우리 안 맞나?" → 불안함</li>
+          <li>같은 갈등의 끝없는 반복</li>
+          <li>서로를 바꾸려는 헛된 시도</li>
+        </ul>
+        <ul class="before lang-en">
+          <li>"Why won't you talk?" → Frustration</li>
+          <li>"Why do you always do that?" → Exhaustion</li>
+          <li>"Are we even compatible?" → Anxiety</li>
+          <li>The same fight, over and over</li>
+          <li>Trying to change each other</li>
+        </ul>
+        <ul class="before lang-pt">
+          <li>"Por que você não fala?" → Frustração</li>
+          <li>"Por que você sempre faz isso?" → Cansaço</li>
+          <li>"Será que a gente se dá?" → Ansiedade</li>
+          <li>A mesma briga se repetindo</li>
+          <li>Tentando mudar o outro</li>
+        </ul>
+      </div>
+      <div class="ba-card">
+        <div class="ba-label after lang-ko">✅ 검사 후</div>
+        <div class="ba-label after lang-en">✅ After</div>
+        <div class="ba-label after lang-pt">✅ Depois</div>
+        <ul class="after lang-ko">
+          <li>"아, 생각 정리 중이구나" → 이해</li>
+          <li>"회복 방식이 다른 거구나" → 존중</li>
+          <li>"다름이 우리의 강점이야" → 확신</li>
+          <li>유형 언어로 갈등 즉시 해소</li>
+          <li>서로의 빛을 보완하는 관계</li>
+        </ul>
+        <ul class="after lang-en">
+          <li>"Oh, they're processing" → Understanding</li>
+          <li>"We recharge differently" → Respect</li>
+          <li>"Our differences make us strong" → Confidence</li>
+          <li>Resolve conflict with type language</li>
+          <li>A relationship that completes each other</li>
+        </ul>
+        <ul class="after lang-pt">
+          <li>"Ah, ele/ela está processando" → Compreensão</li>
+          <li>"Carregamos de formas diferentes" → Respeito</li>
+          <li>"Nossas diferenças nos fortalecem" → Confiança</li>
+          <li>Resolva conflitos com linguagem de tipos</li>
+          <li>Uma relação que se complementa</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     HOW IT WORKS
+══════════════════════════════════ -->
+<div style="max-width:1100px; margin: 0 auto; padding: 0 20px 100px;">
+  <div class="section-label lang-ko">진행 방법</div>
+  <div class="section-label lang-en">How It Works</div>
+  <div class="section-label lang-pt">Como Funciona</div>
+
+  <h2 class="section-title lang-ko" style="margin-bottom: 48px;">3단계로 끝</h2>
+  <h2 class="section-title lang-en" style="margin-bottom: 48px;">3 Simple Steps</h2>
+  <h2 class="section-title lang-pt" style="margin-bottom: 48px;">3 Passos Simples</h2>
+
+  <div class="steps">
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <div class="step-icon">👫</div>
+      <div class="step-title lang-ko">두 사람 정보 입력</div>
+      <div class="step-title lang-en">Enter Your Info</div>
+      <div class="step-title lang-pt">Informe os Dados</div>
+      <div class="step-desc lang-ko">이름, 나이대, 관계 유형을 입력해요. 1분이면 끝.</div>
+      <div class="step-desc lang-en">Add your names, ages, and relationship type. Takes 1 minute.</div>
+      <div class="step-desc lang-pt">Coloque nomes, faixa etária e tipo de relacionamento. Leva 1 minuto.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <div class="step-icon">📋</div>
+      <div class="step-title lang-ko">28문항 함께 응답</div>
+      <div class="step-title lang-en">Answer 28 Questions Together</div>
+      <div class="step-title lang-pt">28 Perguntas Juntos</div>
+      <div class="step-desc lang-ko">두 사람이 같은 화면에서 각자 응답. 심리학 기반 인지기능 검사.</div>
+      <div class="step-desc lang-en">Both answer on the same screen. Psychologically grounded cognitive-function assessment.</div>
+      <div class="step-desc lang-pt">Os dois respondem na mesma tela. Avaliação baseada em funções cognitivas.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <div class="step-icon">✨</div>
+      <div class="step-title lang-ko">조합 분석 결과 확인</div>
+      <div class="step-title lang-en">See Your Duo Analysis</div>
+      <div class="step-title lang-pt">Veja a Análise do Duo</div>
+      <div class="step-desc lang-ko">두 유형의 조합이 만드는 역학, 갈등 패턴, 성장 방향을 확인해요.</div>
+      <div class="step-desc lang-en">Discover the dynamic your type combination creates, conflict patterns, and growth directions.</div>
+      <div class="step-desc lang-pt">Descubra a dinâmica do seu par de tipos, padrões de conflito e caminhos de crescimento.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     COMBO PREVIEW
+══════════════════════════════════ -->
+<div style="background: var(--card); padding: 100px 20px; border-top: 1px solid rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.04);">
+  <div style="max-width:1100px; margin: 0 auto;">
+    <div class="section-label lang-ko">조합 예시</div>
+    <div class="section-label lang-en">Combo Previews</div>
+    <div class="section-label lang-pt">Exemplos de Combinações</div>
+
+    <h2 class="section-title lang-ko" style="margin-bottom: 12px;">64가지 조합 중 일부</h2>
+    <h2 class="section-title lang-en" style="margin-bottom: 12px;">A Glimpse of 64 Combinations</h2>
+    <h2 class="section-title lang-pt" style="margin-bottom: 12px;">Uma Prévia das 64 Combinações</h2>
+
+    <p class="section-desc lang-ko" style="margin-bottom: 48px;">8유형 × 8유형 = 64가지 고유한 관계 역학. 당신의 조합은 무엇인가요?</p>
+    <p class="section-desc lang-en" style="margin-bottom: 48px;">8 types × 8 types = 64 unique relationship dynamics. What's your combination?</p>
+    <p class="section-desc lang-pt" style="margin-bottom: 48px;">8 tipos × 8 tipos = 64 dinâmicas únicas de relacionamento. Qual é a combinação de vocês?</p>
+
+    <div class="combo-grid">
+      <div class="combo-card">
+        <div class="combo-types" style="color: #5DC87A;">SPARK</div>
+        <div style="color: var(--text-muted); font-size: 13px; margin-bottom: 4px;">+</div>
+        <div class="combo-types" style="color: #9B7FD4;">VISION</div>
+        <div class="combo-tag lang-ko">불꽃 × 통찰</div>
+        <div class="combo-tag lang-en">Spark × Insight</div>
+        <div class="combo-tag lang-pt">Faísca × Intuição</div>
+        <div class="combo-desc lang-ko">가능성을 발견하는 자와 깊이를 파는 자. 말이 없어도 통하지만, 속도 차이가 긴장을 만들어요.</div>
+        <div class="combo-desc lang-en">The idea-finder meets the deep-diver. Wordless understanding, but speed gaps create tension.</div>
+        <div class="combo-desc lang-pt">O descobridor de ideias encontra o mergulhador profundo. Conexão tácita, mas a diferença de ritmo cria tensão.</div>
+      </div>
+      <div class="combo-card">
+        <div class="combo-types" style="color: #D4A030;">LEADER</div>
+        <div style="color: var(--text-muted); font-size: 13px; margin-bottom: 4px;">+</div>
+        <div class="combo-types" style="color: #5DC8A8;">SOUL</div>
+        <div class="combo-tag lang-ko">실행 × 진심</div>
+        <div class="combo-tag lang-en">Drive × Depth</div>
+        <div class="combo-tag lang-pt">Execução × Alma</div>
+        <div class="combo-desc lang-ko">목표로 달리는 자와 의미를 찾는 자. 서로가 없으면 불완전한 관계의 교과서.</div>
+        <div class="combo-desc lang-en">The goal-driver meets the meaning-seeker. Incomplete without each other — a textbook complementary pair.</div>
+        <div class="combo-desc lang-pt">O executor de metas encontra o buscador de significado. Incompletos um sem o outro — um par complementar exemplar.</div>
+      </div>
+      <div class="combo-card">
+        <div class="combo-types" style="color: #E86A8A;">HARMONY</div>
+        <div style="color: var(--text-muted); font-size: 13px; margin-bottom: 4px;">+</div>
+        <div class="combo-types" style="color: #5AAFD4;">LOGIC</div>
+        <div class="combo-tag lang-ko">감성 × 논리</div>
+        <div class="combo-tag lang-en">Warmth × Analysis</div>
+        <div class="combo-tag lang-pt">Calor × Análise</div>
+        <div class="combo-desc lang-ko">감정이 먼저인 자와 이성이 먼저인 자. 갈등의 언어가 완전히 달라요.</div>
+        <div class="combo-desc lang-en">Feelings-first meets thinking-first. Their conflict languages are completely different.</div>
+        <div class="combo-desc lang-pt">Sentimentos primeiro encontra pensamento primeiro. Linguagens de conflito completamente diferentes.</div>
+      </div>
+      <div class="combo-card">
+        <div class="combo-types" style="color: #4ABFCB;">STEADY</div>
+        <div style="color: var(--text-muted); font-size: 13px; margin-bottom: 4px;">+</div>
+        <div class="combo-types" style="color: #F28A30;">PLAYER</div>
+        <div class="combo-tag lang-ko">안정 × 즉흥</div>
+        <div class="combo-tag lang-en">Stability × Spontaneity</div>
+        <div class="combo-tag lang-pt">Estabilidade × Espontaneidade</div>
+        <div class="combo-desc lang-ko">루틴을 사랑하는 자와 지금 이 순간을 사는 자. 서로가 서로를 완성해요.</div>
+        <div class="combo-desc lang-en">Routine-lover meets moment-liver. Each completes what the other lacks.</div>
+        <div class="combo-desc lang-pt">O amante da rotina encontra o vivedor do momento. Cada um completa o que o outro não tem.</div>
+      </div>
+      <div class="combo-card">
+        <div class="combo-types" style="color: #5DC87A;">SPARK</div>
+        <div style="color: var(--text-muted); font-size: 13px; margin-bottom: 4px;">+</div>
+        <div class="combo-types" style="color: #5DC87A;">SPARK</div>
+        <div class="combo-tag lang-ko">동일 유형</div>
+        <div class="combo-tag lang-en">Same Type</div>
+        <div class="combo-tag lang-pt">Mesmo Tipo</div>
+        <div class="combo-desc lang-ko">같은 빛끼리의 만남. 에너지는 폭발적이지만 그림자도 닮아서 함께 무너질 수 있어요.</div>
+        <div class="combo-desc lang-en">Same light meets same light. Explosive energy, but mirrored shadows can pull you both down.</div>
+        <div class="combo-desc lang-pt">A mesma luz encontra a mesma luz. Energia explosiva, mas sombras espelhadas podem puxar os dois para baixo.</div>
+      </div>
+      <div class="combo-card">
+        <div class="combo-types" style="color: #9B7FD4;">VISION</div>
+        <div style="color: var(--text-muted); font-size: 13px; margin-bottom: 4px;">+</div>
+        <div class="combo-types" style="color: #E86A8A;">HARMONY</div>
+        <div class="combo-tag lang-ko">통찰 × 연결</div>
+        <div class="combo-tag lang-en">Insight × Connection</div>
+        <div class="combo-tag lang-pt">Intuição × Conexão</div>
+        <div class="combo-desc lang-ko">미래를 보는 자와 사람을 잇는 자. 깊은 신뢰로 이어지는 드문 조합.</div>
+        <div class="combo-desc lang-en">Future-seer meets people-connector. A rare combination bonded by deep trust.</div>
+        <div class="combo-desc lang-pt">O visionário encontra o conector de pessoas. Uma combinação rara ligada pela confiança profunda.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     FINAL CTA
+══════════════════════════════════ -->
+<div style="max-width:1100px; margin: 0 auto; padding: 100px 20px;">
+  <div class="cta-section">
+    <h2 class="lang-ko">지금 두 사람의 빛을 확인하세요</h2>
+    <h2 class="lang-en">Discover Both Your Lights Now</h2>
+    <h2 class="lang-pt">Descubra as Luzes de Vocês Agora</h2>
+
+    <p class="lang-ko">5분. 28문항. 그리고 두 사람 관계의 전체 그림.<br>유형을 알면 갈등이 이해로 바뀝니다.</p>
+    <p class="lang-en">5 minutes. 28 questions. The full picture of your relationship.<br>Once you know the type, conflict turns into understanding.</p>
+    <p class="lang-pt">5 minutos. 28 perguntas. O quadro completo do relacionamento de vocês.<br>Quando você conhece o tipo, o conflito se torna compreensão.</p>
+
+    <a href="duo_intake.html" class="cta-big lang-ko">우리 해보자 →</a>
+    <a href="duo_intake.html" class="cta-big lang-en">Let's Do This →</a>
+    <a href="duo_intake.html" class="cta-big lang-pt">Vamos Descobrir →</a>
+
+    <p style="margin-top: 24px; font-size: 13px; color: var(--text-muted);" class="lang-ko">⏱ 5분 · 완전 무료 체험 · 결과는 바로 확인</p>
+    <p style="margin-top: 24px; font-size: 13px; color: var(--text-muted);" class="lang-en">⏱ 5 min · Completely free preview · Instant results</p>
+    <p style="margin-top: 24px; font-size: 13px; color: var(--text-muted);" class="lang-pt">⏱ 5 min · Prévia completamente gratuita · Resultados imediatos</p>
+  </div>
+</div>
+
+<footer>
+  <p>shadowgram.org/duo · © 2025 Shadowgram · <a href="https://shadowgram.org">shadowgram.org</a></p>
+  <p style="margin-top: 8px; font-size: 12px; opacity: 0.6;">* MBTI® is a registered trademark of The Myers &amp; Briggs Foundation. Shadowgram은 독자적 프레임워크로, The Myers &amp; Briggs Foundation과 무관합니다.</p>
+</footer>
+
+<script>
+  // ── LANGUAGE ENGINE ──
+  let currentLang = 'ko';
+
+  function setLang(lang) {
+    currentLang = lang;
+    // show/hide
+    ['ko','en','pt'].forEach(l => {
+      const els = document.querySelectorAll('.lang-' + l);
+      els.forEach(el => el.style.display = (l === lang) ? '' : 'none');
+    });
+    // tabs
+    ['ko','en','pt'].forEach(l => {
+      const tab = document.getElementById('tab-' + l);
+      if (tab) tab.classList.toggle('active', l === lang);
+    });
+    // html lang attr
+    document.documentElement.lang = lang === 'pt' ? 'pt-BR' : lang;
+    // store
+    try { localStorage.setItem('sgDuoLang', lang); } catch(e) {}
+  }
+
+  // detect lang from browser or storage
+  (function() {
+    let lang = 'ko';
+    try { lang = localStorage.getItem('sgDuoLang') || lang; } catch(e) {}
+    const browser = navigator.language || '';
+    if (!localStorage.getItem('sgDuoLang')) {
+      if (browser.startsWith('pt')) lang = 'pt';
+      else if (browser.startsWith('en')) lang = 'en';
+      else lang = 'ko';
+    }
+    setLang(lang);
+  })();
+</script>
+</body>
+</html>
