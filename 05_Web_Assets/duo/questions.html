@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shadowgram Duo — 검사</title>
+  <style>
+    :root {
+      --dark: #1A2030; --gold: #E8A84A; --bg: #0F1520;
+      --card: #1E2840; --card2: #232D45; --white: #F0EDE6;
+      --text-muted: #7A8BA0;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--white); min-height: 100vh; }
+
+    /* header */
+    .header {
+      background: rgba(26,32,48,0.97); backdrop-filter: blur(12px);
+      padding: 14px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      position: sticky; top: 0; z-index: 10;
+    }
+    .header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .logo { font-size: 16px; font-weight: 800; color: var(--white); }
+    .logo span { color: var(--gold); }
+    .q-counter { font-size: 13px; color: var(--text-muted); font-weight: 600; }
+    .q-counter b { color: var(--gold); }
+    .progress-bar { height: 3px; background: rgba(255,255,255,0.08); border-radius: 2px; }
+    .progress-fill { height: 100%; background: var(--gold); border-radius: 2px; transition: width 0.35s; }
+
+    /* alert */
+    .alert {
+      background: rgba(232,168,74,0.1); border: 1px solid rgba(232,168,74,0.25);
+      color: var(--gold); padding: 10px 20px; margin: 12px 20px 0;
+      border-radius: 8px; font-size: 13px; text-align: center; display: none;
+    }
+    .alert.show { display: block; }
+
+    /* question */
+    .question-wrap { padding: 24px 20px; max-width: 680px; margin: 0 auto; }
+    .q-card { background: var(--card); border-radius: 20px; padding: 28px 24px; border: 1px solid rgba(255,255,255,0.05); }
+    .q-meta { font-size: 11px; font-weight: 700; color: var(--gold); letter-spacing: 1.5px; margin-bottom: 12px; }
+    .q-dimension { display: inline-block; background: rgba(232,168,74,0.1); color: var(--gold); font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 8px; margin-bottom: 12px; }
+    .q-text { font-size: 20px; font-weight: 700; line-height: 1.4; margin-bottom: 28px; }
+
+    /* responses */
+    .responses { display: flex; flex-direction: column; gap: 16px; }
+    .person-block {
+      background: var(--card2); border-radius: 14px; padding: 18px;
+    }
+    .person-name { font-size: 13px; font-weight: 700; color: var(--gold); margin-bottom: 12px; text-align: center; letter-spacing: 0.5px; }
+
+    /* scale */
+    .scale { display: flex; gap: 6px; justify-content: space-between; }
+    .scale-opt { flex: 1; }
+    .scale-opt input[type="radio"] { display: none; }
+    .scale-opt label {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 10px 4px; background: rgba(255,255,255,0.04);
+      border: 1.5px solid rgba(255,255,255,0.08);
+      border-radius: 10px; cursor: pointer; transition: all 0.18s;
+      font-size: 11px; font-weight: 600; color: var(--text-muted);
+      line-height: 1.3; text-align: center; min-height: 52px;
+    }
+    .scale-opt input:checked + label {
+      background: var(--gold); color: var(--dark); border-color: var(--gold);
+      transform: scale(1.04);
+    }
+    .scale-opt label:active { transform: scale(0.97); }
+
+    /* nav */
+    .nav { padding: 0 20px 32px; max-width: 680px; margin: 16px auto 0; }
+    .nav-inner { display: grid; grid-template-columns: auto 1fr; gap: 12px; }
+    .btn-prev {
+      padding: 14px 20px; background: transparent;
+      border: 1px solid rgba(255,255,255,0.1); color: var(--text-muted);
+      border-radius: 50px; font-size: 16px; font-weight: 700; cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-prev:hover:not(:disabled) { border-color: var(--white); color: var(--white); }
+    .btn-prev:disabled { opacity: 0.3; cursor: not-allowed; }
+    .btn-next {
+      padding: 14px 28px; background: var(--gold); color: var(--dark);
+      border: none; border-radius: 50px; font-size: 17px; font-weight: 800;
+      cursor: pointer; transition: all 0.3s; box-shadow: 0 0 28px rgba(232,168,74,0.2);
+    }
+    .btn-next:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
+    .btn-next:not(:disabled):hover { transform: translateY(-1px); box-shadow: 0 0 40px rgba(232,168,74,0.4); }
+
+    @media (max-width: 500px) {
+      .q-text { font-size: 17px; }
+      .scale-opt label { font-size: 10px; padding: 8px 2px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-row">
+    <div class="logo">Shadow<span>gram</span> Duo</div>
+    <div class="q-counter"><b id="qNum">1</b> / 28</div>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:3.6%"></div></div>
+</div>
+
+<div class="alert" id="alert">
+  <span class="lang-ko">두 분 모두 응답해 주세요!</span>
+  <span class="lang-en">Both need to respond!</span>
+  <span class="lang-pt">Os dois precisam responder!</span>
+</div>
+
+<div class="question-wrap">
+  <div class="q-card">
+    <div class="q-meta" id="qMeta">Q 1</div>
+    <div class="q-dimension" id="qDim"></div>
+    <div class="q-text" id="qText"></div>
+
+    <div class="responses">
+      <div class="person-block">
+        <div class="person-name" id="nameA">A</div>
+        <div class="scale" id="scaleA"></div>
+      </div>
+      <div class="person-block">
+        <div class="person-name" id="nameB">B</div>
+        <div class="scale" id="scaleB"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="nav">
+  <div class="nav-inner">
+    <button class="btn-prev" id="prevBtn" onclick="prevQ()" disabled>←</button>
+    <button class="btn-next" id="nextBtn" onclick="nextQ()" disabled>
+      <span class="lang-ko">다음 →</span>
+      <span class="lang-en">Next →</span>
+      <span class="lang-pt">Próximo →</span>
+    </button>
+  </div>
+</div>
+
+<script>
+// ── LANGUAGE ──
+let currentLang = 'ko';
+function setLang(lang) {
+  currentLang = lang;
+  ['ko','en','pt'].forEach(l => {
+    document.querySelectorAll('.lang-' + l).forEach(el => {
+      el.style.display = (l === lang) ? '' : 'none';
+    });
+  });
+  document.documentElement.lang = lang === 'pt' ? 'pt-BR' : lang;
+}
+
+// ── SCALE LABELS ──
+const scaleLabels = {
+  ko: ['전혀\n아니다', '아니다', '보통', '그렇다', '매우\n그렇다'],
+  en: ['Strongly\nDisagree', 'Disagree', 'Neutral', 'Agree', 'Strongly\nAgree'],
+  pt: ['Discordo\ntotalmente', 'Discordo', 'Neutro', 'Concordo', 'Concordo\ntotalmente'],
+};
+
+// ── 28 QUESTIONS — Cognitive-function based ──
+// Dimensions: Ne, Ni, Si, Se, Fe, Fi, Ti, Te  (4 Qs each = 28)
+// scoring: high score → that function dominant
+const questions = [
+  // Ne (SPARK / PLAYER opposite)
+  { dim: 'Ne', ko: '새로운 아이디어가 떠오르면 바로 이야기하고 싶다', en: 'When I get a new idea, I want to share it right away', pt: 'Quando tenho uma ideia nova, quero compartilhá-la imediatamente' },
+  { dim: 'Ne', ko: '여러 가능성을 동시에 탐색하는 것이 즐겁다', en: 'I enjoy exploring multiple possibilities at once', pt: 'Gosto de explorar várias possibilidades ao mesmo tempo' },
+  { dim: 'Ne', ko: '대화할수록 새로운 연결고리가 보인다', en: 'The more I talk, the more connections I notice', pt: 'Quanto mais converso, mais conexões percebo' },
+  { dim: 'Ne', ko: '뻔한 방법보다 새로운 접근을 시도하고 싶다', en: 'I prefer trying new approaches over the obvious ones', pt: 'Prefiro tentar abordagens novas em vez das óbvias' },
+
+  // Ni (VISION)
+  { dim: 'Ni', ko: '말하지 않아도 상황의 큰 그림이 보인다', en: 'I often see the big picture without being told', pt: 'Frequentemente vejo o quadro geral sem precisar ser avisado' },
+  { dim: 'Ni', ko: '어떤 일이 어떻게 될지 미리 느껴질 때가 많다', en: 'I often sense in advance how things will unfold', pt: 'Muitas vezes sinto de antemão como as coisas vão se desenvolver' },
+  { dim: 'Ni', ko: '한 가지에 깊이 집중할 때 가장 명확하게 생각된다', en: 'My thinking is clearest when I focus deeply on one thing', pt: 'Meu pensamento é mais claro quando me concentro profundamente em uma coisa' },
+  { dim: 'Ni', ko: '미래의 패턴이나 방향이 직관적으로 느껴진다', en: 'I intuitively sense future patterns and directions', pt: 'Sinto intuitivamente padrões e direções futuras' },
+
+  // Si (STEADY)
+  { dim: 'Si', ko: '과거에 잘 됐던 방식을 신뢰하고 따르는 편이다', en: 'I trust and follow methods that worked well in the past', pt: 'Confio e sigo métodos que funcionaram bem no passado' },
+  { dim: 'Si', ko: '예측 가능한 루틴이 있을 때 안정감을 느낀다', en: 'I feel stable when I have a predictable routine', pt: 'Sinto estabilidade quando tenho uma rotina previsível' },
+  { dim: 'Si', ko: '세부 사항과 구체적인 사실을 잘 기억한다', en: 'I remember details and concrete facts well', pt: 'Lembro bem de detalhes e fatos concretos' },
+  { dim: 'Si', ko: '신중하게 확인하고 검증한 뒤에 결정한다', en: 'I verify and confirm carefully before making decisions', pt: 'Verifico e confirmo cuidadosamente antes de tomar decisões' },
+
+  // Se (PLAYER)
+  { dim: 'Se', ko: '지금 이 순간의 경험이 가장 중요하다', en: 'The experience of this moment is what matters most', pt: 'A experiência deste momento é o que mais importa' },
+  { dim: 'Se', ko: '현재 일어나는 일에 즉각 반응하고 행동한다', en: 'I react and act quickly to what is happening right now', pt: 'Reajo e ajo rapidamente ao que está acontecendo agora' },
+  { dim: 'Se', ko: '몸으로 직접 경험해야 가장 잘 배운다', en: 'I learn best by experiencing things physically', pt: 'Aprendo melhor experienciando as coisas fisicamente' },
+  { dim: 'Se', ko: '보고, 듣고, 느끼는 감각 정보에 즉각 몰입된다', en: 'I immediately immerse in sensory information — sight, sound, feel', pt: 'Mergulho imediatamente em informações sensoriais — visão, som, tato' },
+
+  // Fe (HARMONY)
+  { dim: 'Fe', ko: '주변 분위기가 불편하면 나도 불편해진다', en: 'When the atmosphere around me is tense, I feel it too', pt: 'Quando a atmosfera ao redor está tensa, eu também sinto' },
+  { dim: 'Fe', ko: '모두가 조화롭게 지내는 것이 중요하다', en: 'It is important to me that everyone gets along harmoniously', pt: 'É importante para mim que todos se entendam harmoniosamente' },
+  { dim: 'Fe', ko: '상대방의 감정 상태를 금방 알아챈다', en: 'I quickly notice the emotional state of others', pt: 'Noto rapidamente o estado emocional dos outros' },
+  { dim: 'Fe', ko: '그룹의 기분을 좋게 만들기 위해 노력한다', en: "I work to improve the group's mood and atmosphere", pt: 'Trabalho para melhorar o humor e a atmosfera do grupo' },
+
+  // Fi (SOUL)
+  { dim: 'Fi', ko: '내 가치관과 맞지 않으면 아무리 좋아도 거부감이 든다', en: "If something conflicts with my values, I reject it no matter how good it seems", pt: 'Se algo conflita com meus valores, eu o rejeito não importa quão bom pareça' },
+  { dim: 'Fi', ko: '감정을 혼자 처리하고 나서야 나눌 수 있다', en: 'I need to process my feelings alone before I can share them', pt: 'Preciso processar meus sentimentos sozinho antes de compartilhá-los' },
+  { dim: 'Fi', ko: '진정성 없는 관계보다 혼자가 낫다', en: 'Being alone is better than inauthentic connection', pt: 'Estar sozinho é melhor do que uma conexão inautêntica' },
+  { dim: 'Fi', ko: '내가 중요하게 여기는 것에 대해서는 타협하지 않는다', en: 'I do not compromise on what truly matters to me', pt: 'Não abro mão do que realmente importa para mim' },
+
+  // Ti (LOGIC)
+  { dim: 'Ti', ko: '어떤 주장이든 논리적 근거를 따진다', en: 'I examine the logical basis of any claim', pt: 'Examino a base lógica de qualquer argumento' },
+  { dim: 'Ti', ko: '내 머릿속에 일관된 원리 체계가 있다', en: 'I have a consistent system of principles in my mind', pt: 'Tenho um sistema consistente de princípios na minha mente' },
+  { dim: 'Ti', ko: '모순이나 오류를 발견하면 짚고 넘어가야 한다', en: 'When I spot a contradiction or error, I need to address it', pt: 'Quando identifico uma contradição ou erro, preciso abordá-lo' },
+  { dim: 'Ti', ko: '감정보다 논리가 더 신뢰할 수 있는 판단 기준이다', en: 'Logic is a more reliable judgment criterion than emotion', pt: 'A lógica é um critério de julgamento mais confiável do que a emoção' },
+
+  // Te (LEADER)
+  { dim: 'Te', ko: '목표를 정하면 효율적인 실행 방법을 즉시 찾는다', en: 'Once I set a goal, I immediately find efficient ways to execute it', pt: 'Assim que defino um objetivo, imediatamente encontro formas eficientes de executá-lo' },
+  { dim: 'Te', ko: '감정보다 결과가 더 중요하다', en: 'Results matter more than feelings', pt: 'Resultados importam mais do que sentimentos' },
+  { dim: 'Te', ko: '체계와 기준이 있어야 팀이 제대로 돌아간다', en: 'A team needs structure and standards to function well', pt: 'Uma equipe precisa de estrutura e padrões para funcionar bem' },
+  { dim: 'Te', ko: '계획대로 진행되지 않으면 바로 수정하고 싶다', en: "When things don't go as planned, I want to correct course immediately", pt: 'Quando as coisas não saem como planejado, quero corrigir o rumo imediatamente' },
+];
+
+// ── STATE ──
+let current = 0;
+const responses = { A: Array(28).fill(null), B: Array(28).fill(null) };
+let info = {};
+try { info = JSON.parse(localStorage.getItem('sgDuoInfo') || '{}'); } catch(e) {}
+
+const TOTAL = questions.length;
+
+// ── INIT ──
+(function() {
+  let lang = 'ko';
+  try { lang = localStorage.getItem('sgDuoLang') || lang; } catch(e) {}
+  currentLang = lang;
+  setLang(lang);
+
+  if (info.personA) document.getElementById('nameA').textContent = '✦ ' + info.personA.name;
+  if (info.personB) document.getElementById('nameB').textContent = '✦ ' + info.personB.name;
+
+  renderQuestion();
+})();
+
+// ── RENDER ──
+function renderQuestion() {
+  const q = questions[current];
+  document.getElementById('qNum').textContent = current + 1;
+  document.getElementById('qMeta').textContent = 'Q ' + (current + 1);
+
+  // dimension badge
+  const dimLabels = {
+    ko: { Ne:'가능성 탐색', Ni:'통찰·직관', Si:'안정·기억', Se:'현재 감각', Fe:'조화·공감', Fi:'진심·가치', Ti:'논리·분석', Te:'실행·결과' },
+    en: { Ne:'Possibility', Ni:'Insight', Si:'Stability', Se:'Present Moment', Fe:'Harmony', Fi:'Values', Ti:'Logic', Te:'Execution' },
+    pt: { Ne:'Possibilidade', Ni:'Intuição', Si:'Estabilidade', Se:'Momento Presente', Fe:'Harmonia', Fi:'Valores', Ti:'Lógica', Te:'Execução' },
+  };
+  document.getElementById('qDim').textContent = (dimLabels[currentLang] || dimLabels.ko)[q.dim] || q.dim;
+
+  // question text
+  document.getElementById('qText').textContent = q[currentLang] || q.ko;
+
+  // progress
+  const pct = ((current + 1) / TOTAL * 100).toFixed(1);
+  document.getElementById('progressFill').style.width = pct + '%';
+
+  // scale labels
+  const labels = scaleLabels[currentLang] || scaleLabels.ko;
+
+  ['A','B'].forEach(p => {
+    const cont = document.getElementById('scale' + p);
+    cont.innerHTML = '';
+    for (let v = 1; v <= 5; v++) {
+      const id = `r${p}${v}`;
+      const div = document.createElement('div');
+      div.className = 'scale-opt';
+      div.innerHTML = `
+        <input type="radio" name="resp${p}" id="${id}" value="${v}" ${responses[p][current] === v ? 'checked' : ''}>
+        <label for="${id}">${labels[v-1].replace('\n','<br>')}</label>`;
+      div.querySelector('input').addEventListener('change', updateNav);
+      cont.appendChild(div);
+    }
+  });
+
+  // nav buttons
+  document.getElementById('prevBtn').disabled = current === 0;
+  updateNav();
+}
+
+function updateNav() {
+  const rA = document.querySelector('input[name="respA"]:checked');
+  const rB = document.querySelector('input[name="respB"]:checked');
+  const ok = rA && rB;
+  const btn = document.getElementById('nextBtn');
+  btn.disabled = !ok;
+
+  // last question label
+  const spans = btn.querySelectorAll('span');
+  const lastLabels = { ko:'결과 보기 →', en:'See Results →', pt:'Ver Resultados →' };
+  if (current === TOTAL - 1) {
+    spans.forEach(s => s.textContent = lastLabels[currentLang] || lastLabels.ko);
+  } else {
+    const nl = { ko:'다음 →', en:'Next →', pt:'Próximo →' };
+    spans.forEach(s => s.textContent = nl[currentLang] || nl.ko);
+  }
+}
+
+function saveCurrentResponse() {
+  const rA = document.querySelector('input[name="respA"]:checked');
+  const rB = document.querySelector('input[name="respB"]:checked');
+  if (rA) responses.A[current] = parseInt(rA.value);
+  if (rB) responses.B[current] = parseInt(rB.value);
+}
+
+function nextQ() {
+  const rA = document.querySelector('input[name="respA"]:checked');
+  const rB = document.querySelector('input[name="respB"]:checked');
+  if (!rA || !rB) {
+    const alert = document.getElementById('alert');
+    alert.classList.add('show');
+    setTimeout(() => alert.classList.remove('show'), 2000);
+    return;
+  }
+  saveCurrentResponse();
+  if (current < TOTAL - 1) {
+    current++;
+    renderQuestion();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    finish();
+  }
+}
+function prevQ() {
+  saveCurrentResponse();
+  if (current > 0) { current--; renderQuestion(); window.scrollTo({top:0,behavior:'smooth'}); }
+}
+
+// ── FINISH: calculate type ──
+function finish() {
+  // Average score per dimension for each person
+  const dims = ['Ne','Ni','Si','Se','Fe','Fi','Ti','Te'];
+  const dimScores = { A: {}, B: {} };
+
+  dims.forEach(d => {
+    const indices = questions.map((q,i) => q.dim === d ? i : -1).filter(i => i >= 0);
+    ['A','B'].forEach(p => {
+      const sum = indices.reduce((acc, i) => acc + (responses[p][i] || 3), 0);
+      dimScores[p][d] = sum / indices.length;
+    });
+  });
+
+  // Determine primary type based on highest dominant function
+  // Type map: primary function → type name
+  const typeMap = {
+    Ne: 'SPARK', Ni: 'VISION', Si: 'STEADY', Se: 'PLAYER',
+    Fe: 'HARMONY', Fi: 'SOUL', Ti: 'LOGIC', Te: 'LEADER',
+  };
+
+  function getType(scores) {
+    let best = null, bestScore = -1;
+    dims.forEach(d => { if (scores[d] > bestScore) { bestScore = scores[d]; best = d; } });
+    return typeMap[best];
+  }
+
+  const typeA = getType(dimScores.A);
+  const typeB = getType(dimScores.B);
+
+  const result = {
+    info: info,
+    responses: responses,
+    dimScores: dimScores,
+    typeA: typeA,
+    typeB: typeB,
+    lang: currentLang,
+  };
+
+  try { localStorage.setItem('sgDuoResult', JSON.stringify(result)); } catch(e) {}
+  window.location.href = 'duo_result.html';
+}
+</script>
+</body>
+</html>
