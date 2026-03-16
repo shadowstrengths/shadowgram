@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shadowgram Duo — 시작하기</title>
+  <style>
+    :root {
+      --dark: #1A2030; --gold: #E8A84A; --bg: #0F1520;
+      --card: #1E2840; --card2: #232D45; --white: #F0EDE6;
+      --text-muted: #7A8BA0; --accent: #E8A84A;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg); color: var(--white); min-height: 100vh;
+      padding: 20px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .container {
+      max-width: 680px; width: 100%;
+      background: var(--card); border-radius: 28px; padding: 48px 40px;
+      border: 1px solid rgba(232,168,74,0.12);
+      box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+    }
+    .top-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 36px;
+    }
+    .logo { font-size: 20px; font-weight: 800; color: var(--white); }
+    .logo span { color: var(--gold); }
+    .lang-tabs { display: flex; gap: 4px; }
+    .lang-tab {
+      padding: 5px 12px; border-radius: 16px; font-size: 12px; font-weight: 600;
+      cursor: pointer; border: 1px solid transparent; color: var(--text-muted);
+      background: none; transition: all 0.2s;
+    }
+    .lang-tab.active { background: var(--gold); color: var(--dark); }
+
+    /* progress */
+    .progress-bar { height: 3px; background: rgba(255,255,255,0.08); border-radius: 2px; margin-bottom: 36px; }
+    .progress-fill { height: 100%; background: var(--gold); border-radius: 2px; width: 33%; transition: width 0.4s; }
+
+    /* heading */
+    .page-title { font-size: 26px; font-weight: 800; margin-bottom: 8px; }
+    .page-sub { font-size: 15px; color: var(--text-muted); margin-bottom: 36px; }
+
+    /* person grid */
+    .person-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 32px; }
+    .person-card {
+      background: var(--card2); border-radius: 16px; padding: 24px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .person-label {
+      font-size: 13px; font-weight: 700; color: var(--gold);
+      letter-spacing: 1px; margin-bottom: 16px; text-align: center;
+    }
+
+    /* form */
+    .form-group { margin-bottom: 16px; }
+    .form-group:last-child { margin-bottom: 0; }
+    label { display: block; font-size: 12px; font-weight: 600; color: var(--text-muted); margin-bottom: 6px; letter-spacing: 0.3px; }
+    input[type="text"], select {
+      width: 100%; padding: 11px 14px;
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px; font-size: 14px; color: var(--white);
+      transition: border-color 0.2s; appearance: none;
+    }
+    input[type="text"]:focus, select:focus {
+      outline: none; border-color: var(--gold);
+      background: rgba(232,168,74,0.05);
+    }
+    input::placeholder { color: var(--text-muted); }
+    select option { background: var(--card2); color: var(--white); }
+
+    /* relationship */
+    .rel-card {
+      background: var(--card2); border-radius: 16px; padding: 24px;
+      border: 1px solid rgba(255,255,255,0.05); margin-bottom: 24px;
+    }
+    .rel-title { font-size: 15px; font-weight: 700; margin-bottom: 20px; }
+
+    /* children */
+    .children-section {
+      background: rgba(232,168,74,0.05);
+      border: 1px solid rgba(232,168,74,0.15);
+      border-radius: 12px; padding: 16px; margin-top: 16px; display: none;
+    }
+    .children-section.show { display: block; }
+    .child-card {
+      background: var(--card); border-radius: 10px; padding: 14px; margin-bottom: 12px;
+    }
+    .child-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .child-num { font-size: 13px; font-weight: 700; color: var(--gold); }
+    .btn-remove {
+      background: rgba(232,106,138,0.2); color: #E86A8A;
+      border: none; padding: 4px 10px; border-radius: 6px;
+      font-size: 11px; font-weight: 600; cursor: pointer;
+    }
+    .btn-add-child {
+      width: 100%; margin-top: 8px; padding: 10px;
+      background: rgba(232,168,74,0.1); color: var(--gold);
+      border: 1px dashed rgba(232,168,74,0.3); border-radius: 10px;
+      font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s;
+    }
+    .btn-add-child:hover { background: rgba(232,168,74,0.2); }
+
+    /* info note */
+    .info-note {
+      background: rgba(90,175,212,0.08);
+      border: 1px solid rgba(90,175,212,0.15);
+      border-radius: 10px; padding: 14px; margin-bottom: 32px;
+      font-size: 13px; color: var(--text-muted); line-height: 1.6;
+    }
+
+    /* buttons */
+    .btn-group { display: grid; grid-template-columns: auto 1fr; gap: 12px; }
+    .btn-back {
+      padding: 16px 24px; background: transparent;
+      border: 1px solid rgba(255,255,255,0.1); color: var(--text-muted);
+      border-radius: 50px; font-size: 16px; font-weight: 600; cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-back:hover { border-color: var(--white); color: var(--white); }
+    .btn-next {
+      padding: 16px 32px; background: var(--gold); color: var(--dark);
+      border: none; border-radius: 50px;
+      font-size: 17px; font-weight: 800; cursor: pointer;
+      transition: all 0.3s; box-shadow: 0 0 30px rgba(232,168,74,0.25);
+    }
+    .btn-next:hover { transform: translateY(-1px); box-shadow: 0 0 45px rgba(232,168,74,0.4); }
+
+    @media (max-width: 600px) {
+      .container { padding: 32px 20px; }
+      .person-grid { grid-template-columns: 1fr; }
+      .btn-group { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="top-bar">
+    <div class="logo">Shadow<span>gram</span> Duo</div>
+    <div class="lang-tabs">
+      <button class="lang-tab" onclick="setLang('ko')" id="tab-ko">한국어</button>
+      <button class="lang-tab" onclick="setLang('en')" id="tab-en">EN</button>
+      <button class="lang-tab" onclick="setLang('pt')" id="tab-pt">PT</button>
+    </div>
+  </div>
+
+  <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+
+  <h1 class="page-title">
+    <span class="lang-ko">두 분에 대해 알려주세요</span>
+    <span class="lang-en">Tell Us About the Two of You</span>
+    <span class="lang-pt">Nos Contem Sobre Vocês Dois</span>
+  </h1>
+  <p class="page-sub">
+    <span class="lang-ko">더 정확한 분석을 위해 필요해요 · 1단계 / 3단계</span>
+    <span class="lang-en">For a more accurate analysis · Step 1 of 3</span>
+    <span class="lang-pt">Para uma análise mais precisa · Etapa 1 de 3</span>
+  </p>
+
+  <form id="intakeForm">
+    <!-- TWO PEOPLE -->
+    <div class="person-grid">
+      <!-- A -->
+      <div class="person-card">
+        <div class="person-label lang-ko">✦ A</div>
+        <div class="person-label lang-en">✦ PERSON A</div>
+        <div class="person-label lang-pt">✦ PESSOA A</div>
+        <div class="form-group">
+          <label class="lang-ko">이름</label>
+          <label class="lang-en">Name</label>
+          <label class="lang-pt">Nome</label>
+          <input type="text" name="nameA" placeholder="이름 / Name / Nome" required>
+        </div>
+        <div class="form-group">
+          <label class="lang-ko">나이대</label>
+          <label class="lang-en">Age Range</label>
+          <label class="lang-pt">Faixa Etária</label>
+          <select name="ageA" required>
+            <option value="" class="lang-ko">선택</option>
+            <option value="10-20">10대 / Teens</option>
+            <option value="21-25">20s early</option>
+            <option value="26-30">20s late</option>
+            <option value="31-35">30s early</option>
+            <option value="36-40">30s late</option>
+            <option value="41-50">40s</option>
+            <option value="51+">50+</option>
+          </select>
+        </div>
+      </div>
+      <!-- B -->
+      <div class="person-card">
+        <div class="person-label lang-ko">✦ B</div>
+        <div class="person-label lang-en">✦ PERSON B</div>
+        <div class="person-label lang-pt">✦ PESSOA B</div>
+        <div class="form-group">
+          <label class="lang-ko">이름</label>
+          <label class="lang-en">Name</label>
+          <label class="lang-pt">Nome</label>
+          <input type="text" name="nameB" placeholder="이름 / Name / Nome" required>
+        </div>
+        <div class="form-group">
+          <label class="lang-ko">나이대</label>
+          <label class="lang-en">Age Range</label>
+          <label class="lang-pt">Faixa Etária</label>
+          <select name="ageB" required>
+            <option value="">—</option>
+            <option value="10-20">10대 / Teens</option>
+            <option value="21-25">20s early</option>
+            <option value="26-30">20s late</option>
+            <option value="31-35">30s early</option>
+            <option value="36-40">30s late</option>
+            <option value="41-50">40s</option>
+            <option value="51+">50+</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- RELATIONSHIP -->
+    <div class="rel-card">
+      <div class="rel-title">
+        <span class="lang-ko">💑 관계</span>
+        <span class="lang-en">💑 Relationship</span>
+        <span class="lang-pt">💑 Relacionamento</span>
+      </div>
+      <div class="form-group">
+        <label class="lang-ko">현재 관계</label>
+        <label class="lang-en">Current Status</label>
+        <label class="lang-pt">Status Atual</label>
+        <select name="relType" id="relType" required onchange="onRelChange()">
+          <option value="">—</option>
+          <option value="dating-casual" class="lang-ko">썸 중</option>
+          <option value="dating-casual" class="lang-en" style="display:none">Flirting / Getting to know</option>
+          <option value="dating-casual" class="lang-pt" style="display:none">Ficando</option>
+          <option value="dating-serious">
+          </option>
+          <option value="married">
+          </option>
+        </select>
+        <!-- Native select rebuilt by JS based on lang -->
+      </div>
+      <div class="form-group">
+        <label class="lang-ko">관계 기간</label>
+        <label class="lang-en">Duration</label>
+        <label class="lang-pt">Duração</label>
+        <select name="relDuration" id="relDuration" required>
+          <option value="" class="lang-ko">관계를 먼저 선택해 주세요</option>
+          <option value="" class="lang-en" style="display:none">Choose status first</option>
+          <option value="" class="lang-pt" style="display:none">Escolha o status primeiro</option>
+        </select>
+      </div>
+
+      <!-- children (if married) -->
+      <div class="children-section" id="childrenSection">
+        <div style="font-size:13px; font-weight:700; margin-bottom:12px; color: var(--gold);">
+          <span class="lang-ko">👶 자녀 정보 (선택)</span>
+          <span class="lang-en">👶 Children (optional)</span>
+          <span class="lang-pt">👶 Filhos (opcional)</span>
+        </div>
+        <div class="form-group">
+          <select name="hasChildren" id="hasChildren" onchange="toggleChildren()">
+            <option value="no" class="lang-ko">자녀 없음</option>
+            <option value="no" class="lang-en">No children</option>
+            <option value="no" class="lang-pt">Sem filhos</option>
+            <option value="yes" class="lang-ko">자녀 있음</option>
+            <option value="yes" class="lang-en">Has children</option>
+            <option value="yes" class="lang-pt">Tem filhos</option>
+          </select>
+        </div>
+        <div id="childrenList" style="display:none">
+          <div id="childCards"></div>
+          <button type="button" class="btn-add-child" onclick="addChild()">
+            <span class="lang-ko">+ 자녀 추가</span>
+            <span class="lang-en">+ Add Child</span>
+            <span class="lang-pt">+ Adicionar Filho</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-note">
+      <span class="lang-ko">ℹ️ 이 정보는 더 정확한 맞춤 분석에만 사용됩니다. 나이는 범위로만 수집되며, 개인정보는 안전하게 보호됩니다.</span>
+      <span class="lang-en">ℹ️ This information is used only to personalize your analysis. Age is collected as a range only. Your data is kept private.</span>
+      <span class="lang-pt">ℹ️ Essas informações são usadas apenas para personalizar sua análise. A idade é coletada apenas como faixa etária. Seus dados são mantidos em privacidade.</span>
+    </div>
+
+    <div class="btn-group">
+      <button type="button" class="btn-back" onclick="history.back()">←</button>
+      <button type="submit" class="btn-next">
+        <span class="lang-ko">검사 시작 →</span>
+        <span class="lang-en">Start Quiz →</span>
+        <span class="lang-pt">Começar →</span>
+      </button>
+    </div>
+  </form>
+</div>
+
+<script>
+// ── LANGUAGE ──
+let currentLang = 'ko';
+function setLang(lang) {
+  currentLang = lang;
+  ['ko','en','pt'].forEach(l => {
+    document.querySelectorAll('.lang-' + l).forEach(el => {
+      el.style.display = (l === lang) ? '' : 'none';
+    });
+    const tab = document.getElementById('tab-' + l);
+    if (tab) tab.classList.toggle('active', l === lang);
+  });
+  document.documentElement.lang = lang === 'pt' ? 'pt-BR' : lang;
+  try { localStorage.setItem('sgDuoLang', lang); } catch(e) {}
+  rebuildSelects();
+}
+
+// ── SELECTS LOCALISATION ──
+const relOptions = {
+  ko: [
+    { v: '', t: '선택' },
+    { v: 'dating-casual', t: '썸 중' },
+    { v: 'dating-serious', t: '연애 중' },
+    { v: 'married', t: '결혼' },
+  ],
+  en: [
+    { v: '', t: 'Choose' },
+    { v: 'dating-casual', t: 'Flirting / Getting to know' },
+    { v: 'dating-serious', t: 'Dating (serious)' },
+    { v: 'married', t: 'Married' },
+  ],
+  pt: [
+    { v: '', t: 'Escolha' },
+    { v: 'dating-casual', t: 'Ficando' },
+    { v: 'dating-serious', t: 'Namorando' },
+    { v: 'married', t: 'Casados' },
+  ],
+};
+
+const durOptions = {
+  dating: {
+    ko: [['0-6m','6개월 미만'],['6m-1y','6개월~1년'],['1-2y','1~2년'],['2-3y','2~3년'],['3-5y','3~5년'],['5y+','5년 이상']],
+    en: [['0-6m','< 6 months'],['6m-1y','6–12 months'],['1-2y','1–2 years'],['2-3y','2–3 years'],['3-5y','3–5 years'],['5y+','5+ years']],
+    pt: [['0-6m','< 6 meses'],['6m-1y','6–12 meses'],['1-2y','1–2 anos'],['2-3y','2–3 anos'],['3-5y','3–5 anos'],['5y+','5+ anos']],
+  },
+  married: {
+    ko: [['0-3y','신혼 (0~3년)'],['4-10y','중기 (4~10년)'],['11-20y','장기 (11~20년)'],['20y+','20년 이상']],
+    en: [['0-3y','Newlywed (0–3y)'],['4-10y','Mid (4–10y)'],['11-20y','Long-term (11–20y)'],['20y+','20+ years']],
+    pt: [['0-3y','Recém-casados (0–3a)'],['4-10y','Médio prazo (4–10a)'],['11-20y','Longo prazo (11–20a)'],['20y+','20+ anos']],
+  },
+};
+
+function rebuildSelects() {
+  const relSel = document.getElementById('relType');
+  const curRel = relSel.value;
+  relSel.innerHTML = '';
+  relOptions[currentLang].forEach(o => {
+    const opt = new Option(o.t, o.v);
+    relSel.appendChild(opt);
+  });
+  relSel.value = curRel || '';
+  onRelChange();
+}
+
+function onRelChange() {
+  const relSel = document.getElementById('relType');
+  const durSel = document.getElementById('relDuration');
+  const childSec = document.getElementById('childrenSection');
+  const relVal = relSel.value;
+
+  durSel.innerHTML = '';
+  const empty = new Option(currentLang === 'ko' ? '선택' : currentLang === 'en' ? 'Choose' : 'Escolha', '');
+  durSel.appendChild(empty);
+
+  if (!relVal) return;
+
+  const isMarried = relVal === 'married';
+  const key = isMarried ? 'married' : 'dating';
+  const opts = durOptions[key][currentLang] || durOptions[key]['ko'];
+  opts.forEach(([v,t]) => durSel.appendChild(new Option(t, v)));
+
+  childSec.classList.toggle('show', isMarried);
+}
+
+// ── CHILDREN ──
+let childCount = 0;
+function toggleChildren() {
+  const v = document.getElementById('hasChildren').value;
+  const list = document.getElementById('childrenList');
+  list.style.display = v === 'yes' ? 'block' : 'none';
+  if (v === 'yes' && childCount === 0) addChild();
+}
+function addChild() {
+  if (childCount >= 5) return;
+  childCount++;
+  const ageOpts = {
+    ko: [['0-3','영유아(0-3)'],['4-7','유치원(4-7)'],['8-13','초등(8-13)'],['14-16','중학(14-16)'],['17-19','고등(17-19)'],['20+','성인 20+']],
+    en: [['0-3','Infant(0-3)'],['4-7','Preschool(4-7)'],['8-13','Primary(8-13)'],['14-16','Middle(14-16)'],['17-19','High school(17-19)'],['20+','Adult 20+']],
+    pt: [['0-3','Bebê(0-3)'],['4-7','Pré-escola(4-7)'],['8-13','Fundamental(8-13)'],['14-16','EF II(14-16)'],['17-19','EM(17-19)'],['20+','Adulto 20+']],
+  };
+  const opts = (ageOpts[currentLang] || ageOpts.ko).map(([v,t]) => `<option value="${v}">${t}</option>`).join('');
+  const div = document.createElement('div');
+  div.className = 'child-card'; div.id = 'child-' + childCount;
+  div.innerHTML = `
+    <div class="child-header">
+      <span class="child-num">${childCount}</span>
+      ${childCount > 1 ? `<button type="button" class="btn-remove" onclick="removeChild(${childCount})">✕</button>` : ''}
+    </div>
+    <select name="child${childCount}Age">${opts}</select>`;
+  document.getElementById('childCards').appendChild(div);
+}
+function removeChild(id) {
+  const el = document.getElementById('child-' + id);
+  if (el) { el.remove(); childCount--; }
+}
+
+// ── FORM SUBMIT ──
+document.getElementById('intakeForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const fd = {
+    personA: { name: this.nameA.value, age: this.ageA.value },
+    personB: { name: this.nameB.value, age: this.ageB.value },
+    relationship: { type: this.relType.value, duration: this.relDuration.value },
+    lang: currentLang,
+  };
+  if (this.relType.value === 'married' && document.getElementById('hasChildren').value === 'yes') {
+    fd.children = [];
+    for (let i = 1; i <= childCount; i++) {
+      const s = this['child' + i + 'Age'];
+      if (s && s.value) fd.children.push({ age: s.value });
+    }
+  }
+  try { localStorage.setItem('sgDuoInfo', JSON.stringify(fd)); } catch(ex) {}
+  window.location.href = 'duo_questions.html';
+});
+
+// ── INIT ──
+(function() {
+  let lang = 'ko';
+  try { lang = localStorage.getItem('sgDuoLang') || lang; } catch(e) {}
+  setLang(lang);
+})();
+</script>
+</body>
+</html>
