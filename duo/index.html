@@ -233,13 +233,8 @@
     }
 
     /* ── LANG HIDE ── */
-    .lang-en, .lang-pt { display: none !important; }
-    /* block 요소 */
-    h1.lang-ko, p.lang-ko, div.lang-ko, li.lang-ko, span.lang-ko { display: block; }
-    /* inline-flex 복원 (hero-cta) */
-    a.lang-ko { display: inline-flex; }
-    /* inline-block 복원 (hero-badge 등) */
-    .hero-badge.lang-ko { display: inline-block; }
+    /* JS setLang()이 인라인 style로 제어 — CSS는 초기 숨김만 담당 */
+    .lang-en, .lang-pt { display: none; }
   </style>
 </head>
 <body>
@@ -600,21 +595,25 @@
   let currentLang = 'ko';
 
   function getDisplayFor(el) {
-    // 각 요소의 자연스러운 display 값 반환
-    if (el.tagName === 'A' && el.classList.contains('hero-cta')) return 'inline-flex';
-    if (el.tagName === 'A' && el.classList.contains('cta-big')) return 'inline-flex';
-    if (el.classList.contains('hero-badge')) return 'inline-block';
-    if (el.tagName === 'A') return 'inline-block';
+    if (el.tagName === 'A') return 'inline-flex';
     if (el.tagName === 'SPAN') return 'inline';
+    if (el.classList.contains('hero-badge')) return 'inline-block';
     return 'block';
   }
 
   function setLang(lang) {
     currentLang = lang;
-    // show/hide
+    // show/hide — setProperty로 CSS specificity 무관하게 강제 적용
     ['ko','en','pt'].forEach(l => {
-      const els = document.querySelectorAll('.lang-' + l);
-      els.forEach(el => el.style.display = (l === lang) ? getDisplayFor(el) : 'none');
+      const show = (l === lang);
+      document.querySelectorAll('.lang-' + l).forEach(el => {
+        if (show) {
+          el.style.removeProperty('display');
+          el.style.display = getDisplayFor(el);
+        } else {
+          el.style.display = 'none';
+        }
+      });
     });
     // tabs
     ['ko','en','pt'].forEach(l => {
