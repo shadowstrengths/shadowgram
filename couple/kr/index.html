@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>커플 유형 테스트 — Shadowgram Couple</title>
+<meta property="og:title" content="우리 커플 유형은? — Shadowgram Couple">
+<meta property="og:description" content="연인과 함께 24문항으로 커플 유형을 알아보세요.">
+<style>
+  /* ── Reset & Base ───────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --dark:   #1A2030;
+    --gold:   #B8860B;
+    --gold-l: #D4A017;
+    --silver: #8899AA;
+    --white:  #FFFFFF;
+    --bg:     #F7F5F0;
+    --card:   #FFFFFF;
+    --radius: 20px;
+    --shadow: 0 4px 24px rgba(26,32,48,.10);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+    background: var(--bg);
+    color: var(--dark);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── Layout ─────────────────────────────────────────────── */
+  .screen { display: none; animation: fadeIn .4s ease; }
+  .screen.active { display: block; }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 24px 20px 60px;
+  }
+
+  /* ── Header bar ─────────────────────────────────────────── */
+  .topbar {
+    text-align: center;
+    padding: 20px 0 8px;
+    font-size: 13px;
+    color: var(--silver);
+    letter-spacing: .06em;
+  }
+  .topbar strong { color: var(--gold); font-size: 15px; letter-spacing: .08em; }
+
+  /* ── Hero / Intro ───────────────────────────────────────── */
+  #screen-intro {
+    background: linear-gradient(160deg, #1A2030 0%, #2A3450 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+    text-align: center;
+  }
+  #screen-intro.active { display: flex; }
+  .intro-logo {
+    font-size: 13px;
+    letter-spacing: .12em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    opacity: .9;
+  }
+  .intro-title {
+    font-size: clamp(28px, 7vw, 42px);
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.25;
+    margin-bottom: 16px;
+  }
+  .intro-title span { color: var(--gold-l); }
+  .intro-sub {
+    font-size: clamp(15px, 3.5vw, 18px);
+    color: rgba(255,255,255,.65);
+    line-height: 1.7;
+    max-width: 480px;
+    margin-bottom: 48px;
+  }
+  .intro-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 48px;
+  }
+  .pill {
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(184,134,11,.4);
+    border-radius: 40px;
+    padding: 8px 18px;
+    font-size: 13px;
+    color: rgba(255,255,255,.8);
+  }
+  .btn-start {
+    background: linear-gradient(135deg, #B8860B, #D4A017);
+    color: #fff;
+    border: none;
+    border-radius: 60px;
+    padding: 18px 48px;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 6px 24px rgba(184,134,11,.45);
+    transition: transform .15s, box-shadow .15s;
+    font-family: inherit;
+    letter-spacing: .04em;
+  }
+  .btn-start:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(184,134,11,.55); }
+  .intro-note {
+    margin-top: 24px;
+    font-size: 12px;
+    color: rgba(255,255,255,.35);
+  }
+
+  /* ── Who section ─────────────────────────────────────────── */
+  #screen-who { background: var(--bg); }
+  .who-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 36px 28px;
+    margin-top: 16px;
+    text-align: center;
+  }
+  .who-emoji { font-size: 48px; margin-bottom: 16px; }
+  .who-title { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+  .who-sub { font-size: 15px; color: var(--silver); margin-bottom: 32px; line-height: 1.6; }
+  .who-buttons { display: flex; flex-direction: column; gap: 14px; }
+  .btn-who {
+    background: #fff;
+    border: 2px solid #E5E0D8;
+    border-radius: 60px;
+    padding: 16px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--dark);
+    font-family: inherit;
+    transition: all .15s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .btn-who:hover, .btn-who.selected {
+    border-color: var(--gold);
+    background: #FFF9EE;
+    color: var(--gold);
+  }
+  .btn-who-icon { font-size: 22px; }
+
+  /* ── Progress bar ───────────────────────────────────────── */
+  .progress-wrap {
+    margin-bottom: 28px;
+    padding-top: 8px;
+  }
+  .progress-top {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--silver);
+    margin-bottom: 10px;
+  }
+  .progress-bar-bg {
+    height: 6px;
+    background: #E5E0D8;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #B8860B, #D4A017);
+    border-radius: 6px;
+    transition: width .4s ease;
+  }
+
+  /* ── Question card ──────────────────────────────────────── */
+  .q-section-badge {
+    display: inline-block;
+    background: var(--dark);
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    padding: 5px 14px;
+    border-radius: 40px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+  .q-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 32px 28px 28px;
+  }
+  .q-number { font-size: 12px; color: var(--silver); margin-bottom: 10px; }
+  .q-text {
+    font-size: clamp(17px, 4vw, 20px);
+    font-weight: 700;
+    line-height: 1.6;
+    margin-bottom: 28px;
+    color: var(--dark);
+  }
+  .q-options { display: flex; flex-direction: column; gap: 12px; }
+  .btn-opt {
+    background: #FAFAF8;
+    border: 2px solid #E5E0D8;
+    border-radius: 16px;
+    padding: 16px 20px;
+    font-size: 15px;
+    cursor: pointer;
+    color: var(--dark);
+    font-family: inherit;
+    text-align: left;
+    transition: all .15s;
+    line-height: 1.5;
+    font-weight: 500;
+  }
+  .btn-opt:hover { border-color: var(--gold); background: #FFF9EE; }
+  .btn-opt.selected { border-color: var(--gold); background: #FFF3CC; color: #7A5800; font-weight: 700; }
+  .btn-opt .opt-label { font-size: 11px; font-weight: 800; letter-spacing: .08em; opacity: .55; display: block; margin-bottom: 4px; }
+
+  /* ── Next button ────────────────────────────────────────── */
+  .btn-next {
+    width: 100%;
+    margin-top: 20px;
+    background: var(--dark);
+    color: #fff;
+    border: none;
+    border-radius: 60px;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all .15s;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .btn-next.show { opacity: 1; pointer-events: auto; }
+  .btn-next:hover { background: #2A3450; }
+
+  /* ── Partner prompt ─────────────────────────────────────── */
+  .partner-screen {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 40px 28px;
+    text-align: center;
+    margin-top: 16px;
+  }
+  .partner-emoji { font-size: 52px; margin-bottom: 20px; }
+  .partner-title { font-size: 22px; font-weight: 800; margin-bottom: 12px; }
+  .partner-sub { font-size: 15px; color: var(--silver); line-height: 1.7; margin-bottom: 32px; }
+  .partner-progress {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 32px;
+    font-size: 14px;
+    color: var(--silver);
+  }
+  .partner-dot {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    font-weight: 800;
+  }
+  .partner-dot.done { background: var(--gold); color: #fff; }
+  .partner-dot.waiting { background: #E5E0D8; color: var(--silver); }
+  .partner-line { width: 48px; height: 2px; background: #E5E0D8; }
+
+  /* ── Result Card ────────────────────────────────────────── */
+  #screen-result { background: var(--bg); }
+  .result-header {
+    text-align: center;
+    padding: 32px 0 20px;
+  }
+  .result-header .label {
+    font-size: 12px;
+    letter-spacing: .12em;
+    color: var(--gold);
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .result-header h2 {
+    font-size: clamp(22px, 5vw, 30px);
+    font-weight: 800;
+    line-height: 1.35;
+    color: var(--dark);
+  }
+
+  /* The card itself */
+  .result-card {
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(26,32,48,.18);
+    margin: 0 auto 28px;
+    max-width: 560px;
+    position: relative;
+  }
+  .rc-top {
+    padding: 32px 28px 24px;
+    position: relative;
+  }
+  .rc-watermark {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    font-size: 10px;
+    letter-spacing: .1em;
+    opacity: .4;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  .rc-types {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .rc-type-badge {
+    background: rgba(255,255,255,.25);
+    border: 1.5px solid rgba(255,255,255,.45);
+    border-radius: 40px;
+    padding: 6px 16px;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: .06em;
+    color: #fff;
+    backdrop-filter: blur(4px);
+  }
+  .rc-x { font-size: 18px; color: rgba(255,255,255,.55); font-weight: 300; }
+  .rc-title {
+    font-size: clamp(26px, 6vw, 36px);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 8px;
+    text-shadow: 0 2px 8px rgba(0,0,0,.2);
+  }
+  .rc-subtitle {
+    font-size: clamp(13px, 3vw, 15px);
+    color: rgba(255,255,255,.8);
+    line-height: 1.5;
+    font-style: italic;
+  }
+
+  .rc-mid {
+    background: rgba(255,255,255,.12);
+    backdrop-filter: blur(8px);
+    padding: 20px 28px;
+    border-top: 1px solid rgba(255,255,255,.15);
+    border-bottom: 1px solid rgba(255,255,255,.15);
+  }
+  .rc-hook-label {
+    font-size: 10px;
+    letter-spacing: .1em;
+    color: rgba(255,255,255,.6);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  .rc-hook {
+    font-size: clamp(14px, 3.5vw, 16px);
+    color: #fff;
+    font-weight: 700;
+    line-height: 1.65;
+  }
+
+  .rc-bottom {
+    padding: 20px 28px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .rc-stat {
+    background: rgba(255,255,255,.14);
+    border-radius: 14px;
+    padding: 12px 14px;
+  }
+  .rc-stat-label {
+    font-size: 10px;
+    letter-spacing: .08em;
+    color: rgba(255,255,255,.55);
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    font-weight: 700;
+  }
+  .rc-stat-value {
+    font-size: 13px;
+    color: rgba(255,255,255,.92);
+    line-height: 1.5;
+    font-weight: 600;
+  }
+
+  .rc-tags {
+    padding: 14px 28px 28px;
+    font-size: 12px;
+    color: rgba(255,255,255,.45);
+    line-height: 1.8;
+  }
+
+  /* ── Axes breakdown ─────────────────────────────────────── */
+  .axes-section {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 28px;
+    margin-bottom: 20px;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .axes-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--silver);
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .axis-row {
+    margin-bottom: 18px;
+  }
+  .axis-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .axis-bar-bg {
+    height: 8px;
+    background: #EDE8E0;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+  }
+  .axis-bar-fill {
+    height: 100%;
+    border-radius: 8px;
+    transition: width .8s cubic-bezier(.4,0,.2,1);
+  }
+  .axis-winner {
+    font-size: 11px;
+    color: var(--silver);
+    margin-top: 4px;
+    text-align: right;
+  }
+
+  /* ── CTA / Share ────────────────────────────────────────── */
+  .share-section {
+    max-width: 560px;
+    margin: 0 auto 20px;
+    text-align: center;
+  }
+  .share-title { font-size: 17px; font-weight: 700; margin-bottom: 16px; }
+  .share-buttons { display: flex; flex-direction: column; gap: 12px; }
+  .btn-share {
+    border: none;
+    border-radius: 60px;
+    padding: 16px 24px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all .15s;
+  }
+  .btn-share.kakao { background: #FEE500; color: #3A1D1D; }
+  .btn-share.kakao:hover { background: #F0D800; }
+  .btn-share.copy  { background: var(--dark); color: #fff; }
+  .btn-share.copy:hover { background: #2A3450; }
+  .btn-share.restart { background: transparent; border: 2px solid var(--dark); color: var(--dark); }
+  .btn-share.restart:hover { background: #f0ece5; }
+
+  /* ── Upsell tease ───────────────────────────────────────── */
+  .upsell-card {
+    max-width: 560px;
+    margin: 0 auto 32px;
+    background: linear-gradient(135deg, #1A2030, #2A3450);
+    border-radius: var(--radius);
+    padding: 28px 28px 24px;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .upsell-card::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 160px; height: 160px;
+    background: radial-gradient(circle, rgba(184,134,11,.25), transparent 70%);
+    pointer-events: none;
+  }
+  .upsell-badge {
+    display: inline-block;
+    background: var(--gold);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .1em;
+    padding: 4px 12px;
+    border-radius: 40px;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+  }
+  .upsell-title { font-size: 18px; font-weight: 800; margin-bottom: 8px; line-height: 1.4; }
+  .upsell-sub { font-size: 13px; color: rgba(255,255,255,.6); line-height: 1.6; margin-bottom: 20px; }
+  .upsell-items {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  .upsell-item { font-size: 13px; color: rgba(255,255,255,.8); display: flex; align-items: center; gap: 8px; }
+  .upsell-item::before { content: '✦'; color: var(--gold); font-size: 10px; }
+  .btn-upsell {
+    width: 100%;
+    background: linear-gradient(135deg, #B8860B, #D4A017);
+    color: #fff;
+    border: none;
+    border-radius: 60px;
+    padding: 15px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all .15s;
+  }
+  .btn-upsell:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(184,134,11,.4); }
+
+  /* ── Footer ─────────────────────────────────────────────── */
+  .footer {
+    text-align: center;
+    font-size: 11px;
+    color: var(--silver);
+    padding: 20px 0 32px;
+    opacity: .6;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  /* ── Toast ──────────────────────────────────────────────── */
+  .toast {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--dark);
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 40px;
+    font-size: 14px;
+    font-weight: 600;
+    opacity: 0;
+    transition: all .3s;
+    pointer-events: none;
+    z-index: 9999;
+    white-space: nowrap;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* ── Responsive ─────────────────────────────────────────── */
+  @media (max-width: 480px) {
+    .rc-bottom { grid-template-columns: 1fr; }
+    .q-card { padding: 24px 20px 20px; }
+    .axes-section, .share-section, .upsell-card { margin-left: 0; margin-right: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SCREEN 1: INTRO
+══════════════════════════════════════════════════════════════ -->
+<div id="screen-intro" class="screen active">
+  <div class="intro-logo">couple.shadowgram.org/kr</div>
+  <h1 class="intro-title">우리 커플 유형은<br><span>뭘까요?</span></h1>
+  <p class="intro-sub">
+    연인과 함께 24문항에 답하면<br>
+    64가지 조합 중 우리만의 커플 유형 카드가 나와요.
+  </p>
+  <div class="intro-pills">
+    <span class="pill">⏱ 약 5분</span>
+    <span class="pill">💑 연인 2인 함께</span>
+    <span class="pill">🎴 결과카드 무료</span>
+    <span class="pill">🔒 저장 안 함</span>
+  </div>
+  <button class="btn-start" onclick="startTest()">지금 시작하기 →</button>
+  <p class="intro-note">* MBTI® 기반이 아닌 Shadowgram 독자 프레임워크입니다</p>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SCREEN 2: WHO ARE YOU?
+══════════════════════════════════════════════════════════════ -->
+<div id="screen-who" class="screen">
+  <div class="topbar"><strong>Shadowgram Couple</strong></div>
+  <div class="container">
+    <div class="who-card">
+      <div class="who-emoji" id="who-emoji">💑</div>
+      <h2 class="who-title" id="who-title">지금 누가 답하시나요?</h2>
+      <p class="who-sub" id="who-sub">
+        먼저 한 명이 답하고,<br>
+        그 다음 파트너가 답해요.
+      </p>
+      <div class="who-buttons">
+        <button class="btn-who" onclick="selectWho('A')" id="btn-who-A">
+          <span class="btn-who-icon">🌟</span>
+          <span><strong>나 (첫 번째)</strong> 가 먼저 답할게요</span>
+        </button>
+        <button class="btn-who" onclick="selectWho('B')" id="btn-who-B">
+          <span class="btn-who-icon">💫</span>
+          <span><strong>파트너 (두 번째)</strong> 가 먼저 답할게요</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SCREEN 3: QUESTIONS
+══════════════════════════════════════════════════════════════ -->
+<div id="screen-q" class="screen">
+  <div class="topbar"><strong>Shadowgram Couple</strong></div>
+  <div class="container">
+    <div class="progress-wrap">
+      <div class="progress-top">
+        <span id="prog-label">1 / 24</span>
+        <span id="prog-who-label" style="color:var(--gold); font-weight:700;"></span>
+      </div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="prog-fill" style="width:4%"></div>
+      </div>
+    </div>
+
+    <div class="q-section-badge" id="q-section-badge">SECTION 1</div>
+
+    <div class="q-card">
+      <div class="q-number" id="q-num">Q1</div>
+      <div class="q-text" id="q-text"></div>
+      <div class="q-options" id="q-options"></div>
+      <button class="btn-next" id="btn-next" onclick="nextQuestion()">다음 →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SCREEN 4: PARTNER HAND-OFF
+══════════════════════════════════════════════════════════════ -->
+<div id="screen-handoff" class="screen">
+  <div class="topbar"><strong>Shadowgram Couple</strong></div>
+  <div class="container">
+    <div class="partner-screen">
+      <div class="partner-emoji">🤝</div>
+      <h2 class="partner-title">이제 파트너 차례예요!</h2>
+      <p class="partner-sub">
+        핸드폰을 파트너에게 건네주세요.<br>
+        파트너도 동일한 24문항에 답하면<br>
+        우리 커플 유형 카드가 완성돼요.
+      </p>
+      <div class="partner-progress">
+        <div class="partner-dot done" id="pdot-A">나</div>
+        <div class="partner-line"></div>
+        <div class="partner-dot waiting" id="pdot-B">?</div>
+      </div>
+      <button class="btn-start" style="width:100%;border-radius:16px;" onclick="startPartner()">
+        파트너 시작하기 →
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SCREEN 5: RESULT
+══════════════════════════════════════════════════════════════ -->
+<div id="screen-result" class="screen">
+  <div class="topbar"><strong>Shadowgram Couple</strong></div>
+  <div class="container">
+
+    <div class="result-header">
+      <div class="label">우리 커플 유형</div>
+      <h2 id="result-headline">결과 분석 중...</h2>
+    </div>
+
+    <!-- THE RESULT CARD -->
+    <div class="result-card" id="result-card">
+      <div class="rc-top" id="rc-top">
+        <div class="rc-watermark">shadowgram.org</div>
+        <div class="rc-types">
+          <span class="rc-type-badge" id="rc-typeA">—</span>
+          <span class="rc-x">×</span>
+          <span class="rc-type-badge" id="rc-typeB">—</span>
+        </div>
+        <div class="rc-title" id="rc-title">—</div>
+        <div class="rc-subtitle" id="rc-subtitle">—</div>
+      </div>
+
+      <div class="rc-mid">
+        <div class="rc-hook-label">💬 우리 커플의 대화</div>
+        <div class="rc-hook" id="rc-hook">—</div>
+      </div>
+
+      <div class="rc-bottom">
+        <div class="rc-stat">
+          <div class="rc-stat-label">⚡ 긴장 포인트</div>
+          <div class="rc-stat-value" id="rc-tension">—</div>
+        </div>
+        <div class="rc-stat">
+          <div class="rc-stat-label">✨ 우리의 마법</div>
+          <div class="rc-stat-value" id="rc-magic">—</div>
+        </div>
+      </div>
+
+      <div class="rc-tags" id="rc-tags">—</div>
+    </div>
+
+    <!-- Axes breakdown -->
+    <div class="axes-section">
+      <div class="axes-title">두 사람의 성향 비교</div>
+      <div id="axes-rows"></div>
+    </div>
+
+    <!-- Share -->
+    <div class="share-section">
+      <div class="share-title">📲 친구들에게 공유하기</div>
+      <div class="share-buttons">
+        <button class="btn-share copy" onclick="copyLink()">🔗 링크 복사해서 공유</button>
+        <button class="btn-share restart" onclick="restart()">↺ 다시 테스트하기</button>
+      </div>
+    </div>
+
+    <!-- Upsell tease -->
+    <div class="upsell-card">
+      <div class="upsell-badge">✦ Full Report</div>
+      <div class="upsell-title">우리 조합의 완전한 이야기가<br>궁금하지 않으세요?</div>
+      <div class="upsell-sub">커플 유형 완전판 리포트에는 이런 내용이 있어요.</div>
+      <div class="upsell-items">
+        <div class="upsell-item">우리 조합의 깊은 역학 — 왜 우리는 이렇게 맞는가</div>
+        <div class="upsell-item">이 조합의 단골 다툼 패턴 + 화해 코드</div>
+        <div class="upsell-item">여행 / 돈 / 미래 계획에서 각자의 방식</div>
+        <div class="upsell-item">우리 조합의 숨겨진 슈퍼파워</div>
+      </div>
+      <button class="btn-upsell" onclick="goUpsell()">커플 리포트 보러가기 →</button>
+    </div>
+
+    <div class="footer">
+      shadowgram.org · © 2025 Shadowgram<br>
+      * MBTI® is a registered trademark of The Myers &amp; Briggs Foundation.<br>
+      Shadowgram은 독자적 프레임워크로, The Myers &amp; Briggs Foundation과 무관합니다.
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+/* ════════════════════════════════════════════════════════════
+   DATA
+═════════════════════════════════════════════════════════════*/
+const QUESTIONS = [
+  // ── E/I axis (Q1-6) ──────────────────────────────────────────
+  { axis:'EI', section:'에너지 방향', text:'주말에 연인과 어떻게 시간을 보내고 싶어요?',
+    a:{ label:'A', text:'어디든 나가서 새로운 곳을 탐험하고 싶어요', score:'E' },
+    b:{ label:'B', text:'집에서 조용히 함께 있는 게 제일 좋아요', score:'I' } },
+  { axis:'EI', section:'에너지 방향', text:'연인과 다툰 후 나는...',
+    a:{ label:'A', text:'빨리 대화로 풀어야 직성이 풀려요', score:'E' },
+    b:{ label:'B', text:'혼자 생각을 정리하는 시간이 필요해요', score:'I' } },
+  { axis:'EI', section:'에너지 방향', text:'연인의 친구들을 처음 만나는 자리에서 나는...',
+    a:{ label:'A', text:'먼저 다가가서 분위기를 만들어요', score:'E' },
+    b:{ label:'B', text:'잘 듣고 천천히 친해지는 편이에요', score:'I' } },
+  { axis:'EI', section:'에너지 방향', text:'오늘 연인이 갑자기 "친구들이랑 모임 있어, 같이 가자"고 했어요. 나는...',
+    a:{ label:'A', text:'오 좋아! 바로 준비해요', score:'E' },
+    b:{ label:'B', text:'조금 망설이지만 따라가요 (가끔은 혼자 있고 싶어요)', score:'I' } },
+  { axis:'EI', section:'에너지 방향', text:'데이트에서 에너지를 가장 많이 받는 순간은?',
+    a:{ label:'A', text:'새로운 사람을 만나거나 새 장소를 가는 것', score:'E' },
+    b:{ label:'B', text:'둘만의 조용한 공간에서 깊이 대화할 때', score:'I' } },
+  { axis:'EI', section:'에너지 방향', text:'연인이 내 일상을 알고 싶어할 때, 나는...',
+    a:{ label:'A', text:'신나서 조잘조잘 다 말해요', score:'E' },
+    b:{ label:'B', text:'요점만 간단히, 깊은 건 조금씩 꺼내요', score:'I' } },
+
+  // ── S/N axis (Q7-12) ─────────────────────────────────────────
+  { axis:'SN', section:'정보 처리', text:'연인과 여행 계획 세울 때 나는...',
+    a:{ label:'A', text:'숙소·맛집·이동 경로를 구체적으로 정해요', score:'S' },
+    b:{ label:'B', text:'큰 그림만 잡고 즉흥적으로 즐겨요', score:'N' } },
+  { axis:'SN', section:'정보 처리', text:'연인과 미래 얘기할 때 나는...',
+    a:{ label:'A', text:'현실적인 계획을 먼저 얘기해요 (돈·날짜·집)', score:'S' },
+    b:{ label:'B', text:'어떤 삶을 살고 싶은지 그림을 그려요', score:'N' } },
+  { axis:'SN', section:'정보 처리', text:'좋아하는 데이트 코스는?',
+    a:{ label:'A', text:'늘 가던 곳인데 거기서 확실히 즐거운 코스', score:'S' },
+    b:{ label:'B', text:'처음 가보는 곳, 새로운 경험', score:'N' } },
+  { axis:'SN', section:'정보 처리', text:'연인이 선물을 골랐어요. 내가 더 감동받는 건?',
+    a:{ label:'A', text:'내가 필요한 걸 정확히 알고 골라준 선물', score:'S' },
+    b:{ label:'B', text:'"너를 생각하다 문득 떠올랐어"라는 선물', score:'N' } },
+  { axis:'SN', section:'정보 처리', text:'연인과 대화할 때 나는...',
+    a:{ label:'A', text:'구체적인 사실과 경험 위주로 얘기해요', score:'S' },
+    b:{ label:'B', text:'아이디어·가능성·"만약에~"로 얘기해요', score:'N' } },
+  { axis:'SN', section:'정보 처리', text:'연인과 싸운 후 화해 시 나는...',
+    a:{ label:'A', text:'무엇이 문제였는지 구체적으로 짚어요', score:'S' },
+    b:{ label:'B', text:'전체적인 관계 흐름과 의미를 얘기해요', score:'N' } },
+
+  // ── T/F axis (Q13-18) ────────────────────────────────────────
+  { axis:'TF', section:'결정 방식', text:'연인이 고민을 털어놨어요. 내가 먼저 하는 건?',
+    a:{ label:'A', text:'원인을 분석하고 해결책을 제안해요', score:'T' },
+    b:{ label:'B', text:'"많이 힘들었겠다"고 먼저 공감해요', score:'F' } },
+  { axis:'TF', section:'결정 방식', text:'연인이 내 솔직한 의견을 물었어요. 나는...',
+    a:{ label:'A', text:'상대가 상처받더라도 정확하게 말해요', score:'T' },
+    b:{ label:'B', text:'사실이지만 기분 나쁘지 않게 돌려 말해요', score:'F' } },
+  { axis:'TF', section:'결정 방식', text:'연인이 나에게 화가 났을 때, 나는...',
+    a:{ label:'A', text:'왜 화가 났는지 논리적으로 따져봐요', score:'T' },
+    b:{ label:'B', text:'일단 화가 났다는 감정부터 받아줘요', score:'F' } },
+  { axis:'TF', section:'결정 방식', text:'연인과 함께 쓸 가구를 고를 때, 결정 기준은?',
+    a:{ label:'A', text:'가격·내구성·실용성', score:'T' },
+    b:{ label:'B', text:'분위기·우리 집 느낌·마음에 드는가', score:'F' } },
+  { axis:'TF', section:'결정 방식', text:'좋은 연인이란?',
+    a:{ label:'A', text:'서로 성장을 도와주는 파트너', score:'T' },
+    b:{ label:'B', text:'있는 그대로 받아주는 사람', score:'F' } },
+  { axis:'TF', section:'결정 방식', text:'연인이 큰 결정을 해야 할 때, 내 역할은?',
+    a:{ label:'A', text:'장단점을 정리해서 가장 나은 선택을 돕는 것', score:'T' },
+    b:{ label:'B', text:'어떤 결정을 해도 지지해주는 것', score:'F' } },
+
+  // ── J/P axis (Q19-24) ────────────────────────────────────────
+  { axis:'JP', section:'생활 방식', text:'연인과 주말 데이트, 나는...',
+    a:{ label:'A', text:'월~목 사이에 계획을 세우는 편이에요', score:'J' },
+    b:{ label:'B', text:'당일 아침에 즉흥적으로 정해요', score:'P' } },
+  { axis:'JP', section:'생활 방식', text:'연인이 갑자기 일정을 바꿨어요. 나는...',
+    a:{ label:'A', text:'솔직히 좀 당황스럽고 아쉬워요', score:'J' },
+    b:{ label:'B', text:'그럴 수 있죠, 새 계획 세우면 되죠', score:'P' } },
+  { axis:'JP', section:'생활 방식', text:'연인과 사는 집이 있다면, 집 상태는?',
+    a:{ label:'A', text:'항상 정리정돈 돼있어야 편해요', score:'J' },
+    b:{ label:'B', text:'약간 어질러져도 괜찮아요, 사는 느낌이 좋아요', score:'P' } },
+  { axis:'JP', section:'생활 방식', text:'연인과 큰 여행을 앞두고 나는...',
+    a:{ label:'A', text:'3개월 전부터 숙소·항공을 예약해요', score:'J' },
+    b:{ label:'B', text:'2주 전에도 괜찮아요, 어떻게든 되더라고요', score:'P' } },
+  { axis:'JP', section:'생활 방식', text:'연인과의 미래에 대해 나는...',
+    a:{ label:'A', text:'어느 시점에 어떤 단계로 갈지 그림이 있어요', score:'J' },
+    b:{ label:'B', text:'자연스럽게 흘러가는 대로요, 강요하고 싶지 않아요', score:'P' } },
+  { axis:'JP', section:'생활 방식', text:'하루 일정이 생각지 못하게 비었어요. 연인에게...',
+    a:{ label:'A', text:'"우리 이 시간에 뭐할지 정하자"고 말해요', score:'J' },
+    b:{ label:'B', text:'"오늘 비었어! 뭐라도 하자"고 그냥 나가요', score:'P' } },
+];
+
+/* ════════════════════════════════════════════════════════════
+   64-COMBO DATABASE  (title, subtitle, hook, tension, magic, tags, bg)
+═════════════════════════════════════════════════════════════*/
+const COMBOS = {
+  'SPARK×SPARK':  { title:'불꽃 × 불꽃형', sub:'세계 최고의 브레인스토밍 파트너', hook:'"야 나 방금 엄청난 거 생각났어" "알아, 나도 5분 전에"', tension:'둘 다 실행을 미룬다', magic:'가능성의 총량이 두 배', tags:'#SPARK_SPARK커플 #아이디어폭발 #커플유형 #shadowgramcouple', bg:['#7B3F00','#C0710A'] },
+  'SPARK×VISION': { title:'불꽃 × 운명형', sub:'즉흥의 에너지를 방향으로 바꾸는 조합', hook:'"지금 바로 하고 싶어" "3개월 후를 봐, 그게 더 완벽해"', tension:'타이밍 감각이 완전히 다름', magic:'창의력 + 통찰, 최강 비전 제조기', tags:'#SPARK_VISION커플 #즉흥vs방향 #커플유형 #shadowgramcouple', bg:['#4A148C','#7B1FA2'] },
+  'SPARK×STEADY': { title:'불꽃 × 닻형', sub:'자유로운 영혼과 흔들리지 않는 항구', hook:'"또 갑자기 여행 가자고?" "짐은 내가 쌌어"', tension:'즉흥 vs 계획', magic:'세상에서 가장 안전한 모험', tags:'#SPARK_STEADY커플 #자유vs안정 #커플유형 #shadowgramcouple', bg:['#1B5E20','#2E7D32'] },
+  'SPARK×PLAYER': { title:'불꽃 × 플레이형', sub:'24시간이 모자라는 에너지 폭발 커플', hook:'"오늘 뭐해?" "몰라 근데 재밌는 거 하자" "ㅇㅋ 출발"', tension:'깊이보다 넓이, 계획보다 현재', magic:'지루한 날이 단 하루도 없음', tags:'#SPARK_PLAYER커플 #에너지폭발 #커플유형 #shadowgramcouple', bg:['#E65100','#F57C00'] },
+  'SPARK×HARMONY':{ title:'불꽃 × 온기형', sub:'아이디어에 온도를 더하는 커플', hook:'"이거 어때?" "완벽해, 근데 여기서 사람들이 더 좋아할 것 같아"', tension:'콘셉트 vs 사람 먼저', magic:'세상을 따뜻하게 바꾸는 아이디어', tags:'#SPARK_HARMONY커플 #아이디어온기 #커플유형 #shadowgramcouple', bg:['#880E4F','#C2185B'] },
+  'SPARK×SOUL':   { title:'불꽃 × 영혼형', sub:'겉은 번쩍, 속은 깊은 조합', hook:'"왜 이렇게 조용해?" "생각 중이야" "무슨 생각?" "우리 얘기"', tension:'과잉 자극 vs 과잉 내면', magic:'화려한 외면 + 진심 어린 내면', tags:'#SPARK_SOUL커플 #번쩍깊이 #커플유형 #shadowgramcouple', bg:['#311B92','#512DA8'] },
+  'SPARK×LOGIC':  { title:'불꽃 × 논리형', sub:'아이디어 생성기 + 현실 검증기', hook:'"이건 될 것 같아!" "근거 세 가지만 대봐" "...그냥 느낌?" "그럼 일단 해"', tension:'느낌 vs 증거', magic:'창의 + 정확 = 실제로 작동하는 아이디어', tags:'#SPARK_LOGIC커플 #아이디어논리 #커플유형 #shadowgramcouple', bg:['#01579B','#0277BD'] },
+  'SPARK×LEADER': { title:'불꽃 × 실행형', sub:'아이디어가 현실이 되는 커플', hook:'"아이디어는 내가 낼게" "실행은 내가 할게" "우리 최강 아니야?"', tension:'SPARK 변덕 vs LEADER 완수 집착', magic:'아이디어가 사라지기 전에 실현됨', tags:'#SPARK_LEADER커플 #아이디어실행 #커플유형 #shadowgramcouple', bg:['#3E2723','#5D4037'] },
+
+  'VISION×SPARK': { title:'운명 × 불꽃형', sub:'조용한 예언자가 불꽃에 방향을 선물한다', hook:'"어디로 가는지 알아?" "몰라, 근데 따라가면 되잖아" "...맞아"', tension:'깊이 vs 속도', magic:'본능과 직관이 만나는 최강 콤비', tags:'#VISION_SPARK커플 #운명불꽃 #커플유형 #shadowgramcouple', bg:['#BF360C','#E64A19'] },
+  'VISION×VISION':{ title:'운명 × 운명형', sub:'말하지 않아도 이미 알고 있는 두 사람', hook:'"말 안 해도 알아?" "응" "...신기해" "나도 그랬어"', tension:'둘 다 말 아낌 → 오해 누적', magic:'인류 역사상 가장 텔레파시 같은 커플', tags:'#VISION_VISION커플 #눈빛소통 #커플유형 #shadowgramcouple', bg:['#1A237E','#283593'] },
+  'VISION×STEADY':{ title:'운명 × 닻형', sub:'미래를 보는 눈 + 현재를 지키는 힘', hook:'"5년 후 이게 다 연결될 거야" "그래서 오늘 밥은 먹었어?"', tension:'추상 vs 구체', magic:'비전이 땅에 뿌리를 내린다', tags:'#VISION_STEADY커플 #미래현재 #커플유형 #shadowgramcouple', bg:['#1B5E20','#388E3C'] },
+  'VISION×PLAYER':{ title:'운명 × 플레이형', sub:'미래 통찰과 현재 폭발의 긴장감', hook:'"생각만 하지 말고 지금 해봐" "지금 할 때가 아니야" "언제?" "...봐야 알아"', tension:'타이밍 전쟁', magic:'최고의 순간에 최고의 행동', tags:'#VISION_PLAYER커플 #미래vs현재 #커플유형 #shadowgramcouple', bg:['#E65100','#EF6C00'] },
+  'VISION×HARMONY':{ title:'운명 × 온기형', sub:'내면의 깊이와 관계의 따뜻함이 만나는 자리', hook:'"당신이 특별한 이유를 처음부터 알았어" "나도 알고 있었어"', tension:'내향 vs 외향', magic:'세상에서 가장 이해받는 느낌', tags:'#VISION_HARMONY커플 #깊이온기 #커플유형 #shadowgramcouple', bg:['#880E4F','#AD1457'] },
+  'VISION×SOUL':  { title:'운명 × 영혼형', sub:'두 사람의 우주가 충돌하는 조합', hook:'"어디서 본 것 같아" "전생이었겠지" "...진짜로?"', tension:'너무 깊어서 가끔 무거움', magic:'평생 탐구해도 다 못 볼 깊이', tags:'#VISION_SOUL커플 #우주충돌 #커플유형 #shadowgramcouple', bg:['#4A148C','#6A1B9A'] },
+  'VISION×LOGIC': { title:'운명 × 논리형', sub:'다른 경로로 같은 결론에 도달하는 파트너', hook:'"나도 그 결론에 도달했어" "어떻게?" "직관으로" "나는 데이터로"', tension:'증명 방식이 달라서 충돌', magic:'가장 치밀한 지적 파트너십', tags:'#VISION_LOGIC커플 #직관논리 #커플유형 #shadowgramcouple', bg:['#0D47A1','#1565C0'] },
+  'VISION×LEADER':{ title:'운명 × 리더형', sub:'빅픽처 설계자 + 실행 총사령관', hook:'"10년 후를 봐" "그래서 지금 이렇게 움직여야 해" "맞아"', tension:'느린 결정 vs 즉각 실행', magic:'세상을 바꾸는 조합', tags:'#VISION_LEADER커플 #빅픽처 #커플유형 #shadowgramcouple', bg:['#3E2723','#4E342E'] },
+
+  'STEADY×SPARK': { title:'닻 × 불꽃형', sub:'안정이 자유를 응원하는 세상에서 가장 든든한 관계', hook:'"또 엉뚱한 거 하러 가?" "맛있는 거 싸줄게"', tension:'안정 욕구 vs 변화 욕구', magic:'어디서든 돌아올 집이 있다는 것', tags:'#STEADY_SPARK커플 #안정자유 #커플유형 #shadowgramcouple', bg:['#E65100','#F4511E'] },
+  'STEADY×VISION':{ title:'닻 × 운명형', sub:'현실과 비전 사이를 잇는 다리', hook:'"너무 멀리 보지 마" "가까운 것도 봐야지" "...고마워"', tension:'현실 vs 추상', magic:'꿈이 실현되는 커플', tags:'#STEADY_VISION커플 #현실비전 #커플유형 #shadowgramcouple', bg:['#283593','#303F9F'] },
+  'STEADY×STEADY':{ title:'닻 × 닻형', sub:'10년 후에도 변함없는, 세상에서 가장 안정적인 커플', hook:'"10년 뒤에도 똑같겠지?" "그게 좋잖아" "응, 좋아"', tension:'변화와 성장이 느릴 수 있음', magic:'폭풍이 와도 절대 흔들리지 않음', tags:'#STEADY_STEADY커플 #변함없음 #커플유형 #shadowgramcouple', bg:['#1B5E20','#2E7D32'] },
+  'STEADY×PLAYER':{ title:'닻 × 플레이형', sub:'집 안의 평화와 집 밖의 모험', hook:'"집에 있어" "나랑 바다 보러 가자" "...우리 집에서 바다 얼마나 멀어?"', tension:'에너지 레벨 차이', magic:'PLAYER가 세상을 데려오고 STEADY가 정착시킴', tags:'#STEADY_PLAYER커플 #집vs모험 #커플유형 #shadowgramcouple', bg:['#E65100','#EF6C00'] },
+  'STEADY×HARMONY':{ title:'닻 × 온기형', sub:'두 사람이 있으면 그게 집', hook:'"오늘도 맛있는 거 했어?" "네가 오면 더 맛있어"', tension:'너무 평화로워서 자극 부족', magic:'지구상에서 가장 따뜻한 커플', tags:'#STEADY_HARMONY커플 #집온기 #커플유형 #shadowgramcouple', bg:['#880E4F','#C2185B'] },
+  'STEADY×SOUL':  { title:'닻 × 영혼형', sub:'현실이 감성을 포근히 감싸는 관계', hook:'"울어도 돼" "나 여기 있어"', tension:'말 없음 vs 표현 갈망', magic:'가장 안전한 감성 기지', tags:'#STEADY_SOUL커플 #현실감성 #커플유형 #shadowgramcouple', bg:['#4A148C','#6A1B9A'] },
+  'STEADY×LOGIC': { title:'닻 × 논리형', sub:'말없이 옆에 있어주는 파트너십', hook:'"말 안 해도 알아" "...그래"', tension:'둘 다 표현이 적어 거리감 생길 수 있음', magic:'침묵이 불편하지 않은 커플', tags:'#STEADY_LOGIC커플 #말없이통함 #커플유형 #shadowgramcouple', bg:['#0D47A1','#1565C0'] },
+  'STEADY×LEADER':{ title:'닻 × 리더형', sub:'전진하는 힘을 지탱하는 기반', hook:'"앞만 보고 달려" "나는 뒤에서 지킬게"', tension:'속도 vs 지속성', magic:'무너지지 않는 팀', tags:'#STEADY_LEADER커플 #전진지탱 #커플유형 #shadowgramcouple', bg:['#3E2723','#5D4037'] },
+
+  'PLAYER×SPARK': { title:'플레이 × 불꽃형', sub:'지금 이 순간이 전부인 에너지 듀오', hook:'"생각 그만하고 지금 나가자" "ㅇㅋ 신발 신어"', tension:'실행하고 나서야 생각함', magic:'살면서 가장 많은 경험을 쌓는 커플', tags:'#PLAYER_SPARK커플 #지금이순간 #커플유형 #shadowgramcouple', bg:['#BF360C','#D84315'] },
+  'PLAYER×VISION':{ title:'플레이 × 운명형', sub:'현재 폭발 vs 미래 통찰, 긴장감 넘치는 조합', hook:'"지금 즐기면 되잖아" "나중을 생각해야지" "나중이 어딘데?" "...봐야 알아"', tension:'타임라인이 완전히 다름', magic:'최고의 순간에 최고의 방향', tags:'#PLAYER_VISION커플 #현재미래긴장 #커플유형 #shadowgramcouple', bg:['#283593','#3949AB'] },
+  'PLAYER×STEADY':{ title:'플레이 × 닻형', sub:'모험 파트너 + 돌아올 베이스캠프', hook:'"가자" "어디?" "일단 가자" "...짐은 내가 챙길게"', tension:'충동 vs 신중', magic:'모험이 있고 집이 있는 완벽한 균형', tags:'#PLAYER_STEADY커플 #모험베이스 #커플유형 #shadowgramcouple', bg:['#1B5E20','#2E7D32'] },
+  'PLAYER×PLAYER':{ title:'플레이 × 플레이형', sub:'에너지 2배, 사고도 2배, 행복도 2배', hook:'"우리 이거 실제로 해보자" "ㅇㅋ 고" "언제?" "지금"', tension:'둘 다 브레이크가 없음', magic:'세상에서 가장 재밌는 커플', tags:'#PLAYER_PLAYER커플 #에너지2배 #커플유형 #shadowgramcouple', bg:['#E53935','#F44336'] },
+  'PLAYER×HARMONY':{ title:'플레이 × 온기형', sub:'신나는 에너지 + 사람 챙기는 마음', hook:'"맛집 찾았어! 얼른 가자" "걔네도 데려가자" "...다 연락해?"', tension:'속도 vs 관계 챙김', magic:'파티가 자동으로 생기는 커플', tags:'#PLAYER_HARMONY커플 #신남온기 #커플유형 #shadowgramcouple', bg:['#880E4F','#C2185B'] },
+  'PLAYER×SOUL':  { title:'플레이 × 영혼형', sub:'겉으로 보이는 것과 내면의 깊이', hook:'"왜 이렇게 진지해?" "원래 이래" "...그래서 좋아"', tension:'표면 vs 내면', magic:'SOUL이 PLAYER의 진심을 처음으로 꺼내줌', tags:'#PLAYER_SOUL커플 #겉깊이 #커플유형 #shadowgramcouple', bg:['#4A148C','#6A1B9A'] },
+  'PLAYER×LOGIC': { title:'플레이 × 논리형', sub:'행동파 + 계산기, 말이 되는 즉흥', hook:'"일단 치고 나가자" "승산이 73%야, 가자"', tension:'계산이 끝나기 전에 이미 시작함', magic:'해보고 분석하는 최강 학습 커플', tags:'#PLAYER_LOGIC커플 #행동계산 #커플유형 #shadowgramcouple', bg:['#0D47A1','#1565C0'] },
+  'PLAYER×LEADER':{ title:'플레이 × 리더형', sub:'현장 에너지 + 전략 실행력', hook:'"내가 뚫으면 네가 마무리해" "당연하지"', tension:'즉흥 vs 계획 충돌', magic:'현장에서 이기는 커플', tags:'#PLAYER_LEADER커플 #현장전략 #커플유형 #shadowgramcouple', bg:['#3E2723','#5D4037'] },
+
+  'HARMONY×SPARK':{ title:'온기 × 불꽃형', sub:'관계의 온도를 높이는 두 사람', hook:'"너 아이디어 진짜 좋다" "그렇지?ㅎㅎ" "근데 사람들이 어떻게 받을지 생각해봐"', tension:'관계 vs 아이디어 우선', magic:'사람의 마음을 움직이는 아이디어', tags:'#HARMONY_SPARK커플 #온기불꽃 #커플유형 #shadowgramcouple', bg:['#BF360C','#E64A19'] },
+  'HARMONY×VISION':{ title:'온기 × 운명형', sub:'사람 마음을 읽는 두 가지 방식', hook:'"그 사람 기분 느껴져?" "응, 나도" "같이 얘기해줄까?" "내가 한다"', tension:'공감 방식이 달라 충돌', magic:'어떤 사람도 이해하는 커플', tags:'#HARMONY_VISION커플 #마음읽기 #커플유형 #shadowgramcouple', bg:['#283593','#3949AB'] },
+  'HARMONY×STEADY':{ title:'온기 × 닻형', sub:'가장 따뜻한 일상을 만드는 조합', hook:'"밥 먹었어?" "너 먹으면서 왜 물어봐" "같이 먹고 싶어서"', tension:'너무 편안해서 자극 부족', magic:'세상 어디에도 없는 포근함', tags:'#HARMONY_STEADY커플 #따뜻한일상 #커플유형 #shadowgramcouple', bg:['#1B5E20','#388E3C'] },
+  'HARMONY×PLAYER':{ title:'온기 × 플레이형', sub:'사람들 모이는 파티를 자동 생성하는 커플', hook:'"오늘 우리 집 와, 다 불러" "맛있는 거 내가 사올게"', tension:'관계 깊이 vs 넓이', magic:'모두가 좋아하는 커플', tags:'#HARMONY_PLAYER커플 #파티생성 #커플유형 #shadowgramcouple', bg:['#E65100','#F4511E'] },
+  'HARMONY×HARMONY':{ title:'온기 × 온기형', sub:'사랑이 과부하될 수도 있는, 세상에서 가장 따뜻한 조합', hook:'"나 너무 좋아" "나도 너무 좋아" "야 좀 그만해ㅋㅋ" "싫어"', tension:'서로 배려하다 정작 본인 말 못함', magic:'세상 모든 관계가 이 커플 주변에 따뜻해짐', tags:'#HARMONY_HARMONY커플 #사랑과부화 #커플유형 #shadowgramcouple', bg:['#880E4F','#C2185B'] },
+  'HARMONY×SOUL': { title:'온기 × 영혼형', sub:'진심으로 감싸는 두 사람', hook:'"네 기분 어때?" "나도 그런 적 있었어" "...어떻게 알았어?"', tension:'외향 vs 내향', magic:'가장 깊이 이해받는 관계', tags:'#HARMONY_SOUL커플 #진심감쌈 #커플유형 #shadowgramcouple', bg:['#4A148C','#6A1B9A'] },
+  'HARMONY×LOGIC':{ title:'온기 × 논리형', sub:'따뜻한 말 vs 정확한 말, 긴장과 성장', hook:'"걱정돼서 연락했어" "걱정할 필요 없는데" "...그래도 걱정됐어"', tension:'공감 vs 해결책 대립', magic:'감성과 이성이 동시에 채워지는 관계', tags:'#HARMONY_LOGIC커플 #따뜻논리 #커플유형 #shadowgramcouple', bg:['#0D47A1','#1565C0'] },
+  'HARMONY×LEADER':{ title:'온기 × 리더형', sub:'팀을 이끄는 두 가지 방식', hook:'"결과만 봐" "사람도 봐야 해" "둘 다 봐" "그래"', tension:'리더십 스타일 충돌', magic:'사람도 잡고 성과도 잡는 최강 파트너십', tags:'#HARMONY_LEADER커플 #결과vs사람 #커플유형 #shadowgramcouple', bg:['#3E2723','#5D4037'] },
+
+  'SOUL×SPARK':   { title:'영혼 × 불꽃형', sub:'고요한 내면이 새로운 세계로 열리는 관계', hook:'"처음으로 밖으로 나오고 싶었어" "나랑 같이?"', tension:'과잉 자극 vs 과잉 에너지', magic:'SOUL이 처음으로 세상과 연결되는 순간', tags:'#SOUL_SPARK커플 #내면개방 #커플유형 #shadowgramcouple', bg:['#E65100','#F4511E'] },
+  'SOUL×VISION':  { title:'영혼 × 운명형', sub:'말보다 감각으로 이해하는 두 사람', hook:'"말 안 해도 돼" "알아" "...신기해" "나도"', tension:'깊이가 너무 깊어 현실이 사라짐', magic:'우주에서 가장 깊은 공명', tags:'#SOUL_VISION커플 #감각소통 #커플유형 #shadowgramcouple', bg:['#283593','#3949AB'] },
+  'SOUL×STEADY':  { title:'영혼 × 닻형', sub:'섬세한 내면을 지켜주는 파트너', hook:'"혼자 있어도 돼" "나 여기 있을게"', tension:'감정 기복 vs 일관성', magic:'가장 안전한 감성 공간', tags:'#SOUL_STEADY커플 #내면수호 #커플유형 #shadowgramcouple', bg:['#1B5E20','#2E7D32'] },
+  'SOUL×PLAYER':  { title:'영혼 × 플레이형', sub:'조용한 감성을 세상 밖으로 꺼내주는 관계', hook:'"왜 그렇게 웃어?" "네가 웃겨" "내가?" "응, 항상"', tension:'과자극 우려 vs 에너지 과잉', magic:'PLAYER가 SOUL의 진심 웃음을 이끌어냄', tags:'#SOUL_PLAYER커플 #감성개방 #커플유형 #shadowgramcouple', bg:['#E65100','#EF6C00'] },
+  'SOUL×HARMONY': { title:'영혼 × 온기형', sub:'진심이 진심을 알아보는 조합', hook:'"괜찮아" "괜찮지 않은데 왜 물어봐" "...미안"', tension:'독립 vs 챙김 충돌', magic:'가장 진심 어린 관계', tags:'#SOUL_HARMONY커플 #진심진심 #커플유형 #shadowgramcouple', bg:['#880E4F','#C2185B'] },
+  'SOUL×SOUL':    { title:'영혼 × 영혼형', sub:'가장 깊은 공명, 가장 강렬한 감정도 가능', hook:'"우리가 아프면 우리가 가장 아파" "그래도 네가 있어서 괜찮아"', tension:'감정 소용돌이가 두 배', magic:'세상에서 가장 깊이 이해하는 파트너', tags:'#SOUL_SOUL커플 #깊은공명 #커플유형 #shadowgramcouple', bg:['#4A148C','#6A1B9A'] },
+  'SOUL×LOGIC':   { title:'영혼 × 논리형', sub:'감성과 논리의 조용한 대화', hook:'"왜 그랬어?" "몰라, 그냥 그랬어" "...그래"', tension:'이유 없는 감정 vs 이유 필요한 논리', magic:'설명 안 해도 되는 파트너', tags:'#SOUL_LOGIC커플 #감성논리 #커플유형 #shadowgramcouple', bg:['#0D47A1','#1565C0'] },
+  'SOUL×LEADER':  { title:'영혼 × 리더형', sub:'목표 지향과 내면 지향의 보완', hook:'"왜 그렇게 달려가?" "멈추면 무너져" "내가 잡아줄게"', tension:'목표 vs 과정 가치', magic:'LEADER가 처음으로 멈추는 법을 배움', tags:'#SOUL_LEADER커플 #목표내면 #커플유형 #shadowgramcouple', bg:['#3E2723','#5D4037'] },
+
+  'LOGIC×SPARK':  { title:'논리 × 불꽃형', sub:'아이디어 회의에서 시작된 연애', hook:'"이건 논리적으로 말이 돼" "그래서 사랑하면 되잖아" "...맞네"', tension:'증거 vs 직관', magic:'검증된 창의력', tags:'#LOGIC_SPARK커플 #논리불꽃 #커플유형 #shadowgramcouple', bg:['#BF360C','#E64A19'] },
+  'LOGIC×VISION': { title:'논리 × 운명형', sub:'다른 경로, 같은 진실', hook:'"나도 그 결론에 도달했어" "다른 경로로?" "응, 직관" "나는 데이터"', tension:'증명 방식 충돌', magic:'어떤 문제도 해결하는 조합', tags:'#LOGIC_VISION커플 #다른경로같은진실 #커플유형 #shadowgramcouple', bg:['#283593','#3949AB'] },
+  'LOGIC×STEADY': { title:'논리 × 닻형', sub:'시스템 설계자 + 유지 관리자', hook:'"시스템 만들게" "나는 유지할게" "완벽하다"', tension:'둘 다 감정 표현 부족', magic:'가장 효율적인 커플', tags:'#LOGIC_STEADY커플 #시스템유지 #커플유형 #shadowgramcouple', bg:['#1B5E20','#2E7D32'] },
+  'LOGIC×PLAYER': { title:'논리 × 플레이형', sub:'계산하고 바로 실행하는 조합', hook:'"가능성 계산했어" "그럼 바로 가자" "잠깐 변수가—" "그건 나중에"', tension:'계산이 끝나기 전에 PLAYER가 출발함', magic:'계획도 있고 실행도 있는 완벽한 조합', tags:'#LOGIC_PLAYER커플 #계산즉실행 #커플유형 #shadowgramcouple', bg:['#E65100','#EF6C00'] },
+  'LOGIC×HARMONY':{ title:'논리 × 온기형', sub:'차가운 분석과 따뜻한 배려의 만남', hook:'"걱정돼서 연락했어" "걱정할 필요 없는데" "그래도 걱정됐어" "...고마워"', tension:'"왜 운 거야" "그냥 슬펐어" "이유가 있잖아"', magic:'감정도 알고 이유도 아는 파트너', tags:'#LOGIC_HARMONY커플 #냉온탕 #커플유형 #shadowgramcouple', bg:['#880E4F','#C2185B'] },
+  'LOGIC×SOUL':   { title:'논리 × 영혼형', sub:'말없이 서로의 깊이를 알아보는 관계', hook:'"설명 안 해도 돼" "...어떻게 알았어?" "논리적으로 추론했어"', tension:'이유 없는 감정을 분석하려 함', magic:'유일하게 SOUL을 분석하지 않는 LOGIC', tags:'#LOGIC_SOUL커플 #말없이깊이 #커플유형 #shadowgramcouple', bg:['#4A148C','#6A1B9A'] },
+  'LOGIC×LOGIC':  { title:'논리 × 논리형', sub:'세상에서 가장 조용하고 효율적인 커플', hook:'"10초 침묵" "그래 맞아" "응"', tension:'감정 표현이 구조적으로 부재', magic:'말이 없어도 신뢰가 100%', tags:'#LOGIC_LOGIC커플 #침묵소통 #커플유형 #shadowgramcouple', bg:['#01579B','#0277BD'] },
+  'LOGIC×LEADER': { title:'논리 × 리더형', sub:'전략가 + 실행가, 세상을 바꾸는 조합', hook:'"내가 설계하면 네가 치면 돼" "언제 준비돼?" "5분 후"', tension:'완벽 추구 vs 속도 추구', magic:'실행력 + 정밀도 = 무적', tags:'#LOGIC_LEADER커플 #설계실행 #커플유형 #shadowgramcouple', bg:['#3E2723','#5D4037'] },
+
+  'LEADER×SPARK': { title:'리더 × 불꽃형', sub:'목표 달성에 창의력을 더하다', hook:'"아이디어 좋아" "3주 안에 런칭하자" "3주?!" "2주도 돼"', tension:'속도 vs 완성도', magic:'아이디어가 사라지기 전에 세상에 나옴', tags:'#LEADER_SPARK커플 #목표창의 #커플유형 #shadowgramcouple', bg:['#E65100','#F4511E'] },
+  'LEADER×VISION':{ title:'리더 × 운명형', sub:'장기 전략의 완벽한 듀오', hook:'"10년 계획 만들자" "이미 있어" "...언제 만든 거야?" "3년 전"', tension:'단기 실행 vs 장기 통찰', magic:'세상에서 가장 치밀한 빅픽처', tags:'#LEADER_VISION커플 #장기전략 #커플유형 #shadowgramcouple', bg:['#1A237E','#283593'] },
+  'LEADER×STEADY':{ title:'리더 × 닻형', sub:'전진하는 힘 + 흔들리지 않는 기반', hook:'"앞만 보고 달려" "나는 뒤에서 지킬게" "약속해?" "응"', tension:'고속 vs 안정 속도', magic:'무너지지 않고 계속 전진', tags:'#LEADER_STEADY커플 #전진기반 #커플유형 #shadowgramcouple', bg:['#1B5E20','#2E7D32'] },
+  'LEADER×PLAYER':{ title:'리더 × 플레이형', sub:'전략 + 현장 장악력', hook:'"계획대로" "변수가 생겼어" "그럼 즉흥으로" "나 그거 더 잘해"', tension:'계획 중독 vs 즉흥 중독', magic:'예상치 못한 상황에서 가장 강함', tags:'#LEADER_PLAYER커플 #전략현장 #커플유형 #shadowgramcouple', bg:['#E65100','#EF6C00'] },
+  'LEADER×HARMONY':{ title:'리더 × 온기형', sub:'강한 리더십 + 사람 마음 얻기', hook:'"결과만 보면 돼" "사람도 봐야 해" "...맞아, 고마워"', tension:'효율 vs 관계', magic:'목표도 달성하고 사람도 잃지 않음', tags:'#LEADER_HARMONY커플 #결과사람 #커플유형 #shadowgramcouple', bg:['#880E4F','#C2185B'] },
+  'LEADER×SOUL':  { title:'리더 × 영혼형', sub:'성과 지향과 가치 지향의 갈등과 성장', hook:'"왜 그렇게 달려가?" "멈추면 무너져" "내가 잡아줄게"', tension:'목표 vs 과정 가치', magic:'LEADER가 처음으로 속도를 줄이는 관계', tags:'#LEADER_SOUL커플 #성과가치 #커플유형 #shadowgramcouple', bg:['#4A148C','#6A1B9A'] },
+  'LEADER×LOGIC': { title:'리더 × 논리형', sub:'CEO + CFO, 세상을 바꾸는 커플', hook:'"실행" "리스크 계산 완료" "그럼 바로" "3,2,1—"', tension:'속도 vs 완벽주의', magic:'실행력 + 정밀도 = 무적', tags:'#LEADER_LOGIC커플 #CEO_CFO #커플유형 #shadowgramcouple', bg:['#01579B','#0277BD'] },
+  'LEADER×LEADER':{ title:'리더 × 리더형', sub:'세상에서 가장 생산적이고 가장 치열한 커플', hook:'"내가 맞아" "아니 내가 맞아" "(5분 뒤) 둘 다 맞았어"', tension:'누구도 지지 않으려 함', magic:'싸워도 다음날 더 강해지는 커플', tags:'#LEADER_LEADER커플 #둘다맞음 #커플유형 #shadowgramcouple', bg:['#3E2723','#4E342E'] },
+};
+
+/* ════════════════════════════════════════════════════════════
+   TYPE MAPPING  (MBTI-style 4-letter → Shadowgram type)
+═════════════════════════════════════════════════════════════*/
+function getType(scores) {
+  const E = scores.E || 0, I = scores.I || 0;
+  const S = scores.S || 0, N = scores.N || 0;
+  const T = scores.T || 0, F = scores.F || 0;
+  const J = scores.J || 0, P = scores.P || 0;
+
+  const ei = E >= I ? 'E' : 'I';
+  const sn = N >= S ? 'N' : 'S';
+  const tf = T >= F ? 'T' : 'F';
+  const jp = J >= P ? 'J' : 'P';
+
+  const code = ei + sn + tf + jp;
+
+  const MAP = {
+    'ENFP':'SPARK','ENTP':'SPARK',
+    'INFJ':'VISION','INTJ':'VISION',
+    'ISFJ':'STEADY','ISTJ':'STEADY',
+    'ESFP':'PLAYER','ESTP':'PLAYER',
+    'ESFJ':'HARMONY','ENFJ':'HARMONY',
+    'INFP':'SOUL','ISFP':'SOUL',
+    'ISTP':'LOGIC','INTP':'LOGIC',
+    'ESTJ':'LEADER','ENTJ':'LEADER',
+  };
+  return MAP[code] || 'SPARK';
+}
+
+/* ════════════════════════════════════════════════════════════
+   STATE
+═════════════════════════════════════════════════════════════*/
+let state = {
+  currentQ: 0,
+  currentPerson: 'A',  // 'A' or 'B'
+  scoresA: {},
+  scoresB: {},
+  selectedOption: null,
+};
+
+/* ════════════════════════════════════════════════════════════
+   NAVIGATION
+═════════════════════════════════════════════════════════════*/
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function startTest() { showScreen('who'); }
+
+function selectWho(who) {
+  state.currentPerson = who;
+  showScreen('q');
+  state.currentQ = 0;
+  renderQuestion();
+}
+
+function startPartner() {
+  state.currentPerson = state.currentPerson === 'A' ? 'B' : 'A';
+  state.currentQ = 0;
+  showScreen('q');
+  renderQuestion();
+}
+
+function restart() {
+  state = { currentQ:0, currentPerson:'A', scoresA:{}, scoresB:{}, selectedOption:null };
+  showScreen('intro');
+}
+
+/* ════════════════════════════════════════════════════════════
+   QUESTION RENDER
+═════════════════════════════════════════════════════════════*/
+const SECTION_NAMES = { EI:'에너지 방향', SN:'정보 처리', TF:'결정 방식', JP:'생활 방식' };
+
+function renderQuestion() {
+  const q = QUESTIONS[state.currentQ];
+  const total = QUESTIONS.length;
+  const pct = Math.round((state.currentQ / total) * 100);
+
+  document.getElementById('prog-fill').style.width = Math.max(pct, 3) + '%';
+  document.getElementById('prog-label').textContent = (state.currentQ + 1) + ' / ' + total;
+  document.getElementById('prog-who-label').textContent =
+    state.currentPerson === 'A' ? '나의 답변' : '파트너의 답변';
+
+  document.getElementById('q-section-badge').textContent =
+    'SECTION ' + (['EI','SN','TF','JP'].indexOf(q.axis)+1) + ' — ' + SECTION_NAMES[q.axis];
+
+  document.getElementById('q-num').textContent = 'Q' + (state.currentQ + 1);
+  document.getElementById('q-text').textContent = q.text;
+
+  const optWrap = document.getElementById('q-options');
+  optWrap.innerHTML = '';
+
+  [q.a, q.b].forEach((opt, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'btn-opt';
+    btn.innerHTML = `<span class="opt-label">${opt.label}</span>${opt.text}`;
+    btn.onclick = () => selectOption(idx, opt.score);
+    optWrap.appendChild(btn);
+  });
+
+  state.selectedOption = null;
+  const nextBtn = document.getElementById('btn-next');
+  nextBtn.classList.remove('show');
+}
+
+function selectOption(idx, score) {
+  document.querySelectorAll('.btn-opt').forEach((b,i) => {
+    b.classList.toggle('selected', i === idx);
+  });
+  state.selectedOption = score;
+  document.getElementById('btn-next').classList.add('show');
+}
+
+function nextQuestion() {
+  if (state.selectedOption === null) return;
+
+  // Record score
+  const scores = state.currentPerson === 'A' ? state.scoresA : state.scoresB;
+  scores[state.selectedOption] = (scores[state.selectedOption] || 0) + 1;
+
+  state.currentQ++;
+
+  if (state.currentQ < QUESTIONS.length) {
+    renderQuestion();
+  } else {
+    // Done with this person
+    if (state.currentPerson === 'A' &&
+        (Object.keys(state.scoresB).length === 0)) {
+      // A done, B hasn't gone yet
+      showScreen('handoff');
+    } else {
+      // Both done
+      showResult();
+    }
+  }
+}
+
+/* ════════════════════════════════════════════════════════════
+   RESULT
+═════════════════════════════════════════════════════════════*/
+function showResult() {
+  const typeA = getType(state.scoresA);
+  const typeB = getType(state.scoresB);
+  const key = typeA + '×' + typeB;
+  const combo = COMBOS[key] || COMBOS[typeB + '×' + typeA] || {
+    title: typeA + ' × ' + typeB + '형',
+    sub: '특별한 두 사람의 조합',
+    hook: '우리만의 이야기가 시작됩니다',
+    tension: '서로 다른 에너지',
+    magic: '차이가 만드는 시너지',
+    tags: '#커플유형 #shadowgramcouple',
+    bg: ['#1A2030','#2A3450'],
+  };
+
+  // Headline
+  document.getElementById('result-headline').textContent =
+    typeA + ' × ' + typeB + ' — ' + combo.title;
+
+  // Card
+  const cardTop = document.getElementById('rc-top');
+  cardTop.style.background = `linear-gradient(135deg, ${combo.bg[0]}, ${combo.bg[1]})`;
+
+  document.getElementById('rc-typeA').textContent = typeA;
+  document.getElementById('rc-typeB').textContent = typeB;
+  document.getElementById('rc-title').textContent = combo.title;
+  document.getElementById('rc-subtitle').textContent = combo.sub;
+  document.getElementById('rc-hook').textContent = combo.hook;
+  document.getElementById('rc-tension').textContent = combo.tension;
+  document.getElementById('rc-magic').textContent = combo.magic;
+  document.getElementById('rc-tags').textContent = combo.tags;
+
+  // Also color bottom sections
+  const card = document.getElementById('result-card');
+  card.style.background = combo.bg[0];
+  document.querySelector('.rc-mid').style.background = hexToRgba(combo.bg[1], 0.5);
+
+  // Axes
+  renderAxes(state.scoresA, state.scoresB);
+
+  showScreen('result');
+}
+
+function hexToRgba(hex, alpha) {
+  const r = parseInt(hex.slice(1,3),16);
+  const g = parseInt(hex.slice(3,5),16);
+  const b = parseInt(hex.slice(5,7),16);
+  return `rgba(${r},${g},${b},${alpha})`;
+}
+
+function renderAxes(sA, sB) {
+  const axes = [
+    { axis:'EI', left:'외향 (E)', right:'내향 (I)', a: sA.E||0, ai: sA.I||0, b: sB.E||0, bi: sB.I||0, colorA:'#E65100', colorB:'#01579B' },
+    { axis:'SN', left:'감각 (S)', right:'직관 (N)', a: sA.S||0, ai: sA.N||0, b: sB.S||0, bi: sB.N||0, colorA:'#1B5E20', colorB:'#4A148C' },
+    { axis:'TF', left:'사고 (T)', right:'감정 (F)', a: sA.T||0, ai: sA.F||0, b: sB.T||0, bi: sB.F||0, colorA:'#0D47A1', colorB:'#880E4F' },
+    { axis:'JP', left:'계획 (J)', right:'유연 (P)', a: sA.J||0, ai: sA.P||0, b: sB.J||0, bi: sB.P||0, colorA:'#3E2723', colorB:'#E65100' },
+  ];
+
+  const wrap = document.getElementById('axes-rows');
+  wrap.innerHTML = '';
+
+  axes.forEach(ax => {
+    const totalA = ax.a + ax.ai;
+    const totalB = ax.b + ax.bi;
+    const pctA = totalA > 0 ? Math.round((ax.a / totalA)*100) : 50;
+    const pctB = totalB > 0 ? Math.round((ax.b / totalB)*100) : 50;
+    const winA = pctA >= 50 ? ax.left : ax.right;
+    const winB = pctB >= 50 ? ax.left : ax.right;
+    const scoreA = pctA >= 50 ? pctA : (100-pctA);
+    const scoreB = pctB >= 50 ? pctB : (100-pctB);
+
+    const row = document.createElement('div');
+    row.className = 'axis-row';
+    row.innerHTML = `
+      <div class="axis-labels">
+        <span style="color:${ax.colorA}">나: ${winA} ${scoreA}%</span>
+        <span style="color:${ax.colorB}">파트너: ${winB} ${scoreB}%</span>
+      </div>
+      <div style="margin-bottom:6px">
+        <div class="axis-bar-bg">
+          <div class="axis-bar-fill" style="width:${pctA}%;background:${ax.colorA}"></div>
+        </div>
+        <div class="axis-winner" style="color:${ax.colorA}">나</div>
+      </div>
+      <div>
+        <div class="axis-bar-bg">
+          <div class="axis-bar-fill" style="width:${pctB}%;background:${ax.colorB}"></div>
+        </div>
+        <div class="axis-winner" style="color:${ax.colorB}">파트너</div>
+      </div>`;
+    wrap.appendChild(row);
+  });
+}
+
+/* ════════════════════════════════════════════════════════════
+   SHARE / CTA
+═════════════════════════════════════════════════════════════*/
+function copyLink() {
+  const url = window.location.href.split('?')[0];
+  navigator.clipboard.writeText(url).then(() => {
+    showToast('링크가 복사됐어요! 연인에게 공유해보세요 💑');
+  }).catch(() => {
+    showToast('링크: ' + url);
+  });
+}
+
+function goUpsell() {
+  showToast('커플 리포트 준비 중이에요! 곧 오픈합니다 ✨');
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+/* ════════════════════════════════════════════════════════════
+   INIT
+═════════════════════════════════════════════════════════════*/
+// Start on intro
+showScreen('intro');
+</script>
+</body>
+</html>
