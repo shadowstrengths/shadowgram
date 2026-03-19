@@ -1845,8 +1845,70 @@ function showToast(msg) {
 }
 
 /* ════════════════════════════════════════════════════════════
-   INIT
+   INIT — URL 파라미터로 결과 직접 진입
+   예: ?a=SPARK&b=SOUL
 ═════════════════════════════════════════════════════════════*/
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  const a = (params.get('a') || '').toUpperCase();
+  const b = (params.get('b') || '').toUpperCase();
+  const VALID = ['SPARK','VISION','STEADY','PLAYER','HARMONY','SOUL','LOGIC','LEADER'];
+  if (VALID.includes(a) && VALID.includes(b)) {
+    // 가짜 점수로 state 세팅 후 결과 바로 표시
+    state.scoresA = {};
+    state.scoresB = {};
+    state.scoresA['_direct'] = a;  // 직접 주입 마커
+    state.scoresB['_direct'] = b;
+    // getType을 우회하기 위해 임시 패치
+    window._directTypeA = a;
+    window._directTypeB = b;
+    // DOM 로드 후 실행
+    document.addEventListener('DOMContentLoaded', function() {
+      showResultDirect(a, b);
+    });
+  }
+})();
+
+function showResultDirect(typeA, typeB) {
+  const key = typeA + '×' + typeB;
+  const combo = COMBOS[key] || COMBOS[typeB + '×' + typeA] || {
+    title: typeA + ' × ' + typeB,
+    sub: '특별한 두 사람의 조합',
+    hook: '우리만의 이야기가 시작됩니다',
+    tension: '서로 다른 에너지',
+    magic: '차이가 만드는 시너지',
+    tags: '#커플유형 #shadowgramcouple',
+    bg: ['#1A2030','#2A3450'],
+  };
+
+  document.getElementById('result-headline').textContent =
+    typeA + '(' + (TYPE_KR[typeA]||typeA) + ') × ' + typeB + '(' + (TYPE_KR[typeB]||typeB) + ')';
+
+  const cardTop = document.getElementById('rc-top');
+  cardTop.style.background = `linear-gradient(135deg, ${combo.bg[0]}, ${combo.bg[1]})`;
+
+  document.getElementById('rc-typeA').innerHTML = typeA + '<br><span style="font-size:.7em;opacity:.8;font-weight:400;">' + (TYPE_KR[typeA]||'') + '</span>';
+  document.getElementById('rc-typeB').innerHTML = typeB + '<br><span style="font-size:.7em;opacity:.8;font-weight:400;">' + (TYPE_KR[typeB]||'') + '</span>';
+  document.getElementById('rc-title').textContent = combo.title;
+  document.getElementById('rc-subtitle').textContent = combo.sub;
+  document.getElementById('rc-hook').textContent = combo.hook;
+  document.getElementById('rc-tension').textContent = combo.tension;
+  document.getElementById('rc-magic').textContent = combo.magic;
+  document.getElementById('rc-tags').textContent = combo.tags;
+
+  const card = document.getElementById('result-card');
+  card.style.background = combo.bg[0];
+  document.querySelector('.rc-mid').style.background = hexToRgba(combo.bg[1], 0.5);
+
+  // Big5 차트 — 중립값으로 표시
+  const neutral = { E:3, I:3, N:3, S:3, T:3, F:3, J:3, P:3 };
+  renderBig5Radar(neutral, neutral);
+
+  // 인사이트 카드
+  renderInsights(typeA, typeB);
+
+  showScreen('result');
+}
 </script>
 </body>
 </html>
