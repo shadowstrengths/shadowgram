@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>커플 유형 테스트 — Shadowgram Couple</title>
 <meta property="og:title" content="우리 커플 유형은? — Shadowgram Couple">
 <meta property="og:description" content="연인과 함께 24문항으로 커플 유형을 알아보세요.">
@@ -1198,8 +1201,14 @@ function showToast(msg) {
 /* ════════════════════════════════════════════════════════════
    INIT
 ═════════════════════════════════════════════════════════════*/
-// Start on intro
-showScreen('intro');
+// Force hide all screens first, then show intro
+document.querySelectorAll('.screen').forEach(s => {
+  s.style.display = 'none';
+  s.classList.remove('active');
+});
+const introEl = document.getElementById('screen-intro');
+introEl.style.display = 'flex';
+introEl.classList.add('active');
 </script>
 </body>
 </html>
