@@ -33,8 +33,7 @@
   }
 
   /* ── Layout ─────────────────────────────────────────────── */
-  .screen { display: none !important; animation: fadeIn .4s ease; }
-  .screen.active { display: block !important; }
+  /* display 는 inline style로 JS가 직접 제어 — CSS는 animation만 */
   @keyframes fadeIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
 
   .container {
@@ -591,7 +590,7 @@
 <!-- ═══════════════════════════════════════════════════════════
      SCREEN 1: INTRO
 ══════════════════════════════════════════════════════════════ -->
-<div id="screen-intro" class="screen active">
+<div id="screen-intro" class="screen" style="display:flex">
   <div class="intro-logo">couple.shadowgram.org/kr</div>
   <h1 class="intro-title">우리 커플 유형은<br><span>뭘까요?</span></h1>
   <p class="intro-sub">
@@ -611,7 +610,7 @@
 <!-- ═══════════════════════════════════════════════════════════
      SCREEN 2: WHO ARE YOU?
 ══════════════════════════════════════════════════════════════ -->
-<div id="screen-who" class="screen">
+<div id="screen-who" class="screen" style="display:none">
   <div class="topbar"><strong>Shadowgram Couple</strong></div>
   <div class="container">
     <div class="who-card">
@@ -638,7 +637,7 @@
 <!-- ═══════════════════════════════════════════════════════════
      SCREEN 3: QUESTIONS
 ══════════════════════════════════════════════════════════════ -->
-<div id="screen-q" class="screen">
+<div id="screen-q" class="screen" style="display:none">
   <div class="topbar"><strong>Shadowgram Couple</strong></div>
   <div class="container">
     <div class="progress-wrap">
@@ -665,7 +664,7 @@
 <!-- ═══════════════════════════════════════════════════════════
      SCREEN 4: PARTNER HAND-OFF
 ══════════════════════════════════════════════════════════════ -->
-<div id="screen-handoff" class="screen">
+<div id="screen-handoff" class="screen" style="display:none">
   <div class="topbar"><strong>Shadowgram Couple</strong></div>
   <div class="container">
     <div class="partner-screen">
@@ -691,7 +690,7 @@
 <!-- ═══════════════════════════════════════════════════════════
      SCREEN 5: RESULT
 ══════════════════════════════════════════════════════════════ -->
-<div id="screen-result" class="screen">
+<div id="screen-result" class="screen" style="display:none">
   <div class="topbar"><strong>Shadowgram Couple</strong></div>
   <div class="container">
 
@@ -1199,16 +1198,10 @@ function showToast(msg) {
 }
 
 /* ════════════════════════════════════════════════════════════
-   INIT
+   INIT — display는 HTML inline style로 초기값 지정, JS만 변경
 ═════════════════════════════════════════════════════════════*/
-// Force hide all screens first, then show intro
-document.querySelectorAll('.screen').forEach(s => {
-  s.style.display = 'none';
-  s.classList.remove('active');
-});
-const introEl = document.getElementById('screen-intro');
-introEl.style.display = 'flex';
-introEl.classList.add('active');
+// 초기 상태는 HTML의 style="display:..." 로 이미 설정됨
+// 별도 init 호출 불필요
 </script>
 </body>
 </html>
