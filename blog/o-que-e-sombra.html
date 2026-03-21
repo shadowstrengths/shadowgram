@@ -62,7 +62,7 @@
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
+    :root { --bg: #0F121E; --text: #E8E4DC;
       --dark:   var(--bg);
       --dark2:  #1A1F2E;
       --card:   #161B28;
@@ -80,13 +80,13 @@
       display: flex; align-items: center; justify-content: space-between;
       padding: 18px 24px; border-bottom: 1px solid var(--border);
       position: sticky; top: 0;
-      background: rgba(250,250,247,0.96); backdrop-filter: blur(10px); z-index: 100;
+      background: rgba(15,18,30,0.96); backdrop-filter: blur(10px); z-index: 100;
     }
     .nav-logo { text-decoration: none; display: flex; align-items: center; gap: 10px; }
     .nav-logo img { width: 36px; height: 36px; border-radius: 50%; }
     .nav-logo-text { font-size: 15px; letter-spacing: 3px; }
-    .nav-logo .s1 { color: var(--gold); font-weight: 300; }
-    .nav-logo .s2 { color: var(--text); font-weight: 900; }
+    .nav-logo .s1 { color: #A0A8B8; font-weight: 300; }
+    .nav-logo .s2 { color: #C9A84C; font-weight: 900; }
     .nav-links { display: flex; align-items: center; gap: 24px; }
     .nav-link { color: var(--silver); font-size: 12px; letter-spacing: 1px; text-decoration: none; text-transform: uppercase; transition: color 0.2s; }
     .nav-link:hover { color: var(--gold); }
@@ -486,7 +486,7 @@
 <div class="hw-overlay" id="hw-overlay" onclick="hwClose()"></div>
 <div class="hw-drawer" id="hw-drawer">
   <div class="hw-drawer-head">
-    <div class="hw-drawer-logo">SHADOWGRAM</div>
+    <div class="hw-drawer-logo"><span style="font-weight:300;color:#A0A8B8;">SHADOW</span>GRAM</div>
     <button class="hw-close-btn" onclick="hwClose()" aria-label="close">&#x2715;</button>
   </div>
   <div class="hw-section">

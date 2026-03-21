@@ -18,17 +18,17 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:    #FAFAF7;
-      --bg2:   #F2EEE6;
-      --card:  #FFFFFF;
-      --text:  #1A2030;
+      --bg:    #0F121E;
+      --bg2:   #161A28;
+      --card:  #1E2233;
+      --text:  #E8E4DC;
       --gold:  #B8860B;
       --goldL: #D4A017;
       --white: #FFFFFF;
-      --silver:#5A6A7A;
-      --border:rgba(184,134,11,0.15);
-      --shadow:0 2px 16px rgba(26,32,48,0.08);
-      --red:   #C0392B;
+      --silver:#8899AA;
+      --border:rgba(184,134,11,0.18);
+      --shadow:0 2px 16px rgba(0,0,0,0.4);
+      --red:   #E05040;
     }
 
     /* ── 모바일 우선 베이스 ── */
@@ -46,12 +46,12 @@
       display: flex; align-items: center; justify-content: space-between;
       padding: 18px 20px;
       border-bottom: 1px solid var(--border);
-      background: rgba(250,250,247,0.96);
+      background: rgba(15,18,30,0.96);
     }
     .nav-logo { text-decoration: none; font-size: 14px; letter-spacing: 3px; display: flex; align-items: center; gap: 10px; }
     .nav-logo img { width: 34px; height: 34px; border-radius: 50%; }
-    .nav-logo .s1 { color: var(--gold); font-weight: 300; }
-    .nav-logo .s2 { color: var(--text); font-weight: 900; }
+    .nav-logo .s1 { color: #A0A8B8; font-weight: 300; }
+    .nav-logo .s2 { color: #C9A84C; font-weight: 900; }
     .nav-back {
       font-size: 13px; color: var(--silver);
       text-decoration: none; transition: color .2s;
@@ -1460,7 +1460,10 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')hwClose();});
 <div class="hw-overlay" id="hw-overlay" onclick="hwClose()"></div>
 <div class="hw-drawer" id="hw-drawer">
   <div class="hw-drawer-head">
-    <div class="hw-drawer-logo">SHADOWGRAM</div>
+    <div>
+      <div class="hw-drawer-logo"><span style="font-weight:300;color:#A0A8B8;">SHADOW</span>GRAM</div>
+      <div style="font-size:10px;letter-spacing:2px;color:#8899AA;margin-top:3px;">Shadowgram Self</div>
+    </div>
     <button class="hw-close-btn" onclick="hwClose()" aria-label="close">&#x2715;</button>
   </div>
   <div class="hw-section">
