@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>커플 리포트 SHOP — Shadowgram Couple</title>
+<meta property="og:title" content="Shadowgram 커플 리포트 — 64조합 전체">
+<meta property="og:description" content="우리 커플 유형에 딱 맞는 완전판 리포트를 받아보세요.">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --dark:#1A2030; --gold:#B8860B; --gold-l:#D4A017;
+  --silver:#8899AA; --white:#fff; --bg:#F7F5F0;
+  --card:#fff; --radius:16px;
+}
+body{font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:var(--bg);color:var(--dark);min-height:100vh;}
+
+/* ── Nav ── */
+.gnav{
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  background:rgba(15,18,30,0.92);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(184,134,11,.2);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 20px;height:52px;
+}
+.gnav-logo{font-size:13px;font-weight:800;color:var(--gold);letter-spacing:.06em;text-decoration:none;}
+.gnav-tabs{display:flex;gap:4px;}
+.gnav-tab{
+  padding:6px 16px;border-radius:20px;font-size:13px;font-weight:700;
+  color:rgba(255,255,255,.55);text-decoration:none;cursor:pointer;
+  transition:all .2s;border:1px solid transparent;
+}
+.gnav-tab:hover{color:#fff;}
+.gnav-tab.active{background:rgba(184,134,11,.15);border-color:rgba(184,134,11,.4);color:var(--gold);}
+
+/* ── Layout ── */
+.wrap{max-width:720px;margin:0 auto;padding:72px 20px 60px;}
+
+/* ── Hero ── */
+.hero{text-align:center;padding:32px 0 28px;}
+.hero-badge{display:inline-block;background:rgba(184,134,11,.12);border:1px solid rgba(184,134,11,.35);
+  color:var(--gold);font-size:11px;font-weight:800;letter-spacing:.1em;
+  padding:4px 14px;border-radius:20px;margin-bottom:16px;}
+.hero h1{font-size:26px;font-weight:900;line-height:1.35;margin-bottom:10px;}
+.hero h1 span{color:var(--gold);}
+.hero p{font-size:14px;color:var(--silver);line-height:1.7;}
+
+/* ── 가격 배너 ── */
+.price-banner{
+  background:linear-gradient(135deg,#1A2030,#2A3050);
+  border:1px solid rgba(184,134,11,.3);border-radius:var(--radius);
+  padding:20px 24px;margin-bottom:32px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  flex-wrap:wrap;
+}
+.price-banner-left{flex:1;min-width:180px;}
+.price-banner-badge{display:inline-block;background:#C9A84C;color:#0A0A14;
+  font-size:10px;font-weight:800;padding:2px 10px;border-radius:10px;margin-bottom:8px;}
+.price-banner-title{font-size:15px;font-weight:800;color:#fff;margin-bottom:4px;}
+.price-banner-sub{font-size:12px;color:rgba(255,255,255,.5);}
+.price-banner-right{text-align:right;}
+.price-orig{font-size:12px;color:rgba(255,255,255,.4);text-decoration:line-through;margin-bottom:4px;}
+.price-sale{font-size:28px;font-weight:900;background:linear-gradient(135deg,#E8D090,#C9A84C);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.price-note{font-size:10px;color:#80E0A0;font-weight:700;margin-top:4px;}
+
+/* ── 유형 필터 ── */
+.filter-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;}
+.filter-btn{
+  padding:7px 16px;border-radius:20px;font-size:12px;font-weight:700;
+  background:#fff;border:1.5px solid #ddd;color:var(--dark);cursor:pointer;
+  transition:all .2s;font-family:inherit;
+}
+.filter-btn:hover{border-color:var(--gold);}
+.filter-btn.on{background:var(--dark);border-color:var(--dark);color:#fff;}
+
+/* ── 섹션 헤더 ── */
+.type-section{margin-bottom:32px;}
+.type-header{
+  display:flex;align-items:center;gap:12px;
+  padding:14px 18px;margin-bottom:12px;
+  background:var(--dark);border-radius:12px;
+}
+.type-icon{font-size:22px;}
+.type-name{font-size:16px;font-weight:900;color:#fff;}
+.type-desc{font-size:12px;color:rgba(255,255,255,.5);margin-top:1px;}
+
+/* ── 카드 그리드 ── */
+.card-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+@media(max-width:480px){.card-grid{grid-template-columns:1fr;}}
+
+/* ── 상품 카드 ── */
+.report-card{
+  background:var(--card);border-radius:var(--radius);
+  border:1.5px solid #eee;padding:18px 16px;
+  cursor:pointer;transition:all .2s;
+  display:flex;flex-direction:column;gap:10px;
+  position:relative;overflow:hidden;
+}
+.report-card:hover{border-color:var(--gold);box-shadow:0 4px 20px rgba(184,134,11,.12);transform:translateY(-2px);}
+.report-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--gold),var(--gold-l));
+}
+.card-combo{font-size:13px;font-weight:900;color:var(--dark);}
+.card-combo span{color:var(--gold);}
+.card-title{font-size:14px;font-weight:800;color:var(--dark);line-height:1.4;}
+.card-hook{font-size:11px;color:var(--silver);line-height:1.5;}
+.card-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:4px;}
+.card-price{font-size:13px;font-weight:900;color:var(--gold);}
+.card-btn{
+  background:var(--dark);color:#fff;border:none;border-radius:10px;
+  padding:7px 14px;font-size:12px;font-weight:700;
+  cursor:pointer;font-family:inherit;transition:all .2s;
+}
+.card-btn:hover{background:var(--gold);color:#000;}
+.card-free{
+  position:absolute;top:10px;right:10px;
+  background:#80E0A0;color:#0A2A14;
+  font-size:9px;font-weight:800;padding:2px 8px;border-radius:8px;
+}
+
+/* ── 모달 ── */
+.modal-bg{
+  position:fixed;inset:0;z-index:2000;
+  background:rgba(0,0,0,.7);backdrop-filter:blur(4px);
+  display:none;align-items:flex-end;justify-content:center;
+}
+.modal-bg.open{display:flex;}
+.modal{
+  background:#fff;border-radius:24px 24px 0 0;
+  padding:28px 24px 40px;width:100%;max-width:560px;
+  max-height:90vh;overflow-y:auto;
+}
+.modal-handle{width:40px;height:4px;background:#ddd;border-radius:2px;margin:0 auto 20px;}
+.modal-badge{display:inline-block;background:rgba(184,134,11,.1);border:1px solid rgba(184,134,11,.3);
+  color:var(--gold);font-size:10px;font-weight:800;padding:3px 12px;border-radius:10px;margin-bottom:12px;}
+.modal-title{font-size:20px;font-weight:900;margin-bottom:6px;}
+.modal-hook{font-size:13px;color:var(--silver);line-height:1.6;margin-bottom:20px;}
+.modal-toc{background:#f8f7f4;border-radius:12px;padding:16px;margin-bottom:20px;}
+.modal-toc-title{font-size:11px;font-weight:800;color:var(--silver);letter-spacing:.08em;margin-bottom:10px;}
+.modal-toc-row{font-size:13px;color:var(--dark);padding:5px 0;border-bottom:1px solid #eee;display:flex;gap:8px;}
+.modal-toc-row:last-child{border-bottom:none;}
+.modal-price-box{
+  background:linear-gradient(135deg,#1A2030,#2A3050);
+  border-radius:14px;padding:20px;margin-bottom:16px;text-align:center;
+}
+.modal-price-orig{font-size:12px;color:rgba(255,255,255,.4);text-decoration:line-through;margin-bottom:6px;}
+.modal-price-row{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:8px;}
+.modal-price-badge{background:#C9A84C;color:#0A0A14;font-size:11px;font-weight:800;padding:3px 10px;border-radius:8px;}
+.modal-price-num{font-size:28px;font-weight:900;background:linear-gradient(135deg,#E8D090,#C9A84C);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.modal-price-note{font-size:11px;color:#80E0A0;font-weight:700;}
+.modal-btn-dl{
+  display:block;width:100%;background:linear-gradient(135deg,#C9A84C,#E8D090);
+  color:#0A0A14;border:none;border-radius:14px;padding:16px;
+  font-size:16px;font-weight:900;cursor:pointer;font-family:inherit;
+  margin-bottom:10px;
+}
+.modal-btn-close{
+  display:block;width:100%;background:none;border:1.5px solid #ddd;
+  border-radius:14px;padding:13px;font-size:14px;font-weight:700;
+  cursor:pointer;font-family:inherit;color:var(--silver);
+}
+
+/* ── Toast ── */
+.toast{
+  position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(20px);
+  background:#1A2030;color:#fff;padding:12px 24px;border-radius:30px;
+  font-size:14px;font-weight:700;opacity:0;transition:all .3s;pointer-events:none;
+  white-space:nowrap;z-index:3000;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* ── Footer ── */
+.footer{text-align:center;font-size:11px;color:var(--silver);padding:32px 0 24px;opacity:.6;line-height:1.8;}
+.footer a{color:var(--silver);text-decoration:underline;}
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="gnav">
+  <a class="gnav-logo" href="/couple/kr/">SHADOWGRAM</a>
+  <div class="gnav-tabs">
+    <a class="gnav-tab" href="/couple/kr/">TEST</a>
+    <a class="gnav-tab active" href="/couple/kr/shop/">SHOP</a>
+    <a class="gnav-tab" href="/couple/kr/blog/">BLOG</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-badge">✦ COUPLE REPORT SHOP</div>
+    <h1>우리 조합의 <span>완전한 이야기</span></h1>
+    <p>64가지 커플 조합 리포트 — 우리 유형을 선택해서 바로 받아보세요</p>
+  </div>
+
+  <!-- 가격 배너 -->
+  <div class="price-banner">
+    <div class="price-banner-left">
+      <div class="price-banner-badge">🎁 베타 테스트 기간</div>
+      <div class="price-banner-title">지금은 무료로 다운로드 가능해요</div>
+      <div class="price-banner-sub">정식 출시 후 얼리버드 50% 할인 적용 예정</div>
+    </div>
+    <div class="price-banner-right">
+      <div class="price-orig">정가 19,800원</div>
+      <div class="price-sale">9,900원</div>
+      <div class="price-note">베타 기간 무료</div>
+    </div>
+  </div>
+
+  <!-- 유형 필터 -->
+  <div class="filter-row" id="filter-row">
+    <button class="filter-btn on" data-type="ALL" onclick="filterType('ALL',this)">전체</button>
+    <button class="filter-btn" data-type="STEADY" onclick="filterType('STEADY',this)">🌿 STEADY</button>
+    <button class="filter-btn" data-type="SPARK" onclick="filterType('SPARK',this)">✨ SPARK</button>
+    <button class="filter-btn" data-type="PLAYER" onclick="filterType('PLAYER',this)">🎮 PLAYER</button>
+    <button class="filter-btn" data-type="VISION" onclick="filterType('VISION',this)">🔮 VISION</button>
+    <button class="filter-btn" data-type="LOGIC" onclick="filterType('LOGIC',this)">🔬 LOGIC</button>
+    <button class="filter-btn" data-type="HARMONY" onclick="filterType('HARMONY',this)">🌸 HARMONY</button>
+    <button class="filter-btn" data-type="LEADER" onclick="filterType('LEADER',this)">🦁 LEADER</button>
+    <button class="filter-btn" data-type="SOUL" onclick="filterType('SOUL',this)">🌙 SOUL</button>
+  </div>
+
+  <!-- 상품 목록 -->
+  <div id="catalog"></div>
+
+  <div class="footer">
+    shadowgram.org · © 2025 Shadowgram<br>
+    * MBTI® is a registered trademark of The Myers &amp; Briggs Foundation. Shadowgram은 독자적 프레임워크로 무관합니다.<br>
+    개인정보 문의 · <a href="mailto:joculsion@gmail.com">joculsion@gmail.com</a>
+  </div>
+</div>
+
+<!-- 모달 -->
+<div class="modal-bg" id="modal-bg" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-badge" id="m-badge">SPARK × VISION</div>
+    <div class="modal-title" id="m-title">—</div>
+    <div class="modal-hook" id="m-hook">—</div>
+    <div class="modal-toc">
+      <div class="modal-toc-title">📋 리포트 목차</div>
+      <div class="modal-toc-row">🧲 <span>우리가 처음 끌린 이유 — 반대 극의 인력</span></div>
+      <div class="modal-toc-row">💬 <span>소통 스타일 — 두 언어로 대화하는 커플</span></div>
+      <div class="modal-toc-row">⚡ <span>단골 싸움 패턴 TOP 3 + 화해 코드</span></div>
+      <div class="modal-toc-row">✈️ <span>여행·돈·일상에서 각자의 방식</span></div>
+      <div class="modal-toc-row">📈 <span>연애 단계별 우리 조합의 변화</span></div>
+      <div class="modal-toc-row">🚀 <span>우리 조합의 숨겨진 슈퍼파워</span></div>
+      <div class="modal-toc-row">🌱 <span>관계 성장 퀘스트 — 3단계 미션</span></div>
+    </div>
+    <div class="modal-price-box">
+      <div class="modal-price-orig">정가 19,800원</div>
+      <div class="modal-price-row">
+        <span class="modal-price-badge">얼리버드 50% OFF</span>
+        <span class="modal-price-num">9,900원</span>
+      </div>
+      <div class="modal-price-note">🎁 베타 기간 지금은 무료</div>
+    </div>
+    <button class="modal-btn-dl" id="m-btn-dl" onclick="downloadFromModal()">📥 무료로 리포트 받기</button>
+    <button class="modal-btn-close" onclick="closeModalDirect()">닫기</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const TYPES_INFO = {
+  STEADY:{icon:'🌿',name:'STEADY',desc:'꾸준하고 신뢰를 쌓는 스타일'},
+  SPARK: {icon:'✨',name:'SPARK', desc:'아이디어와 에너지가 넘치는 스타일'},
+  PLAYER:{icon:'🎮',name:'PLAYER',desc:'지금 이 순간에 집중하는 스타일'},
+  VISION:{icon:'🔮',name:'VISION',desc:'큰 그림과 본질을 보는 스타일'},
+  LOGIC: {icon:'🔬',name:'LOGIC', desc:'논리와 분석으로 판단하는 스타일'},
+  HARMONY:{icon:'🌸',name:'HARMONY',desc:'관계와 분위기를 중시하는 스타일'},
+  LEADER:{icon:'🦁',name:'LEADER',desc:'목표와 방향으로 이끄는 스타일'},
+  SOUL:  {icon:'🌙',name:'SOUL',  desc:'깊은 감성과 내면을 가진 스타일'},
+};
+
+const COMBO_DATA = {
+  "STEADY_STEADY":{"title":"🌿 안정의 성채","hook":"같은 리듬으로 사는 두 사람. 예측 가능한 일상이 서로에게 가장 큰 선물이에요."},
+  "STEADY_SPARK":{"title":"🔥 안정 vs 불꽃","hook":"STEADY의 뿌리 위에 SPARK의 불꽃이 피어요. 서로의 빈 조각을 채우는 조합이에요."},
+  "STEADY_PLAYER":{"title":"🎯 안정과 모험","hook":"STEADY의 안전망이 PLAYER의 모험을 가능하게 해요."},
+  "STEADY_VISION":{"title":"🔮 땅과 하늘","hook":"STEADY의 현실감각이 VISION의 꿈을 실현시켜요."},
+  "STEADY_LOGIC":{"title":"🔬 신뢰와 분석","hook":"STEADY의 일관성이 LOGIC의 분석에 가장 좋은 데이터를 제공해요."},
+  "STEADY_HARMONY":{"title":"🌸 안정과 온기","hook":"두 사람 모두 관계를 소중히 여겨요. 가장 따뜻하고 안전한 조합 중 하나예요."},
+  "STEADY_LEADER":{"title":"🦁 기반과 방향","hook":"STEADY의 실행이 LEADER의 비전을 현실로 만들어요."},
+  "STEADY_SOUL":{"title":"🌙 대지와 달빛","hook":"STEADY의 안정감이 SOUL의 감수성을 보호해요."},
+  "SPARK_STEADY":{"title":"⚡ 불꽃과 뿌리","hook":"SPARK의 에너지가 STEADY의 안정 위에서 가장 밝게 빛나요."},
+  "SPARK_SPARK":{"title":"✨ 더블 스파크","hook":"두 불꽃이 만났어요. 이 세상에서 가장 에너지 넘치는 조합이에요."},
+  "SPARK_PLAYER":{"title":"🎪 불꽃 서커스","hook":"SPARK의 아이디어와 PLAYER의 실행력이 만난 최고의 엔터테이너 커플."},
+  "SPARK_VISION":{"title":"🔥 끌림의 방정식","hook":"반대처럼 보이지만 서로의 빠진 조각을 채워요."},
+  "SPARK_LOGIC":{"title":"💡 번개와 회로","hook":"SPARK의 직관과 LOGIC의 분석이 만나면 최고의 문제 해결사가 돼요."},
+  "SPARK_HARMONY":{"title":"🎆 축제의 커플","hook":"SPARK의 에너지와 HARMONY의 따뜻함이 만나면 모두가 행복해지는 커플이에요."},
+  "SPARK_LEADER":{"title":"🚀 두 엔진","hook":"두 리더가 만났어요. 방향이 같으면 최강, 다르면 충돌이에요."},
+  "SPARK_SOUL":{"title":"🌈 빛과 그림자","hook":"SPARK의 밝음이 SOUL의 깊이와 만나면 가장 아름다운 그러데이션이 돼요."},
+  "PLAYER_STEADY":{"title":"🎮 모험과 안식처","hook":"PLAYER의 모험이 STEADY의 안식처로 돌아와요. 완벽한 균형이에요."},
+  "PLAYER_SPARK":{"title":"🎡 파티 커플","hook":"둘 다 에너지가 넘쳐요. 함께 있으면 세상이 놀이공원이 돼요."},
+  "PLAYER_PLAYER":{"title":"🏆 더블 플레이어","hook":"세상에서 가장 즐거운 커플이에요. 인생이 게임이고, 둘이서 플레이해요."},
+  "PLAYER_VISION":{"title":"🎭 현재와 미래","hook":"PLAYER의 현재 집중과 VISION의 미래 설계가 만나요."},
+  "PLAYER_LOGIC":{"title":"🎯 몸과 머리","hook":"PLAYER의 실행력과 LOGIC의 분석력이 만나면 최고의 팀이에요."},
+  "PLAYER_HARMONY":{"title":"🎉 파티와 하트","hook":"PLAYER의 활력과 HARMONY의 따뜻함이 만나면 모두가 초대받고 싶은 커플이에요."},
+  "PLAYER_LEADER":{"title":"⚔️ 두 전사","hook":"둘 다 행동파예요. 같은 목표를 향하면 최강, 다른 방향이면 충돌이에요."},
+  "PLAYER_SOUL":{"title":"🎨 색과 캔버스","hook":"PLAYER의 활력이 SOUL의 감성에 생동감을 불어넣어요."},
+  "VISION_STEADY":{"title":"🌏 하늘과 땅","hook":"VISION의 꿈을 STEADY의 실행력이 현실로 만들어요."},
+  "VISION_SPARK":{"title":"🔭 비전과 번개","hook":"VISION의 깊이와 SPARK의 에너지가 만나면 세상을 바꾸는 조합이에요."},
+  "VISION_PLAYER":{"title":"🎭 꿈과 무대","hook":"VISION의 시나리오를 PLAYER가 무대에 올려요."},
+  "VISION_VISION":{"title":"🌌 두 예언자","hook":"같은 깊이로 세상을 보는 두 사람. 대화가 끝나지 않아요."},
+  "VISION_LOGIC":{"title":"🧠 두 지성인","hook":"VISION의 직관과 LOGIC의 분석이 만나면 가장 명석한 커플이에요."},
+  "VISION_HARMONY":{"title":"💜 비전과 사랑","hook":"VISION의 깊이와 HARMONY의 따뜻함이 만나면 가장 아름다운 관계가 돼요."},
+  "VISION_LEADER":{"title":"👑 두 왕","hook":"VISION의 통찰과 LEADER의 추진력이 만나면 세상을 바꿔요."},
+  "VISION_SOUL":{"title":"🌠 두 영혼","hook":"VISION과 SOUL은 세상의 깊은 곳을 함께 봐요. 가장 내면적인 조합이에요."},
+  "LOGIC_STEADY":{"title":"📐 논리와 신뢰","hook":"LOGIC의 체계와 STEADY의 일관성이 만나면 가장 안정적인 파트너십이에요."},
+  "LOGIC_SPARK":{"title":"⚡ 회로와 번개","hook":"LOGIC의 분석과 SPARK의 직관이 만나면 최고의 의사결정 팀이에요."},
+  "LOGIC_PLAYER":{"title":"🎯 전략과 실행","hook":"LOGIC의 전략과 PLAYER의 실행력이 만나면 목표 달성 최강팀이에요."},
+  "LOGIC_VISION":{"title":"🔭 분석과 통찰","hook":"LOGIC의 논리와 VISION의 직관이 만나면 가장 깊은 지성적 파트너십이에요."},
+  "LOGIC_LOGIC":{"title":"🔬 두 과학자","hook":"세상에서 가장 논리적인 커플이에요. 모든 것을 데이터로 풀어요."},
+  "LOGIC_HARMONY":{"title":"💙 논리와 감성","hook":"LOGIC의 명확함과 HARMONY의 따뜻함이 만나면 완벽하게 균형 잡힌 관계예요."},
+  "LOGIC_LEADER":{"title":"⚙️ 두 전략가","hook":"LOGIC의 분석과 LEADER의 결단력이 만나면 최강의 경영진이에요."},
+  "LOGIC_SOUL":{"title":"🌙 이성과 감성","hook":"LOGIC과 SOUL은 서로에게 없는 언어를 가르쳐줘요. 가장 보완적인 조합이에요."},
+  "HARMONY_STEADY":{"title":"🌺 온기와 신뢰","hook":"HARMONY의 따뜻함과 STEADY의 안정이 만나면 가장 평화로운 가정이 돼요."},
+  "HARMONY_SPARK":{"title":"🌸 따뜻함과 불꽃","hook":"HARMONY의 온기와 SPARK의 에너지가 만나면 가장 생동감 있는 따뜻함이에요."},
+  "HARMONY_PLAYER":{"title":"🎊 파티 호스트 커플","hook":"HARMONY의 따뜻함과 PLAYER의 활력이 만나면 모두가 초대받고 싶은 커플이에요."},
+  "HARMONY_VISION":{"title":"💜 사랑과 통찰","hook":"HARMONY의 감성과 VISION의 깊이가 만나면 가장 아름다운 정신적 유대가 돼요."},
+  "HARMONY_LOGIC":{"title":"💙 감성과 이성","hook":"HARMONY의 따뜻함이 LOGIC의 차가운 분석에 온기를 불어넣어요."},
+  "HARMONY_HARMONY":{"title":"💕 두 하트","hook":"세상에서 가장 따뜻한 커플이에요. 주변 모두가 이 커플을 사랑해요."},
+  "HARMONY_LEADER":{"title":"🌹 지지와 추진력","hook":"HARMONY의 지지가 LEADER를 더 강하게 만들고, LEADER의 방향이 HARMONY에게 확신을 줘요."},
+  "HARMONY_SOUL":{"title":"🌺 두 감성인","hook":"두 사람 모두 감성이 풍부해요. 가장 깊고 따뜻한 정서적 유대가 만들어져요."},
+  "LEADER_STEADY":{"title":"🏛️ 방향과 기반","hook":"LEADER의 비전을 STEADY의 실행력이 떠받쳐줘요."},
+  "LEADER_SPARK":{"title":"🚀 두 개의 엔진","hook":"LEADER의 방향과 SPARK의 에너지가 합쳐지면 로켓이에요."},
+  "LEADER_PLAYER":{"title":"⚔️ 장군과 병사","hook":"LEADER의 전략과 PLAYER의 실행이 만나면 최강의 팀이에요."},
+  "LEADER_VISION":{"title":"👑 두 왕의 동맹","hook":"LEADER의 추진력과 VISION의 통찰이 만나면 가장 강력한 파트너십이에요."},
+  "LEADER_LOGIC":{"title":"⚙️ 결단과 분석","hook":"LEADER의 결단과 LOGIC의 분석이 만나면 최강의 의사결정 팀이에요."},
+  "LEADER_HARMONY":{"title":"🌹 추진력과 온기","hook":"LEADER의 방향이 HARMONY의 따뜻함으로 채워지면 가장 인간적인 리더십이 돼요."},
+  "LEADER_LEADER":{"title":"🏆 두 챔피언","hook":"두 리더가 만났어요. 같은 방향이면 세상을 바꾸고, 다른 방향이면 격렬하게 충돌해요."},
+  "LEADER_SOUL":{"title":"🌙 강함과 깊이","hook":"LEADER의 강함이 SOUL의 깊이를 보호하고, SOUL의 감성이 LEADER를 부드럽게 해요."},
+  "SOUL_STEADY":{"title":"🌙 달빛과 대지","hook":"SOUL의 감성이 STEADY의 안정 위에서 가장 깊이 피어나요."},
+  "SOUL_SPARK":{"title":"🌈 깊이와 빛","hook":"SOUL의 깊이와 SPARK의 빛이 만나면 가장 아름다운 그러데이션이 만들어져요."},
+  "SOUL_PLAYER":{"title":"🎨 예술과 무대","hook":"SOUL의 감성이 PLAYER의 무대에 아름다운 빛을 더해요."},
+  "SOUL_VISION":{"title":"🌠 두 내면의 여행자","hook":"SOUL과 VISION은 세상의 가장 깊은 곳을 함께 탐험해요."},
+  "SOUL_LOGIC":{"title":"🌙 감성과 이성","hook":"SOUL의 깊이가 LOGIC의 세계를 더 인간답게 만들어줘요."},
+  "SOUL_HARMONY":{"title":"🌺 두 감성인","hook":"두 사람 모두 깊은 감성을 가지고 있어요. 가장 조용하고 아름다운 사랑이에요."},
+  "SOUL_LEADER":{"title":"🌙 깊이와 강함","hook":"SOUL의 감성이 LEADER의 강함을 더 인간답게 만들어줘요."},
+  "SOUL_SOUL":{"title":"💫 두 영혼","hook":"두 깊은 영혼이 만났어요. 세상에서 가장 조용하고 깊은 사랑이에요."},
+};
+
+const TYPES_ORDER = ['STEADY','SPARK','PLAYER','VISION','LOGIC','HARMONY','LEADER','SOUL'];
+let currentModal = null;
+
+function buildCatalog(filterType){
+  const catalog = document.getElementById('catalog');
+  catalog.innerHTML = '';
+
+  TYPES_ORDER.forEach(typeA => {
+    if(filterType !== 'ALL' && filterType !== typeA) return;
+    const info = TYPES_INFO[typeA];
+    const section = document.createElement('div');
+    section.className = 'type-section';
+    section.dataset.type = typeA;
+
+    section.innerHTML = `
+      <div class="type-header">
+        <span class="type-icon">${info.icon}</span>
+        <div>
+          <div class="type-name">${info.name}</div>
+          <div class="type-desc">${info.desc}</div>
+        </div>
+      </div>
+      <div class="card-grid" id="grid-${typeA}"></div>
+    `;
+    catalog.appendChild(section);
+
+    const grid = section.querySelector(`#grid-${typeA}`);
+    TYPES_ORDER.forEach(typeB => {
+      const key = `${typeA}_${typeB}`;
+      const data = COMBO_DATA[key];
+      if(!data) return;
+      const card = document.createElement('div');
+      card.className = 'report-card';
+      card.innerHTML = `
+        <span class="card-free">무료</span>
+        <div class="card-combo">${TYPES_INFO[typeA].icon} <span>${typeA}</span> × ${TYPES_INFO[typeB].icon} <span>${typeB}</span></div>
+        <div class="card-title">${data.title}</div>
+        <div class="card-hook">${data.hook}</div>
+        <div class="card-bottom">
+          <div class="card-price">9,900원</div>
+          <button class="card-btn" onclick="openModal('${typeA}','${typeB}')">자세히 보기</button>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  });
+}
+
+function filterType(type, btn){
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  buildCatalog(type);
+}
+
+function openModal(a, b){
+  const key = `${a}_${b}`;
+  const data = COMBO_DATA[key];
+  currentModal = {a, b};
+  document.getElementById('m-badge').textContent = `${TYPES_INFO[a].icon} ${a} × ${TYPES_INFO[b].icon} ${b}`;
+  document.getElementById('m-title').textContent = data.title;
+  document.getElementById('m-hook').textContent = data.hook;
+  document.getElementById('modal-bg').classList.add('open');
+}
+
+function downloadFromModal(){
+  if(!currentModal) return;
+  const {a, b} = currentModal;
+  const url = `/couple/kr/reports/combo/${a}_${b}_KR.pdf`;
+  const filename = `Shadowgram_Couple_${a}_${b}_KR.pdf`;
+  showToast(`📥 ${a} × ${b} 리포트 다운로드!`);
+  setTimeout(()=>{
+    const l = document.createElement('a');
+    l.href = url; l.download = filename; l.click();
+  }, 400);
+}
+
+function closeModal(e){
+  if(e.target === document.getElementById('modal-bg'))
+    document.getElementById('modal-bg').classList.remove('open');
+}
+function closeModalDirect(){
+  document.getElementById('modal-bg').classList.remove('open');
+}
+
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2500);
+}
+
+// 초기 렌더
+buildCatalog('ALL');
+</script>
+</body>
+</html>

@@ -44,6 +44,37 @@
     padding: 24px 20px 60px;
   }
 
+  /* ── Global Nav ─────────────────────────────────────────── */
+  .gnav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+    background: rgba(15,18,30,0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(184,134,11,.2);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 20px; height: 52px;
+    max-width: 100%;
+  }
+  .gnav-logo {
+    font-size: 13px; font-weight: 800; color: var(--gold);
+    letter-spacing: .06em; text-decoration: none;
+  }
+  .gnav-tabs { display: flex; gap: 4px; }
+  .gnav-tab {
+    padding: 6px 16px; border-radius: 20px;
+    font-size: 13px; font-weight: 700;
+    color: rgba(255,255,255,.55);
+    text-decoration: none; cursor: pointer;
+    transition: all .2s;
+    border: 1px solid transparent;
+  }
+  .gnav-tab:hover { color: #fff; }
+  .gnav-tab.active {
+    background: rgba(184,134,11,.15);
+    border-color: rgba(184,134,11,.4);
+    color: var(--gold);
+  }
+
   /* ── Header bar ─────────────────────────────────────────── */
   .topbar {
     text-align: center;
@@ -732,10 +763,20 @@
 </head>
 <body>
 
+<!-- ── Global Nav ── -->
+<nav class="gnav">
+  <a class="gnav-logo" href="/couple/kr/">SHADOWGRAM</a>
+  <div class="gnav-tabs">
+    <a class="gnav-tab active" href="/couple/kr/">TEST</a>
+    <a class="gnav-tab" href="/couple/kr/shop/">SHOP</a>
+    <a class="gnav-tab" href="/couple/kr/blog/">BLOG</a>
+  </div>
+</nav>
+
 <!-- ═══════════════════════════════════════════════════════════
      SCREEN 1: INTRO
 ══════════════════════════════════════════════════════════════ -->
-<div id="screen-intro" class="screen" style="display:flex">
+<div id="screen-intro" class="screen" style="display:flex;padding-top:52px;">
   <div class="intro-logo">couple.shadowgram.org/kr</div>
   <h1 class="intro-title">우리 커플 유형은<br><span>뭘까요?</span></h1>
   <p class="intro-sub">

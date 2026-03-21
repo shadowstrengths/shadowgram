@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>블로그 — Shadowgram Couple</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{--dark:#1A2030;--gold:#B8860B;--silver:#8899AA;--bg:#F7F5F0;}
+body{font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:var(--bg);color:var(--dark);min-height:100vh;}
+.gnav{
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  background:rgba(15,18,30,0.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(184,134,11,.2);
+  display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:52px;
+}
+.gnav-logo{font-size:13px;font-weight:800;color:var(--gold);letter-spacing:.06em;text-decoration:none;}
+.gnav-tabs{display:flex;gap:4px;}
+.gnav-tab{
+  padding:6px 16px;border-radius:20px;font-size:13px;font-weight:700;
+  color:rgba(255,255,255,.55);text-decoration:none;border:1px solid transparent;transition:all .2s;
+}
+.gnav-tab:hover{color:#fff;}
+.gnav-tab.active{background:rgba(184,134,11,.15);border-color:rgba(184,134,11,.4);color:var(--gold);}
+.wrap{max-width:720px;margin:0 auto;padding:100px 20px 60px;text-align:center;}
+.coming-icon{font-size:64px;margin-bottom:24px;}
+.coming-badge{display:inline-block;background:rgba(184,134,11,.12);border:1px solid rgba(184,134,11,.35);
+  color:var(--gold);font-size:11px;font-weight:800;letter-spacing:.1em;padding:4px 14px;border-radius:20px;margin-bottom:16px;}
+.coming-title{font-size:24px;font-weight:900;margin-bottom:12px;line-height:1.4;}
+.coming-title span{color:var(--gold);}
+.coming-sub{font-size:14px;color:var(--silver);line-height:1.8;margin-bottom:32px;}
+.coming-topics{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:40px;}
+.topic-chip{background:#fff;border:1.5px solid #e8e4dc;border-radius:20px;padding:8px 18px;font-size:13px;font-weight:600;color:var(--dark);}
+.btn-test{
+  display:inline-block;background:linear-gradient(135deg,#C9A84C,#E8D090);
+  color:#0A0A14;border:none;border-radius:30px;padding:14px 32px;
+  font-size:15px;font-weight:900;cursor:pointer;font-family:inherit;
+  text-decoration:none;
+}
+.footer{text-align:center;font-size:11px;color:var(--silver);padding:32px 0 24px;opacity:.6;line-height:1.8;}
+.footer a{color:var(--silver);text-decoration:underline;}
+</style>
+</head>
+<body>
+<nav class="gnav">
+  <a class="gnav-logo" href="/couple/kr/">SHADOWGRAM</a>
+  <div class="gnav-tabs">
+    <a class="gnav-tab" href="/couple/kr/">TEST</a>
+    <a class="gnav-tab" href="/couple/kr/shop/">SHOP</a>
+    <a class="gnav-tab active" href="/couple/kr/blog/">BLOG</a>
+  </div>
+</nav>
+<div class="wrap">
+  <div class="coming-icon">✍️</div>
+  <div class="coming-badge">COMING SOON</div>
+  <h1 class="coming-title">커플 심리 이야기,<br><span>곧 시작돼요</span></h1>
+  <p class="coming-sub">
+    우리 조합은 왜 그렇게 싸울까?<br>
+    사랑인데 왜 이렇게 피곤하지?<br>
+    Shadowgram의 시선으로 풀어드릴게요.
+  </p>
+  <div class="coming-topics">
+    <div class="topic-chip">💬 SPARK × VISION 커플의 소통법</div>
+    <div class="topic-chip">⚡ 싸움 후 화해가 제일 빠른 조합</div>
+    <div class="topic-chip">🌿 STEADY가 사랑을 표현하는 방식</div>
+    <div class="topic-chip">🔮 VISION이 연애할 때 힘든 이유</div>
+    <div class="topic-chip">🌙 SOUL 유형의 연애 사용설명서</div>
+    <div class="topic-chip">🦁 LEADER 곁에서 살아남는 법</div>
+  </div>
+  <a class="btn-test" href="/couple/kr/">먼저 커플 유형 테스트 해보기 →</a>
+  <div class="footer">
+    shadowgram.org · © 2025 Shadowgram<br>
+    개인정보 문의 · <a href="mailto:joculsion@gmail.com">joculsion@gmail.com</a>
+  </div>
+</div>
+</body>
+</html>
