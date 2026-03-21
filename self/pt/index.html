@@ -49,6 +49,8 @@
       background: rgba(15,18,30,0.96);
     }
     .nav-logo { text-decoration: none; font-size: 14px; letter-spacing: 3px; display: flex; align-items: center; gap: 10px; }
+    .nav-logo-wrap { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.2; }
+    .nav-sub { font-size: 9px; letter-spacing: 2px; color: #8899AA; font-weight: 400; margin-top: 1px; }
     .nav-logo img { width: 34px; height: 34px; border-radius: 50%; }
     .nav-logo .s1 { color: #A0A8B8; font-weight: 300; }
     .nav-logo .s2 { color: #C9A84C; font-weight: 900; }
@@ -549,7 +551,10 @@
     </button>
     <a class="nav-logo" href="https://shadowgram.org">
       <img src="https://shadowgram.org/logo.png" alt="Shadowgram Logo">
-      <span><span class="s1">SHADOW</span><span class="s2">GRAM</span></span>
+      <div class="nav-logo-wrap">
+        <span><span class="s1">SHADOW</span><span class="s2">GRAM</span></span>
+        <span class="nav-sub">SELF</span>
+      </div>
     </a>
   </div>
 </nav>
