@@ -728,7 +728,8 @@ function saveCard(){
     const names=[na,nb].filter(Boolean).join(' · ');
     const el=document.getElementById('received-sender');
     if(el) el.textContent = names ? `✦ ${names}의 커플 유형 결과예요` : '✦ 커플 유형 결과예요';
-    document.getElementById('section-received').style.display='block';
+    // section-received 카드 불필요 — 결과카드 버튼으로 대체
+    // document.getElementById('section-received').style.display='block';
     // 리포트 CTA + footer + 스티키 바 숨기기
     const reportCta=document.querySelector('.report-cta');
     if(reportCta) reportCta.style.display='none';
