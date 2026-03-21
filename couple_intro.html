@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="Shadowgram Couple — 우리 둘의 심리 리포트">
+  <meta property="og:description" content="나와 파트너, 왜 끌렸고 왜 싸우는 걸까? 8가지 유형으로 보는 커플 심리 리포트">
+  <meta property="og:image" content="https://shadowgram.org/og-couple.png">
+  <title>Shadowgram Couple</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+      background: #0E0E18;
+      color: #F0EEE8;
+      min-height: 100vh;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(160deg, #1A1030 0%, #0E0E18 60%);
+      padding: 56px 24px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -80px; left: 50%;
+      transform: translateX(-50%);
+      width: 320px; height: 320px;
+      background: radial-gradient(circle, rgba(184,134,11,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .brand-badge {
+      display: inline-block;
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: #B8860B;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      opacity: 0.9;
+    }
+
+    .hero-title {
+      font-size: 32px;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, #F0EEE8 30%, #B8860B 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 16px;
+      color: #9A98A0;
+      line-height: 1.6;
+      margin-bottom: 36px;
+      max-width: 320px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ── 유형 배지 데모 ── */
+    .type-demo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 40px;
+    }
+    .type-chip {
+      padding: 10px 20px;
+      border-radius: 40px;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    .chip-a { background: #1A3A5C; color: #D4E8FF; border: 1px solid #2A5A8C; }
+    .chip-x { color: #B8860B; font-size: 22px; font-weight: 300; }
+    .chip-b { background: #2D1A4A; color: #BB99EE; border: 1px solid #5A3A8A; }
+
+    /* ── What you get ── */
+    .section {
+      padding: 40px 24px;
+    }
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: #B8860B;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    .card {
+      background: #1A1A28;
+      border: 1px solid #2A2A3A;
+      border-radius: 16px;
+      padding: 20px 16px;
+      text-align: center;
+    }
+    .card-icon { font-size: 28px; margin-bottom: 10px; }
+    .card-title { font-size: 13px; font-weight: 700; color: #F0EEE8; margin-bottom: 6px; }
+    .card-desc { font-size: 12px; color: #6A6880; line-height: 1.5; }
+
+    /* ── 사용 방법 ── */
+    .how-section {
+      background: #13131E;
+      padding: 40px 24px;
+    }
+    .step-list { max-width: 360px; margin: 0 auto; }
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .step-num {
+      flex-shrink: 0;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: #B8860B;
+      color: #0E0E18;
+      font-size: 14px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .step-text strong { display: block; font-size: 14px; color: #F0EEE8; margin-bottom: 3px; }
+    .step-text span { font-size: 13px; color: #6A6880; line-height: 1.5; }
+
+    /* ── 샘플 리포트 미리보기 ── */
+    .preview-section {
+      padding: 40px 24px;
+    }
+    .toc-list {
+      max-width: 360px;
+      margin: 0 auto;
+      background: #1A1A28;
+      border: 1px solid #2A2A3A;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .toc-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 20px;
+      border-bottom: 1px solid #1E1E2E;
+      font-size: 14px;
+    }
+    .toc-item:last-child { border-bottom: none; }
+    .toc-icon { font-size: 18px; flex-shrink: 0; }
+    .toc-name { color: #D0CEE0; font-weight: 600; flex: 1; }
+    .toc-page { font-size: 11px; color: #4A4860; }
+
+    /* ── 가격 설문 섹션 ── */
+    .price-section {
+      background: linear-gradient(160deg, #1A0F30 0%, #13131E 100%);
+      padding: 40px 24px;
+      text-align: center;
+    }
+    .price-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: #F0EEE8;
+      margin-bottom: 10px;
+    }
+    .price-sub {
+      font-size: 14px;
+      color: #6A6880;
+      margin-bottom: 28px;
+      line-height: 1.6;
+    }
+    .price-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      max-width: 360px;
+      margin: 0 auto 28px;
+    }
+    .price-btn {
+      background: #1A1A28;
+      border: 1.5px solid #2A2A3A;
+      border-radius: 12px;
+      padding: 16px 8px;
+      color: #9A98A0;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    .price-btn:hover, .price-btn.selected {
+      border-color: #B8860B;
+      color: #B8860B;
+      background: #1F1A10;
+    }
+    .price-btn small {
+      display: block;
+      font-size: 10px;
+      font-weight: 400;
+      margin-top: 3px;
+      color: #4A4860;
+    }
+    .price-btn.selected small { color: #8A6808; }
+
+    .kakao-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #FEE500;
+      color: #191919;
+      border: none;
+      border-radius: 14px;
+      padding: 16px 32px;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      font-family: inherit;
+      transition: opacity 0.2s;
+      text-decoration: none;
+      margin-bottom: 12px;
+    }
+    .kakao-btn:hover { opacity: 0.88; }
+    .kakao-hint { font-size: 12px; color: #4A4860; }
+
+    /* ── CTA 고정 하단 ── */
+    .sticky-cta {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: rgba(14,14,24,0.96);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid #2A2A3A;
+      padding: 14px 24px 20px;
+      text-align: center;
+      z-index: 100;
+    }
+    .cta-label { font-size: 11px; color: #6A6880; margin-bottom: 8px; }
+    .cta-main {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #B8860B, #D4A017);
+      color: #0E0E18;
+      border: none;
+      border-radius: 14px;
+      padding: 15px 40px;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      font-family: inherit;
+      text-decoration: none;
+      width: 100%;
+      max-width: 340px;
+      justify-content: center;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      padding: 32px 24px 100px;
+      text-align: center;
+    }
+    .footer-logo {
+      font-size: 13px;
+      letter-spacing: 1px;
+      color: #4A4860;
+      margin-bottom: 8px;
+    }
+    .footer-copy { font-size: 11px; color: #3A3850; }
+
+    /* ── 선택 피드백 ── */
+    .confirm-msg {
+      display: none;
+      margin-top: 12px;
+      font-size: 13px;
+      color: #B8860B;
+    }
+    .confirm-msg.show { display: block; }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="brand-badge">Shadowgram Couple</div>
+    <h1 class="hero-title">우리 둘이<br>왜 이렇게 잘 맞고<br>왜 이렇게 싸울까</h1>
+    <p class="hero-sub">8가지 심리 유형으로 보는<br>커플 맞춤 심층 리포트</p>
+    <div class="type-demo">
+      <div class="type-chip chip-a">SPARK</div>
+      <div class="type-chip chip-x">×</div>
+      <div class="type-chip chip-b">VISION</div>
+    </div>
+  </section>
+
+  <!-- 리포트 목차 미리보기 -->
+  <section class="preview-section">
+    <p class="section-label">리포트 목차 (20페이지)</p>
+    <div class="toc-list">
+      <div class="toc-item">
+        <span class="toc-icon">🧲</span>
+        <span class="toc-name">왜 서로에게 끌렸는가</span>
+        <span class="toc-page">CH 1</span>
+      </div>
+      <div class="toc-item">
+        <span class="toc-icon">💬</span>
+        <span class="toc-name">대화 방식의 차이</span>
+        <span class="toc-page">CH 2</span>
+      </div>
+      <div class="toc-item">
+        <span class="toc-icon">⚡</span>
+        <span class="toc-name">갈등 패턴 & 화해 코드</span>
+        <span class="toc-page">CH 3</span>
+      </div>
+      <div class="toc-item">
+        <span class="toc-icon">💑</span>
+        <span class="toc-name">관계 성장 3단계</span>
+        <span class="toc-page">CH 4</span>
+      </div>
+      <div class="toc-item">
+        <span class="toc-icon">✨</span>
+        <span class="toc-name">이 조합만의 초능력</span>
+        <span class="toc-page">CH 5</span>
+      </div>
+      <div class="toc-item">
+        <span class="toc-icon">💰</span>
+        <span class="toc-name">돈 & 미래 계획 차이</span>
+        <span class="toc-page">CH 6</span>
+      </div>
+      <div class="toc-item">
+        <span class="toc-icon">📋</span>
+        <span class="toc-name">관계 케어 체크리스트</span>
+        <span class="toc-page">CH 7</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 어떻게 받나요 -->
+  <section class="how-section">
+    <p class="section-label">받는 방법</p>
+    <div class="step-list">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text">
+          <strong>둘 다 테스트 완료</strong>
+          <span>각자 유형 테스트 후 결과 화면 캡처해두기</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text">
+          <strong>결과 캡처 카카오톡으로 전송</strong>
+          <span>두 사람의 유형이 확인되면 바로 리포트 제작</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text">
+          <strong>PDF 리포트 전달</strong>
+          <span>20페이지 커플 맞춤 리포트를 카카오톡으로 받기</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 리포트 내용 카드 -->
+  <section class="section">
+    <p class="section-label">리포트에 담긴 것</p>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">🔍</div>
+        <div class="card-title">끌림의 심리학</div>
+        <div class="card-desc">왜 처음부터 이 사람에게 끌렸는지 이유가 나옴</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">💥</div>
+        <div class="card-title">싸움 패턴 분석</div>
+        <div class="card-desc">반복되는 싸움의 구조와 각자의 화해 방식</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🚀</div>
+        <div class="card-title">이 조합의 강점</div>
+        <div class="card-desc">두 유형이 함께할 때 생기는 특별한 시너지</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🗺️</div>
+        <div class="card-title">성장 로드맵</div>
+        <div class="card-desc">관계가 깊어지는 3단계 가이드</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 가격 설문 -->
+  <section class="price-section" id="price-section">
+    <h2 class="price-title">솔직하게 물어볼게요 🙋</h2>
+    <p class="price-sub">이 리포트, 얼마면 살 것 같아요?<br>
+      <small style="color:#4A4860">정답 없어요. 진짜 느낌 그대로 눌러주세요</small></p>
+    <div class="price-options">
+      <button class="price-btn" onclick="selectPrice(this, '5000')">
+        5,000원
+        <small>음료 한 잔</small>
+      </button>
+      <button class="price-btn" onclick="selectPrice(this, '10000')">
+        10,000원
+        <small>적당한 것 같아</small>
+      </button>
+      <button class="price-btn" onclick="selectPrice(this, '15000')">
+        15,000원
+        <small>충분히 가치 있어</small>
+      </button>
+      <button class="price-btn" onclick="selectPrice(this, '20000')">
+        20,000원
+        <small>퀄리티 좋으면 OK</small>
+      </button>
+      <button class="price-btn" onclick="selectPrice(this, '30000')">
+        30,000원
+        <small>커플이니까 괜찮아</small>
+      </button>
+      <button class="price-btn" onclick="selectPrice(this, 'free')">
+        그냥 줘 😅
+        <small>선물로만</small>
+      </button>
+    </div>
+    <p class="confirm-msg" id="confirm-msg"></p>
+    <br>
+
+    <a href="javascript:openKakao()" class="kakao-btn">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="#191919">
+        <path d="M12 3C6.477 3 2 6.477 2 10.5c0 2.47 1.39 4.658 3.5 6.02L4.5 20l4.5-2.5c.98.27 2 .5 3 .5 5.523 0 10-3.477 10-7.5S17.523 3 12 3z"/>
+      </svg>
+      카카오톡으로 결과 캡처 보내기
+    </a>
+    <p class="kakao-hint">캡처 보내주시면 리포트 바로 제작해드려요</p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p class="footer-logo">SHADOWGRAM</p>
+    <p class="footer-copy">shadowgram.org · © 2025 Shadowgram</p>
+  </footer>
+
+  <!-- 고정 CTA -->
+  <div class="sticky-cta">
+    <p class="cta-label">테스트 결과가 나왔나요?</p>
+    <a href="javascript:openKakao()" class="cta-main">
+      📲 카카오톡으로 캡처 보내기
+    </a>
+  </div>
+
+  <script>
+    let selectedPrice = null;
+
+    function selectPrice(btn, value) {
+      document.querySelectorAll('.price-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      selectedPrice = value;
+
+      const msg = document.getElementById('confirm-msg');
+      const labels = {
+        '5000': '5,000원 — 음료 한 잔 가격이군요 ☕',
+        '10000': '10,000원 — 알겠어요, 기억해둘게요 📝',
+        '15000': '15,000원 — 고마워요, 딱 그 가격 생각했어요 😊',
+        '20000': '20,000원 — 오 진지하게 봐주시는 거네요 🙏',
+        '30000': '30,000원 — 역시 커플 콘텐츠는 두 배 가치! 💑',
+        'free': '그냥 주기로 할게요 😂 대신 주변에 소문 내줘요!'
+      };
+      msg.textContent = labels[value] || '';
+      msg.classList.add('show');
+    }
+
+    function openKakao() {
+      // 카카오톡 오픈채팅 링크 또는 직접 카카오 ID로 연결
+      // 실제 운영 시 아래 URL을 카카오 오픈채팅 링크로 교체
+      const kakaoUrl = 'https://open.kakao.com/o/shadowgram'; // 실제 링크로 교체 필요
+      const priceInfo = selectedPrice ? `\n\n💰 가격 의견: ${selectedPrice === 'free' ? '무료 요청' : selectedPrice + '원'}` : '';
+
+      // 모바일에서는 카카오톡 앱으로 열기 시도
+      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        window.location.href = kakaoUrl;
+      } else {
+        window.open(kakaoUrl, '_blank');
+      }
+    }
+
+    // 스크롤 시 sticky CTA 동작
+    window.addEventListener('scroll', function() {
+      const sticky = document.querySelector('.sticky-cta');
+      if (window.scrollY > 200) {
+        sticky.style.opacity = '1';
+        sticky.style.transform = 'translateY(0)';
+      }
+    });
+  </script>
+</body>
+</html>

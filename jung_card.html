@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1080px;
+    height: 1080px;
+    overflow: hidden;
+    background: #0d0d0d;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .card {
+    width: 1080px;
+    height: 1080px;
+    position: relative;
+    background: linear-gradient(160deg, #0a0a0a 0%, #1a1208 50%, #0a0a0a 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 90px;
+    overflow: hidden;
+  }
+
+  /* 배경 텍스처 원 */
+  .bg-circle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.07;
+  }
+  .bg-circle-1 {
+    width: 700px; height: 700px;
+    top: -200px; right: -200px;
+    background: radial-gradient(circle, #B8860B, transparent);
+  }
+  .bg-circle-2 {
+    width: 500px; height: 500px;
+    bottom: -150px; left: -150px;
+    background: radial-gradient(circle, #B8860B, transparent);
+  }
+
+  /* 상단 장식선 */
+  .top-ornament {
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 80%;
+  }
+  .ornament-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #B8860B, transparent);
+  }
+  .ornament-diamond {
+    width: 8px; height: 8px;
+    background: #B8860B;
+    transform: rotate(45deg);
+  }
+
+  /* Jung 실루엣 배경 */
+  .jung-silhouette {
+    position: absolute;
+    right: -30px;
+    bottom: 0;
+    width: 480px;
+    height: 700px;
+    opacity: 0.06;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 300'%3E%3Cellipse cx='100' cy='80' rx='55' ry='70' fill='%23B8860B'/%3E%3Crect x='30' y='145' width='140' height='155' rx='20' fill='%23B8860B'/%3E%3C/svg%3E") center/contain no-repeat;
+  }
+
+  /* 태그 */
+  .tag {
+    font-family: 'Arial', sans-serif;
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: #B8860B;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    opacity: 0.9;
+  }
+
+  /* 따옴표 */
+  .quote-mark {
+    font-size: 120px;
+    color: #B8860B;
+    opacity: 0.3;
+    line-height: 0.5;
+    margin-bottom: 20px;
+    font-family: Georgia, serif;
+    align-self: flex-start;
+    margin-left: 10px;
+  }
+
+  /* 명언 텍스트 */
+  .quote {
+    font-size: 38px;
+    line-height: 1.55;
+    color: #f0e8d0;
+    text-align: center;
+    font-style: italic;
+    font-weight: normal;
+    margin-bottom: 50px;
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.8);
+    letter-spacing: 0.3px;
+  }
+  .quote em {
+    color: #B8860B;
+    font-style: italic;
+  }
+
+  /* 구분선 */
+  .divider {
+    width: 60px;
+    height: 2px;
+    background: #B8860B;
+    margin-bottom: 30px;
+    opacity: 0.7;
+  }
+
+  /* 저자 */
+  .author {
+    font-family: 'Arial', sans-serif;
+    font-size: 18px;
+    letter-spacing: 3px;
+    color: #B8860B;
+    text-transform: uppercase;
+    margin-bottom: 60px;
+  }
+
+  /* 하단 CTA */
+  .cta-box {
+    position: absolute;
+    bottom: 55px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 85%;
+    border-top: 1px solid rgba(184,134,11,0.25);
+    padding-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 3;
+  }
+  .cta-text {
+    font-family: 'Arial', sans-serif;
+    font-size: 15px;
+    color: rgba(240,232,208,0.6);
+    letter-spacing: 0.5px;
+    line-height: 1.5;
+  }
+  .cta-text strong {
+    color: #B8860B;
+    font-size: 16px;
+    display: block;
+    margin-bottom: 3px;
+  }
+  .cta-url {
+    font-family: 'Arial', sans-serif;
+    font-size: 18px;
+    color: #B8860B;
+    letter-spacing: 1px;
+    font-weight: bold;
+    padding: 12px 24px;
+    border: 1px solid rgba(184,134,11,0.4);
+    border-radius: 4px;
+    background: rgba(184,134,11,0.08);
+    white-space: nowrap;
+  }
+
+  /* 하단 장식선 */
+  .bottom-ornament {
+    position: absolute;
+    bottom: 38px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 40%;
+    opacity: 0.3;
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="bg-circle bg-circle-1"></div>
+  <div class="bg-circle bg-circle-2"></div>
+  <div class="jung-silhouette"></div>
+
+  <div class="top-ornament">
+    <div class="ornament-line"></div>
+    <div class="ornament-diamond"></div>
+    <div class="ornament-line"></div>
+  </div>
+
+  <div class="tag">Carl Gustav Jung · Psicologia das Profundezas</div>
+
+  <div class="quote-mark">"</div>
+
+  <p class="quote">
+    Quem olha para fora, <em>sonha.</em><br>
+    Quem olha para dentro, <em>desperta.</em>
+  </p>
+
+  <div class="divider"></div>
+  <div class="author">— Carl G. Jung</div>
+
+  <div class="cta-box">
+    <div class="cta-text">
+      <strong>Conheça sua Sombra Psicológica</strong>
+      Diagnóstico gratuito · Resultado imediato
+    </div>
+    <div class="cta-url">shadowgram.org</div>
+  </div>
+</div>
+</body>
+</html>

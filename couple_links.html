@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shadowgram Duo — 64 결과 페이지 링크</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0d0f1a; color: #e0e6f0; font-family: 'Apple SD Gothic Neo', Arial, sans-serif; padding: 24px 16px; }
+  h1 { font-size: 1.2rem; color: #b8860b; margin-bottom: 6px; }
+  p.sub { font-size: .82rem; color: #8899aa; margin-bottom: 20px; }
+  .search-wrap { margin-bottom: 16px; }
+  input#q { width: 100%; padding: 10px 14px; background: #1a2030; border: 1px solid #2a3040; border-radius: 8px;
+    color: #e0e6f0; font-size: .9rem; outline: none; }
+  input#q:focus { border-color: #b8860b; }
+  table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+  th { background: #1a2030; padding: 8px 10px; text-align: left; color: #8899aa; font-weight: 600; position: sticky; top: 0; }
+  tr.row { border-bottom: 1px solid #1e2535; }
+  tr.row:hover { background: #1a2030; }
+  td { padding: 7px 10px; vertical-align: middle; }
+  td.num { color: #b8860b; font-weight: 700; width: 44px; }
+  td.combo { font-weight: 600; width: 180px; }
+  td.link a { color: #7ab8f5; text-decoration: none; font-size: .78rem; word-break: break-all; }
+  td.link a:hover { text-decoration: underline; }
+  .copy-btn { background: #1e2a3a; border: 1px solid #2a3a50; color: #8899aa; border-radius: 5px;
+    padding: 3px 8px; font-size: .72rem; cursor: pointer; margin-left: 6px; white-space: nowrap; }
+  .copy-btn:hover { background: #2a3a50; color: #e0e6f0; }
+  .hidden { display: none; }
+  .toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%);
+    background: #b8860b; color: #fff; padding: 8px 20px; border-radius: 20px; font-size: .85rem;
+    opacity: 0; transition: opacity .3s; pointer-events: none; z-index: 999; }
+  .toast.show { opacity: 1; }
+</style>
+</head>
+<body>
+<h1>Shadowgram Duo · 64 결과 페이지</h1>
+<p class="sub">couple.shadowgram.org/kr/result?a=…&b=… 전체 목록 (Shadowgram 공식 순서)</p>
+
+<div class="search-wrap">
+  <input id="q" type="text" placeholder="유형 검색 (예: SPARK, VISION…)">
+</div>
+
+<table id="tbl">
+  <thead><tr><th>번호</th><th>조합</th><th>링크</th></tr></thead>
+  <tbody id="tbody"></tbody>
+</table>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const ORDER = ['STEADY','SPARK','PLAYER','VISION','LOGIC','HARMONY','LEADER','SOUL'];
+const BASE = 'https://couple.shadowgram.org/kr/result';
+const rows = [];
+
+let n = 1;
+for (const a of ORDER) {
+  for (const b of ORDER) {
+    const num = String(n).padStart(2,'0');
+    const url = `${BASE}?a=${a}&b=${b}`;
+    rows.push({ num, combo: `${a} × ${b}`, url });
+    n++;
+  }
+}
+
+function renderRows(data) {
+  const tb = document.getElementById('tbody');
+  tb.innerHTML = data.map(r => `
+    <tr class="row">
+      <td class="num">#${r.num}</td>
+      <td class="combo">${r.combo}</td>
+      <td class="link">
+        <a href="${r.url}" target="_blank">${r.url}</a>
+        <button class="copy-btn" onclick="copyLink('${r.url}')">복사</button>
+      </td>
+    </tr>`).join('');
+}
+
+renderRows(rows);
+
+document.getElementById('q').addEventListener('input', e => {
+  const q = e.target.value.trim().toUpperCase();
+  renderRows(q ? rows.filter(r => r.combo.includes(q) || r.num.includes(q)) : rows);
+});
+
+function copyLink(url) {
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(url).then(() => toast('복사됨 ✓'));
+  } else {
+    const ta = document.createElement('textarea');
+    ta.value = url;
+    ta.style.cssText = 'position:fixed;top:-9999px;opacity:0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); toast('복사됨 ✓'); } catch(e) {}
+    document.body.removeChild(ta);
+  }
+}
+
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 1800);
+}
+</script>
+</body>
+</html>

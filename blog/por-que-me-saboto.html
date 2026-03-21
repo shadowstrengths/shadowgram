@@ -71,6 +71,33 @@
     footer { border-top: 1px solid var(--border); padding: 32px 24px; text-align: center; font-size: 12px; color: var(--silver); line-height: 1.8; }
     footer a { color: var(--gold); text-decoration: none; }
     @media (max-width: 600px) { .nav-links { display: none; } .type-link-grid { grid-template-columns: repeat(4,1fr); } }
+  
+  /* ── HAMBURGER & DRAWER ── */
+  .hw-btn{position:relative;background:rgba(184,134,11,0.12);border:1px solid rgba(184,134,11,0.3);border-radius:8px;width:38px;height:38px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;flex-shrink:0;transition:background .2s;}
+  .hw-btn:hover{background:rgba(184,134,11,0.22);}
+  .hw-btn span{display:block;width:18px;height:2px;background:#C9A84C;border-radius:2px;transition:all .25s;}
+  .hw-btn.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .hw-btn.open span:nth-child(2){opacity:0;}
+  .hw-btn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  .hw-overlay{position:fixed;inset:0;z-index:9998;background:rgba(0,0,0,0);pointer-events:none;transition:background .3s;}
+  .hw-overlay.open{background:rgba(0,0,0,0.6);pointer-events:all;}
+  .hw-drawer{position:fixed;top:0;left:-290px;bottom:0;z-index:9999;width:270px;background:#0C0F1A;border-right:1px solid rgba(184,134,11,0.18);display:flex;flex-direction:column;transition:left .3s cubic-bezier(.4,0,.2,1);overflow-y:auto;}
+  .hw-drawer.open{left:0;}
+  .hw-drawer-head{padding:48px 24px 18px;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between;}
+  .hw-drawer-logo{font-size:13px;letter-spacing:3px;font-weight:700;color:#C9A84C;}
+  .hw-close-btn{background:none;border:none;color:#A0A8B8;font-size:20px;cursor:pointer;padding:4px 8px;line-height:1;transition:color .2s;}
+  .hw-close-btn:hover{color:#C9A84C;}
+  .hw-section{padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);}
+  .hw-section-label{font-size:10px;letter-spacing:2px;color:#445;padding:10px 24px 4px;text-transform:uppercase;}
+  .hw-item{display:flex;align-items:center;gap:10px;padding:12px 24px;color:#B0B8C8;text-decoration:none;font-size:13px;transition:background .2s,color .2s;}
+  .hw-item:hover{background:rgba(184,134,11,0.08);color:#C9A84C;}
+  .hw-item-icon{font-size:15px;}
+  .hw-badge{font-size:9px;letter-spacing:1px;font-weight:700;background:rgba(184,134,11,0.2);color:#C9A84C;border:1px solid rgba(184,134,11,0.3);padding:2px 6px;border-radius:4px;margin-left:auto;}
+  .hw-badge.soon{background:rgba(80,80,100,0.3);color:#667;border-color:rgba(100,100,120,0.3);}
+  .hw-sub{padding-left:44px;font-size:12px;color:#8898A8;}
+  .hw-sub:hover{color:#C9A84C;background:rgba(184,134,11,0.06);}
+  .hw-sub .hw-item-icon{font-size:13px;}
+  .hw-disabled{opacity:.35;pointer-events:none;}
   </style>
   
   <script type="application/ld+json">
@@ -123,6 +150,7 @@
 </head>
 <body>
   <nav>
+  <button class="hw-btn" id="hw-btn" onclick="hwToggle()" aria-label="menu"><span></span><span></span><span></span></button>
     <a class="nav-logo" href="/">
       <img src="/logo.png" alt="Shadowgram Logo">
       <span class="nav-logo-text"><span class="s1">SHADOW</span><span class="s2">GRAM</span></span>
@@ -281,5 +309,48 @@
     <a href="/blog/">Blog</a> • <a href="/privacidade.html">Privacidade</a> • <a href="/contato.html">Contato</a></p>
   <p>Contato: <a href="mailto:joculsion@gmail.com">joculsion@gmail.com</a></p>
 </footer>
+<div class="hw-overlay" id="hw-overlay" onclick="hwClose()"></div>
+<div class="hw-drawer" id="hw-drawer">
+  <div class="hw-drawer-head">
+    <div class="hw-drawer-logo">SHADOWGRAM</div>
+    <button class="hw-close-btn" onclick="hwClose()" aria-label="close">&#x2715;</button>
+  </div>
+  <div class="hw-section">
+    <a class="hw-item" href="/"><span class="hw-item-icon">&#x1F3E0;</span> Home</a>
+  </div>
+  <div class="hw-section">
+    <div class="hw-section-label">Self</div>
+    <a class="hw-item" href="/self/pt/"><span class="hw-item-icon">&#x1F31F;</span> Shadowgram Self <span class="hw-badge">PT-BR</span></a>
+    <a class="hw-item hw-sub" href="/blog/"><span class="hw-item-icon">&#x1F4DD;</span> Blog</a>
+    <a class="hw-item hw-sub" href="/blog/faq.html"><span class="hw-item-icon">&#x2753;</span> FAQ</a>
+  </div>
+  <div class="hw-section">
+    <div class="hw-section-label">Couple</div>
+    <a class="hw-item" href="/couple/kr/"><span class="hw-item-icon">&#x1F491;</span> Shadowgram Couple <span class="hw-badge">KR</span></a>
+    <a class="hw-item hw-sub" href="/couple/kr/shop/"><span class="hw-item-icon">&#x1F6CD;</span> Shop</a>
+    <a class="hw-item hw-sub" href="/couple/kr/blog/"><span class="hw-item-icon">&#x1F4DD;</span> Blog</a>
+  </div>
+  <div class="hw-section">
+    <div class="hw-section-label">Coming Soon</div>
+    <a class="hw-item hw-disabled" href="#"><span class="hw-item-icon">&#x1F3E2;</span> Shadowgram Team <span class="hw-badge soon">Soon</span></a>
+    <a class="hw-item hw-disabled" href="#"><span class="hw-item-icon">&#x1F319;</span> leftnoon Community <span class="hw-badge soon">Soon</span></a>
+  </div>
+</div>
+<script>
+function hwToggle(){
+  var btn=document.getElementById('hw-btn');
+  var drawer=document.getElementById('hw-drawer');
+  var overlay=document.getElementById('hw-overlay');
+  var open=drawer.classList.toggle('open');
+  btn.classList.toggle('open',open);
+  overlay.classList.toggle('open',open);
+}
+function hwClose(){
+  document.getElementById('hw-btn').classList.remove('open');
+  document.getElementById('hw-drawer').classList.remove('open');
+  document.getElementById('hw-overlay').classList.remove('open');
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')hwClose();});
+</script>
 </body>
 </html>

@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>캐러셀 B1 — SPARK 왼손 포텐이 터지면</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #111;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    gap: 24px;
+    font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+  }
+
+  .label {
+    color: #888;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    margin-bottom: -16px;
+  }
+
+  /* 1080x1080 → 540x540 (50% for display) */
+  .slide {
+    width: 540px;
+    height: 540px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+
+  /* SPARK 컬러 팔레트 */
+  /* Accent: 따뜻한 앰버/오렌지 계열 (SPARK = 불꽃, 아이디어) */
+
+  /* ───────────────────────────────────────
+     SLIDE 1 — COVER (공감 훅)
+  ─────────────────────────────────────── */
+  .s1 {
+    background: #1A2030;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 56px 48px;
+    gap: 24px;
+    text-align: center;
+  }
+
+  .s1 .type-badge {
+    background: rgba(184,134,11,0.15);
+    border: 1px solid #B8860B;
+    color: #B8860B;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 20px;
+  }
+
+  .s1 .hook {
+    font-size: 22px;
+    font-weight: 800;
+    color: #FAFAF7;
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+  }
+
+  .s1 .hook em {
+    color: #B8860B;
+    font-style: normal;
+  }
+
+  .s1 .sub {
+    font-size: 14px;
+    color: #8899AA;
+    line-height: 1.7;
+  }
+
+  .s1 .spark-icon {
+    font-size: 56px;
+  }
+
+  /* ───────────────────────────────────────
+     SLIDE 2 — SPARK 오른손 (공감)
+  ─────────────────────────────────────── */
+  .s2 {
+    background: #FAFAF7;
+    display: flex;
+    flex-direction: column;
+    padding: 52px 48px;
+    justify-content: space-between;
+  }
+
+  .s2 .tag {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: #B8860B;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  .s2 .title {
+    font-size: 26px;
+    font-weight: 800;
+    color: #1A2030;
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+  }
+
+  .s2 .traits {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .s2 .trait {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .s2 .trait-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .s2 .trait-text {
+    font-size: 14px;
+    color: #1A2030;
+    line-height: 1.55;
+    font-weight: 500;
+  }
+
+  .s2 .trait-text strong {
+    font-weight: 700;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  /* ───────────────────────────────────────
+     SLIDE 3 — SPARK 왼손 (문제 인식)
+  ─────────────────────────────────────── */
+  .s3 {
+    background: #1A2030;
+    display: flex;
+    flex-direction: column;
+    padding: 52px 48px;
+    justify-content: space-between;
+  }
+
+  .s3 .tag {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: #8899AA;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  .s3 .title {
+    font-size: 26px;
+    font-weight: 800;
+    color: #FAFAF7;
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+  }
+
+  .s3 .title span {
+    color: #B8860B;
+  }
+
+  .s3 .pain-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .s3 .pain-item {
+    background: rgba(255,255,255,0.04);
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 14px;
+    color: #FAFAF7;
+    line-height: 1.55;
+    border-left: 3px solid rgba(184,134,11,0.4);
+  }
+
+  .s3 .pain-item strong {
+    color: #B8860B;
+  }
+
+  /* ───────────────────────────────────────
+     SLIDE 4 — 왼손 포텐 터지면 3가지
+  ─────────────────────────────────────── */
+  .s4 {
+    background: #F2EEE6;
+    display: flex;
+    flex-direction: column;
+    padding: 48px 44px;
+    justify-content: space-between;
+  }
+
+  .s4 .tag {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: #B8860B;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  .s4 .title {
+    font-size: 24px;
+    font-weight: 800;
+    color: #1A2030;
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+  }
+
+  .s4 .items {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .s4 .item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .s4 .num {
+    font-size: 30px;
+    font-weight: 900;
+    color: #B8860B;
+    line-height: 1;
+    flex-shrink: 0;
+    width: 32px;
+  }
+
+  .s4 .item-body {}
+
+  .s4 .item-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1A2030;
+    margin-bottom: 4px;
+  }
+
+  .s4 .item-sub {
+    font-size: 13px;
+    color: #5A6A7A;
+    line-height: 1.55;
+  }
+
+  /* ───────────────────────────────────────
+     SLIDE 5 — 핵심 메시지
+  ─────────────────────────────────────── */
+  .s5 {
+    background: #1A2030;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 56px 48px;
+    gap: 28px;
+    text-align: center;
+  }
+
+  .s5 .spark-badge {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    color: #B8860B;
+    text-transform: uppercase;
+  }
+
+  .s5 .message {
+    font-size: 24px;
+    font-weight: 800;
+    color: #FAFAF7;
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+  }
+
+  .s5 .message em {
+    color: #B8860B;
+    font-style: normal;
+  }
+
+  .s5 .divider {
+    width: 40px;
+    height: 1px;
+    background: #B8860B;
+  }
+
+  .s5 .note {
+    font-size: 14px;
+    color: #8899AA;
+    line-height: 1.7;
+  }
+
+  /* ───────────────────────────────────────
+     SLIDE 6 — CTA
+  ─────────────────────────────────────── */
+  .s6 {
+    background: #FAFAF7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px;
+    gap: 24px;
+    text-align: center;
+  }
+
+  .s6 .brand {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: #B8860B;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  .s6 .main {
+    font-size: 26px;
+    font-weight: 800;
+    color: #1A2030;
+    line-height: 1.45;
+    letter-spacing: -0.02em;
+  }
+
+  .s6 .main span {
+    color: #B8860B;
+  }
+
+  .s6 .sub {
+    font-size: 14px;
+    color: #5A6A7A;
+    line-height: 1.75;
+    max-width: 340px;
+  }
+
+  .s6 .type-info {
+    background: #F2EEE6;
+    border-radius: 12px;
+    padding: 14px 24px;
+    font-size: 13px;
+    color: #1A2030;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .s6 .type-info strong {
+    color: #B8860B;
+    font-weight: 700;
+  }
+
+  .s6 .cta-btn {
+    background: #1A2030;
+    color: #FAFAF7;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 16px 36px;
+    border-radius: 40px;
+  }
+
+  .s6 .watermark {
+    font-size: 12px;
+    color: #8899AA;
+    letter-spacing: 0.05em;
+  }
+</style>
+</head>
+<body>
+
+<div class="label">슬라이드 1 / 6 — 커버 (공감 훅)</div>
+<div class="slide s1">
+  <div class="spark-icon">⚡</div>
+  <div class="type-badge">SPARK 유형</div>
+  <div class="hook">아이디어는 넘치는데<br><em>마무리가 항상 안 된다</em>고요?</div>
+  <div class="sub">오른손 문제가 아닙니다.<br>왼손이 아직 잠들어 있는 겁니다.</div>
+</div>
+
+<div class="label">슬라이드 2 / 6 — SPARK 오른손 (공감)</div>
+<div class="slide s2">
+  <div class="tag">SPARK · 오른손 (주기능)</div>
+  <div class="title">당신이 원래<br>잘하는 것들</div>
+  <div class="traits">
+    <div class="trait">
+      <div class="trait-icon">💡</div>
+      <div class="trait-text">
+        <strong>끝없는 아이디어</strong>
+        대화하다 보면 아이디어가 10개씩 나옵니다
+      </div>
+    </div>
+    <div class="trait">
+      <div class="trait-icon">🔗</div>
+      <div class="trait-text">
+        <strong>연결하는 능력</strong>
+        전혀 다른 것들을 연결해서 새로운 걸 만듭니다
+      </div>
+    </div>
+    <div class="trait">
+      <div class="trait-icon">🌀</div>
+      <div class="trait-text">
+        <strong>가능성을 보는 눈</strong>
+        남들이 문제만 볼 때, 기회를 봅니다
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="label">슬라이드 3 / 6 — SPARK 왼손 (문제 인식)</div>
+<div class="slide s3">
+  <div class="tag">SPARK · 왼손 (열등기능)</div>
+  <div class="title">그런데 이런 거<br><span>낯설지 않나요?</span></div>
+  <div class="pain-list">
+    <div class="pain-item">시작한 게 <strong>100개인데</strong> 끝낸 게 3개...</div>
+    <div class="pain-item">루틴을 만들려고 해도 <strong>3일이 한계</strong></div>
+    <div class="pain-item">세부사항에 집중하면 <strong>에너지가 다 빠져요</strong></div>
+  </div>
+</div>
+
+<div class="label">슬라이드 4 / 6 — 왼손 포텐 터지면 3가지</div>
+<div class="slide s4">
+  <div class="tag">SPARK 왼손 포텐이 터지면</div>
+  <div class="title">일어나는 일<br>딱 3가지</div>
+  <div class="items">
+    <div class="item">
+      <div class="num">1</div>
+      <div class="item-body">
+        <div class="item-title">아이디어가 결과물이 된다</div>
+        <div class="item-sub">더 이상 아이디어 무덤을 만들지 않습니다. 끝까지 갑니다.</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="num">2</div>
+      <div class="item-body">
+        <div class="item-title">루틴이 억압이 아니라 날개가 된다</div>
+        <div class="item-sub">구조가 자유를 막는 게 아니라, 자유를 더 키워줍니다.</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="num">3</div>
+      <div class="item-body">
+        <div class="item-title">번뜩임이 번아웃 없이 지속된다</div>
+        <div class="item-sub">오래 빛나는 불꽃이 됩니다.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="label">슬라이드 5 / 6 — 핵심 메시지</div>
+<div class="slide s5">
+  <div class="spark-badge">SPARK</div>
+  <div class="message">문제가 있는 게 아닙니다.<br>왼손이 아직<br><em>잠들어 있을 뿐</em>입니다</div>
+  <div class="divider"></div>
+  <div class="note">고치는 게 아닙니다.<br>완성되는 겁니다.</div>
+</div>
+
+<div class="label">슬라이드 6 / 6 — CTA</div>
+<div class="slide s6">
+  <div class="brand">Shadowgram</div>
+  <div class="main">나는 <span>SPARK</span>일까요?<br>무료로 확인하세요</div>
+  <div class="type-info">
+    SPARK는 <strong>ENFP · ENTP</strong> 유형에 해당합니다<br>
+    (MBTI® 기반 독자적 프레임워크)
+  </div>
+  <div class="sub">내 왼손이 뭔지 알면<br>뭘 바꿔야 할지도 알게 됩니다</div>
+  <div class="cta-btn">무료 유형 진단하기</div>
+  <div class="watermark">shadowgram.org</div>
+</div>
+
+</body>
+</html>

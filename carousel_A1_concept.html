@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>캐러셀 A1 — 한 손으로는 사과를 깎을 수 없다</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #111;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    gap: 24px;
+    font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+  }
+
+  .label {
+    color: #888;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    margin-bottom: -16px;
+  }
+
+  /* 1080x1080 → 540x540 (50% for display) */
+  .slide {
+    width: 540px;
+    height: 540px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+
+  /* ───────────────────────────────────────
+     SLIDE 1 — COVER
+  ─────────────────────────────────────── */
+  .s1 {
+    background: #1A2030;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+  }
+
+  .s1 .eyebrow {
+    font-size: 13px;
+    letter-spacing: 0.25em;
+    color: #B8860B;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .s1 .main-text {
+    font-size: 36px;
+    font-weight: 800;
+    color: #FAFAF7;
+    text-align: center;
+    line-height: 1.35;
+    letter-spacing: -0.02em;
+    padding: 0 48px;
+  }
+
+  .s1 .sub-text {
+    font-size: 16px;
+    color: #8899AA;
+    letter-spacing: 0.05em;
+  }
+
+  .s1 .deco-line {
+    width: 48px;
+    height: 2px;
+    background: #B8860B;
+    border-radius: 2px;
+  }
+
+  .s1 .hand-icons {
+    font-size: 52px;
+    letter-spacing: 0.1em;
+    opacity: 0.85;
+  }
+
+  /* ───────────────────────────────────────
+     SLIDE 2 — 오른손
+  ─────────────────────────────────────── */
+  .s2 {
+    background: #FAFAF7;
+    display: flex;
+    flex-direction: column;
+    padding: 56px 52px;
+    justify-content: space-between;
+  }
+
+  .s2 .tag {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: #B8860B;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  .s2 .big-q {
+    font-size: 32px;
+    font-weight: 800;
+    color: #1A2030;
+    line-height: 1.35;
+    letter-spacing: -0.02em;
+  }
+
+  .s2 .big-q span {
+    color: #B8860B;
+  }
+
+  .s2 .desc {
+    font-size: 15px;
+    color: #5A6A7A;
+    line-height: 1.75;
+    font-weight: 400;
+  }
+
+  .s2 .examples {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .s2 .ex-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    color: #1A2030;
+    font-weight: 600;
+  }
+
+  .s2 .ex-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #B8860B;
+    flex-shrink: 0;
+  }
+
+  /* ───────────────────────────────────────
+     SLIDE 3 — 왼손
+  ─────────────────────────────────────── */
+  .s3 {
+    background: #1A2030;
+    display: flex;
+    flex-direction: column;
+    padding: 56px 52px;
+    justify-content: space-between;
+  }
+
+  .s3 .tag {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: #8899AA;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  .s3 .big-q {
+    font-size: 32px;
+    font-weight: 800;
+    color: #FAFAF7;
+    line-height: 1.35;
+    letter-spacing: -0.02em;
+  }
+
+  .s3 .big-q span {
+    color: #B8860B;
+  }
+
+  .s3 .desc {
+    font-size: 15px;
+    color: #8899AA;
+    line-height: 1.75;
+  }
+
+  .s3 .hint-box {
+    background: rgba(184,134,11,0.12);
+    border-left: 3px solid #B8860B;
+    padding: 16px 20px;
+    border-radius: 0 8px 8px 0;
+  }
+
+  .s3 .hint-box p {
+    font-size: 14px;
+    color: #FAFAF7;
+    line-height: 1.65;
+  }
+
+  /* ───────────────────────────────────────
+     SLIDE 4 — 왼손이 거들기 시작하면
+  ─────────────────────────────────────── */
+  .s4 {
+    background: #F2EEE6;
+    display: flex;
+    flex-direction: column;
+    padding: 52px 48px;
+    justify-content: space-between;
+  }
+
+  .s4 .tag {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: #B8860B;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  .s4 .title {
+    font-size: 28px;
+    font-weight: 800;
+    color: #1A2030;
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+  }
+
+  .s4 .items {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .s4 .item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .s4 .num {
+    font-size: 28px;
+    font-weight: 900;
+    color: #B8860B;
+    line-height: 1;
+    flex-shrink: 0;
+    width: 32px;
+  }
+
+  .s4 .item-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .s4 .item-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1A2030;
+  }
+
+  .s4 .item-sub {
+    font-size: 13px;
+    color: #5A6A7A;
+    line-height: 1.55;
+  }
+
+  /* ───────────────────────────────────────
+     SLIDE 5 — 소금 한 꼬집
+  ─────────────────────────────────────── */
+  .s5 {
+    background: #1A2030;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 56px 48px;
+    gap: 32px;
+    text-align: center;
+  }
+
+  .s5 .quote {
+    font-size: 22px;
+    font-weight: 800;
+    color: #FAFAF7;
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+  }
+
+  .s5 .quote em {
+    color: #B8860B;
+    font-style: normal;
+  }
+
+  .s5 .divider {
+    width: 40px;
+    height: 1px;
+    background: #B8860B;
+  }
+
+  .s5 .sub {
+    font-size: 15px;
+    color: #8899AA;
+    line-height: 1.7;
+  }
+
+  .s5 .metaphor {
+    font-size: 42px;
+    letter-spacing: 0.1em;
+  }
+
+  /* ───────────────────────────────────────
+     SLIDE 6 — CTA
+  ─────────────────────────────────────── */
+  .s6 {
+    background: #FAFAF7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px;
+    gap: 28px;
+    text-align: center;
+  }
+
+  .s6 .brand {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: #B8860B;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  .s6 .main {
+    font-size: 30px;
+    font-weight: 800;
+    color: #1A2030;
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+  }
+
+  .s6 .main span {
+    color: #B8860B;
+  }
+
+  .s6 .sub {
+    font-size: 14px;
+    color: #5A6A7A;
+    line-height: 1.75;
+    max-width: 360px;
+  }
+
+  .s6 .cta-btn {
+    background: #1A2030;
+    color: #FAFAF7;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 16px 36px;
+    border-radius: 40px;
+    text-transform: uppercase;
+  }
+
+  .s6 .watermark {
+    font-size: 12px;
+    color: #8899AA;
+    letter-spacing: 0.05em;
+  }
+</style>
+</head>
+<body>
+
+<div class="label">슬라이드 1 / 6 — 커버</div>
+<div class="slide s1">
+  <div class="eyebrow">왼손의 재발견</div>
+  <div class="hand-icons">🤚✋</div>
+  <div class="deco-line"></div>
+  <div class="main-text">한 손으로는<br>사과를 깎을 수 없다</div>
+  <div class="sub-text">당신의 왼손은 어디 있나요?</div>
+</div>
+
+<div class="label">슬라이드 2 / 6 — 오른손이란?</div>
+<div class="slide s2">
+  <div class="tag">오른손 (주기능)</div>
+  <div class="big-q">당신이 <span>잘하는 것</span>,<br>그게 오른손입니다</div>
+  <div class="desc">오른손은 자연스럽게 쓰는 손.<br>별로 애쓰지 않아도 잘 되는 것.<br>사람들이 "넌 원래 그런 사람이야" 하는 것.</div>
+  <div class="examples">
+    <div class="ex-item"><div class="ex-dot"></div>아이디어가 끝없이 나오는 사람</div>
+    <div class="ex-item"><div class="ex-dot"></div>분위기를 읽고 사람을 연결하는 사람</div>
+    <div class="ex-item"><div class="ex-dot"></div>체계적으로 끝까지 완수하는 사람</div>
+    <div class="ex-item"><div class="ex-dot"></div>논리로 핵심을 꿰뚫는 사람</div>
+  </div>
+</div>
+
+<div class="label">슬라이드 3 / 6 — 왼손이란?</div>
+<div class="slide s3">
+  <div class="tag">왼손 (열등기능)</div>
+  <div class="big-q">그런데<br><span>왼손은요?</span></div>
+  <div class="desc">왼손은 안 쓴다고 없어지는 게 아닙니다.<br>그냥 어딘가에 묻혀 있을 뿐입니다.</div>
+  <div class="hint-box">
+    <p>왼손이 묻혀 있는 동안,<br>오른손은 점점 혼자 일을 다 감당합니다.<br>잘 되는데 왜 이렇게 지칠까요?</p>
+  </div>
+</div>
+
+<div class="label">슬라이드 4 / 6 — 왼손이 거들기 시작하면</div>
+<div class="slide s4">
+  <div class="tag">왼손이 거들기 시작하면</div>
+  <div class="title">달라지는 것<br>딱 3가지</div>
+  <div class="items">
+    <div class="item">
+      <div class="num">1</div>
+      <div class="item-text">
+        <div class="item-title">잘 되는데 지쳤던 게 사라진다</div>
+        <div class="item-sub">오른손 혼자 버텨온 피로가 풀립니다</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="num">2</div>
+      <div class="item-text">
+        <div class="item-title">안 되던 게 갑자기 술술 풀린다</div>
+        <div class="item-sub">억지로 고치려던 게 아니라 완성됩니다</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="num">3</div>
+      <div class="item-text">
+        <div class="item-title">내가 나인 게 편해진다</div>
+        <div class="item-sub">바꾸지 않아도 됩니다. 완성되면 됩니다</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="label">슬라이드 5 / 6 — 소금 한 꼬집</div>
+<div class="slide s5">
+  <div class="metaphor">🧂</div>
+  <div class="quote">소금 한 꼬집이<br>요리의 <em>2%</em>가 아니라<br><em>100%</em>를 완성합니다</div>
+  <div class="divider"></div>
+  <div class="sub">왼손도 그렇습니다.<br>많이 필요한 게 아닙니다.<br>거드는 것만으로 충분합니다.</div>
+</div>
+
+<div class="label">슬라이드 6 / 6 — CTA</div>
+<div class="slide s6">
+  <div class="brand">Shadowgram</div>
+  <div class="main">당신의 <span>왼손</span>을<br>찾아드립니다</div>
+  <div class="sub">무료 유형 진단으로<br>오른손과 왼손을 한눈에 확인하세요</div>
+  <div class="cta-btn">무료로 알아보기</div>
+  <div class="watermark">shadowgram.org</div>
+</div>
+
+</body>
+</html>

@@ -25,14 +25,6 @@ body{font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:var(
   padding:0 20px;height:52px;
 }
 .gnav-logo{font-size:13px;font-weight:800;color:var(--gold);letter-spacing:.06em;text-decoration:none;}
-.gnav-tabs{display:flex;gap:4px;}
-.gnav-tab{
-  padding:6px 16px;border-radius:20px;font-size:13px;font-weight:700;
-  color:rgba(255,255,255,.55);text-decoration:none;cursor:pointer;
-  transition:all .2s;border:1px solid transparent;
-}
-.gnav-tab:hover{color:#fff;}
-.gnav-tab.active{background:rgba(184,134,11,.15);border-color:rgba(184,134,11,.4);color:var(--gold);}
 
 /* ── Layout ── */
 .wrap{max-width:720px;margin:0 auto;padding:72px 20px 60px;}
@@ -231,11 +223,6 @@ body{font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:var(
     <span></span><span></span><span></span>
   </button>
     <a class="gnav-logo" href="/couple/kr/">SHADOWGRAM</a>
-  <div class="gnav-tabs">
-    <a class="gnav-tab" href="/couple/kr/">TEST</a>
-    <a class="gnav-tab active" href="/couple/kr/shop/">SHOP</a>
-    <a class="gnav-tab" href="/couple/kr/blog/">BLOG</a>
-  </div>
   <div class="lang-switcher"><button class="lang-btn  active" onclick="langGo('kr')">KR</button> <button class="lang-btn" onclick="langGo('pt')">PT</button> <button class="lang-btn" onclick="langGo('es')">ES</button> <button class="lang-btn" onclick="langGo('en')">EN</button></div>
 </nav>
 
