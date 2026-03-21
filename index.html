@@ -4,226 +4,128 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Shadowgram — 빛과 그림자를 탐색하는 심리 유형 여정</title>
-  <meta name="description" content="Shadowgram은 융(Jung) 심리학 기반의 8유형 프레임워크입니다. 나를 탐색하는 Self, 관계를 이해하는 Couple — 빛과 그림자를 통해 온전한 나를 만나세요."/>
+  <meta name="description" content="Shadowgram은 융(Jung) 심리학 기반의 8유형 프레임워크입니다."/>
   <meta property="og:title" content="Shadowgram"/>
   <meta property="og:description" content="빛과 그림자를 탐색하는 심리 유형 여정"/>
   <meta property="og:image" content="https://shadowgram.org/shadowgram_cover_sq.png"/>
   <meta property="og:url" content="https://shadowgram.org"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
-
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg:    #0F121E;
-      --bg2:   #161A27;
-      --card:  #1A2030;
-      --card2: #1E2538;
-      --gold:  #B8860B;
-      --goldL: #C9A84C;
-      --goldD: #8A6409;
-      --silver:#8899AA;
-      --text:  #E8E4DC;
-      --textD: #A0A8B8;
+      --bg:#0F121E; --bg2:#161A27; --card:#1A2030; --card2:#1E2538;
+      --gold:#B8860B; --goldL:#C9A84C; --goldD:#8A6409;
+      --silver:#8899AA; --text:#E8E4DC; --textD:#A0A8B8;
       --border:rgba(184,134,11,0.18);
     }
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Montserrat', sans-serif;
-      -webkit-text-size-adjust: 100%;
-      min-height: 100vh;
-    }
+    html { scroll-behavior:smooth; }
+    body { background:var(--bg); color:var(--text); font-family:'Montserrat',sans-serif; -webkit-text-size-adjust:100%; min-height:100vh; }
 
     /* NAV */
-    .gnav {
-      display: flex; align-items: center; gap: 14px;
-      padding: 16px 24px;
-      position: sticky; top: 0; z-index: 200;
-      background: rgba(15,18,30,0.95);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-    }
-    .gnav-logo {
-      font-size: 14px; letter-spacing: 3px; font-weight: 700;
-      color: var(--goldL); text-decoration: none; flex: 1;
-    }
-    .gnav-logo span { color: var(--textD); font-weight: 300; }
-    .lang-switcher { display: flex; align-items: center; gap: 4px; margin-left: auto; }
-    .lang-btn {
-      font-size: 10px; letter-spacing: 1px; font-weight: 700;
-      color: var(--textD); background: none;
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 5px; padding: 4px 8px; cursor: pointer;
-      transition: all .2s; text-transform: uppercase;
-    }
-    .lang-btn:hover { border-color: rgba(184,134,11,0.5); color: var(--goldL); }
-    .lang-btn.active { border-color: rgba(184,134,11,0.6); color: var(--goldL); background: rgba(184,134,11,0.1); }
+    .gnav { display:flex; align-items:center; gap:12px; padding:14px 20px; position:sticky; top:0; z-index:200; background:rgba(15,18,30,0.96); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); }
+    .gnav-logo { font-size:13px; letter-spacing:3px; font-weight:700; color:var(--goldL); text-decoration:none; flex:1; white-space:nowrap; }
+    .gnav-logo span { color:var(--textD); font-weight:300; }
 
-    /* HAMBURGER BTN */
-    .hw-btn {
-      position: relative;
-      background: rgba(184,134,11,0.12);
-      border: 1px solid rgba(184,134,11,0.3);
-      border-radius: 8px;
-      width: 38px; height: 38px;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      gap: 5px; cursor: pointer; flex-shrink: 0;
-      transition: background .2s;
-    }
-    .hw-btn:hover { background: rgba(184,134,11,0.22); }
-    .hw-btn span {
-      display: block; width: 18px; height: 2px;
-      background: var(--goldL); border-radius: 2px;
-      transition: all .25s;
-    }
-    .hw-btn.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .hw-btn.open span:nth-child(2) { opacity: 0; }
-    .hw-btn.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    /* LANG */
+    .lang-switcher { display:flex; align-items:center; gap:4px; }
+    .lang-btn { font-size:10px; letter-spacing:1px; font-weight:700; color:var(--textD); background:none; border:1px solid rgba(255,255,255,0.1); border-radius:5px; padding:4px 8px; cursor:pointer; transition:all .2s; text-transform:uppercase; }
+    .lang-btn:hover { border-color:rgba(184,134,11,0.5); color:var(--goldL); }
+    .lang-btn.active { border-color:rgba(184,134,11,0.6); color:var(--goldL); background:rgba(184,134,11,0.1); }
+
+    /* HW BTN */
+    .hw-btn { position:relative; background:rgba(184,134,11,0.12); border:1px solid rgba(184,134,11,0.3); border-radius:8px; width:38px; height:38px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; cursor:pointer; flex-shrink:0; transition:background .2s; }
+    .hw-btn:hover { background:rgba(184,134,11,0.22); }
+    .hw-btn span { display:block; width:18px; height:2px; background:var(--goldL); border-radius:2px; transition:all .25s; }
+    .hw-btn.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+    .hw-btn.open span:nth-child(2){opacity:0;}
+    .hw-btn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
 
     /* DRAWER */
-    .hw-overlay {
-      position: fixed; inset: 0; z-index: 9998;
-      background: rgba(0,0,0,0); pointer-events: none;
-      transition: background .3s;
-    }
-    .hw-overlay.open { background: rgba(0,0,0,0.6); pointer-events: all; }
-    .hw-drawer {
-      position: fixed; top: 0; left: -290px; bottom: 0; z-index: 9999;
-      width: 270px; background: #0C0F1A;
-      border-right: 1px solid var(--border);
-      display: flex; flex-direction: column;
-      transition: left .3s cubic-bezier(.4,0,.2,1);
-      overflow-y: auto;
-    }
-    .hw-drawer.open { left: 0; }
-    .hw-drawer-head {
-      padding: 48px 24px 18px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .hw-drawer-logo { font-size: 13px; letter-spacing: 3px; font-weight: 700; color: var(--goldL); }
-    .hw-close-btn { background: none; border: none; color: var(--textD); font-size: 20px; cursor: pointer; padding: 4px 8px; line-height: 1; transition: color .2s; }
-    .hw-close-btn:hover { color: var(--goldL); }
-    .hw-section { padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
-    .hw-section-label { font-size: 10px; letter-spacing: 2px; color: #445; padding: 10px 24px 4px; text-transform: uppercase; }
-    .hw-item { display: flex; align-items: center; gap: 10px; padding: 12px 24px; color: #B0B8C8; text-decoration: none; font-size: 13px; transition: background .2s, color .2s; }
-    .hw-item:hover { background: rgba(184,134,11,0.08); color: var(--goldL); }
-    .hw-item-icon { font-size: 15px; }
-    .hw-badge { font-size: 9px; letter-spacing: 1px; font-weight: 700; background: rgba(184,134,11,0.2); color: var(--goldL); border: 1px solid rgba(184,134,11,0.3); padding: 2px 6px; border-radius: 4px; margin-left: auto; }
-    .hw-badge.soon { background: rgba(80,80,100,0.3); color: #667; border-color: rgba(100,100,120,0.3); }
-    .hw-sub { padding-left: 44px; font-size: 12px; color: #8898A8; }
-    .hw-sub:hover { color: var(--goldL); background: rgba(184,134,11,0.06); }
-    .hw-sub .hw-item-icon { font-size: 13px; }
-    .hw-disabled { opacity: .35; pointer-events: none; }
+    .hw-overlay { position:fixed; inset:0; z-index:9998; background:rgba(0,0,0,0); pointer-events:none; transition:background .3s; }
+    .hw-overlay.open { background:rgba(0,0,0,0.6); pointer-events:all; }
+    .hw-drawer { position:fixed; top:0; left:-290px; bottom:0; z-index:9999; width:270px; background:#0C0F1A; border-right:1px solid var(--border); display:flex; flex-direction:column; transition:left .3s cubic-bezier(.4,0,.2,1); overflow-y:auto; }
+    .hw-drawer.open { left:0; }
+    .hw-drawer-head { padding:48px 24px 18px; border-bottom:1px solid rgba(255,255,255,0.06); display:flex; align-items:center; justify-content:space-between; }
+    .hw-drawer-logo { font-size:13px; letter-spacing:3px; font-weight:700; color:var(--goldL); }
+    .hw-close-btn { background:none; border:none; color:var(--textD); font-size:20px; cursor:pointer; padding:4px 8px; line-height:1; transition:color .2s; }
+    .hw-close-btn:hover { color:var(--goldL); }
+    .hw-section { padding:6px 0; border-bottom:1px solid rgba(255,255,255,0.04); }
+    .hw-section-label { font-size:10px; letter-spacing:2px; color:#445; padding:10px 24px 4px; text-transform:uppercase; }
+    .hw-item { display:flex; align-items:center; gap:10px; padding:12px 24px; color:#B0B8C8; text-decoration:none; font-size:13px; transition:background .2s,color .2s; }
+    .hw-item:hover { background:rgba(184,134,11,0.08); color:var(--goldL); }
+    .hw-item-icon { font-size:15px; }
+    .hw-badge { font-size:9px; letter-spacing:1px; font-weight:700; background:rgba(184,134,11,0.2); color:var(--goldL); border:1px solid rgba(184,134,11,0.3); padding:2px 6px; border-radius:4px; margin-left:auto; }
+    .hw-badge.soon { background:rgba(80,80,100,0.3); color:#667; border-color:rgba(100,100,120,0.3); }
+    .hw-sub { padding-left:44px; font-size:12px; color:#8898A8; }
+    .hw-sub:hover { color:var(--goldL); background:rgba(184,134,11,0.06); }
+    .hw-sub .hw-item-icon { font-size:13px; }
+    .hw-disabled { opacity:.35; pointer-events:none; }
 
     /* HERO */
-    .hero {
-      min-height: calc(100vh - 70px);
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      text-align: center; padding: 60px 24px 80px;
-      position: relative; overflow: hidden;
-    }
-    .hero::before {
-      content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(184,134,11,0.07) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .hero-eyebrow {
-      font-size: 10px; letter-spacing: 4px; font-weight: 600;
-      color: var(--goldL); text-transform: uppercase; margin-bottom: 20px;
-      opacity: 0; animation: fadeUp .6s .1s ease forwards;
-    }
-    .hero-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(40px, 9vw, 80px);
-      font-weight: 600; line-height: 1.05; letter-spacing: -1px;
-      color: var(--text); margin-bottom: 12px;
-      opacity: 0; animation: fadeUp .6s .2s ease forwards;
-    }
-    .hero-title .gold { color: var(--goldL); }
-    .hero-subtitle {
-      font-size: clamp(13px, 2.5vw, 16px);
-      color: var(--textD); font-weight: 300; line-height: 1.8;
-      max-width: 520px; margin: 0 auto 48px;
-      opacity: 0; animation: fadeUp .6s .3s ease forwards;
-    }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(18px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+    .hero { min-height:calc(100vh - 70px); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:60px 24px 80px; position:relative; overflow:hidden; }
+    .hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 80% 60% at 50% 40%, rgba(184,134,11,0.07) 0%, transparent 70%); pointer-events:none; }
+    .hero-eyebrow { font-size:10px; letter-spacing:4px; font-weight:600; color:var(--goldL); text-transform:uppercase; margin-bottom:20px; opacity:0; animation:fadeUp .6s .1s ease forwards; }
+    .hero-title { font-family:'Cormorant Garamond',serif; font-size:clamp(38px,9vw,78px); font-weight:600; line-height:1.08; letter-spacing:-1px; color:var(--text); margin-bottom:16px; opacity:0; animation:fadeUp .6s .2s ease forwards; }
+    .hero-title .gold { color:var(--goldL); }
+    .hero-subtitle { font-size:clamp(13px,2.5vw,15px); color:var(--textD); font-weight:300; line-height:1.85; max-width:520px; margin:0 auto 48px; opacity:0; animation:fadeUp .6s .3s ease forwards; }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(18px);} to{opacity:1;transform:translateY(0);} }
 
     /* NAVMAP */
-    .navmap { padding: 0 20px 80px; max-width: 820px; margin: 0 auto; }
-    .section-label {
-      text-align: center; font-size: 10px; letter-spacing: 3px;
-      color: var(--silver); text-transform: uppercase; margin-bottom: 28px;
-    }
-    .navmap-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px;
-    }
-    .nav-card {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 16px; padding: 26px; text-decoration: none;
-      display: block; position: relative; overflow: hidden;
-      transition: transform .25s, border-color .25s, box-shadow .25s;
-    }
-    .nav-card:hover { transform: translateY(-4px); border-color: rgba(184,134,11,0.4); box-shadow: 0 12px 40px rgba(0,0,0,0.4); }
-    .nav-card.disabled { opacity: 0.4; cursor: default; pointer-events: none; }
-    .nav-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--goldD), var(--goldL)); opacity: 0; transition: opacity .25s; }
-    .nav-card:hover::before { opacity: 1; }
-    .card-icon { font-size: 26px; margin-bottom: 12px; }
-    .card-tag { display: inline-block; font-size: 9px; letter-spacing: 2px; font-weight: 700; color: var(--goldL); background: rgba(184,134,11,0.1); border: 1px solid rgba(184,134,11,0.2); padding: 3px 8px; border-radius: 4px; text-transform: uppercase; margin-bottom: 10px; }
-    .card-tag.soon-tag { color: #556; background: rgba(80,80,120,0.2); border-color: rgba(80,80,120,0.2); }
-    .card-title { font-size: 18px; font-weight: 700; letter-spacing: 0.5px; color: var(--text); margin-bottom: 4px; }
-    .card-sub { font-size: 11px; color: var(--goldL); letter-spacing: 1px; margin-bottom: 10px; }
-    .card-desc { font-size: 12px; color: var(--textD); line-height: 1.75; margin-bottom: 16px; }
-    .card-links { display: flex; flex-wrap: wrap; gap: 7px; }
-    .card-link { font-size: 11px; font-weight: 600; color: var(--goldL); background: rgba(184,134,11,0.1); border: 1px solid rgba(184,134,11,0.25); padding: 5px 12px; border-radius: 20px; text-decoration: none; transition: background .2s; }
-    .card-link:hover { background: rgba(184,134,11,0.22); }
-    .card-link.kr { background: rgba(120,80,200,0.1); border-color: rgba(120,80,200,0.25); color: #A898E8; }
-    .card-link.kr:hover { background: rgba(120,80,200,0.2); }
-    .card-link.pt { background: rgba(40,140,80,0.1); border-color: rgba(40,140,80,0.25); color: #70C890; }
-    .card-link.pt:hover { background: rgba(40,140,80,0.2); }
+    .navmap { padding:0 20px 80px; max-width:820px; margin:0 auto; }
+    .section-label { text-align:center; font-size:10px; letter-spacing:3px; color:var(--silver); text-transform:uppercase; margin-bottom:28px; }
+    .navmap-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; }
+    .nav-card { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:26px; text-decoration:none; display:block; position:relative; overflow:hidden; transition:transform .25s,border-color .25s,box-shadow .25s; }
+    .nav-card:hover { transform:translateY(-4px); border-color:rgba(184,134,11,0.4); box-shadow:0 12px 40px rgba(0,0,0,0.4); }
+    .nav-card.disabled { opacity:.4; cursor:default; pointer-events:none; }
+    .nav-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--goldD),var(--goldL)); opacity:0; transition:opacity .25s; }
+    .nav-card:hover::before { opacity:1; }
+    .card-icon { font-size:26px; margin-bottom:12px; }
+    .card-tag { display:inline-block; font-size:9px; letter-spacing:2px; font-weight:700; color:var(--goldL); background:rgba(184,134,11,0.1); border:1px solid rgba(184,134,11,0.2); padding:3px 8px; border-radius:4px; text-transform:uppercase; margin-bottom:10px; }
+    .card-tag.soon-tag { color:#556; background:rgba(80,80,120,0.2); border-color:rgba(80,80,120,0.2); }
+    .card-title { font-size:18px; font-weight:700; letter-spacing:0.5px; color:var(--text); margin-bottom:4px; }
+    .card-sub { font-size:11px; color:var(--goldL); letter-spacing:1px; margin-bottom:10px; }
+    .card-desc { font-size:12px; color:var(--textD); line-height:1.75; margin-bottom:16px; }
+    .card-links { display:flex; flex-wrap:wrap; gap:7px; }
+    .card-link { font-size:11px; font-weight:600; color:var(--goldL); background:rgba(184,134,11,0.1); border:1px solid rgba(184,134,11,0.25); padding:5px 12px; border-radius:20px; text-decoration:none; transition:background .2s; }
+    .card-link:hover { background:rgba(184,134,11,0.22); }
+    .card-link.kr { background:rgba(120,80,200,0.1); border-color:rgba(120,80,200,0.25); color:#A898E8; }
+    .card-link.kr:hover { background:rgba(120,80,200,0.2); }
+    .card-link.pt { background:rgba(40,140,80,0.1); border-color:rgba(40,140,80,0.25); color:#70C890; }
+    .card-link.pt:hover { background:rgba(40,140,80,0.2); }
 
     /* 8TYPES */
-    .types-section { max-width: 820px; margin: 0 auto; padding: 0 20px 80px; }
-    .types-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-    .type-chip { background: var(--card2); border: 1px solid rgba(184,134,11,0.12); border-radius: 10px; padding: 14px 10px; text-align: center; }
-    .type-chip-name { font-size: 12px; font-weight: 700; letter-spacing: 1px; color: var(--goldL); margin-bottom: 4px; }
-    .type-chip-mbti { font-size: 9px; color: var(--silver); letter-spacing: 0.5px; }
+    .types-section { max-width:820px; margin:0 auto; padding:0 20px 80px; }
+    .types-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+    .type-chip { background:var(--card2); border:1px solid rgba(184,134,11,0.12); border-radius:10px; padding:14px 10px; text-align:center; }
+    .type-chip-name { font-size:12px; font-weight:700; letter-spacing:1px; color:var(--goldL); margin-bottom:4px; }
+    .type-chip-mbti { font-size:9px; color:var(--silver); letter-spacing:0.5px; }
 
-    .divider { width: 40px; height: 1px; background: linear-gradient(90deg, transparent, var(--goldL), transparent); margin: 0 auto 56px; }
+    .divider { width:40px; height:1px; background:linear-gradient(90deg,transparent,var(--goldL),transparent); margin:0 auto 56px; }
 
     /* FOOTER */
-    footer { border-top: 1px solid var(--border); padding: 32px 24px; text-align: center; }
-    .footer-logo { font-size: 12px; letter-spacing: 4px; font-weight: 700; color: var(--goldL); margin-bottom: 10px; }
-    .footer-text { font-size: 11px; color: var(--silver); line-height: 1.9; }
-    .footer-text a { color: var(--silver); text-decoration: none; }
-    .footer-text a:hover { color: var(--goldL); }
+    footer { border-top:1px solid var(--border); padding:32px 24px; text-align:center; }
+    .footer-logo { font-size:12px; letter-spacing:4px; font-weight:700; color:var(--goldL); margin-bottom:10px; }
+    .footer-text { font-size:11px; color:var(--silver); line-height:1.9; }
+    .footer-text a { color:var(--silver); text-decoration:none; }
+    .footer-text a:hover { color:var(--goldL); }
 
-    @media (max-width: 480px) {
-      .types-grid { grid-template-columns: repeat(2, 1fr); }
-      .navmap-grid { grid-template-columns: 1fr; }
-    }
+    @media(max-width:480px){ .types-grid{grid-template-columns:repeat(2,1fr);} .navmap-grid{grid-template-columns:1fr;} }
   </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav class="gnav">
-  <button class="hw-btn" id="hw-btn" onclick="hwToggle()" aria-label="메뉴">
+  <button class="hw-btn" id="hw-btn" onclick="hwToggle()" aria-label="menu">
     <span></span><span></span><span></span>
   </button>
   <a class="gnav-logo" href="/"><span>SHADOW</span>GRAM</a>
   <div class="lang-switcher">
-    <button class="lang-btn active" onclick="langGo('kr')">KR</button>
-    <button class="lang-btn" onclick="langGo('pt')">PT</button>
-    <button class="lang-btn" onclick="langGo('es')">ES</button>
-    <button class="lang-btn" onclick="langGo('en')">EN</button>
+    <button class="lang-btn" id="lb-kr" onclick="setLang('kr')">KR</button>
+    <button class="lang-btn" id="lb-pt" onclick="setLang('pt')">PT</button>
+    <button class="lang-btn" id="lb-es" onclick="setLang('es')">ES</button>
+    <button class="lang-btn" id="lb-en" onclick="setLang('en')">EN</button>
   </div>
 </nav>
 
@@ -232,26 +134,23 @@
 <div class="hw-drawer" id="hw-drawer">
   <div class="hw-drawer-head">
     <div class="hw-drawer-logo">SHADOWGRAM</div>
-    <button class="hw-close-btn" onclick="hwClose()" aria-label="닫기">✕</button>
+    <button class="hw-close-btn" onclick="hwClose()" aria-label="close">✕</button>
   </div>
   <div class="hw-section">
     <a class="hw-item" href="/"><span class="hw-item-icon">🏠</span> Home</a>
   </div>
-
   <div class="hw-section">
     <div class="hw-section-label">Self</div>
     <a class="hw-item" href="/self/pt/"><span class="hw-item-icon">🌟</span> Shadowgram Self <span class="hw-badge">PT-BR</span></a>
     <a class="hw-item hw-sub" href="/blog/"><span class="hw-item-icon">📝</span> Blog</a>
     <a class="hw-item hw-sub" href="/blog/faq.html"><span class="hw-item-icon">❓</span> FAQ</a>
   </div>
-
   <div class="hw-section">
     <div class="hw-section-label">Couple</div>
     <a class="hw-item" href="/couple/kr/"><span class="hw-item-icon">💑</span> Shadowgram Couple <span class="hw-badge">KR</span></a>
     <a class="hw-item hw-sub" href="/couple/kr/shop/"><span class="hw-item-icon">🛍</span> Shop</a>
     <a class="hw-item hw-sub" href="/couple/kr/blog/"><span class="hw-item-icon">📝</span> Blog</a>
   </div>
-
   <div class="hw-section">
     <div class="hw-section-label">Coming Soon</div>
     <a class="hw-item hw-disabled" href="#"><span class="hw-item-icon">🏢</span> Shadowgram Team <span class="hw-badge soon">Soon</span></a>
@@ -261,27 +160,24 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-eyebrow">Jung-based Psychology · 8 Types</div>
-  <h1 class="hero-title">빛과 <span class="gold">그림자</span>를<br>탐색하는 심리 여정</h1>
-  <p class="hero-subtitle">
-    내 안의 강점(빛)과 아직 깨어나지 않은 가능성(그림자)을<br>
-    융(Jung) 심리학 기반 8유형 프레임워크로 탐색합니다.
-  </p>
+  <div class="hero-eyebrow" id="t-eyebrow"></div>
+  <h1 class="hero-title" id="t-title"></h1>
+  <p class="hero-subtitle" id="t-subtitle"></p>
 </section>
 
 <!-- NAV MAP -->
 <section class="navmap">
-  <div class="section-label">Navigation Map</div>
+  <div class="section-label" id="t-navlabel"></div>
   <div class="navmap-grid">
 
     <div class="nav-card" style="cursor:default;">
       <div class="card-icon">🌟</div>
       <span class="card-tag">Self</span>
       <div class="card-title">Shadowgram Self</div>
-      <div class="card-sub">개인 심리 유형 탐색</div>
-      <div class="card-desc">28문항으로 나의 주기능을 발견하고, 빛 7가지·그림자 7가지를 통해 온전한 나를 만나는 여정.</div>
+      <div class="card-sub" id="t-self-sub"></div>
+      <div class="card-desc" id="t-self-desc"></div>
       <div class="card-links">
-        <a class="card-link pt" href="/self/pt/">🇧🇷 테스트 — PT-BR</a>
+        <a class="card-link pt" href="/self/pt/" id="t-self-link"></a>
       </div>
     </div>
 
@@ -289,10 +185,10 @@
       <div class="card-icon">💑</div>
       <span class="card-tag">Couple</span>
       <div class="card-title">Shadowgram Couple</div>
-      <div class="card-sub">커플 · 관계 유형 탐색</div>
-      <div class="card-desc">두 사람의 유형을 진단해 64가지 조합별 관계 역학과 소통 방식을 분석하는 리포트.</div>
+      <div class="card-sub" id="t-couple-sub"></div>
+      <div class="card-desc" id="t-couple-desc"></div>
       <div class="card-links">
-        <a class="card-link kr" href="/couple/kr/">🇰🇷 테스트</a>
+        <a class="card-link kr" href="/couple/kr/" id="t-couple-test"></a>
         <a class="card-link kr" href="/couple/kr/shop/">🛍 Shop</a>
       </div>
     </div>
@@ -301,18 +197,18 @@
       <div class="card-icon">🏢</div>
       <span class="card-tag soon-tag">Coming Soon</span>
       <div class="card-title">Shadowgram Team</div>
-      <div class="card-sub">조직 심리 다이나믹스</div>
-      <div class="card-desc">팀 유형 조합 분석 — 조직 강점·갈등 패턴을 진단하는 B2B 솔루션.</div>
-      <div class="card-links"><span class="card-link" style="opacity:.4;pointer-events:none;">준비중</span></div>
+      <div class="card-sub" id="t-team-sub"></div>
+      <div class="card-desc" id="t-team-desc"></div>
+      <div class="card-links"><span class="card-link" style="opacity:.4;pointer-events:none;" id="t-soon-label"></span></div>
     </div>
 
     <div class="nav-card disabled">
       <div class="card-icon">🌙</div>
       <span class="card-tag soon-tag">Coming Soon</span>
       <div class="card-title">leftnoon</div>
-      <div class="card-sub">40대+ 커뮤니티</div>
-      <div class="card-desc">인생 후반전을 탐색하는 40대 이상을 위한 심리 기반 커뮤니티.</div>
-      <div class="card-links"><span class="card-link" style="opacity:.4;pointer-events:none;">준비중</span></div>
+      <div class="card-sub" id="t-leftnoon-sub"></div>
+      <div class="card-desc" id="t-leftnoon-desc"></div>
+      <div class="card-links"><span class="card-link" style="opacity:.4;pointer-events:none;" id="t-soon-label2"></span></div>
     </div>
 
   </div>
@@ -322,7 +218,7 @@
 
 <!-- 8 TYPES -->
 <section class="types-section">
-  <div class="section-label">Shadowgram 8 Types</div>
+  <div class="section-label" id="t-typelabel"></div>
   <div class="types-grid">
     <div class="type-chip"><div class="type-chip-name">SPARK</div><div class="type-chip-mbti">ENFP · ENTP</div></div>
     <div class="type-chip"><div class="type-chip-name">VISION</div><div class="type-chip-mbti">INFJ · INTJ</div></div>
@@ -340,13 +236,137 @@
   <div class="footer-logo">SHADOWGRAM</div>
   <div class="footer-text">
     shadowgram.org · © 2025 Shadowgram<br>
-    개인정보 문의: <a href="mailto:joculsion@gmail.com">joculsion@gmail.com</a><br><br>
+    <span id="t-privacy-label"></span>: <a href="mailto:joculsion@gmail.com">joculsion@gmail.com</a><br><br>
     * MBTI® is a registered trademark of The Myers &amp; Briggs Foundation.<br>
-    Shadowgram은 독자적 프레임워크로, The Myers &amp; Briggs Foundation과 무관합니다.
+    <span id="t-mbti-note"></span>
   </div>
 </footer>
 
 <script>
+/* ── TRANSLATIONS ─────────────────────────── */
+var T = {
+  kr: {
+    eyebrow: 'Jung 심리학 기반 · 8유형 프레임워크',
+    title: '빛과 <span class="gold">그림자</span>를<br>탐색하는 심리 여정',
+    subtitle: '내 안의 강점(빛)과 아직 깨어나지 않은 가능성(그림자)을<br>융(Jung) 심리학 기반 8유형 프레임워크로 탐색합니다.',
+    navlabel: '서비스 둘러보기',
+    typelabel: 'Shadowgram 8유형',
+    selfSub: '개인 심리 유형 탐색',
+    selfDesc: '28문항으로 나의 주기능을 발견하고, 빛 7가지·그림자 7가지를 통해 온전한 나를 만나는 여정.',
+    selfLink: '🇧🇷 테스트 — PT-BR',
+    coupleSub: '커플 · 관계 유형 탐색',
+    coupleDesc: '두 사람의 유형을 진단해 64가지 조합별 관계 역학과 소통 방식을 분석하는 리포트.',
+    coupleTest: '🇰🇷 테스트',
+    teamSub: '조직 심리 다이나믹스',
+    teamDesc: '팀 유형 조합 분석 — 조직 강점·갈등 패턴을 진단하는 B2B 솔루션.',
+    leftnoonSub: '40대+ 커뮤니티',
+    leftnoonDesc: '인생 후반전을 탐색하는 40대 이상을 위한 심리 기반 커뮤니티.',
+    soon: '준비중',
+    privacyLabel: '개인정보 문의',
+    mbtiNote: 'Shadowgram은 독자적 프레임워크로, The Myers &amp; Briggs Foundation과 무관합니다.'
+  },
+  pt: {
+    eyebrow: 'Psicologia de Jung · 8 Tipos',
+    title: 'Uma jornada pela<br><span class="gold">luz e sombra</span><br>da sua psique',
+    subtitle: 'Descubra seus pontos fortes (luz) e potenciais adormecidos (sombra)<br>com o framework de 8 tipos baseado em Jung.',
+    navlabel: 'Navegação',
+    typelabel: 'Os 8 Tipos Shadowgram',
+    selfSub: 'Exploração do tipo individual',
+    selfDesc: '28 perguntas para descobrir sua função principal, com 7 luzes e 7 sombras — uma jornada rumo ao seu eu completo.',
+    selfLink: '🇧🇷 Fazer o teste — PT-BR',
+    coupleSub: 'Exploração do tipo de casal',
+    coupleDesc: 'Diagnóstico de dois tipos para analisar a dinâmica de relacionamento e comunicação entre 64 combinações possíveis.',
+    coupleTest: '🇰🇷 Teste (KR)',
+    teamSub: 'Dinâmica organizacional',
+    teamDesc: 'Análise de combinações de tipos em equipes — solução B2B para diagnosticar pontos fortes e padrões de conflito.',
+    leftnoonSub: 'Comunidade 40+',
+    leftnoonDesc: 'Uma comunidade baseada em psicologia para pessoas acima dos 40 que exploram a segunda metade da vida.',
+    soon: 'Em breve',
+    privacyLabel: 'Privacidade',
+    mbtiNote: 'Shadowgram é um framework independente, sem relação com The Myers &amp; Briggs Foundation.'
+  },
+  es: {
+    eyebrow: 'Psicología de Jung · 8 Tipos',
+    title: 'Un viaje por la<br><span class="gold">luz y sombra</span><br>de tu psique',
+    subtitle: 'Descubre tus fortalezas (luz) y potenciales dormidos (sombra)<br>con el framework de 8 tipos basado en Jung.',
+    navlabel: 'Navegación',
+    typelabel: 'Los 8 Tipos Shadowgram',
+    selfSub: 'Exploración del tipo individual',
+    selfDesc: '28 preguntas para descubrir tu función principal, con 7 luces y 7 sombras — un viaje hacia tu yo completo.',
+    selfLink: '🇧🇷 Hacer el test — PT-BR',
+    coupleSub: 'Exploración del tipo de pareja',
+    coupleDesc: 'Diagnóstico de dos tipos para analizar la dinámica de relación y comunicación entre 64 combinaciones posibles.',
+    coupleTest: '🇰🇷 Test (KR)',
+    teamSub: 'Dinámica organizacional',
+    teamDesc: 'Análisis de combinaciones de tipos en equipos — solución B2B para diagnosticar fortalezas y patrones de conflicto.',
+    leftnoonSub: 'Comunidad 40+',
+    leftnoonDesc: 'Una comunidad basada en psicología para personas mayores de 40 que exploran la segunda mitad de la vida.',
+    soon: 'Próximamente',
+    privacyLabel: 'Privacidad',
+    mbtiNote: 'Shadowgram es un framework independiente, sin relación con The Myers &amp; Briggs Foundation.'
+  },
+  en: {
+    eyebrow: 'Jung-based Psychology · 8 Types',
+    title: 'A journey through<br><span class="gold">light and shadow</span><br>of your psyche',
+    subtitle: 'Discover your strengths (light) and dormant potential (shadow)<br>with Jung-based 8-type framework.',
+    navlabel: 'Navigation Map',
+    typelabel: 'Shadowgram 8 Types',
+    selfSub: 'Individual personality exploration',
+    selfDesc: '28 questions to uncover your dominant function — 7 lights and 7 shadows guiding you toward wholeness.',
+    selfLink: '🇧🇷 Take the test — PT-BR',
+    coupleSub: 'Couple & relationship exploration',
+    coupleDesc: 'Diagnose two types to analyze relationship dynamics and communication styles across 64 possible combinations.',
+    coupleTest: '🇰🇷 Test (KR)',
+    teamSub: 'Organizational psychology',
+    teamDesc: 'Team type combination analysis — a B2B solution for diagnosing strengths and conflict patterns.',
+    leftnoonSub: 'Community 40+',
+    leftnoonDesc: 'A psychology-based community for people over 40 exploring the second half of life.',
+    soon: 'Coming soon',
+    privacyLabel: 'Privacy contact',
+    mbtiNote: 'Shadowgram is an independent framework, unaffiliated with The Myers &amp; Briggs Foundation.'
+  }
+};
+
+/* ── APPLY LANG ───────────────────────────── */
+function applyLang(lang) {
+  var t = T[lang];
+  document.getElementById('t-eyebrow').textContent = t.eyebrow;
+  document.getElementById('t-title').innerHTML = t.title;
+  document.getElementById('t-subtitle').innerHTML = t.subtitle;
+  document.getElementById('t-navlabel').textContent = t.navlabel;
+  document.getElementById('t-typelabel').textContent = t.typelabel;
+  document.getElementById('t-self-sub').textContent = t.selfSub;
+  document.getElementById('t-self-desc').textContent = t.selfDesc;
+  document.getElementById('t-self-link').innerHTML = t.selfLink;
+  document.getElementById('t-couple-sub').textContent = t.coupleSub;
+  document.getElementById('t-couple-desc').textContent = t.coupleDesc;
+  document.getElementById('t-couple-test').innerHTML = t.coupleTest;
+  document.getElementById('t-team-sub').textContent = t.teamSub;
+  document.getElementById('t-team-desc').textContent = t.teamDesc;
+  document.getElementById('t-leftnoon-sub').textContent = t.leftnoonSub;
+  document.getElementById('t-leftnoon-desc').textContent = t.leftnoonDesc;
+  document.getElementById('t-soon-label').textContent = t.soon;
+  document.getElementById('t-soon-label2').textContent = t.soon;
+  document.getElementById('t-privacy-label').textContent = t.privacyLabel;
+  document.getElementById('t-mbti-note').innerHTML = t.mbtiNote;
+
+  // 버튼 active 상태
+  ['kr','pt','es','en'].forEach(function(l){
+    var btn = document.getElementById('lb-'+l);
+    if(btn) btn.classList.toggle('active', l===lang);
+  });
+
+  // html lang 속성
+  var langMap = {kr:'ko', pt:'pt-BR', es:'es', en:'en'};
+  document.documentElement.lang = langMap[lang] || lang;
+
+  // 저장
+  try{ localStorage.setItem('sg_lang', lang); }catch(e){}
+}
+
+function setLang(lang){ applyLang(lang); }
+
+/* ── HAMBURGER ────────────────────────────── */
 function hwToggle(){
   var btn=document.getElementById('hw-btn');
   var drawer=document.getElementById('hw-drawer');
@@ -360,22 +380,23 @@ function hwClose(){
   document.getElementById('hw-drawer').classList.remove('open');
   document.getElementById('hw-overlay').classList.remove('open');
 }
-document.addEventListener('keydown',function(e){ if(e.key==='Escape') hwClose(); });
+document.addEventListener('keydown',function(e){if(e.key==='Escape')hwClose();});
 
-// 언어 전환
-var LANG_URLS = {
-  kr: '/',
-  pt: '/self/pt/',
-  es: '#',  // coming soon
-  en: '#'   // coming soon
-};
-function langGo(lang){
-  if(LANG_URLS[lang] === '#'){
-    alert('준비 중입니다. 곧 오픈 예정이에요!');
-    return;
+/* ── INIT ─────────────────────────────────── */
+(function(){
+  var saved = '';
+  try{ saved = localStorage.getItem('sg_lang')||''; }catch(e){}
+  // 브라우저 언어 감지
+  var nav = (navigator.language||navigator.userLanguage||'').toLowerCase();
+  var auto = 'kr';
+  if(!saved){
+    if(nav.startsWith('pt')) auto='pt';
+    else if(nav.startsWith('es')) auto='es';
+    else if(nav.startsWith('ko')) auto='kr';
+    else if(!nav.startsWith('ko') && !nav.startsWith('pt') && !nav.startsWith('es')) auto='en';
   }
-  window.location.href = LANG_URLS[lang];
-}
+  applyLang(saved || auto);
+})();
 </script>
 </body>
 </html>
