@@ -118,7 +118,12 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 
   /* ── Hamburger Drawer ───────────────────────────────────── */
-  .hw-btn{position:fixed;top:14px;left:16px;z-index:10001;
+  /* ── Mini GNav ── */
+  .gnav{position:fixed;top:0;left:0;right:0;z-index:999;
+    background:rgba(15,18,30,0.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(184,134,11,.2);
+    display:flex;align-items:center;padding:0 16px;height:52px;gap:8px;}
+  .hw-btn{position:relative;top:auto;left:auto;z-index:10001;margin-right:4px;
     background:rgba(15,18,30,0.85);border:1px solid rgba(184,134,11,.3);
     border-radius:10px;width:40px;height:40px;display:flex;flex-direction:column;
     align-items:center;justify-content:center;gap:5px;cursor:pointer;
@@ -158,6 +163,11 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 </style>
 </head>
 <body>
+<nav class="gnav">
+  <button class="hw-btn" id="hw-btn" onclick="hwToggle()" aria-label="메뉴">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
 <div class="wrap">
 
   <!-- ── 시작 화면 ── -->

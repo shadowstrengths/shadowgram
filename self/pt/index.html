@@ -497,7 +497,7 @@
     }
   
   /* ── Hamburger Drawer ───────────────────────────────────── */
-  .hw-btn{position:fixed;top:14px;left:16px;z-index:10001;
+  .hw-btn{position:relative;top:auto;left:auto;z-index:10001;
     background:rgba(15,18,30,0.85);border:1px solid rgba(184,134,11,.3);
     border-radius:10px;width:40px;height:40px;display:flex;flex-direction:column;
     align-items:center;justify-content:center;gap:5px;cursor:pointer;
@@ -540,10 +540,15 @@
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="https://shadowgram.org">
-    <img src="https://shadowgram.org/logo.png" alt="Shadowgram Logo">
-    <span><span class="s1">SHADOW</span><span class="s2">GRAM</span></span>
-  </a>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <button class="hw-btn" id="hw-btn" onclick="hwToggle()" aria-label="메뉴" style="position:relative;top:auto;left:auto;width:36px;height:36px;flex-shrink:0;">
+      <span></span><span></span><span></span>
+    </button>
+    <a class="nav-logo" href="https://shadowgram.org">
+      <img src="https://shadowgram.org/logo.png" alt="Shadowgram Logo">
+      <span><span class="s1">SHADOW</span><span class="s2">GRAM</span></span>
+    </a>
+  </div>
 </nav>
 
 <!-- MINI HEADER (퀴즈 위 최소 표시) -->
