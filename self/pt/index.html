@@ -541,21 +541,20 @@
   .hw-disabled{opacity:.35;pointer-events:none;}
   .hw-parent{display:flex;align-items:center;gap:10px;padding:12px 24px;color:#E8E4DC;font-size:13px;cursor:default;}
   .hw-parent{display:flex;align-items:center;gap:10px;padding:12px 24px;color:#E8E4DC;font-size:13px;cursor:default;}
-  </style>
+    .sg-nav{display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:52px;position:sticky;top:0;z-index:999;background:rgba(15,18,30,0.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(184,134,11,0.18);}
+  .sg-logo{font-size:13px;letter-spacing:3px;text-decoration:none;display:flex;align-items:center;white-space:nowrap;}
+  .sg-s1{color:#A0A8B8;font-weight:300;}
+  .sg-s2{color:#C9A84C;font-weight:800;}
+  .sg-dot{color:rgba(184,134,11,0.45);font-weight:300;font-size:13px;}
+  .sg-s3{color:#8899AA;font-weight:400;font-size:10px;letter-spacing:2px;}
+</style>
 </head>
 <body>
 
 <!-- NAV -->
-<nav>
-  <div style="display:flex;align-items:center;gap:14px;">
-    <button class="hw-btn" id="hw-btn" onclick="hwToggle()" aria-label="메뉴" style="position:relative;top:auto;left:auto;width:36px;height:36px;flex-shrink:0;">
-      <span></span><span></span><span></span>
-    </button>
-    <a class="nav-logo" href="https://shadowgram.org">
-      <img src="https://shadowgram.org/logo.png" alt="Shadowgram Logo">
-      <span><span class="s1">SHADOW</span><span class="s2">GRAM</span><span class="s-dot"> · </span><span class="s3">SELF</span></span>
-    </a>
-  </div>
+<nav class="sg-nav">
+  <button class="hw-btn" id="hw-btn" onclick="hwToggle()" aria-label="menu"><span></span><span></span><span></span></button>
+  <a class="sg-logo" href="https://shadowgram.org"><span class="sg-s1">SHADOW</span><span class="sg-s2">GRAM</span><span class="sg-dot"> · </span><span class="sg-s3">SELF</span></a>
 </nav>
 
 <!-- MINI HEADER (퀴즈 위 최소 표시) -->

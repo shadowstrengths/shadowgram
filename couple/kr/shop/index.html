@@ -10,8 +10,8 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
   --dark:#1A2030; --gold:#B8860B; --gold-l:#D4A017;
-  --silver:#8899AA; --white:#fff; --bg:#F7F5F0;
-  --card:#fff; --radius:16px;
+  --silver:#8899AA; --white:#fff; --bg:#0F121E;
+  --card:#1E2233; --radius:16px;
 }
 body{font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:var(--bg);color:var(--dark);min-height:100vh;}
 
@@ -210,16 +210,20 @@ body{font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:var(
   .hw-disabled{opacity:.35;pointer-events:none;}
   .hw-parent{display:flex;align-items:center;gap:10px;padding:12px 24px;color:#E8E4DC;font-size:13px;cursor:default;}
   .hw-parent{display:flex;align-items:center;gap:10px;padding:12px 24px;color:#E8E4DC;font-size:13px;cursor:default;}
-  </style>
+    .sg-nav{display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:52px;position:sticky;top:0;z-index:999;background:rgba(15,18,30,0.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(184,134,11,0.18);}
+  .sg-logo{font-size:13px;letter-spacing:3px;text-decoration:none;display:flex;align-items:center;white-space:nowrap;}
+  .sg-s1{color:#A0A8B8;font-weight:300;}
+  .sg-s2{color:#C9A84C;font-weight:800;}
+  .sg-dot{color:rgba(184,134,11,0.45);font-weight:300;font-size:13px;}
+  .sg-s3{color:#8899AA;font-weight:400;font-size:10px;letter-spacing:2px;}
+</style>
 </head>
 <body>
 
 <!-- Nav -->
-<nav class="gnav">
-  <button class="hw-btn" id="hw-btn" onclick="hwToggle()" aria-label="메뉴">
-    <span></span><span></span><span></span>
-  </button>
-    <a class="gnav-logo" href="/couple/kr/"><span class="s1">SHADOW</span><span class="s2">GRAM</span><span class="s-dot"> · </span><span class="s3">COUPLE</span></a>
+<nav class="sg-nav">
+  <button class="hw-btn" id="hw-btn" onclick="hwToggle()" aria-label="menu"><span></span><span></span><span></span></button>
+  <a class="sg-logo" href="/couple/kr/"><span class="sg-s1">SHADOW</span><span class="sg-s2">GRAM</span><span class="sg-dot"> · </span><span class="sg-s3">COUPLE</span></a>
 </nav>
 
 <div class="wrap">
