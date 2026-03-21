@@ -46,6 +46,15 @@ body{font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:var(
     border-radius:10px;width:40px;height:40px;display:flex;flex-direction:column;
     align-items:center;justify-content:center;gap:5px;cursor:pointer;
     backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);}
+  
+  .hw-drawer-close{position:absolute;top:16px;right:16px;background:none;border:none;color:#C9A84C;font-size:18px;cursor:pointer;padding:4px 8px;}
+  .hw-section{padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05);}
+  .hw-section-label{font-size:10px;letter-spacing:1.5px;color:#667;padding:10px 24px 4px;text-transform:uppercase;}
+  .hw-item{display:flex;align-items:center;gap:12px;padding:12px 24px;color:#C9C9C9;text-decoration:none;font-size:14px;transition:background .2s;}
+  .hw-item:hover{background:rgba(255,255,255,.05);color:#C9A84C;}
+  .hw-item-icon{font-size:16px;}
+  .hw-item-name{flex:1;}
+
   .hw-btn span{display:block;width:18px;height:2px;background:#C9A84C;border-radius:2px;transition:all .25s;}
   .hw-btn.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
   .hw-btn.open span:nth-child(2){opacity:0;}
@@ -132,5 +141,24 @@ function hwClose(){
 }
 document.addEventListener('keydown',e=>{if(e.key==='Escape')hwClose();});
 </script>
+
+<div class="hw-overlay" id="hw-overlay" onclick="hwClose()"></div>
+<div class="hw-drawer" id="hw-drawer">
+  <div class="hw-drawer-head">
+    <div class="hw-drawer-logo">SHADOWGRAM</div>
+    <button class="hw-drawer-close" onclick="hwClose()" aria-label="닫기">✕</button>
+  </div>
+  <div class="hw-section">
+    <a class="hw-item" href="/"><span class="hw-item-icon">🏠</span><span class="hw-item-name">Home</span></a>
+  </div>
+  <div class="hw-section">
+    <div class="hw-section-label">SELF</div>
+    <a class="hw-item" href="/self/pt/"><span class="hw-item-icon">🌟</span><span class="hw-item-name">Shadowgram Self — PT</span></a>
+  </div>
+  <div class="hw-section">
+    <div class="hw-section-label">COUPLE</div>
+    <a class="hw-item" href="/couple/kr/"><span class="hw-item-icon">💑</span><span class="hw-item-name">Shadowgram Couple — KR</span></a>
+  </div>
+</div>
 </body>
 </html>
