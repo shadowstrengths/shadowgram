@@ -48,12 +48,14 @@
       border-bottom: 1px solid var(--border);
       background: rgba(15,18,30,0.96);
     }
-    .nav-logo { text-decoration: none; font-size: 14px; letter-spacing: 3px; display: flex; align-items: center; gap: 10px; }
-    .nav-logo-wrap { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.2; }
-    .nav-sub { font-size: 9px; letter-spacing: 2px; color: #8899AA; font-weight: 400; margin-top: 1px; }
-    .nav-logo img { width: 34px; height: 34px; border-radius: 50%; }
+    .nav-logo { text-decoration: none; font-size: 13px; letter-spacing: 3px; display: flex; align-items: center; gap: 10px; white-space: nowrap; }
+    .nav-logo img { width: 30px; height: 30px; border-radius: 50%; }
+    .nav-logo-wrap { display: none; }
     .nav-logo .s1 { color: #A0A8B8; font-weight: 300; }
-    .nav-logo .s2 { color: #C9A84C; font-weight: 900; }
+    .nav-logo .s2 { color: #C9A84C; font-weight: 800; }
+    .nav-logo .s-dot { color: rgba(184,134,11,0.5); font-weight: 300; font-size: 13px; }
+    .nav-logo .s3 { color: #8899AA; font-weight: 400; font-size: 10px; letter-spacing: 2px; }
+    .nav-sub { display: none; }
     .nav-back {
       font-size: 13px; color: var(--silver);
       text-decoration: none; transition: color .2s;
@@ -551,10 +553,7 @@
     </button>
     <a class="nav-logo" href="https://shadowgram.org">
       <img src="https://shadowgram.org/logo.png" alt="Shadowgram Logo">
-      <div class="nav-logo-wrap">
-        <span><span class="s1">SHADOW</span><span class="s2">GRAM</span></span>
-        <span class="nav-sub">SELF</span>
-      </div>
+      <span><span class="s1">SHADOW</span><span class="s2">GRAM</span><span class="s-dot"> · </span><span class="s3">SELF</span></span>
     </a>
   </div>
 </nav>

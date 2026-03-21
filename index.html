@@ -24,8 +24,9 @@
 
     /* NAV */
     .gnav { display:flex; align-items:center; gap:12px; padding:14px 20px; position:sticky; top:0; z-index:200; background:rgba(15,18,30,0.96); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); }
-    .gnav-logo { font-size:13px; letter-spacing:3px; font-weight:700; color:var(--goldL); text-decoration:none; flex:1; white-space:nowrap; }
-    .gnav-logo span { color:var(--textD); font-weight:300; }
+    .gnav-logo { font-size:13px; letter-spacing:3px; font-weight:700; text-decoration:none; flex:1; white-space:nowrap; display:flex; align-items:center; }
+    .gnav-logo .s1 { color:#A0A8B8; font-weight:300; }
+    .gnav-logo .s2 { color:#C9A84C; font-weight:800; }
 
     /* LANG */
     .lang-switcher { display:flex; align-items:center; gap:4px; }
@@ -120,8 +121,7 @@
   <button class="hw-btn" id="hw-btn" onclick="hwToggle()" aria-label="menu">
     <span></span><span></span><span></span>
   </button>
-  <a href="/" style="font-size:13px;letter-spacing:3px;font-weight:700;color:#C9A84C;text-decoration:none;flex:1;"><span style="font-weight:300;color:#A0A8B8;">SHADOW</span>GRAM</a>
-  <a class="gnav-logo" href="/"><span>SHADOW</span>GRAM</a>
+  <a class="gnav-logo" href="/"><span class="s1">SHADOW</span><span class="s2">GRAM</span></a>
   <div class="lang-switcher">
     <button class="lang-btn" id="lb-kr" onclick="setLang('kr')">KR</button>
     <button class="lang-btn" id="lb-pt" onclick="setLang('pt')">PT</button>
