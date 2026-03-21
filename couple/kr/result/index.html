@@ -77,10 +77,7 @@
     .share-card h3{font-size:20px;font-weight:900;margin-bottom:8px;}
     .share-card p{font-size:13px;color:var(--silver);margin-bottom:24px;line-height:1.6;}
     .share-btns{display:flex;flex-direction:column;gap:10px;}
-    .btn-kakao{display:flex;align-items:center;justify-content:center;gap:10px;background:#FEE500;color:#191919;border:none;border-radius:14px;padding:16px;font-size:15px;font-weight:800;font-family:inherit;cursor:pointer;transition:transform 0.15s;}
-    .btn-kakao:active{transform:scale(0.97);}
-    .btn-copy{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--card);color:var(--white);border:1px solid var(--border);border-radius:14px;padding:14px;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;transition:transform 0.15s;}
-    .btn-insta{display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#833AB4,#FD1D1D,#F77737);color:white;border:none;border-radius:14px;padding:14px;font-size:14px;font-weight:800;font-family:inherit;cursor:pointer;}
+.btn-insta{display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#833AB4,#FD1D1D,#F77737);color:white;border:none;border-radius:14px;padding:14px;font-size:14px;font-weight:800;font-family:inherit;cursor:pointer;}
     /* 리포트 CTA */
     .report-cta{margin:0 20px 24px;background:linear-gradient(135deg,#1E1030,#102030);border:1.5px solid var(--gold);border-radius:20px;padding:24px 20px;text-align:center;position:relative;overflow:hidden;}
     .report-cta::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,var(--gold-glow) 0%,transparent 60%);pointer-events:none;}
@@ -230,12 +227,7 @@
       <h3>우리 커플 환상의 조합이죠? 💫</h3>
       <p>친구에게 공유하면 그 친구 조합도 궁금해질 거예요 🙈<br>우리 조합 결과 캡처해서 올려보세요</p>
       <div class="share-btns">
-        <button class="btn-kakao" onclick="shareKakao()">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="#191919"><path d="M12 3C6.477 3 2 6.477 2 10.5c0 2.47 1.39 4.658 3.5 6.02L4.5 20l4.5-2.5c.98.27 2 .5 3 .5 5.523 0 10-3.477 10-7.5S17.523 3 12 3z"/></svg>
-          카카오톡으로 공유
-        </button>
         <button class="btn-insta" onclick="shareInsta()">📸 공유하기 (인스타·문자·더보기)</button>
-        <button class="btn-copy" onclick="copyLink()">🔗 링크 복사</button>
       </div>
     </div>
   </div>
@@ -256,7 +248,7 @@
       <div class="toc-row">🌱 <span>관계 성장 퀘스트 — 3단계 미션</span><em>CH 7</em></div>
     </div>
     <div class="price-box">
-      <div class="price-orig">정가 18,800원</div>
+      <div class="price-orig">정가 19,800원</div>
       <div class="price-sale"><span class="badge-sale">50% OFF</span><span class="price-num">9,900원</span></div>
       <div class="price-note">⏰ 지금 이 페이지에서만 특가</div>
     </div>
@@ -273,7 +265,7 @@
   <div class="sticky-inner">
     <div class="sticky-text">
       <strong id="sticky-title">리포트</strong>
-      <span><s style="color:var(--silver);font-size:10px">18,800원</s> → <b style="color:var(--gold)">9,900원</b></span>
+      <span><s style="color:var(--silver);font-size:10px">19,800원</s> → <b style="color:var(--gold)">9,900원</b></span>
     </div>
     <button class="sticky-btn" onclick="getReport()">리포트 받기 →</button>
   </div>
