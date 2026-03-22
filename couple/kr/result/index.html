@@ -804,17 +804,22 @@ function shareInsta(){
   const drama=document.getElementById('rc-drama-title')?.textContent||'';
   const roleA=document.getElementById('rc-cast-role-a')?.textContent||'';
   const roleB=document.getElementById('rc-cast-role-b')?.textContent||'';
-  // 드라마 제목 + 배역 포함한 바이럴 메시지
+  // rc-why = hook 문구 (combo.json에서 렌더링된 값)
+  const whyRaw=document.getElementById('rc-why')?.textContent||'';
+  const hook=whyRaw.replace(/^[""]|[""]$/g,'').trim();
+  // 바이럴 메시지 조립
   let msg='';
   if(names){
     msg=`${names}의 커플 유형이 나왔어요 💫\n`;
-    if(drama) msg+=`🎬 ${drama}\n`;
+    if(drama) msg+=`🎬 우리 커플과 어울리는 스토리는 — ${drama}\n`;
+    if(hook) msg+=`"${hook}"\n`;
     if(roleA||roleB) msg+=`${na?`${na} ${roleA}`:''} ${nb?`× ${nb} ${roleB}`:''}\n`.trim()+'\n';
   } else {
-    msg=`우리 커플 완전 신박해 🔥\n`;
-    if(drama) msg+=`🎬 ${drama} 그 커플이 우리래요\n`;
+    if(drama) msg+=`🎬 우리 커플과 어울리는 스토리는 — ${drama}\n`;
+    if(hook) msg+=`"${hook}"\n`;
+    else msg+=`우리 커플 완전 신박해 🔥\n`;
   }
-  msg+='당신들도 체크해봐요 👉 '+url;
+  msg+='우리 커플 유형도 궁금하면 👉 '+url;
   if(navigator.share){
     navigator.share({text:msg}).catch(()=>{copyToClipboard(msg,'📸 링크 복사됐어요! 붙여넣기 해보세요');});
   }else{copyToClipboard(msg,'📸 링크가 복사됐어요! 인스타 스토리에 붙여넣기 해보세요');}
