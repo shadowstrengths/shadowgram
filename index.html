@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Shadowgram — 빛과 그림자를 탐색하는 심리 유형 여정</title>
-  <meta name="description" content="Shadowgram은 융(Jung) 심리학 기반의 8유형 프레임워크입니다."/>
+  <title>Shadowgram — Uma jornada pela luz e sombra da sua psique</title>
+  <meta name="description" content="Shadowgram é um framework de 8 tipos baseado na psicologia de Jung. Descubra sua luz e sombra."/>
   <meta property="og:title" content="Shadowgram"/>
   <meta property="og:description" content="빛과 그림자를 탐색하는 심리 유형 여정"/>
   <meta property="og:image" content="https://shadowgram.org/shadowgram_cover_sq.png"/>
@@ -129,7 +129,6 @@
   </button>
   <a class="gnav-logo" href="/"><span class="s1">SHADOW</span><span class="s2">GRAM</span></a>
   <div class="lang-switcher">
-    <button class="lang-btn" id="lb-kr" onclick="setLang('kr')">KR</button>
     <button class="lang-btn" id="lb-pt" onclick="setLang('pt')">PT</button>
     <button class="lang-btn" id="lb-es" onclick="setLang('es')">ES</button>
     <button class="lang-btn" id="lb-en" onclick="setLang('en')">EN</button>
@@ -149,21 +148,12 @@
   <div class="hw-section">
     <div class="hw-section-label">Self</div>
     <span class="hw-item hw-parent"><span class="hw-item-icon">🌟</span> Shadowgram Self <span class="hw-badge">PT-BR</span></span>
-    <a class="hw-item hw-sub" href="/self/pt/?fresh=1"><span class="hw-item-icon">✏️</span> Test</a>
-    <a class="hw-item hw-sub" href="/blog/"><span class="hw-item-icon">📝</span> Blog</a>
-    <a class="hw-item hw-sub" href="/blog/faq.html"><span class="hw-item-icon">❓</span> FAQ</a>
+    <a class="hw-item hw-sub" href="/self/pt/?fresh=1"><span class="hw-item-icon">✏️</span> Fazer o teste</a>
   </div>
   <div class="hw-section">
     <div class="hw-section-label">Couple</div>
-    <span class="hw-item hw-parent"><span class="hw-item-icon">💑</span> Shadowgram Couple <span class="hw-badge">KR</span></span>
-    <a class="hw-item hw-sub" href="/couple/kr/"><span class="hw-item-icon">&#x270F;</span> Test</a>
-    <a class="hw-item hw-sub" href="/couple/kr/shop/"><span class="hw-item-icon">🛍</span> Shop</a>
-    <a class="hw-item hw-sub" href="/couple/kr/blog/"><span class="hw-item-icon">📝</span> Blog</a>
-  </div>
-  <div class="hw-section">
-    <div class="hw-section-label">Coming Soon</div>
-    <a class="hw-item hw-disabled" href="#"><span class="hw-item-icon">🏢</span> Shadowgram Team <span class="hw-badge soon">Soon</span></a>
-    <a class="hw-item hw-disabled" href="#"><span class="hw-item-icon">🌙</span> leftnoon Community <span class="hw-badge soon">Soon</span></a>
+    <span class="hw-item hw-parent"><span class="hw-item-icon">💑</span> Shadowgram Couple <span class="hw-badge">PT-BR</span></span>
+    <a class="hw-item hw-sub" href="/couple/pt/"><span class="hw-item-icon">✏️</span> Fazer o teste</a>
   </div>
 </div>
 
@@ -197,27 +187,8 @@
       <div class="card-sub" id="t-couple-sub"></div>
       <div class="card-desc" id="t-couple-desc"></div>
       <div class="card-links">
-        <a class="card-link kr" href="/couple/kr/" id="t-couple-test"></a>
-        <a class="card-link kr" href="/couple/kr/shop/">🛍 Shop</a>
+        <a class="card-link pt" href="/couple/pt/" id="t-couple-test"></a>
       </div>
-    </div>
-
-    <div class="nav-card disabled">
-      <div class="card-icon">🏢</div>
-      <span class="card-tag soon-tag">Coming Soon</span>
-      <div class="card-title">Shadowgram Team</div>
-      <div class="card-sub" id="t-team-sub"></div>
-      <div class="card-desc" id="t-team-desc"></div>
-      <div class="card-links"><span class="card-link" style="opacity:.4;pointer-events:none;" id="t-soon-label"></span></div>
-    </div>
-
-    <div class="nav-card disabled">
-      <div class="card-icon">🌙</div>
-      <span class="card-tag soon-tag">Coming Soon</span>
-      <div class="card-title">leftnoon</div>
-      <div class="card-sub" id="t-leftnoon-sub"></div>
-      <div class="card-desc" id="t-leftnoon-desc"></div>
-      <div class="card-links"><span class="card-link" style="opacity:.4;pointer-events:none;" id="t-soon-label2"></span></div>
     </div>
 
   </div>
@@ -254,26 +225,6 @@
 <script>
 /* ── TRANSLATIONS ─────────────────────────── */
 var T = {
-  kr: {
-    eyebrow: 'Jung 심리학 기반 · 8유형 프레임워크',
-    title: '빛과 <span class="gold">그림자</span>를<br>탐색하는 심리 여정',
-    subtitle: '내 안의 강점(빛)과 아직 깨어나지 않은 가능성(그림자)을<br>융(Jung) 심리학 기반 8유형 프레임워크로 탐색합니다.',
-    navlabel: '서비스 둘러보기',
-    typelabel: 'Shadowgram 8유형',
-    selfSub: '개인 심리 유형 탐색',
-    selfDesc: '28문항으로 나의 주기능을 발견하고, 빛 7가지·그림자 7가지를 통해 온전한 나를 만나는 여정.',
-    selfLink: '🇧🇷 테스트 — PT-BR',
-    coupleSub: '커플 · 관계 유형 탐색',
-    coupleDesc: '두 사람의 유형을 진단해 64가지 조합별 관계 역학과 소통 방식을 분석하는 리포트.',
-    coupleTest: '🇰🇷 테스트',
-    teamSub: '조직 심리 다이나믹스',
-    teamDesc: '팀 유형 조합 분석 — 조직 강점·갈등 패턴을 진단하는 B2B 솔루션.',
-    leftnoonSub: '40대+ 커뮤니티',
-    leftnoonDesc: '인생 후반전을 탐색하는 40대 이상을 위한 심리 기반 커뮤니티.',
-    soon: '준비중',
-    privacyLabel: '개인정보 문의',
-    mbtiNote: 'Shadowgram은 독자적 프레임워크로, The Myers &amp; Briggs Foundation과 무관합니다.'
-  },
   pt: {
     eyebrow: 'Psicologia de Jung · 8 Tipos',
     title: 'Uma jornada pela<br><span class="gold">luz e sombra</span><br>da sua psique',
@@ -285,11 +236,7 @@ var T = {
     selfLink: '🇧🇷 Fazer o teste — PT-BR',
     coupleSub: 'Exploração do tipo de casal',
     coupleDesc: 'Diagnóstico de dois tipos para analisar a dinâmica de relacionamento e comunicação entre 64 combinações possíveis.',
-    coupleTest: '🇰🇷 Teste (KR)',
-    teamSub: 'Dinâmica organizacional',
-    teamDesc: 'Análise de combinações de tipos em equipes — solução B2B para diagnosticar pontos fortes e padrões de conflito.',
-    leftnoonSub: 'Comunidade 40+',
-    leftnoonDesc: 'Uma comunidade baseada em psicologia para pessoas acima dos 40 que exploram a segunda metade da vida.',
+    coupleTest: '🇧🇷 Fazer o teste — PT-BR',
     soon: 'Em breve',
     privacyLabel: 'Privacidade',
     mbtiNote: 'Shadowgram é um framework independente, sem relação com The Myers &amp; Briggs Foundation.'
@@ -305,11 +252,7 @@ var T = {
     selfLink: '🇧🇷 Hacer el test — PT-BR',
     coupleSub: 'Exploración del tipo de pareja',
     coupleDesc: 'Diagnóstico de dos tipos para analizar la dinámica de relación y comunicación entre 64 combinaciones posibles.',
-    coupleTest: '🇰🇷 Test (KR)',
-    teamSub: 'Dinámica organizacional',
-    teamDesc: 'Análisis de combinaciones de tipos en equipos — solución B2B para diagnosticar fortalezas y patrones de conflicto.',
-    leftnoonSub: 'Comunidad 40+',
-    leftnoonDesc: 'Una comunidad basada en psicología para personas mayores de 40 que exploran la segunda mitad de la vida.',
+    coupleTest: '🇧🇷 Hacer el test — PT-BR',
     soon: 'Próximamente',
     privacyLabel: 'Privacidad',
     mbtiNote: 'Shadowgram es un framework independiente, sin relación con The Myers &amp; Briggs Foundation.'
@@ -325,11 +268,7 @@ var T = {
     selfLink: '🇧🇷 Take the test — PT-BR',
     coupleSub: 'Couple & relationship exploration',
     coupleDesc: 'Diagnose two types to analyze relationship dynamics and communication styles across 64 possible combinations.',
-    coupleTest: '🇰🇷 Test (KR)',
-    teamSub: 'Organizational psychology',
-    teamDesc: 'Team type combination analysis — a B2B solution for diagnosing strengths and conflict patterns.',
-    leftnoonSub: 'Community 40+',
-    leftnoonDesc: 'A psychology-based community for people over 40 exploring the second half of life.',
+    coupleTest: '🇧🇷 Take the test — PT-BR',
     soon: 'Coming soon',
     privacyLabel: 'Privacy contact',
     mbtiNote: 'Shadowgram is an independent framework, unaffiliated with The Myers &amp; Briggs Foundation.'
@@ -350,17 +289,11 @@ function applyLang(lang) {
   document.getElementById('t-couple-sub').textContent = t.coupleSub;
   document.getElementById('t-couple-desc').textContent = t.coupleDesc;
   document.getElementById('t-couple-test').innerHTML = t.coupleTest;
-  document.getElementById('t-team-sub').textContent = t.teamSub;
-  document.getElementById('t-team-desc').textContent = t.teamDesc;
-  document.getElementById('t-leftnoon-sub').textContent = t.leftnoonSub;
-  document.getElementById('t-leftnoon-desc').textContent = t.leftnoonDesc;
-  document.getElementById('t-soon-label').textContent = t.soon;
-  document.getElementById('t-soon-label2').textContent = t.soon;
   document.getElementById('t-privacy-label').textContent = t.privacyLabel;
   document.getElementById('t-mbti-note').innerHTML = t.mbtiNote;
 
   // 버튼 active 상태
-  ['kr','pt','es','en'].forEach(function(l){
+  ['pt','es','en'].forEach(function(l){
     var btn = document.getElementById('lb-'+l);
     if(btn) btn.classList.toggle('active', l===lang);
   });
@@ -395,14 +328,13 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')hwClose();})
 (function(){
   var saved = '';
   try{ saved = localStorage.getItem('sg_lang')||''; }catch(e){}
-  // 브라우저 언어 감지
+  // 브라우저 언어 감지 (PT 기본)
   var nav = (navigator.language||navigator.userLanguage||'').toLowerCase();
-  var auto = 'kr';
+  var auto = 'pt';
   if(!saved){
-    if(nav.startsWith('pt')) auto='pt';
-    else if(nav.startsWith('es')) auto='es';
-    else if(nav.startsWith('ko')) auto='kr';
-    else if(!nav.startsWith('ko') && !nav.startsWith('pt') && !nav.startsWith('es')) auto='en';
+    if(nav.startsWith('es')) auto='es';
+    else if(nav.startsWith('en')) auto='en';
+    // pt 및 기타 → pt 기본
   }
   applyLang(saved || auto);
 })();
