@@ -133,7 +133,6 @@
   <div class="lang-switcher">
     <button class="lang-btn" id="lb-pt" onclick="setLang('pt')">PT</button>
     <button class="lang-btn" id="lb-es" onclick="setLang('es')">ES</button>
-    <button class="lang-btn" id="lb-en" onclick="setLang('en')">EN</button>
   </div>
 </nav>
 
@@ -259,14 +258,14 @@ var T = {
     eyebrow: 'Jung-based Psychology · 8 Types',
     title: 'A journey through<br><span class="gold">light and shadow</span><br>of your psyche',
     subtitle: 'Discover your strengths (light) and dormant potential (shadow)<br>with Jung-based 8-type framework.',
-    navlabel: 'Navigation Map',
+    navlabel: 'Navigation',
     typelabel: 'Shadowgram 8 Types',
     selfSub: 'Individual personality exploration',
     selfDesc: '28 questions to uncover your dominant function — 7 lights and 7 shadows guiding you toward wholeness.',
     coupleSub: 'Couple & relationship exploration',
     coupleDesc: 'Diagnose two types to analyze relationship dynamics and communication styles across 64 possible combinations.',
     soon: 'Coming soon',
-    privacyLabel: 'Privacy contact',
+    privacyLabel: 'Privacy',
     mbtiNote: 'Shadowgram is an independent framework, unaffiliated with The Myers &amp; Briggs Foundation.'
   }
 };
@@ -287,7 +286,7 @@ function applyLang(lang) {
   document.getElementById('t-mbti-note').innerHTML = t.mbtiNote;
 
   // 버튼 active 상태
-  ['pt','es','en'].forEach(function(l){
+  ['pt','es'].forEach(function(l){
     var btn = document.getElementById('lb-'+l);
     if(btn) btn.classList.toggle('active', l===lang);
   });
@@ -327,8 +326,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')hwClose();})
   var auto = 'pt';
   if(!saved){
     if(nav.startsWith('es')) auto='es';
-    else if(nav.startsWith('en')) auto='en';
-    // pt 및 기타 → pt 기본
+    // pt 및 기타 언어 → pt 기본
   }
   applyLang(saved || auto);
 })();
