@@ -1,0 +1,1026 @@
+{
+  "SPARK_SPARK": {
+    "case_id": "SPARK_SPARK",
+    "image_file": "SPARK_SPARK.png",
+    "pt": {
+      "combination_name": "Faísca × Faísca ✨",
+      "drama": "Reborn Rich",
+      "actor_m": "변우석",
+      "actor_f": "김혜윤",
+      "char_m": "류선재",
+      "char_f": "임솔",
+      "hook": "Ideias borbulham sempre, 365 dias sem tédio 💫",
+      "tension": "Ambos adiam a execução",
+      "magic": "O total de possibilidades dobra",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #faísca"
+    }
+  },
+  "SPARK_VISION": {
+    "case_id": "SPARK_VISION",
+    "image_file": "SPARK_VISION.png",
+    "pt": {
+      "combination_name": "Faísca × Destino ✨🔮",
+      "drama": "Moving",
+      "actor_m": "이정하",
+      "actor_f": "고윤정",
+      "char_m": "김봉석",
+      "char_f": "장희수",
+      "hook": "Impulso elétrico + certeza do destino 🎬",
+      "tension": "Timing completamente diferente",
+      "magic": "Criatividade + intuição, máquina de visão suprema",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #destino"
+    }
+  },
+  "SPARK_STEADY": {
+    "case_id": "SPARK_STEADY",
+    "image_file": "SPARK_STEADY.png",
+    "pt": {
+      "combination_name": "Faísca × Âncora 🔥⚓",
+      "drama": "Welcome to Samdalri",
+      "actor_m": "지창욱",
+      "actor_f": "신혜선",
+      "char_m": "조용필",
+      "char_f": "조삼달",
+      "hook": "Dá asas, mas não deixa cair nunca 💕",
+      "tension": "Diferença de ritmo",
+      "magic": "Ideia + execução, dupla perfeita",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #âncora"
+    }
+  },
+  "SPARK_PLAYER": {
+    "case_id": "SPARK_PLAYER",
+    "image_file": "SPARK_PLAYER.png",
+    "pt": {
+      "combination_name": "Faísca × Palco 🎪✨",
+      "drama": "Alchemy of Souls",
+      "actor_m": "이재욱",
+      "actor_f": "정소민",
+      "char_m": "장욱",
+      "char_f": "무덕이",
+      "hook": "Juntos, todo lugar vira festa 🎉",
+      "tension": "Energia em excesso pode explodir",
+      "magic": "Cada dia é uma aventura",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #palco"
+    }
+  },
+  "SPARK_HARMONY": {
+    "case_id": "SPARK_HARMONY",
+    "image_file": "SPARK_HARMONY.png",
+    "pt": {
+      "combination_name": "Faísca × Calor 💫🔥",
+      "drama": "King the Land",
+      "actor_m": "이준호",
+      "actor_f": "임윤아",
+      "char_m": "구원",
+      "char_f": "천사랑",
+      "hook": "Ideias brilham, coração aquece sempre 💕",
+      "tension": "Faísca em excesso vs Harmonia deseja paz",
+      "magic": "Ideia + calor, combinação suprema",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #harmonia"
+    }
+  },
+  "SPARK_SOUL": {
+    "case_id": "SPARK_SOUL",
+    "image_file": "SPARK_SOUL.png",
+    "pt": {
+      "combination_name": "Faísca × Alma 💡✨",
+      "drama": "It's Okay to Not Be Okay",
+      "actor_m": "김수현",
+      "actor_f": "서예지",
+      "char_m": "문강태",
+      "char_f": "고문영",
+      "hook": "Luz mais brilhante na escuridão 💫",
+      "tension": "Expressão emocional completamente oposta",
+      "magic": "Cura + criatividade, química única",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #alma"
+    }
+  },
+  "SPARK_LOGIC": {
+    "case_id": "SPARK_LOGIC",
+    "image_file": "SPARK_LOGIC.png",
+    "pt": {
+      "combination_name": "Faísca × Lógica 🧠✨",
+      "drama": "Start-Up",
+      "actor_m": "남주혁",
+      "actor_f": "배수지",
+      "char_m": "남도산",
+      "char_f": "서달미",
+      "hook": "Sonho em chamas, estratégia que voa 🚀",
+      "tension": "Intuição vs dados colidem",
+      "magic": "Inovação + execução perfeita",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #lógica"
+    }
+  },
+  "SPARK_LEADER": {
+    "case_id": "SPARK_LEADER",
+    "image_file": "SPARK_LEADER.png",
+    "pt": {
+      "combination_name": "Faísca × Líder 🔥👑",
+      "drama": "Itaewon Class",
+      "actor_m": "박서준",
+      "actor_f": "김다미",
+      "char_m": "박새로이",
+      "char_f": "조이서",
+      "hook": "Paixão em chamas, conquista do mundo 💪",
+      "tension": "Competição de liderança",
+      "magic": "Sinergia máxima, time dos sonhos",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #líder"
+    }
+  },
+  "VISION_SPARK": {
+    "case_id": "VISION_SPARK",
+    "image_file": "VISION_SPARK.png",
+    "pt": {
+      "combination_name": "Destino × Faísca 🔮✨",
+      "drama": "Diva on a Deserted Island",
+      "actor_m": "채종협",
+      "actor_f": "박은빈",
+      "char_m": "강보걸",
+      "char_f": "서목하",
+      "hook": "Quietude segura + energia que explode 💫",
+      "tension": "Plano vs improvisação",
+      "magic": "Visão + energia, melhor time",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #destino"
+    }
+  },
+  "VISION_VISION": {
+    "case_id": "VISION_VISION",
+    "image_file": "VISION_VISION.png",
+    "pt": {
+      "combination_name": "Destino × Destino 🔮🔮",
+      "drama": "The Glory",
+      "actor_m": "이도현",
+      "actor_f": "송혜교",
+      "char_m": "주여정",
+      "char_f": "문동은",
+      "hook": "Olhares que falam, silêncios que curam 💔",
+      "tension": "Ambos presos em seus mundos internos",
+      "magic": "Profundidade que ninguém mais entende",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #profundo"
+    }
+  },
+  "VISION_STEADY": {
+    "case_id": "VISION_STEADY",
+    "image_file": "VISION_STEADY.png",
+    "pt": {
+      "combination_name": "Destino × Âncora 🔮⚓",
+      "drama": "Crash Landing on You",
+      "actor_m": "현빈",
+      "actor_f": "손예진",
+      "char_m": "리정혁",
+      "char_f": "윤세리",
+      "hook": "Acidente do destino, amor para sempre 💕",
+      "tension": "Visão idealista vs realidade prática",
+      "magic": "Sonho + estabilidade perfeita",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #acaso"
+    }
+  },
+  "VISION_PLAYER": {
+    "case_id": "VISION_PLAYER",
+    "image_file": "VISION_PLAYER.png",
+    "pt": {
+      "combination_name": "Destino × Palco 🔮🎪",
+      "drama": "My Demon",
+      "actor_m": "송강",
+      "actor_f": "김유정",
+      "char_m": "정구원",
+      "char_f": "도도희",
+      "hook": "Mistério profundo + liberdade total 🎭",
+      "tension": "Plano vs impulso",
+      "magic": "Impredizível, atração irresistível",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #demônio"
+    }
+  },
+  "VISION_HARMONY": {
+    "case_id": "VISION_HARMONY",
+    "image_file": "VISION_HARMONY.png",
+    "pt": {
+      "combination_name": "Destino × Calor 🔮💫",
+      "drama": "Hotel del Luna",
+      "actor_m": "여진구",
+      "actor_f": "이지은",
+      "char_m": "구찬성",
+      "char_f": "장만월",
+      "hook": "Mil anos de espera, só por você 💕",
+      "tension": "Tempo sozinho vs estar junto sempre",
+      "magic": "Intuição + calor máximo",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #hotel"
+    }
+  },
+  "VISION_SOUL": {
+    "case_id": "VISION_SOUL",
+    "image_file": "VISION_SOUL.png",
+    "pt": {
+      "combination_name": "Destino × Alma 🔮✨",
+      "drama": "My Emancipation Diary",
+      "actor_m": "손석구",
+      "actor_f": "김지원",
+      "char_m": "구씨",
+      "char_f": "염미정",
+      "hook": "Feridas profundas cicatrizam juntas 💔💕",
+      "tension": "Ambos têm dificuldade de expressar",
+      "magic": "Entendimento mais profundo do mundo",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #liberdade"
+    }
+  },
+  "VISION_LOGIC": {
+    "case_id": "VISION_LOGIC",
+    "image_file": "VISION_LOGIC.png",
+    "pt": {
+      "combination_name": "Destino × Lógica 🔮🧠",
+      "drama": "Beauty Inside",
+      "actor_m": "이민기",
+      "actor_f": "서현진",
+      "char_m": "서도재",
+      "char_f": "한세계",
+      "hook": "Intuição brilhante + estratégia perfeita 🎯",
+      "tension": "Sensibilidade vs dados",
+      "magic": "Estratégia + intuição, combo único",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #beleza"
+    }
+  },
+  "VISION_LEADER": {
+    "case_id": "VISION_LEADER",
+    "image_file": "VISION_LEADER.png",
+    "pt": {
+      "combination_name": "Destino × Líder 🔮👑",
+      "drama": "Reborn Rich",
+      "actor_m": "송중기",
+      "actor_f": "신현빈",
+      "char_m": "진도준",
+      "char_f": "서민영",
+      "hook": "Visão épica, execução de rei 👑",
+      "tension": "Direção conflitante possível",
+      "magic": "Visão + ação, team dos sonhos",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #riqueza"
+    }
+  },
+  "STEADY_SPARK": {
+    "case_id": "STEADY_SPARK",
+    "image_file": "STEADY_SPARK.png",
+    "pt": {
+      "combination_name": "Âncora × Faísca ⚓✨",
+      "drama": "Mom's Friend's Son",
+      "actor_m": "정해인",
+      "actor_f": "정소민",
+      "char_m": "최승효",
+      "char_f": "배석류",
+      "hook": "Confiança antiga, amor renovado 💕",
+      "tension": "Ritmo de mudança diferente",
+      "magic": "Confiança + energia máxima",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #âncora"
+    }
+  },
+  "STEADY_VISION": {
+    "case_id": "STEADY_VISION",
+    "image_file": "STEADY_VISION.png",
+    "pt": {
+      "combination_name": "Âncora × Destino ⚓🔮",
+      "drama": "Goblin: O Solitário e Grande Deus",
+      "actor_m": "공유",
+      "actor_f": "김고은",
+      "char_m": "김신",
+      "char_f": "지은탁",
+      "hook": "Mil anos de espera, amor eterno 💫",
+      "tension": "Realidade vs idealismo",
+      "magic": "Estabilidade + visão perfeita",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #goblin"
+    }
+  },
+  "STEADY_STEADY": {
+    "case_id": "STEADY_STEADY",
+    "image_file": "STEADY_STEADY.png",
+    "pt": {
+      "combination_name": "Âncora × Âncora ⚓⚓",
+      "drama": "Hospital Playlist",
+      "actor_m": "유연석",
+      "actor_f": "신현빈",
+      "char_m": "안정원",
+      "char_f": "장겨울",
+      "hook": "Nunca cansa de estar junto 💕",
+      "tension": "Falta de mudança e estímulo",
+      "magic": "Confiança mais profunda do mundo",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #hospital"
+    }
+  },
+  "STEADY_PLAYER": {
+    "case_id": "STEADY_PLAYER",
+    "image_file": "STEADY_PLAYER.png",
+    "pt": {
+      "combination_name": "Âncora × Palco ⚓🎪",
+      "drama": "Twenty-Five Twenty-One",
+      "actor_m": "남주혁",
+      "actor_f": "김태리",
+      "char_m": "백이진",
+      "char_f": "나희도",
+      "hook": "Apoio firme para brilhar sempre 💫",
+      "tension": "Liberdade vs segurança",
+      "magic": "Apoio + vitalidade perfeita",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #vinte"
+    }
+  },
+  "STEADY_HARMONY": {
+    "case_id": "STEADY_HARMONY",
+    "image_file": "STEADY_HARMONY.png",
+    "pt": {
+      "combination_name": "Âncora × Calor ⚓💕",
+      "drama": "When the Camellia Blooms",
+      "actor_m": "김선호",
+      "actor_f": "신민아",
+      "char_m": "홍두식",
+      "char_f": "윤혜진",
+      "hook": "Calor de vila, amor cotidiano lindo 🏘️",
+      "tension": "Ambos evitam mudança",
+      "magic": "Calor + confiança, máxima felicidade",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #camélia"
+    }
+  },
+  "STEADY_SOUL": {
+    "case_id": "STEADY_SOUL",
+    "image_file": "STEADY_SOUL.png",
+    "pt": {
+      "combination_name": "Âncora × Alma ⚓✨",
+      "drama": "I Will Come to You When the Weather Is Fine",
+      "actor_m": "서강준",
+      "actor_f": "박민영",
+      "char_m": "임은섭",
+      "char_f": "목해원",
+      "hook": "Rotina cura feridas silenciosamente 💔💕",
+      "tension": "Falta de expressão causa confusão",
+      "magic": "Empatia profunda + estabilidade",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #chuva"
+    }
+  },
+  "STEADY_LOGIC": {
+    "case_id": "STEADY_LOGIC",
+    "image_file": "STEADY_LOGIC.png",
+    "pt": {
+      "combination_name": "Âncora × Lógica ⚓🧠",
+      "drama": "This Is My First Life",
+      "actor_m": "이민기",
+      "actor_f": "정소민",
+      "char_m": "남세희",
+      "char_f": "윤지호",
+      "hook": "Contrato vira verdade, amor lógico 💕",
+      "tension": "Forma diferente de expressar emoção",
+      "magic": "Confiança + análise perfeita",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #primeira"
+    }
+  },
+  "STEADY_LEADER": {
+    "case_id": "STEADY_LEADER",
+    "image_file": "STEADY_LEADER.png",
+    "pt": {
+      "combination_name": "Âncora × Líder ⚓👑",
+      "drama": "Mr. Sunshine",
+      "actor_m": "이병헌",
+      "actor_f": "김태리",
+      "char_m": "유진초이",
+      "char_f": "고애신",
+      "hook": "História brutal, amor que persiste 💫",
+      "tension": "Ritmo e direção diferentes",
+      "magic": "Confiança + liderança histórica",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #sunshine"
+    }
+  },
+  "PLAYER_SPARK": {
+    "case_id": "PLAYER_SPARK",
+    "image_file": "PLAYER_SPARK.png",
+    "pt": {
+      "combination_name": "Palco × Faísca 🎪✨",
+      "drama": "Strong Woman Do Bong Soon",
+      "actor_m": "옹성우",
+      "actor_f": "이유미",
+      "char_m": "강희식",
+      "char_f": "강남순",
+      "hook": "Energia explode, mundo é parque 🎉",
+      "tension": "Energia demais, pode explodir",
+      "magic": "365 dias de aventura",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #forte"
+    }
+  },
+  "PLAYER_VISION": {
+    "case_id": "PLAYER_VISION",
+    "image_file": "PLAYER_VISION.png",
+    "pt": {
+      "combination_name": "Palco × Destino 🎪🔮",
+      "drama": "Gyeongseong Creature",
+      "actor_m": "박서준",
+      "actor_f": "한소희",
+      "char_m": "장태상",
+      "char_f": "윤채옥",
+      "hook": "Presente ardente + futuro visionário 🎬",
+      "tension": "Presente vs futuro",
+      "magic": "Ação + intuição suprema",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #criatura"
+    }
+  },
+  "PLAYER_STEADY": {
+    "case_id": "PLAYER_STEADY",
+    "image_file": "PLAYER_STEADY.png",
+    "pt": {
+      "combination_name": "Palco × Âncora 🎪⚓",
+      "drama": "Do Do Sol Sol La La Sol",
+      "actor_m": "양세종",
+      "actor_f": "수지",
+      "char_m": "이원준",
+      "char_f": "이두나",
+      "hook": "Liberdade abraçada, porto seguro 💕",
+      "tension": "Liberdade vs estabilidade",
+      "magic": "Vitalidade + confiança perfeita",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #música"
+    }
+  },
+  "PLAYER_PLAYER": {
+    "case_id": "PLAYER_PLAYER",
+    "image_file": "PLAYER_PLAYER.png",
+    "pt": {
+      "combination_name": "Palco × Palco 🎪🎪",
+      "drama": "My Name",
+      "actor_m": "안보현",
+      "actor_f": "한소희",
+      "char_m": "전필도",
+      "char_f": "윤지우",
+      "hook": "Ambos fortes, amor tenso e quente 🔥",
+      "tension": "Conflito de ego",
+      "magic": "Chemistry irresistível, imprevisível",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #nome"
+    }
+  },
+  "PLAYER_HARMONY": {
+    "case_id": "PLAYER_HARMONY",
+    "image_file": "PLAYER_HARMONY.png",
+    "pt": {
+      "combination_name": "Palco × Calor 🎪💫",
+      "drama": "Blind Date Blind",
+      "actor_m": "안효섭",
+      "actor_f": "김세정",
+      "char_m": "강태무",
+      "char_f": "신하리",
+      "hook": "Frio por fora, quente de verdade 💕",
+      "tension": "Forma diferente de se expressar",
+      "magic": "Vitalidade + calor inesperado",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #encontro"
+    }
+  },
+  "PLAYER_SOUL": {
+    "case_id": "PLAYER_SOUL",
+    "image_file": "PLAYER_SOUL.png",
+    "pt": {
+      "combination_name": "Palco × Alma 🎪✨",
+      "drama": "Our Beloved Summer",
+      "actor_m": "최우식",
+      "actor_f": "김다미",
+      "char_m": "최웅",
+      "char_f": "국연수",
+      "hook": "Liberdade encontra sensibilidade profunda 🎨",
+      "tension": "Leveza vs profundidade",
+      "magic": "Vitalidade + sensibilidade artística",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #verão"
+    }
+  },
+  "PLAYER_LOGIC": {
+    "case_id": "PLAYER_LOGIC",
+    "image_file": "PLAYER_LOGIC.png",
+    "pt": {
+      "combination_name": "Palco × Lógica 🎪🧠",
+      "drama": "Vincenzo",
+      "actor_m": "송중기",
+      "actor_f": "전여빈",
+      "char_m": "빈센조",
+      "char_f": "홍차영",
+      "hook": "Carisma solto + estratégia afiada 🔪",
+      "tension": "Impulso vs planejamento",
+      "magic": "Ação + estratégia invencível",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #mafia"
+    }
+  },
+  "PLAYER_LEADER": {
+    "case_id": "PLAYER_LEADER",
+    "image_file": "PLAYER_LEADER.png",
+    "pt": {
+      "combination_name": "Palco × Líder 🎪👑",
+      "drama": "Hyena",
+      "actor_m": "주지훈",
+      "actor_f": "김혜수",
+      "char_m": "윤희재",
+      "char_f": "정금자",
+      "hook": "Ambos querem o topo, amam mais 💪",
+      "tension": "Luta pela liderança",
+      "magic": "Supremo × supremo, legenda",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #hiena"
+    }
+  },
+  "HARMONY_SPARK": {
+    "case_id": "HARMONY_SPARK",
+    "image_file": "HARMONY_SPARK.png",
+    "pt": {
+      "combination_name": "Calor × Faísca 💕✨",
+      "drama": "Dr. Slump",
+      "actor_m": "박형식",
+      "actor_f": "박신혜",
+      "char_m": "여정우",
+      "char_f": "남하늘",
+      "hook": "Risos curam, calor revitaliza 💫",
+      "tension": "Calor vs energia em excesso",
+      "magic": "Cura + vitalidade perfeita",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #médica"
+    }
+  },
+  "HARMONY_VISION": {
+    "case_id": "HARMONY_VISION",
+    "image_file": "HARMONY_VISION.png",
+    "pt": {
+      "combination_name": "Calor × Destino 💕🔮",
+      "drama": "Into Your Time",
+      "actor_m": "안효섭",
+      "actor_f": "전여빈",
+      "char_m": "구연준",
+      "char_f": "한준희",
+      "hook": "Calor abraça profundidade 💫",
+      "tension": "Presente caloroso vs futuro visionário",
+      "magic": "Calor + intuição suprema",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #tempo"
+    }
+  },
+  "HARMONY_STEADY": {
+    "case_id": "HARMONY_STEADY",
+    "image_file": "HARMONY_STEADY.png",
+    "pt": {
+      "combination_name": "Calor × Âncora 💕⚓",
+      "drama": "When the Camellia Blooms",
+      "actor_m": "강하늘",
+      "actor_f": "공효진",
+      "char_m": "황용식",
+      "char_f": "동백",
+      "hook": "Segura corações que tremem 💕",
+      "tension": "Ambos evitam mudança",
+      "magic": "Calor + confiança máxima",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #camélia"
+    }
+  },
+  "HARMONY_PLAYER": {
+    "case_id": "HARMONY_PLAYER",
+    "image_file": "HARMONY_PLAYER.png",
+    "pt": {
+      "combination_name": "Calor × Palco 💕🎪",
+      "drama": "About the Rumor",
+      "actor_m": "조병규",
+      "actor_f": "김세정",
+      "char_m": "소문",
+      "char_f": "도하나",
+      "hook": "Calidez + energia = máxima diversão 🎉",
+      "tension": "Calor pode ser consumido por energia",
+      "magic": "Calor + vitalidade máxima",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #rumor"
+    }
+  },
+  "HARMONY_HARMONY": {
+    "case_id": "HARMONY_HARMONY",
+    "image_file": "HARMONY_HARMONY.png",
+    "pt": {
+      "combination_name": "Calor × Calor 💕💕",
+      "drama": "Extraordinary Attorney Woo",
+      "actor_m": "강태오",
+      "actor_f": "박은빈",
+      "char_m": "이준호",
+      "char_f": "우영우",
+      "hook": "Amor como é, puro e morno 💕",
+      "tension": "Evita conflito, problemas acumulam",
+      "magic": "Calor duplo, casal mais carinhoso",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #advogada"
+    }
+  },
+  "HARMONY_SOUL": {
+    "case_id": "HARMONY_SOUL",
+    "image_file": "HARMONY_SOUL.png",
+    "pt": {
+      "combination_name": "Calor × Alma 💕✨",
+      "drama": "Morning Comes to the Psychiatric Ward",
+      "actor_m": "연우진",
+      "actor_f": "박보영",
+      "char_m": "동고윤",
+      "char_f": "정다은",
+      "hook": "Feridas cicatrizam com calor abraço 💔💕",
+      "tension": "Sobrecarga emocional possível",
+      "magic": "Empatia + calor, cura máxima",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #psiquiatra"
+    }
+  },
+  "HARMONY_LOGIC": {
+    "case_id": "HARMONY_LOGIC",
+    "image_file": "HARMONY_LOGIC.png",
+    "pt": {
+      "combination_name": "Calor × Lógica 💕🧠",
+      "drama": "Perfect Marriage Revenge",
+      "actor_m": "정경호",
+      "actor_f": "전도연",
+      "char_m": "최치열",
+      "char_f": "남행선",
+      "hook": "Coração + cabeça em perfeito acordo 💕",
+      "tension": "Emoção vs lógica",
+      "magic": "Calor + análise perfeita",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #escândalo"
+    }
+  },
+  "HARMONY_LEADER": {
+    "case_id": "HARMONY_LEADER",
+    "image_file": "HARMONY_LEADER.png",
+    "pt": {
+      "combination_name": "Calor × Líder 💕👑",
+      "drama": "Romantic Doctor, Teacher Kim",
+      "actor_m": "안효섭",
+      "actor_f": "이성경",
+      "char_m": "서우진",
+      "char_f": "차은재",
+      "hook": "Calor suaviza o líder de ferro 💕",
+      "tension": "Liderança vs harmonia",
+      "magic": "Calor + liderança, time dos sonhos",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #médico"
+    }
+  },
+  "SOUL_SPARK": {
+    "case_id": "SOUL_SPARK",
+    "image_file": "SOUL_SPARK.png",
+    "pt": {
+      "combination_name": "Alma × Faísca 💫✨",
+      "drama": "Do Do Sol Sol La La Sol",
+      "actor_m": "이재욱",
+      "actor_f": "고아라",
+      "char_m": "선우준",
+      "char_f": "구라라",
+      "hook": "Sensibilidade toca o coração 🎵",
+      "tension": "Profundidade vs leveza",
+      "magic": "Sensibilidade + energia artística",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #música"
+    }
+  },
+  "SOUL_VISION": {
+    "case_id": "SOUL_VISION",
+    "image_file": "SOUL_VISION.png",
+    "pt": {
+      "combination_name": "Alma × Destino 💫🔮",
+      "drama": "Nevertheless",
+      "actor_m": "송강",
+      "actor_f": "한소희",
+      "char_m": "박재언",
+      "char_f": "유나비",
+      "hook": "Olhares dizem tudo, silêncios curam 💔",
+      "tension": "Ambos têm dificuldade de falar",
+      "magic": "Profundidade que ninguém entende",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #apesar"
+    }
+  },
+  "SOUL_STEADY": {
+    "case_id": "SOUL_STEADY",
+    "image_file": "SOUL_STEADY.png",
+    "pt": {
+      "combination_name": "Alma × Âncora 💫⚓",
+      "drama": "My Mister",
+      "actor_m": "이선균",
+      "actor_f": "아이유",
+      "char_m": "박동훈",
+      "char_f": "이지안",
+      "hook": "Silenciosamente cura feridas profundas 💔💕",
+      "tension": "Falta de expressão",
+      "magic": "Empatia profunda + estabilidade",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #ahjussi"
+    }
+  },
+  "SOUL_PLAYER": {
+    "case_id": "SOUL_PLAYER",
+    "image_file": "SOUL_PLAYER.png",
+    "pt": {
+      "combination_name": "Alma × Palco 💫🎪",
+      "drama": "A Day Found by Chance",
+      "actor_m": "로운",
+      "actor_f": "김혜윤",
+      "char_m": "하루",
+      "char_f": "은단오",
+      "hook": "Sensibilidade encontra liberdade 🎨",
+      "tension": "Profundidade vs leveza",
+      "magic": "Sensibilidade + vitalidade artística",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #acaso"
+    }
+  },
+  "SOUL_HARMONY": {
+    "case_id": "SOUL_HARMONY",
+    "image_file": "SOUL_HARMONY.png",
+    "pt": {
+      "combination_name": "Alma × Calor 💫💕",
+      "drama": "Bright As You",
+      "actor_m": "남주혁",
+      "actor_f": "한지민",
+      "char_m": "이준하",
+      "char_f": "김혜자",
+      "hook": "Luminosos juntos, belo sempre 💫",
+      "tension": "Excesso de expressão emocional",
+      "magic": "Sensibilidade + calor sublime",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #brilho"
+    }
+  },
+  "SOUL_SOUL": {
+    "case_id": "SOUL_SOUL",
+    "image_file": "SOUL_SOUL.png",
+    "pt": {
+      "combination_name": "Alma × Alma 💫💫",
+      "drama": "Tell Me You Love Me",
+      "actor_m": "정우성",
+      "actor_f": "신현빈",
+      "char_m": "차진우",
+      "char_f": "정모은",
+      "hook": "Sem dizer, tudo é entendido 💔",
+      "tension": "Ambos têm dificuldade de falar",
+      "magic": "Sensibilidade mais profunda do mundo",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #amor"
+    }
+  },
+  "SOUL_LOGIC": {
+    "case_id": "SOUL_LOGIC",
+    "image_file": "SOUL_LOGIC.png",
+    "pt": {
+      "combination_name": "Alma × Lógica 💫🧠",
+      "drama": "Her Private Life",
+      "actor_m": "김재욱",
+      "actor_f": "박민영",
+      "char_m": "라이언 골드",
+      "char_f": "성덕미",
+      "hook": "Coração + cabeça entendem tudo 💕",
+      "tension": "Sensibilidade vs lógica",
+      "magic": "Sensibilidade + análise única",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #privada"
+    }
+  },
+  "SOUL_LEADER": {
+    "case_id": "SOUL_LEADER",
+    "image_file": "SOUL_LEADER.png",
+    "pt": {
+      "combination_name": "Alma × Líder 💫👑",
+      "drama": "Red Sleeve",
+      "actor_m": "김명수",
+      "actor_f": "신혜선",
+      "char_m": "단",
+      "char_f": "이연서",
+      "hook": "Sensibilidade acorda coração do rei 💕",
+      "tension": "Sensibilidade vs impulso",
+      "magic": "Sensibilidade + liderança sublime",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #história"
+    }
+  },
+  "LOGIC_SPARK": {
+    "case_id": "LOGIC_SPARK",
+    "image_file": "LOGIC_SPARK.png",
+    "pt": {
+      "combination_name": "Lógica × Faísca 🧠✨",
+      "drama": "Partner for Justice",
+      "actor_m": "지창욱",
+      "actor_f": "남지현",
+      "char_m": "노지욱",
+      "char_f": "은봉희",
+      "hook": "Cérebro + criatividade = diversão 🚀",
+      "tension": "Dados vs intuição",
+      "magic": "Análise + criatividade suprema",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #justiça"
+    }
+  },
+  "LOGIC_VISION": {
+    "case_id": "LOGIC_VISION",
+    "image_file": "LOGIC_VISION.png",
+    "pt": {
+      "combination_name": "Lógica × Destino 🧠🔮",
+      "drama": "While You Were Sleeping",
+      "actor_m": "이종석",
+      "actor_f": "배수지",
+      "char_m": "정재찬",
+      "char_f": "남홍주",
+      "hook": "Sonhos se conectam além da lógica 💫",
+      "tension": "Realidade vs intuição",
+      "magic": "Análise + intuição visionária",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #sonho"
+    }
+  },
+  "LOGIC_STEADY": {
+    "case_id": "LOGIC_STEADY",
+    "image_file": "LOGIC_STEADY.png",
+    "pt": {
+      "combination_name": "Lógica × Âncora 🧠⚓",
+      "drama": "Run On",
+      "actor_m": "임시완",
+      "actor_f": "신세경",
+      "char_m": "기선겸",
+      "char_f": "오미주",
+      "hook": "Cada um corre, chegam juntos 🏃💕",
+      "tension": "Frieza vs sensibilidade",
+      "magic": "Análise + confiança máxima",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #corrida"
+    }
+  },
+  "LOGIC_PLAYER": {
+    "case_id": "LOGIC_PLAYER",
+    "image_file": "LOGIC_PLAYER.png",
+    "pt": {
+      "combination_name": "Lógica × Palco 🧠🎪",
+      "drama": "Record of Youth",
+      "actor_m": "박보검",
+      "actor_f": "박소담",
+      "char_m": "사혜준",
+      "char_f": "안정하",
+      "hook": "Estratégia realiza sonhos de brincador 🎬",
+      "tension": "Planejamento vs improviso",
+      "magic": "Estratégia + ação criativa",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #juventude"
+    }
+  },
+  "LOGIC_HARMONY": {
+    "case_id": "LOGIC_HARMONY",
+    "image_file": "LOGIC_HARMONY.png",
+    "pt": {
+      "combination_name": "Lógica × Calor 🧠💕",
+      "drama": "Oh My Ghost",
+      "actor_m": "조정석",
+      "actor_f": "박보영",
+      "char_m": "강선우",
+      "char_f": "나봉선",
+      "hook": "Frieza derrete em calor inesperado 🔥",
+      "tension": "Lógica vs emoção",
+      "magic": "Análise + calor irresistível",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #fantasma"
+    }
+  },
+  "LOGIC_SOUL": {
+    "case_id": "LOGIC_SOUL",
+    "image_file": "LOGIC_SOUL.png",
+    "pt": {
+      "combination_name": "Lógica × Alma 🧠💫",
+      "drama": "Yumi's Cells",
+      "actor_m": "안보현",
+      "actor_f": "김고은",
+      "char_m": "구웅",
+      "char_f": "유미",
+      "hook": "Cabeça + coração vibram juntos 💕",
+      "tension": "Lógica vs sensibilidade",
+      "magic": "Análise + sensibilidade sublime",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #células"
+    }
+  },
+  "LOGIC_LOGIC": {
+    "case_id": "LOGIC_LOGIC",
+    "image_file": "LOGIC_LOGIC.png",
+    "pt": {
+      "combination_name": "Lógica × Lógica 🧠🧠",
+      "drama": "Dating War",
+      "actor_m": "유태오",
+      "actor_f": "김옥빈",
+      "char_m": "남강호",
+      "char_f": "여미란",
+      "hook": "Cérebros se enfrentam, amor ganha 🎯",
+      "tension": "Ambos têm dificuldade emocional",
+      "magic": "Deux génies vs cada outro, eletrizante",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #namoro"
+    }
+  },
+  "LOGIC_LEADER": {
+    "case_id": "LOGIC_LEADER",
+    "image_file": "LOGIC_LEADER.png",
+    "pt": {
+      "combination_name": "Lógica × Líder 🧠👑",
+      "drama": "Stove League",
+      "actor_m": "남궁민",
+      "actor_f": "박은빈",
+      "char_m": "백승수",
+      "char_f": "이세영",
+      "hook": "Análise + comando levam ao título 🏆",
+      "tension": "Conflito de metodologia",
+      "magic": "Análise + execução suprema",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #beisebol"
+    }
+  },
+  "LEADER_SPARK": {
+    "case_id": "LEADER_SPARK",
+    "image_file": "LEADER_SPARK.png",
+    "pt": {
+      "combination_name": "Líder × Faísca 👑✨",
+      "drama": "Search: WWW",
+      "actor_m": "장기용",
+      "actor_f": "임수정",
+      "char_m": "박모건",
+      "char_f": "배타미",
+      "hook": "Poder + criatividade mudam o mundo 🌍",
+      "tension": "Controle vs liberdade",
+      "magic": "Liderança + criatividade revolucionária",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #busca"
+    }
+  },
+  "LEADER_VISION": {
+    "case_id": "LEADER_VISION",
+    "image_file": "LEADER_VISION.png",
+    "pt": {
+      "combination_name": "Líder × Destino 👑🔮",
+      "drama": "Queen of Tears",
+      "actor_m": "김수현",
+      "actor_f": "김지원",
+      "char_m": "백현우",
+      "char_f": "홍해인",
+      "hook": "Lágrimas compartilhadas, amor eterno 💔💕",
+      "tension": "Duas visões fortes colidem",
+      "magic": "Dois líderes na mesma direção, supremo",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #rainha"
+    }
+  },
+  "LEADER_STEADY": {
+    "case_id": "LEADER_STEADY",
+    "image_file": "LEADER_STEADY.png",
+    "pt": {
+      "combination_name": "Líder × Âncora 👑⚓",
+      "drama": "Meteorological Department People",
+      "actor_m": "송강",
+      "actor_f": "박민영",
+      "char_m": "이시우",
+      "char_f": "진하경",
+      "hook": "Tempestade abraçada, amor morno 💕",
+      "tension": "Diferença de ritmo",
+      "magic": "Liderança + confiança máxima",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #clima"
+    }
+  },
+  "LEADER_PLAYER": {
+    "case_id": "LEADER_PLAYER",
+    "image_file": "LEADER_PLAYER.png",
+    "pt": {
+      "combination_name": "Líder × Palco 👑🎪",
+      "drama": "Strong Woman Do Bong Soon",
+      "actor_m": "박형식",
+      "actor_f": "박보영",
+      "char_m": "안민혁",
+      "char_f": "도봉순",
+      "hook": "Força dupla, invencível e apaixonada 💪",
+      "tension": "Luta pela liderança",
+      "magic": "Liderança + energia irresistível",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #força"
+    }
+  },
+  "LEADER_HARMONY": {
+    "case_id": "LEADER_HARMONY",
+    "image_file": "LEADER_HARMONY.png",
+    "pt": {
+      "combination_name": "Líder × Calor 👑💕",
+      "drama": "The Secret Forest",
+      "actor_m": "조승우",
+      "actor_f": "배두나",
+      "char_m": "황시목",
+      "char_f": "한여진",
+      "hook": "Razão fria + intuição quente revelam tudo 🔍",
+      "tension": "Frieza vs calor",
+      "magic": "Liderança + calor equilibrado",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #floresta"
+    }
+  },
+  "LEADER_SOUL": {
+    "case_id": "LEADER_SOUL",
+    "image_file": "LEADER_SOUL.png",
+    "pt": {
+      "combination_name": "Líder × Alma 👑💫",
+      "drama": "Red Sleeve",
+      "actor_m": "이준호",
+      "actor_f": "이세영",
+      "char_m": "이산",
+      "char_f": "성덕임",
+      "hook": "Na história, guardou seu coração 💔👑",
+      "tension": "Impulso vs sensibilidade",
+      "magic": "Liderança + sensibilidade histórica",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #história"
+    }
+  },
+  "LEADER_LOGIC": {
+    "case_id": "LEADER_LOGIC",
+    "image_file": "LEADER_LOGIC.png",
+    "pt": {
+      "combination_name": "Líder × Lógica 👑🧠",
+      "drama": "Law School",
+      "actor_m": "김범",
+      "actor_f": "류혜영",
+      "char_m": "한준휘",
+      "char_f": "강솔A",
+      "hook": "Tribunal e amor, ambos vencem 🏆",
+      "tension": "Conflito de metodologia",
+      "magic": "Liderança + análise invencível",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #lei"
+    }
+  },
+  "LEADER_LEADER": {
+    "case_id": "LEADER_LEADER",
+    "image_file": "LEADER_LEADER.png",
+    "pt": {
+      "combination_name": "Líder × Líder 👑👑",
+      "drama": "Kill Me Heal Me",
+      "actor_m": "지성",
+      "actor_f": "황정음",
+      "char_m": "차도현",
+      "char_f": "오리진",
+      "hook": "Ambos dominam, se dominam mais ainda 👑",
+      "tension": "Ambos não cedem",
+      "magic": "Supremo × supremo, torna-se lenda",
+      "hashtag": "#kdrama #doramas #casaltipo #shadowgramcouple #cura"
+    }
+  }
+}
