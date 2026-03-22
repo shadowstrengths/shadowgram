@@ -10,7 +10,7 @@
 <meta property="og:title" content="우리 커플 유형은? — Shadowgram Couple">
 <meta property="og:description" content="연인과 함께 24문항으로 커플 유형을 알아보세요.">
 <meta property="og:image" content="https://shadowgram.org/couple/kr/og.png">
-<meta property="og:url" content="https://couple.shadowgram.org/kr">
+<meta property="og:url" content="https://shadowgram.org/couple/kr">
 <style>
   /* ── Reset & Base ───────────────────────────────────────── */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -813,7 +813,7 @@
      SCREEN 1: INTRO
 ══════════════════════════════════════════════════════════════ -->
 <div id="screen-intro" class="screen" style="display:flex;padding-top:52px;">
-  <div class="intro-logo">couple.shadowgram.org/kr</div>
+  <div class="intro-logo">shadowgram.org/couple/kr</div>
   <h1 class="intro-title">우리 커플 유형은<br><span>뭘까요?</span></h1>
   <p class="intro-sub">
     연인과 함께 24문항에 답하면<br>
@@ -1615,7 +1615,7 @@ function renderBig5Radar(sA, sB) {
    SHARE / CTA
 ═════════════════════════════════════════════════════════════*/
 function copyLink() {
-  var url = 'https://couple.shadowgram.org/kr';
+  var url = 'https://shadowgram.org/couple/kr';
   navigator.clipboard.writeText(url).then(function() {
     showToast('링크가 복사됐어요! 연인에게 공유해보세요 💑');
   }).catch(function() {
@@ -1636,7 +1636,7 @@ function shareKakao() {
 
   var shareTitle = '우리 커플 유형은 ✨ ' + combo.title;
   var shareText  = combo.sub + '\n너도 테스트해봐 👇';
-  var shareUrl   = 'https://couple.shadowgram.org/kr';
+  var shareUrl   = 'https://shadowgram.org/couple/kr';
 
   // 모바일 Web Share API (iOS/Android 네이티브 공유시트 — 카카오 포함)
   if (navigator.share) {
@@ -1674,7 +1674,7 @@ function fallbackCopy(text) {
     document.execCommand('copy');
     showToast('링크 복사 완료! 카카오톡에 붙여넣기 하세요 🔗');
   } catch(e) {
-    showToast('링크: couple.shadowgram.org/kr');
+    showToast('링크: shadowgram.org/couple/kr');
   }
   document.body.removeChild(ta);
 }
@@ -1725,7 +1725,7 @@ function saveResultImage() {
   c.font = '500 18px Arial, sans-serif';
   c.fillStyle = 'rgba(255,255,255,0.35)';
   c.textAlign = 'right';
-  c.fillText('couple.shadowgram.org/kr', W - 28, 40);
+  c.fillText('shadowgram.org/couple/kr', W - 28, 40);
 
   // ── type badges
   var bx = 32, by = 60;
