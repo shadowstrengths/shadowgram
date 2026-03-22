@@ -1096,79 +1096,46 @@ const QUESTIONS = [
 /* ════════════════════════════════════════════════════════════
    64-COMBO DATABASE  (title, subtitle, hook, tension, magic, tags, bg)
 ═════════════════════════════════════════════════════════════*/
-const COMBOS = {
-  'SPARK×SPARK':  { title:'SPARK × SPARK', sub:'세계 최고의 브레인스토밍 파트너', hook:'"야 나 방금 엄청난 거 생각났어" "알아, 나도 5분 전에"', tension:'둘 다 실행을 미룬다', magic:'가능성의 총량이 두 배', tags:'#SPARK_SPARK커플 #아이디어폭발 #커플유형 #shadowgramcouple', bg:['#7B3F00','#C0710A'] },
-  'SPARK×VISION': { title:'SPARK × VISION', sub:'즉흥의 에너지를 방향으로 바꾸는 조합', hook:'"지금 바로 하고 싶어" "3개월 후를 봐, 그게 더 완벽해"', tension:'타이밍 감각이 완전히 다름', magic:'창의력 + 통찰, 최강 비전 제조기', tags:'#SPARK_VISION커플 #즉흥vs방향 #커플유형 #shadowgramcouple', bg:['#4A148C','#7B1FA2'] },
-  'SPARK×STEADY': { title:'SPARK × STEADY', sub:'자유로운 영혼과 흔들리지 않는 항구', hook:'"또 갑자기 여행 가자고?" "짐은 내가 쌌어"', tension:'즉흥 vs 계획', magic:'세상에서 가장 안전한 모험', tags:'#SPARK_STEADY커플 #자유vs안정 #커플유형 #shadowgramcouple', bg:['#1B5E20','#2E7D32'] },
-  'SPARK×PLAYER': { title:'SPARK × PLAYER', sub:'24시간이 모자라는 에너지 폭발 커플', hook:'"오늘 뭐해?" "몰라 근데 재밌는 거 하자" "ㅇㅋ 출발"', tension:'깊이보다 넓이, 계획보다 현재', magic:'지루한 날이 단 하루도 없음', tags:'#SPARK_PLAYER커플 #에너지폭발 #커플유형 #shadowgramcouple', bg:['#E65100','#F57C00'] },
-  'SPARK×HARMONY':{ title:'SPARK × HARMONY', sub:'아이디어에 온도를 더하는 커플', hook:'"이거 어때?" "완벽해, 근데 여기서 사람들이 더 좋아할 것 같아"', tension:'콘셉트 vs 사람 먼저', magic:'세상을 따뜻하게 바꾸는 아이디어', tags:'#SPARK_HARMONY커플 #아이디어온기 #커플유형 #shadowgramcouple', bg:['#880E4F','#C2185B'] },
-  'SPARK×SOUL':   { title:'SPARK × SOUL', sub:'겉은 번쩍, 속은 깊은 조합', hook:'"왜 이렇게 조용해?" "생각 중이야" "무슨 생각?" "우리 얘기"', tension:'과잉 자극 vs 과잉 내면', magic:'화려한 외면 + 진심 어린 내면', tags:'#SPARK_SOUL커플 #번쩍깊이 #커플유형 #shadowgramcouple', bg:['#311B92','#512DA8'] },
-  'SPARK×LOGIC':  { title:'SPARK × LOGIC', sub:'아이디어 생성기 + 현실 검증기', hook:'"이건 될 것 같아!" "근거 세 가지만 대봐" "...그냥 느낌?" "그럼 일단 해"', tension:'느낌 vs 증거', magic:'창의 + 정확 = 실제로 작동하는 아이디어', tags:'#SPARK_LOGIC커플 #아이디어논리 #커플유형 #shadowgramcouple', bg:['#01579B','#0277BD'] },
-  'SPARK×LEADER': { title:'SPARK × LEADER', sub:'아이디어가 현실이 되는 커플', hook:'"아이디어는 내가 낼게" "실행은 내가 할게" "우리 최강 아니야?"', tension:'SPARK 변덕 vs LEADER 완수 집착', magic:'아이디어가 사라지기 전에 실현됨', tags:'#SPARK_LEADER커플 #아이디어실행 #커플유형 #shadowgramcouple', bg:['#3E2723','#5D4037'] },
+let COMBOS = {};
 
-  'VISION×SPARK': { title:'VISION × SPARK', sub:'조용한 예언자가 불꽃에 방향을 선물한다', hook:'"어디로 가는지 알아?" "몰라, 근데 따라가면 되잖아" "...맞아"', tension:'깊이 vs 속도', magic:'본능과 직관이 만나는 최강 콤비', tags:'#VISION_SPARK커플 #운명불꽃 #커플유형 #shadowgramcouple', bg:['#BF360C','#E64A19'] },
-  'VISION×VISION':{ title:'VISION × VISION', sub:'말하지 않아도 이미 알고 있는 두 사람', hook:'"말 안 해도 알아?" "응" "...신기해" "나도 그랬어"', tension:'둘 다 말 아낌 → 오해 누적', magic:'인류 역사상 가장 텔레파시 같은 커플', tags:'#VISION_VISION커플 #눈빛소통 #커플유형 #shadowgramcouple', bg:['#1A237E','#283593'] },
-  'VISION×STEADY':{ title:'VISION × STEADY', sub:'미래를 보는 눈 + 현재를 지키는 힘', hook:'"5년 후 이게 다 연결될 거야" "그래서 오늘 밥은 먹었어?"', tension:'추상 vs 구체', magic:'비전이 땅에 뿌리를 내린다', tags:'#VISION_STEADY커플 #미래현재 #커플유형 #shadowgramcouple', bg:['#1B5E20','#388E3C'] },
-  'VISION×PLAYER':{ title:'VISION × PLAYER', sub:'미래 통찰과 현재 폭발의 긴장감', hook:'"생각만 하지 말고 지금 해봐" "지금 할 때가 아니야" "언제?" "...봐야 알아"', tension:'타이밍 전쟁', magic:'최고의 순간에 최고의 행동', tags:'#VISION_PLAYER커플 #미래vs현재 #커플유형 #shadowgramcouple', bg:['#E65100','#EF6C00'] },
-  'VISION×HARMONY':{ title:'VISION × HARMONY', sub:'내면의 깊이와 관계의 따뜻함이 만나는 자리', hook:'"당신이 특별한 이유를 처음부터 알았어" "나도 알고 있었어"', tension:'내향 vs 외향', magic:'세상에서 가장 이해받는 느낌', tags:'#VISION_HARMONY커플 #깊이온기 #커플유형 #shadowgramcouple', bg:['#880E4F','#AD1457'] },
-  'VISION×SOUL':  { title:'VISION × SOUL', sub:'두 사람의 우주가 충돌하는 조합', hook:'"어디서 본 것 같아" "전생이었겠지" "...진짜로?"', tension:'너무 깊어서 가끔 무거움', magic:'평생 탐구해도 다 못 볼 깊이', tags:'#VISION_SOUL커플 #우주충돌 #커플유형 #shadowgramcouple', bg:['#4A148C','#6A1B9A'] },
-  'VISION×LOGIC': { title:'VISION × LOGIC', sub:'다른 경로로 같은 결론에 도달하는 파트너', hook:'"나도 그 결론에 도달했어" "어떻게?" "직관으로" "나는 데이터로"', tension:'증명 방식이 달라서 충돌', magic:'가장 치밀한 지적 파트너십', tags:'#VISION_LOGIC커플 #직관논리 #커플유형 #shadowgramcouple', bg:['#0D47A1','#1565C0'] },
-  'VISION×LEADER':{ title:'VISION × LEADER', sub:'빅픽처 설계자 + 실행 총사령관', hook:'"10년 후를 봐" "그래서 지금 이렇게 움직여야 해" "맞아"', tension:'느린 결정 vs 즉각 실행', magic:'세상을 바꾸는 조합', tags:'#VISION_LEADER커플 #빅픽처 #커플유형 #shadowgramcouple', bg:['#3E2723','#4E342E'] },
+// combo_pt.json 로드
+(function loadCombos() {
+  fetch('/couple/data/combo_pt.json')
+    .then(function(r){ return r.json(); })
+    .then(function(data) {
+      Object.keys(data).forEach(function(k) {
+        var d = data[k].pt || data[k].ko || {};
+        var key = k.replace('_', '×');
+        COMBOS[key] = {
+          title: d.combination_name || k,
+          sub: d.hook || '',
+          hook: d.hook || '',
+          tension: d.tension || '',
+          magic: d.magic || '',
+          drama: d.drama || '',
+          actor_m: d.actor_m || '',
+          actor_f: d.actor_f || '',
+          char_m: d.char_m || '',
+          char_f: d.char_f || '',
+          tags: d.hashtag || '',
+          bg: getBgColors(k)
+        };
+      });
+    })
+    .catch(function(e){ console.warn('combo_pt.json 로드 실패', e); });
+})();
 
-  'STEADY×SPARK': { title:'STEADY × SPARK', sub:'안정이 자유를 응원하는 세상에서 가장 든든한 관계', hook:'"또 엉뚱한 거 하러 가?" "맛있는 거 싸줄게"', tension:'안정 욕구 vs 변화 욕구', magic:'어디서든 돌아올 집이 있다는 것', tags:'#STEADY_SPARK커플 #안정자유 #커플유형 #shadowgramcouple', bg:['#E65100','#F4511E'] },
-  'STEADY×VISION':{ title:'STEADY × VISION', sub:'현실과 비전 사이를 잇는 다리', hook:'"너무 멀리 보지 마" "가까운 것도 봐야지" "...고마워"', tension:'현실 vs 추상', magic:'꿈이 실현되는 커플', tags:'#STEADY_VISION커플 #현실비전 #커플유형 #shadowgramcouple', bg:['#283593','#303F9F'] },
-  'STEADY×STEADY':{ title:'STEADY × STEADY', sub:'10년 후에도 변함없는, 세상에서 가장 안정적인 커플', hook:'"10년 뒤에도 똑같겠지?" "그게 좋잖아" "응, 좋아"', tension:'변화와 성장이 느릴 수 있음', magic:'폭풍이 와도 절대 흔들리지 않음', tags:'#STEADY_STEADY커플 #변함없음 #커플유형 #shadowgramcouple', bg:['#1B5E20','#2E7D32'] },
-  'STEADY×PLAYER':{ title:'STEADY × PLAYER', sub:'집 안의 평화와 집 밖의 모험', hook:'"집에 있어" "나랑 바다 보러 가자" "...우리 집에서 바다 얼마나 멀어?"', tension:'에너지 레벨 차이', magic:'PLAYER가 세상을 데려오고 STEADY가 정착시킴', tags:'#STEADY_PLAYER커플 #집vs모험 #커플유형 #shadowgramcouple', bg:['#E65100','#EF6C00'] },
-  'STEADY×HARMONY':{ title:'STEADY × HARMONY', sub:'두 사람이 있으면 그게 집', hook:'"오늘도 맛있는 거 했어?" "네가 오면 더 맛있어"', tension:'너무 평화로워서 자극 부족', magic:'지구상에서 가장 따뜻한 커플', tags:'#STEADY_HARMONY커플 #집온기 #커플유형 #shadowgramcouple', bg:['#880E4F','#C2185B'] },
-  'STEADY×SOUL':  { title:'STEADY × SOUL', sub:'현실이 감성을 포근히 감싸는 관계', hook:'"울어도 돼" "나 여기 있어"', tension:'말 없음 vs 표현 갈망', magic:'가장 안전한 감성 기지', tags:'#STEADY_SOUL커플 #현실감성 #커플유형 #shadowgramcouple', bg:['#4A148C','#6A1B9A'] },
-  'STEADY×LOGIC': { title:'STEADY × LOGIC', sub:'말없이 옆에 있어주는 파트너십', hook:'"말 안 해도 알아" "...그래"', tension:'둘 다 표현이 적어 거리감 생길 수 있음', magic:'침묵이 불편하지 않은 커플', tags:'#STEADY_LOGIC커플 #말없이통함 #커플유형 #shadowgramcouple', bg:['#0D47A1','#1565C0'] },
-  'STEADY×LEADER':{ title:'STEADY × LEADER', sub:'전진하는 힘을 지탱하는 기반', hook:'"앞만 보고 달려" "나는 뒤에서 지킬게"', tension:'속도 vs 지속성', magic:'무너지지 않는 팀', tags:'#STEADY_LEADER커플 #전진지탱 #커플유형 #shadowgramcouple', bg:['#3E2723','#5D4037'] },
+function getBgColors(key) {
+  var colorMap = {
+    'SPARK': ['#7B3F00','#C0710A'], 'VISION': ['#1A237E','#283593'],
+    'STEADY': ['#1B5E20','#2E7D32'], 'PLAYER': ['#E65100','#F57C00'],
+    'HARMONY': ['#880E4F','#C2185B'], 'SOUL': ['#311B92','#512DA8'],
+    'LOGIC': ['#01579B','#0277BD'], 'LEADER': ['#3E2723','#5D4037']
+  };
+  var parts = key.split('_');
+  return colorMap[parts[0]] || ['#1A2030','#2A3450'];
+}
 
-  'PLAYER×SPARK': { title:'PLAYER × SPARK', sub:'지금 이 순간이 전부인 에너지 듀오', hook:'"생각 그만하고 지금 나가자" "ㅇㅋ 신발 신어"', tension:'실행하고 나서야 생각함', magic:'살면서 가장 많은 경험을 쌓는 커플', tags:'#PLAYER_SPARK커플 #지금이순간 #커플유형 #shadowgramcouple', bg:['#BF360C','#D84315'] },
-  'PLAYER×VISION':{ title:'PLAYER × VISION', sub:'현재 폭발 vs 미래 통찰, 긴장감 넘치는 조합', hook:'"지금 즐기면 되잖아" "나중을 생각해야지" "나중이 어딘데?" "...봐야 알아"', tension:'타임라인이 완전히 다름', magic:'최고의 순간에 최고의 방향', tags:'#PLAYER_VISION커플 #현재미래긴장 #커플유형 #shadowgramcouple', bg:['#283593','#3949AB'] },
-  'PLAYER×STEADY':{ title:'PLAYER × STEADY', sub:'모험 파트너 + 돌아올 베이스캠프', hook:'"가자" "어디?" "일단 가자" "...짐은 내가 챙길게"', tension:'충동 vs 신중', magic:'모험이 있고 집이 있는 완벽한 균형', tags:'#PLAYER_STEADY커플 #모험베이스 #커플유형 #shadowgramcouple', bg:['#1B5E20','#2E7D32'] },
-  'PLAYER×PLAYER':{ title:'PLAYER × PLAYER', sub:'에너지 2배, 사고도 2배, 행복도 2배', hook:'"우리 이거 실제로 해보자" "ㅇㅋ 고" "언제?" "지금"', tension:'둘 다 브레이크가 없음', magic:'세상에서 가장 재밌는 커플', tags:'#PLAYER_PLAYER커플 #에너지2배 #커플유형 #shadowgramcouple', bg:['#E53935','#F44336'] },
-  'PLAYER×HARMONY':{ title:'PLAYER × HARMONY', sub:'신나는 에너지 + 사람 챙기는 마음', hook:'"맛집 찾았어! 얼른 가자" "걔네도 데려가자" "...다 연락해?"', tension:'속도 vs 관계 챙김', magic:'파티가 자동으로 생기는 커플', tags:'#PLAYER_HARMONY커플 #신남온기 #커플유형 #shadowgramcouple', bg:['#880E4F','#C2185B'] },
-  'PLAYER×SOUL':  { title:'PLAYER × SOUL', sub:'겉으로 보이는 것과 내면의 깊이', hook:'"왜 이렇게 진지해?" "원래 이래" "...그래서 좋아"', tension:'표면 vs 내면', magic:'SOUL이 PLAYER의 진심을 처음으로 꺼내줌', tags:'#PLAYER_SOUL커플 #겉깊이 #커플유형 #shadowgramcouple', bg:['#4A148C','#6A1B9A'] },
-  'PLAYER×LOGIC': { title:'PLAYER × LOGIC', sub:'행동파 + 계산기, 말이 되는 즉흥', hook:'"일단 치고 나가자" "승산이 73%야, 가자"', tension:'계산이 끝나기 전에 이미 시작함', magic:'해보고 분석하는 최강 학습 커플', tags:'#PLAYER_LOGIC커플 #행동계산 #커플유형 #shadowgramcouple', bg:['#0D47A1','#1565C0'] },
-  'PLAYER×LEADER':{ title:'PLAYER × LEADER', sub:'현장 에너지 + 전략 실행력', hook:'"내가 뚫으면 네가 마무리해" "당연하지"', tension:'즉흥 vs 계획 충돌', magic:'현장에서 이기는 커플', tags:'#PLAYER_LEADER커플 #현장전략 #커플유형 #shadowgramcouple', bg:['#3E2723','#5D4037'] },
-
-  'HARMONY×SPARK':{ title:'HARMONY × SPARK', sub:'관계의 온도를 높이는 두 사람', hook:'"너 아이디어 진짜 좋다" "그렇지?ㅎㅎ" "근데 사람들이 어떻게 받을지 생각해봐"', tension:'관계 vs 아이디어 우선', magic:'사람의 마음을 움직이는 아이디어', tags:'#HARMONY_SPARK커플 #온기불꽃 #커플유형 #shadowgramcouple', bg:['#BF360C','#E64A19'] },
-  'HARMONY×VISION':{ title:'HARMONY × VISION', sub:'사람 마음을 읽는 두 가지 방식', hook:'"그 사람 기분 느껴져?" "응, 나도" "같이 얘기해줄까?" "내가 한다"', tension:'공감 방식이 달라 충돌', magic:'어떤 사람도 이해하는 커플', tags:'#HARMONY_VISION커플 #마음읽기 #커플유형 #shadowgramcouple', bg:['#283593','#3949AB'] },
-  'HARMONY×STEADY':{ title:'HARMONY × STEADY', sub:'가장 따뜻한 일상을 만드는 조합', hook:'"밥 먹었어?" "너 먹으면서 왜 물어봐" "같이 먹고 싶어서"', tension:'너무 편안해서 자극 부족', magic:'세상 어디에도 없는 포근함', tags:'#HARMONY_STEADY커플 #따뜻한일상 #커플유형 #shadowgramcouple', bg:['#1B5E20','#388E3C'] },
-  'HARMONY×PLAYER':{ title:'HARMONY × PLAYER', sub:'사람들 모이는 파티를 자동 생성하는 커플', hook:'"오늘 우리 집 와, 다 불러" "맛있는 거 내가 사올게"', tension:'관계 깊이 vs 넓이', magic:'모두가 좋아하는 커플', tags:'#HARMONY_PLAYER커플 #파티생성 #커플유형 #shadowgramcouple', bg:['#E65100','#F4511E'] },
-  'HARMONY×HARMONY':{ title:'HARMONY × HARMONY', sub:'사랑이 과부하될 수도 있는, 세상에서 가장 따뜻한 조합', hook:'"나 너무 좋아" "나도 너무 좋아" "야 좀 그만해ㅋㅋ" "싫어"', tension:'서로 배려하다 정작 본인 말 못함', magic:'세상 모든 관계가 이 커플 주변에 따뜻해짐', tags:'#HARMONY_HARMONY커플 #사랑과부화 #커플유형 #shadowgramcouple', bg:['#880E4F','#C2185B'] },
-  'HARMONY×SOUL': { title:'HARMONY × SOUL', sub:'진심으로 감싸는 두 사람', hook:'"네 기분 어때?" "나도 그런 적 있었어" "...어떻게 알았어?"', tension:'외향 vs 내향', magic:'가장 깊이 이해받는 관계', tags:'#HARMONY_SOUL커플 #진심감쌈 #커플유형 #shadowgramcouple', bg:['#4A148C','#6A1B9A'] },
-  'HARMONY×LOGIC':{ title:'HARMONY × LOGIC', sub:'따뜻한 말 vs 정확한 말, 긴장과 성장', hook:'"걱정돼서 연락했어" "걱정할 필요 없는데" "...그래도 걱정됐어"', tension:'공감 vs 해결책 대립', magic:'감성과 이성이 동시에 채워지는 관계', tags:'#HARMONY_LOGIC커플 #따뜻논리 #커플유형 #shadowgramcouple', bg:['#0D47A1','#1565C0'] },
-  'HARMONY×LEADER':{ title:'HARMONY × LEADER', sub:'팀을 이끄는 두 가지 방식', hook:'"결과만 봐" "사람도 봐야 해" "둘 다 봐" "그래"', tension:'리더십 스타일 충돌', magic:'사람도 잡고 성과도 잡는 최강 파트너십', tags:'#HARMONY_LEADER커플 #결과vs사람 #커플유형 #shadowgramcouple', bg:['#3E2723','#5D4037'] },
-
-  'SOUL×SPARK':   { title:'SOUL × SPARK', sub:'고요한 내면이 새로운 세계로 열리는 관계', hook:'"처음으로 밖으로 나오고 싶었어" "나랑 같이?"', tension:'과잉 자극 vs 과잉 에너지', magic:'SOUL이 처음으로 세상과 연결되는 순간', tags:'#SOUL_SPARK커플 #내면개방 #커플유형 #shadowgramcouple', bg:['#E65100','#F4511E'] },
-  'SOUL×VISION':  { title:'SOUL × VISION', sub:'말보다 감각으로 이해하는 두 사람', hook:'"말 안 해도 돼" "알아" "...신기해" "나도"', tension:'깊이가 너무 깊어 현실이 사라짐', magic:'우주에서 가장 깊은 공명', tags:'#SOUL_VISION커플 #감각소통 #커플유형 #shadowgramcouple', bg:['#283593','#3949AB'] },
-  'SOUL×STEADY':  { title:'SOUL × STEADY', sub:'섬세한 내면을 지켜주는 파트너', hook:'"혼자 있어도 돼" "나 여기 있을게"', tension:'감정 기복 vs 일관성', magic:'가장 안전한 감성 공간', tags:'#SOUL_STEADY커플 #내면수호 #커플유형 #shadowgramcouple', bg:['#1B5E20','#2E7D32'] },
-  'SOUL×PLAYER':  { title:'SOUL × PLAYER', sub:'조용한 감성을 세상 밖으로 꺼내주는 관계', hook:'"왜 그렇게 웃어?" "네가 웃겨" "내가?" "응, 항상"', tension:'과자극 우려 vs 에너지 과잉', magic:'PLAYER가 SOUL의 진심 웃음을 이끌어냄', tags:'#SOUL_PLAYER커플 #감성개방 #커플유형 #shadowgramcouple', bg:['#E65100','#EF6C00'] },
-  'SOUL×HARMONY': { title:'SOUL × HARMONY', sub:'진심이 진심을 알아보는 조합', hook:'"괜찮아" "괜찮지 않은데 왜 물어봐" "...미안"', tension:'독립 vs 챙김 충돌', magic:'가장 진심 어린 관계', tags:'#SOUL_HARMONY커플 #진심진심 #커플유형 #shadowgramcouple', bg:['#880E4F','#C2185B'] },
-  'SOUL×SOUL':    { title:'SOUL × SOUL', sub:'가장 깊은 공명, 가장 강렬한 감정도 가능', hook:'"우리가 아프면 우리가 가장 아파" "그래도 네가 있어서 괜찮아"', tension:'감정 소용돌이가 두 배', magic:'세상에서 가장 깊이 이해하는 파트너', tags:'#SOUL_SOUL커플 #깊은공명 #커플유형 #shadowgramcouple', bg:['#4A148C','#6A1B9A'] },
-  'SOUL×LOGIC':   { title:'SOUL × LOGIC', sub:'감성과 논리의 조용한 대화', hook:'"왜 그랬어?" "몰라, 그냥 그랬어" "...그래"', tension:'이유 없는 감정 vs 이유 필요한 논리', magic:'설명 안 해도 되는 파트너', tags:'#SOUL_LOGIC커플 #감성논리 #커플유형 #shadowgramcouple', bg:['#0D47A1','#1565C0'] },
-  'SOUL×LEADER':  { title:'SOUL × LEADER', sub:'목표 지향과 내면 지향의 보완', hook:'"왜 그렇게 달려가?" "멈추면 무너져" "내가 잡아줄게"', tension:'목표 vs 과정 가치', magic:'LEADER가 처음으로 멈추는 법을 배움', tags:'#SOUL_LEADER커플 #목표내면 #커플유형 #shadowgramcouple', bg:['#3E2723','#5D4037'] },
-
-  'LOGIC×SPARK':  { title:'LOGIC × SPARK', sub:'아이디어 회의에서 시작된 연애', hook:'"이건 논리적으로 말이 돼" "그래서 사랑하면 되잖아" "...맞네"', tension:'증거 vs 직관', magic:'검증된 창의력', tags:'#LOGIC_SPARK커플 #논리불꽃 #커플유형 #shadowgramcouple', bg:['#BF360C','#E64A19'] },
-  'LOGIC×VISION': { title:'LOGIC × VISION', sub:'다른 경로, 같은 진실', hook:'"나도 그 결론에 도달했어" "다른 경로로?" "응, 직관" "나는 데이터"', tension:'증명 방식 충돌', magic:'어떤 문제도 해결하는 조합', tags:'#LOGIC_VISION커플 #다른경로같은진실 #커플유형 #shadowgramcouple', bg:['#283593','#3949AB'] },
-  'LOGIC×STEADY': { title:'LOGIC × STEADY', sub:'시스템 설계자 + 유지 관리자', hook:'"시스템 만들게" "나는 유지할게" "완벽하다"', tension:'둘 다 감정 표현 부족', magic:'가장 효율적인 커플', tags:'#LOGIC_STEADY커플 #시스템유지 #커플유형 #shadowgramcouple', bg:['#1B5E20','#2E7D32'] },
-  'LOGIC×PLAYER': { title:'LOGIC × PLAYER', sub:'계산하고 바로 실행하는 조합', hook:'"가능성 계산했어" "그럼 바로 가자" "잠깐 변수가—" "그건 나중에"', tension:'계산이 끝나기 전에 PLAYER가 출발함', magic:'계획도 있고 실행도 있는 완벽한 조합', tags:'#LOGIC_PLAYER커플 #계산즉실행 #커플유형 #shadowgramcouple', bg:['#E65100','#EF6C00'] },
-  'LOGIC×HARMONY':{ title:'LOGIC × HARMONY', sub:'차가운 분석과 따뜻한 배려의 만남', hook:'"걱정돼서 연락했어" "걱정할 필요 없는데" "그래도 걱정됐어" "...고마워"', tension:'"왜 운 거야" "그냥 슬펐어" "이유가 있잖아"', magic:'감정도 알고 이유도 아는 파트너', tags:'#LOGIC_HARMONY커플 #냉온탕 #커플유형 #shadowgramcouple', bg:['#880E4F','#C2185B'] },
-  'LOGIC×SOUL':   { title:'LOGIC × SOUL', sub:'말없이 서로의 깊이를 알아보는 관계', hook:'"설명 안 해도 돼" "...어떻게 알았어?" "논리적으로 추론했어"', tension:'이유 없는 감정을 분석하려 함', magic:'유일하게 SOUL을 분석하지 않는 LOGIC', tags:'#LOGIC_SOUL커플 #말없이깊이 #커플유형 #shadowgramcouple', bg:['#4A148C','#6A1B9A'] },
-  'LOGIC×LOGIC':  { title:'LOGIC × LOGIC', sub:'세상에서 가장 조용하고 효율적인 커플', hook:'"10초 침묵" "그래 맞아" "응"', tension:'감정 표현이 구조적으로 부재', magic:'말이 없어도 신뢰가 100%', tags:'#LOGIC_LOGIC커플 #침묵소통 #커플유형 #shadowgramcouple', bg:['#01579B','#0277BD'] },
-  'LOGIC×LEADER': { title:'LOGIC × LEADER', sub:'전략가 + 실행가, 세상을 바꾸는 조합', hook:'"내가 설계하면 네가 치면 돼" "언제 준비돼?" "5분 후"', tension:'완벽 추구 vs 속도 추구', magic:'실행력 + 정밀도 = 무적', tags:'#LOGIC_LEADER커플 #설계실행 #커플유형 #shadowgramcouple', bg:['#3E2723','#5D4037'] },
-
-  'LEADER×SPARK': { title:'LEADER × SPARK', sub:'목표 달성에 창의력을 더하다', hook:'"아이디어 좋아" "3주 안에 런칭하자" "3주?!" "2주도 돼"', tension:'속도 vs 완성도', magic:'아이디어가 사라지기 전에 세상에 나옴', tags:'#LEADER_SPARK커플 #목표창의 #커플유형 #shadowgramcouple', bg:['#E65100','#F4511E'] },
-  'LEADER×VISION':{ title:'LEADER × VISION', sub:'장기 전략의 완벽한 듀오', hook:'"10년 계획 만들자" "이미 있어" "...언제 만든 거야?" "3년 전"', tension:'단기 실행 vs 장기 통찰', magic:'세상에서 가장 치밀한 빅픽처', tags:'#LEADER_VISION커플 #장기전략 #커플유형 #shadowgramcouple', bg:['#1A237E','#283593'] },
-  'LEADER×STEADY':{ title:'LEADER × STEADY', sub:'전진하는 힘 + 흔들리지 않는 기반', hook:'"앞만 보고 달려" "나는 뒤에서 지킬게" "약속해?" "응"', tension:'고속 vs 안정 속도', magic:'무너지지 않고 계속 전진', tags:'#LEADER_STEADY커플 #전진기반 #커플유형 #shadowgramcouple', bg:['#1B5E20','#2E7D32'] },
-  'LEADER×PLAYER':{ title:'LEADER × PLAYER', sub:'전략 + 현장 장악력', hook:'"계획대로" "변수가 생겼어" "그럼 즉흥으로" "나 그거 더 잘해"', tension:'계획 중독 vs 즉흥 중독', magic:'예상치 못한 상황에서 가장 강함', tags:'#LEADER_PLAYER커플 #전략현장 #커플유형 #shadowgramcouple', bg:['#E65100','#EF6C00'] },
-  'LEADER×HARMONY':{ title:'LEADER × HARMONY', sub:'강한 리더십 + 사람 마음 얻기', hook:'"결과만 보면 돼" "사람도 봐야 해" "...맞아, 고마워"', tension:'효율 vs 관계', magic:'목표도 달성하고 사람도 잃지 않음', tags:'#LEADER_HARMONY커플 #결과사람 #커플유형 #shadowgramcouple', bg:['#880E4F','#C2185B'] },
-  'LEADER×SOUL':  { title:'LEADER × SOUL', sub:'성과 지향과 가치 지향의 갈등과 성장', hook:'"왜 그렇게 달려가?" "멈추면 무너져" "내가 잡아줄게"', tension:'목표 vs 과정 가치', magic:'LEADER가 처음으로 속도를 줄이는 관계', tags:'#LEADER_SOUL커플 #성과가치 #커플유형 #shadowgramcouple', bg:['#4A148C','#6A1B9A'] },
-  'LEADER×LOGIC': { title:'LEADER × LOGIC', sub:'CEO + CFO, 세상을 바꾸는 커플', hook:'"실행" "리스크 계산 완료" "그럼 바로" "3,2,1—"', tension:'속도 vs 완벽주의', magic:'실행력 + 정밀도 = 무적', tags:'#LEADER_LOGIC커플 #CEO_CFO #커플유형 #shadowgramcouple', bg:['#01579B','#0277BD'] },
-  'LEADER×LEADER':{ title:'LEADER × LEADER', sub:'세상에서 가장 생산적이고 가장 치열한 커플', hook:'"내가 맞아" "아니 내가 맞아" "(5분 뒤) 둘 다 맞았어"', tension:'누구도 지지 않으려 함', magic:'싸워도 다음날 더 강해지는 커플', tags:'#LEADER_LEADER커플 #둘다맞음 #커플유형 #shadowgramcouple', bg:['#3E2723','#4E342E'] },
-};
 
 /* ════════════════════════════════════════════════════════════
    TYPE MAPPING  (MBTI-style 4-letter → Shadowgram type)
