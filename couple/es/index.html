@@ -35,7 +35,7 @@
   }
 
   /* ── Layout ─────────────────────────────────────────────── */
-  /* display 는 inline style로 JS가 직접 제어 — CSS는 animation만 */
+  /* display is controlled directly by JS inline style — CSS handles animation only */
   @keyframes fadeIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
 
   .container {
@@ -754,7 +754,7 @@
   }
 
 
-  /* ── HAMBURGER & DRAWER (공통) ───────────── */
+  /* ── HAMBURGER & DRAWER (shared) ───────────── */
   .hw-btn {
     position: relative;
     background: rgba(184,134,11,0.12);
@@ -817,8 +817,8 @@
   <div class="intro-logo">shadowgram.org/couple/es</div>
   <h1 class="intro-title">¿Cuál es nuestro<br><span>tipo de pareja?</span></h1>
   <p class="intro-sub">
-    연인과 함께 24문항에 답하면<br>
-    64가지 조합 중 우리만의 커플 유형 카드가 Yo와요.
+    Respondan 24 preguntas juntos<br>
+    y descubran su tipo de pareja entre 64 combinaciones
   </p>
   <div class="intro-pills">
     <span class="pill">⏱ Cerca de 5 min</span>
@@ -854,7 +854,7 @@
   <!-- question text (shared) -->
   <div class="split-question-area">
     <div class="split-q-section" id="split-q-section">SECTION 1</div>
-    <div class="split-q-text" id="split-q-text">질문 로딩 중...</div>
+    <div class="split-q-text" id="split-q-text">Cargando pregunta...</div>
   </div>
 
   <!-- two panels side by side -->
@@ -993,7 +993,7 @@
 
 <script>
 
-/* ── WhatsApp 공유 ────────────────────────────────────────*/
+/* ── WhatsApp sharing ────────────────────────────────────────*/
 function shareWhatsApp() {
   var typeA = getType(state.scoresA);
   var typeB = getType(state.scoresB);
@@ -1014,84 +1014,84 @@ function shareWhatsApp() {
 ═════════════════════════════════════════════════════════════*/
 const QUESTIONS = [
   // ── E/I axis (Q1-6) ──────────────────────────────────────────
-  { axis:'EI', section:'Direção de Energia', text:'Como você prefere passar o fim de semana com seu parceiro?',
-    a:{ label:'A', text:'어디든 Yo가서 새로운 곳을 탐험하고 싶어요', score:'E' },
-    b:{ label:'B', text:'집에서 조용히 함께 있는 게 제일 좋아요', score:'I' } },
-  { axis:'EI', section:'Direção de Energia', text:'Depois de uma briga com meu parceiro, eu...',
-    a:{ label:'A', text:'빨리 대화로 풀어야 직성이 풀려요', score:'E' },
-    b:{ label:'B', text:'혼자 생각을 정리하는 시간이 필요해요', score:'I' } },
-  { axis:'EI', section:'Direção de Energia', text:'Quando conheço os amigos do meu parceiro pela primeira vez, eu...',
-    a:{ label:'A', text:'먼저 다가가서 분위기를 만들어요', score:'E' },
-    b:{ label:'B', text:'잘 듣고 천천히 친해지는 편이에요', score:'I' } },
-  { axis:'EI', section:'Direção de Energia', text:'Meu parceiro de repente me chamou: "Vou encontrar meus amigos, quer vir?" Eu...',
-    a:{ label:'A', text:'오 좋아! 바로 준비해요', score:'E' },
-    b:{ label:'B', text:'조금 망설이지만 따라가요 (가끔은 혼자 있고 싶어요)', score:'I' } },
-  { axis:'EI', section:'Direção de Energia', text:'Qual momento do encontro me dá mais energia?',
-    a:{ label:'A', text:'새로운 사람을 만Yo거Yo 새 장소를 가는 것', score:'E' },
-    b:{ label:'B', text:'둘만의 조용한 공간에서 깊이 대화할 때', score:'I' } },
-  { axis:'EI', section:'Direção de Energia', text:'Quando meu parceiro quer saber sobre meu dia, eu...',
-    a:{ label:'A', text:'신Yo서 조잘조잘 다 말해요', score:'E' },
-    b:{ label:'B', text:'요점만 간단히, 깊은 건 조금씩 꺼내요', score:'I' } },
+  { axis:'EI', section:'Dirección de Energía', text:'Como você prefere passar o fim de semana com seu parceiro?',
+    a:{ label:'A', text:'Quiero explorar nuevos lugares donde sea', score:'E' },
+    b:{ label:'B', text:'Me encanta estar en casa en paz contigo', score:'I' } },
+  { axis:'EI', section:'Dirección de Energía', text:'Depois de uma briga com meu parceiro, eu...',
+    a:{ label:'A', text:'Necesito hablar para resolverlo rápido', score:'E' },
+    b:{ label:'B', text:'Necesito tiempo para pensar en soledad', score:'I' } },
+  { axis:'EI', section:'Dirección de Energía', text:'Quando conheço os amigos do meu parceiro pela primeira vez, eu...',
+    a:{ label:'A', text:'Voy primero y creo la atmósfera', score:'E' },
+    b:{ label:'B', text:'Escucho bien y me acerco lentamente', score:'I' } },
+  { axis:'EI', section:'Dirección de Energía', text:'Meu parceiro de repente me chamou: "Vou encontrar meus amigos, quer vir?" Eu...',
+    a:{ label:'A', text:'¡Claro! Me preparo ya', score:'E' },
+    b:{ label:'B', text:'Voy aunque dudo (a veces quiero estar solo)', score:'I' } },
+  { axis:'EI', section:'Dirección de Energía', text:'Qual momento do encontro me dá mais energia?',
+    a:{ label:'A', text:'Conocer gente nueva o visitar nuevos lugares', score:'E' },
+    b:{ label:'B', text:'Cuando hablamos profundo en un espacio tranquilo', score:'I' } },
+  { axis:'EI', section:'Dirección de Energía', text:'Quando meu parceiro quer saber sobre meu dia, eu...',
+    a:{ label:'A', text:'Platico con emoción, lo digo todo', score:'E' },
+    b:{ label:'B', text:'Digo lo esencial, los detalles los saco poco a poco', score:'I' } },
 
   // ── S/N axis (Q7-12) ─────────────────────────────────────────
-  { axis:'SN', section:'Processamento de Informação', text:'Ao planejar uma viagem com meu parceiro, eu...',
-    a:{ label:'A', text:'숙소·맛집·이동 경로를 구체적으로 정해요', score:'S' },
-    b:{ label:'B', text:'큰 그림만 잡고 즉흥적으로 즐겨요', score:'N' } },
-  { axis:'SN', section:'Processamento de Informação', text:'Quando falo sobre o futuro com meu parceiro, eu...',
-    a:{ label:'A', text:'현실적인 계획을 먼저 얘기해요 (돈·날짜·집)', score:'S' },
-    b:{ label:'B', text:'어떤 삶을 살고 싶은지 그림을 그려요', score:'N' } },
-  { axis:'SN', section:'Processamento de Informação', text:'Qual tipo de encontro eu gosto?',
-    a:{ label:'A', text:'늘 가던 곳인데 거기서 확실히 즐거운 코스', score:'S' },
-    b:{ label:'B', text:'처음 가보는 곳, 새로운 경험', score:'N' } },
-  { axis:'SN', section:'Processamento de Informação', text:'Meu parceiro escolheu um presente para mim. O que mais me toca?',
-    a:{ label:'A', text:'내가 필요한 걸 정확히 알고 골라준 선물', score:'S' },
-    b:{ label:'B', text:'"너를 생각하다 문득 떠올랐어"라는 선물', score:'N' } },
-  { axis:'SN', section:'Processamento de Informação', text:'Quando converso com meu parceiro, eu...',
-    a:{ label:'A', text:'구체적인 사실과 경험 위주로 얘기해요', score:'S' },
-    b:{ label:'B', text:'아이디어·가능성·"만약에~"로 얘기해요', score:'N' } },
-  { axis:'SN', section:'Processamento de Informação', text:'Quando nos reconciliamos após uma briga, eu...',
-    a:{ label:'A', text:'무엇이 문제였는지 구체적으로 짚어요', score:'S' },
-    b:{ label:'B', text:'전체적인 관계 흐름과 의미를 얘기해요', score:'N' } },
+  { axis:'SN', section:'Procesamiento de Información', text:'Ao planejar uma viagem com meu parceiro, eu...',
+    a:{ label:'A', text:'Planeo hoteles, restaurantes y rutas', score:'S' },
+    b:{ label:'B', text:'Solo veo el panorama y disfruto sin plan', score:'N' } },
+  { axis:'SN', section:'Procesamiento de Información', text:'Quando falo sobre o futuro com meu parceiro, eu...',
+    a:{ label:'A', text:'Hablo primero de realidades (dinero, fechas, casa)', score:'S' },
+    b:{ label:'B', text:'Dibujo la vida que quiero vivir', score:'N' } },
+  { axis:'SN', section:'Procesamiento de Información', text:'Qual tipo de encontro eu gosto?',
+    a:{ label:'A', text:'Lugares conocidos donde sé que me encantarán', score:'S' },
+    b:{ label:'B', text:'Nuevos lugares, nuevas experiencias', score:'N' } },
+  { axis:'SN', section:'Procesamiento de Información', text:'Meu parceiro escolheu um presente para mim. O que mais me toca?',
+    a:{ label:'A', text:'Un regalo que muestra que conoces mis necesidades', score:'S' },
+    b:{ label:'B', text:'Un regalo que surge de pensar en mí', score:'N' } },
+  { axis:'SN', section:'Procesamiento de Información', text:'Quando converso com meu parceiro, eu...',
+    a:{ label:'A', text:'Hablo de hechos y experiencias concretas', score:'S' },
+    b:{ label:'B', text:'Hablo de ideas, posibilidades y qué pasaría si...', score:'N' } },
+  { axis:'SN', section:'Procesamiento de Información', text:'Quando nos reconciliamos após uma briga, eu...',
+    a:{ label:'A', text:'Identifico exactamente qué salió mal', score:'S' },
+    b:{ label:'B', text:'Hablo del flujo general de la relación', score:'N' } },
 
   // ── T/F axis (Q13-18) ────────────────────────────────────────
-  { axis:'TF', section:'Modo de Decisão', text:'Meu parceiro compartilhou uma preocupação. O primeiro passo é...',
-    a:{ label:'A', text:'원인을 분석하고 해결책을 제안해요', score:'T' },
-    b:{ label:'B', text:'"많이 힘들었겠다"고 먼저 공감해요', score:'F' } },
-  { axis:'TF', section:'Modo de Decisão', text:'Meu parceiro pediu minha opinião honesta. Eu...',
-    a:{ label:'A', text:'상대가 상처받더라도 정확하게 말해요', score:'T' },
-    b:{ label:'B', text:'사실이지만 기분 Yo쁘지 않게 돌려 말해요', score:'F' } },
-  { axis:'TF', section:'Modo de Decisão', text:'Quando meu parceiro está bravado comigo, eu...',
-    a:{ label:'A', text:'왜 화가 났는지 논리적으로 따져봐요', score:'T' },
-    b:{ label:'B', text:'일단 화가 났다는 감정부터 받아줘요', score:'F' } },
-  { axis:'TF', section:'Modo de Decisão', text:'Ao escolher móveis para usar juntos, meu critério é...',
-    a:{ label:'A', text:'가격·내구성·실용성', score:'T' },
-    b:{ label:'B', text:'분위기·우리 집 느낌·마음에 드는가', score:'F' } },
-  { axis:'TF', section:'Modo de Decisão', text:'Qual é a marca de um bom parceiro?',
-    a:{ label:'A', text:'서로 성장을 도와주는 Pareja', score:'T' },
-    b:{ label:'B', text:'있는 그대로 받아주는 사람', score:'F' } },
-  { axis:'TF', section:'Modo de Decisão', text:'Quando meu parceiro precisa tomar uma grande decisão, meu papel é...',
-    a:{ label:'A', text:'장단점을 정리해서 가장 Yo은 선택을 돕는 것', score:'T' },
-    b:{ label:'B', text:'어떤 결정을 해도 지지해주는 것', score:'F' } },
+  { axis:'TF', section:'Modo de Decisión', text:'Meu parceiro compartilhou uma preocupação. O primeiro passo é...',
+    a:{ label:'A', text:'Analizo la causa y propongo una solución', score:'T' },
+    b:{ label:'B', text:'Le digo primero "Debe ser difícil"', score:'F' } },
+  { axis:'TF', section:'Modo de Decisión', text:'Meu parceiro pediu minha opinião honesta. Eu...',
+    a:{ label:'A', text:'Digo la verdad aunque te duela', score:'T' },
+    b:{ label:'B', text:'Es verdad pero te lo digo amablemente', score:'F' } },
+  { axis:'TF', section:'Modo de Decisión', text:'Quando meu parceiro está bravado comigo, eu...',
+    a:{ label:'A', text:'Analizo lógicamente por qué estás molest@', score:'T' },
+    b:{ label:'B', text:'Primero reconozco que estás molest@', score:'F' } },
+  { axis:'TF', section:'Modo de Decisión', text:'Ao escolher móveis para usar juntos, meu critério é...',
+    a:{ label:'A', text:'Precio, durabilidad, practicidad', score:'T' },
+    b:{ label:'B', text:'Ambiente, cómo se siente nuestro hogar, si me encanta', score:'F' } },
+  { axis:'TF', section:'Modo de Decisión', text:'Qual é a marca de um bom parceiro?',
+    a:{ label:'A', text:'Que nos ayuda a crecer juntos', score:'T' },
+    b:{ label:'B', text:'Que me acepta como soy', score:'F' } },
+  { axis:'TF', section:'Modo de Decisión', text:'Quando meu parceiro precisa tomar uma grande decisão, meu papel é...',
+    a:{ label:'A', text:'Organizo pros/contras y te ayudo a decidir', score:'T' },
+    b:{ label:'B', text:'Te apoyo sin importar tu decisión', score:'F' } },
 
   // ── J/P axis (Q19-24) ────────────────────────────────────────
   { axis:'JP', section:'Estilo de Vida', text:'Quando planejamos um encontro de fim de semana, eu...',
-    a:{ label:'A', text:'월~목 사이에 계획을 세우는 편이에요', score:'J' },
-    b:{ label:'B', text:'당일 아침에 즉흥적으로 정해요', score:'P' } },
+    a:{ label:'A', text:'Planeo entre lunes y jueves', score:'J' },
+    b:{ label:'B', text:'Lo decido el mismo día en la mañana', score:'P' } },
   { axis:'JP', section:'Estilo de Vida', text:'Meu parceiro mudou os planos de repente. Eu...',
-    a:{ label:'A', text:'솔직히 좀 당황스럽고 아쉬워요', score:'J' },
-    b:{ label:'B', text:'그럴 수 있죠, 새 계획 세우면 되죠', score:'P' } },
-  { axis:'JP', section:'Estilo de Vida', text:'연인과 사는 집이 있다면, 집 상태는?',
-    a:{ label:'A', text:'항상 정리정돈 돼있어야 편해요', score:'J' },
-    b:{ label:'B', text:'약간 어질러져도 괜찮아요, 사는 느낌이 좋아요', score:'P' } },
-  { axis:'JP', section:'Estilo de Vida', text:'연인과 큰 여행을 앞두고 Yo는...',
-    a:{ label:'A', text:'3개월 전부터 숙소·항공을 예약해요', score:'J' },
-    b:{ label:'B', text:'2주 전에도 괜찮아요, 어떻게든 되더라고요', score:'P' } },
-  { axis:'JP', section:'Estilo de Vida', text:'연인과의 미래에 대해 Yo는...',
-    a:{ label:'A', text:'어느 시점에 어떤 단계로 갈지 그림이 있어요', score:'J' },
-    b:{ label:'B', text:'자연스럽게 흘러가는 대로요, 강요하고 싶지 않아요', score:'P' } },
-  { axis:'JP', section:'Estilo de Vida', text:'하루 일정이 생각지 못하게 비었어요. 연인에게...',
-    a:{ label:'A', text:'"우리 이 시간에 뭐할지 정하자"고 말해요', score:'J' },
-    b:{ label:'B', text:'"오늘 비었어! 뭐라도 하자"고 그냥 Yo가요', score:'P' } },
+    a:{ label:'A', text:'Me sorprende y me decepción un poco', score:'J' },
+    b:{ label:'B', text:'Claro, hacemos otro plan', score:'P' } },
+  { axis:'JP', section:'Estilo de Vida', text:'Si viven juntos, ¿cómo es el estado de la casa?',
+    a:{ label:'A', text:'Me gusta que siempre esté ordenado', score:'J' },
+    b:{ label:'B', text:'Un poco desordenado está bien, se siente como hogar', score:'P' } },
+  { axis:'JP', section:'Estilo de Vida', text:'Tenemos un viaje grande planeado y yo...',
+    a:{ label:'A', text:'Reservo hotel y vuelos 3 meses antes', score:'J' },
+    b:{ label:'B', text:'2 semanas antes está bien, siempre sale', score:'P' } },
+  { axis:'JP', section:'Estilo de Vida', text:'Sobre el futuro con mi pareja, yo...',
+    a:{ label:'A', text:'Tengo claro cuándo pasar a la siguiente etapa', score:'J' },
+    b:{ label:'B', text:'Dejo que fluya naturalmente, sin presión', score:'P' } },
+  { axis:'JP', section:'Estilo de Vida', text:'Mi día se quedó libre de repente. Le digo a mi pareja...',
+    a:{ label:'A', text:'Te digo "¿Qué hacemos ahora?"', score:'J' },
+    b:{ label:'B', text:'Te digo "¡Libres hoy! ¿Hacemos algo?"', score:'P' } },
 ];
 
 /* ════════════════════════════════════════════════════════════
@@ -1099,7 +1099,7 @@ const QUESTIONS = [
 ═════════════════════════════════════════════════════════════*/
 let COMBOS = {};
 
-// combo_es.json 로드
+// Loading combo_es.json
 (function loadCombos() {
   fetch('/couple/data/combo_es.json')
     .then(function(r){ return r.json(); })
@@ -1123,7 +1123,7 @@ let COMBOS = {};
         };
       });
     })
-    .catch(function(e){ console.warn('combo_es.json 로드 실패', e); });
+    .catch(function(e){ console.warn('Failed to load combo_es.json', e); });
 })();
 
 function getBgColors(key) {
@@ -1142,14 +1142,14 @@ function getBgColors(key) {
    TYPE MAPPING  (MBTI-style 4-letter → Shadowgram type)
 ═════════════════════════════════════════════════════════════*/
 const TYPE_KR = {
-  SPARK:   '스파크',
-  VISION:  '비전',
-  STEADY:  '스테디',
-  PLAYER:  '플레이어',
-  HARMONY: '하모니',
-  SOUL:    '소울',
-  LOGIC:   '로직',
-  LEADER:  '리더',
+  SPARK:   'SPARK',
+  VISION:  'VISION',
+  STEADY:  'STEADY',
+  PLAYER:  'PLAYER',
+  HARMONY: 'HARMONY',
+  SOUL:    'SOUL',
+  LOGIC:   'LOGIC',
+  LEADER:  'LEADER',
 };
 
 function typeLabel(t) {
@@ -1217,7 +1217,7 @@ function restart() {
 /* ════════════════════════════════════════════════════════════
    SPLIT QUESTION RENDER
 ═════════════════════════════════════════════════════════════*/
-var SECTION_NAMES = { EI:'Direção de Energia', SN:'Processamento de Informação', TF:'Modo de Decisão', JP:'Estilo de Vida' };
+var SECTION_NAMES = { EI:'Dirección de Energía', SN:'Procesamiento de Información', TF:'Modo de Decisión', JP:'Estilo de Vida' };
 
 function renderSplitQuestion() {
   var q = QUESTIONS[state.currentQ];
@@ -1271,10 +1271,10 @@ function selectSplit(person, idx, score, wrap) {
 
   if (person === 'A') {
     state.selA = score;
-    document.getElementById('status-me').textContent = '✓ 선택 완료';
+    document.getElementById('status-me').textContent = '✓ Elegido';
   } else {
     state.selB = score;
-    document.getElementById('status-partner').textContent = '✓ 선택 완료';
+    document.getElementById('status-partner').textContent = '✓ Elegido';
   }
 
   // show next button only when both selected
@@ -1308,11 +1308,11 @@ function showResult() {
   const key = typeA + '×' + typeB;
   const combo = COMBOS[key] || COMBOS[typeB + '×' + typeA] || {
     title: typeA + ' × ' + typeB,
-    sub: '특별한 두 사람의 조합',
-    hook: '우리만의 이야기가 시작됩니다',
-    tension: '서로 다른 에너지',
-    magic: '차이가 만드는 시너지',
-    tags: '#커플유형 #shadowgramcouple',
+    sub: 'Una combinación especial de dos personas',
+    hook: 'Nuestra historia está a punto de comenzar',
+    tension: 'Energías diferentes',
+    magic: 'La sinergia que crean sus diferencias',
+    tags: '#tipopareja #shadowgramcouple',
     bg: ['#1A2030','#2A3450'],
   };
 
@@ -1358,76 +1358,76 @@ function hexToRgba(hex, alpha) {
    COUPLE INSIGHTS — 5 areas generated from type combo
 ═════════════════════════════════════════════════════════════*/
 var TYPE_TRAITS = {
-  SPARK:  { energy:'밖으로 뻗는', talk:'아이디어 폭발형', fight:'먼저 말하고 풀기', date:'새로운 곳 탐험', grow:'가능성을 계속 실험' },
-  VISION: { energy:'안으로 집중하는', talk:'의미 중심형', fight:'혼자 정리 후 대화', date:'깊은 대화가 있는 공간', grow:'통찰을 현실로 연결' },
-  STEADY: { energy:'일상 속에서 충전하는', talk:'구체적·사실 중심형', fight:'시간이 지Yo면 자연스럽게', date:'익숙하고 안정적인 코스', grow:'꾸준함으로 쌓아가기' },
-  PLAYER: { energy:'현장에서 터지는', talk:'즉흥·현재 중심형', fight:'몸으로 풀기 (운동·드라이브)', date:'지금 이 순간 즉흥 데이트', grow:'경험으로 배우기' },
-  HARMONY:{ energy:'관계 속에서 빛Yo는', talk:'공감·감정 중심형', fight:'관계 회복이 먼저', date:'사람 많은 따뜻한 분위기', grow:'연결과 관계의 깊이' },
-  SOUL:   { energy:'혼자만의 시간이 필요한', talk:'감성·내면 중심형', fight:'말 없이 시간 필요', date:'둘만의 조용한 공간', grow:'진심이 쌓이는 방향' },
-  LOGIC:  { energy:'생각 속에서 정비하는', talk:'논리·원인 중심형', fight:'논리적으로 짚고 넘어가기', date:'탐구·분석이 있는 활동', grow:'이해를 통해 신뢰 쌓기' },
-  LEADER: { energy:'목표 향해 달리며 충전하는', talk:'결과·실행 중심형', fight:'빠르게 결론 내고 앞으로', date:'의미 있는 계획된 데이트', grow:'함께 성취하는 것' },
+  SPARK:  { energy:'irradiador', talk:'ideas en explosión', fight:'habla primero, resuelve después', date:'explorar nuevos lugares', grow:'experimentar constantemente' },
+  VISION: { energy:'introvertido y enfocado', talk:'centrado en significado', fight:'se ordena primero, luego habla', date:'un espacio para conversación profunda', grow:'conecta visiones con la realidad' },
+  STEADY: { energy:'se carga en la rutina', talk:'concreto y basado en hechos', fight:'con el tiempo, naturalmente', date:'lugares conocidos y seguros', grow:'construye con consistencia' },
+  PLAYER: { energy:'energía en el momento', talk:'presente e improvisado', fight:'lo resuelve con el cuerpo', date:'citas espontáneas en el ahora', grow:'aprende por experiencia' },
+  HARMONY:{ energy:'brilla en la relación', talk:'empático y emocional', fight:'la reconciliación es primero', date:'ambientes cálidos con gente', grow:'profundidad en conexiones' },
+  SOUL:   { energy:'necesita tiempo solo', talk:'sensible e introvertido', fight:'necesita tiempo sin hablar', date:'un espacio tranquilo para dos', grow:'donde crecen los sentimientos' },
+  LOGIC:  { energy:'se organiza mentalmente', talk:'lógico y basado en causas', fight:'cruza lógicamente todos los puntos', date:'actividades que exploran y analizan', grow:'construye confianza mediante comprensión' },
+  LEADER: { energy:'cargado por metas', talk:'enfocado en resultados', fight:'decide rápido y avanza', date:'citas planeadas y significativas', grow:'logran juntos' },
 };
 
 var COMPAT_MSG = {
-  same:    '같은 에너지끼리 만났어요. 서로를 가장 잘 이해하지만, 같은 단점도 함께 Yo타날 수 있어요.',
-  EI_diff: '한 명은 밖으로, 한 명은 안으로 에너지를 써요. 서로의 충전 방식을 존중하는 게 핵심이에요.',
-  NI_combo:'직관 + 직관 조합 — 말 없이도 통하지만 현실 감각을 함께 챙겨야 해요.',
-  balance: '서로 다른 성향이 맞물려 하Yo가 약한 부분을 다른 하Yo가 채워줘요.',
+  same:    'Se encuentran con la misma energía. Se entienden perfectamente, pero también comparten los mismos puntos débiles.',
+  EI_diff: 'Uno es extrovertido, el otro introvertido. La clave es respetar cómo se cargan mutuamente.',
+  NI_combo:'Intuición + Intuición — Se entienden sin palabras, pero necesitan mantener los pies en la tierra.',
+  balance: 'Sus diferencias se complementan — lo que falta en uno, lo tiene el otro.',
 };
 
 function getInsights(tA, tB) {
   var A = TYPE_TRAITS[tA] || TYPE_TRAITS.SPARK;
   var B = TYPE_TRAITS[tB] || TYPE_TRAITS.SPARK;
 
-  // ① 소통 스타일
+  // ① Communication style
   var talk;
   if (tA === tB) {
-    talk = { title: '같은 언어를 쓰는 두 사람', desc: '둘 다 ' + A.talk + ' 대화를 해요. 이해는 빠르지만 서로의 다른 점을 의도적으로 꺼내야 성장해요.' };
+    talk = { title: 'Hablan el mismo idioma', desc: 'Ambos hablan ' + A.talk + '. Se entienden rápido, pero necesitan sacar a la luz sus diferencias para crecer.' };
   } else {
-    talk = { title: A.talk + ' × ' + B.talk, desc: tA + '는 ' + A.talk + ' 방식으로, ' + tB + '는 ' + B.talk + ' 방식으로 대화해요. 다른 언어를 쓰는 만큼 번역이 필요하지만, 그게 대화를 풍부하게 만들어요.' };
+    talk = { title: A.talk + ' × ' + B.talk, desc: tA + ' usa ' + A.talk + ' modo, ' + tB + ' usa ' + B.talk + ' modo. Hablan idiomas diferentes, así que necesitan traducirse, pero eso enriquece su conversación.' };
   }
 
-  // ② 갈등 패턴
+  // ② Conflict pattern
   var fightA = A.fight, fightB = B.fight;
   var fight;
   if (fightA === fightB) {
-    fight = { title: '비슷한 방식으로 풀어요', desc: '다툼 후 둘 다 ' + fightA + ' 스타일이에요. 방식은 비슷하지만 감정이 쌓이지 않도록 주기적인 대화가 필요해요.' };
+    fight = { title: 'Resuelven de forma similar', desc: 'Después de pelear, ambos usan ' + fightA + ' estilo. Resuelven igual, pero necesitan hablar periódicamente para no acumular resentimiento.' };
   } else {
-    fight = { title: '화해 코드가 달라요', desc: tA + '는 "' + fightA + '" 스타일, ' + tB + '는 "' + fightB + '" 스타일이에요. 상대방의 회복 리듬을 강제하지 않는 게 핵심이에요.' };
+    fight = { title: 'Códigos de reconciliación diferentes', desc: tA + ' usa "' + fightA + '" estilo, ' + tB + ' usa "' + fightB + '" estilo. El ritmo de recuperación de cada uno es diferente. La clave es no forzar nada.' };
   }
 
-  // ③ 데이트 취향
+  // ③ Date preference
   var dateA = A.date, dateB = B.date;
   var date;
   if (dateA === dateB) {
-    date = { title: '데이트 취향이 딱 맞아요', desc: '둘 다 ' + dateA + '을 좋아해요. 매번 기대가 같으니 계획 세우기도 편하고 만족도도 높아요.' };
+    date = { title: 'Sus gustos de cita son perfectos', desc: 'Ambos prefieren ' + dateA + '. Siempre están de acuerdo, la planificación es fácil y ambos satisfechos.' };
   } else {
-    date = { title: '원하는 데이트가 달라요', desc: tA + '는 ' + dateA + ', ' + tB + '는 ' + dateB + '을 선호해요. 번갈아 취향을 맞춰주면 둘 다 새로운 경험을 할 수 있어요.' };
+    date = { title: 'Quieren diferentes tipos de citas', desc: tA + ' prefiere ' + dateA + ', ' + tB + ' prefiere ' + dateB + '. Cuando se turnan los gustos, ambos disfrutan nuevas experiencias.' };
   }
 
-  // ④ 감정 처리
+  // ④ Emotion processing
   var isEmotional = function(t) { return t === 'HARMONY' || t === 'SOUL'; };
   var isLogical   = function(t) { return t === 'LOGIC'   || t === 'LEADER'; };
   var emotion;
   if (isEmotional(tA) && isEmotional(tB)) {
-    emotion = { title: '감정이 넘치는 조합', desc: '둘 다 감정에 민감해요. 공감대는 깊지만 감정 소용돌이가 생길 수 있어요. 때론 한 발 물러서서 사실을 보는 연습이 필요해요.' };
+    emotion = { title: 'Una combinación emocional', desc: 'Ambos son sensibles emocionalmente. Hay profunda empatía, pero pueden entrar en remolinos emocionales. A veces necesitan distancia para ver los hechos.' };
   } else if (isLogical(tA) && isLogical(tB)) {
-    emotion = { title: '이성적으로 처리하는 조합', desc: '둘 다 논리와 결과로 감정을 정리해요. 효율적이지만, 감정이 쌓이지 않도록 주기적으로 "우리 어때?" 를 물어봐야 해요.' };
+    emotion = { title: 'Una combinación lógica', desc: 'Ambos procesan con lógica y resultados. Eficiente, pero necesitan preguntarse regularmente "¿Cómo estamos?" para no acumular sentimientos.' };
   } else if ((isEmotional(tA) && isLogical(tB)) || (isLogical(tA) && isEmotional(tB))) {
-    emotion = { title: '감성과 이성의 조합', desc: '한 명은 감정으로, 한 명은 논리로 반응해요. "공감 먼저, 해결 Yo중" 규칙 하Yo가 이 커플의 감정 싸움 80%를 막아줘요.' };
+    emotion = { title: 'Una combinación sensible-lógica', desc: 'Uno es emocional, el otro lógico. La regla "empatizar primero, resolver después" evita el 80% de conflictos emocionales.' };
   } else {
-    emotion = { title: '균형 잡힌 감정 처리', desc: '둘 다 감정과 이성 사이 어딘가에 있어요. 상황마다 어느 모드가 필요한지 말해주는 솔직함이 이 관계의 열쇠예요.' };
+    emotion = { title: 'Una combinación equilibrada emocionalmente', desc: 'Ambos están entre emoción e lógica. La honestidad sobre qué necesitan en cada momento es la clave.' };
   }
 
-  // ⑤ 성장 방향
-  var grow = { title: tA + ' × ' + tB + '가 함께 커지는 방향', desc: tA + '는 ' + A.grow + '으로, ' + tB + '는 ' + B.grow + '으로 성장해요. 두 방향이 만Yo는 지점에서 이 커플만의 스타일이 만들어져요.' };
+  // ⑤ Growth direction
+  var grow = { title: tA + ' × ' + tB + ' crecen juntos en dirección', desc: tA + ' crece ' + A.grow + ', ' + tB + ' crece ' + B.grow + '. En el lugar donde sus direcciones se encuentran, crean su propio estilo de pareja.' };
 
   return [
-    { icon:'💬', label:'소통 스타일', title: talk.title,   desc: talk.desc   },
-    { icon:'⚡', label:'갈등 패턴',   title: fight.title,  desc: fight.desc  },
-    { icon:'🗓️', label:'데이트 취향', title: date.title,   desc: date.desc   },
-    { icon:'💧', label:'감정 처리',   title: emotion.title,desc: emotion.desc},
-    { icon:'🌱', label:'성장 방향',   title: grow.title,   desc: grow.desc   },
+    { icon:'💬', label:'Estilo de Comunicación', title: talk.title,   desc: talk.desc   },
+    { icon:'⚡', label:'Patrón de Conflicto',   title: fight.title,  desc: fight.desc  },
+    { icon:'🗓️', label:'Tipo de Cita', title: date.title,   desc: date.desc   },
+    { icon:'💧', label:'Procesamiento Emocional',   title: emotion.title,desc: emotion.desc},
+    { icon:'🌱', label:'Dirección de Crecimiento',   title: grow.title,   desc: grow.desc   },
   ];
 }
 
@@ -1473,7 +1473,7 @@ function renderBig5Radar(sA, sB) {
   const b5A = calcBig5(sA);
   const b5B = calcBig5(sB);
 
-  const labels = ['Tipo de Energia', '설렘 감도', 'Empatia', 'Planejamento', 'Estabilidade Emocional'];
+  const labels = ['Tipo de Energía', 'Capacidad de Emoción', 'Empatía', 'Planificación', 'Estabilidad Emocional'];
   const engLabels = ['Extraversion', 'Openness', 'Agreeableness', 'Conscientiousness', 'Stability'];
   const keysA = [b5A.extraversion, b5A.openness, b5A.agreeableness, b5A.conscientiousness, b5A.stability];
   const keysB = [b5B.extraversion, b5B.openness, b5B.agreeableness, b5B.conscientiousness, b5B.stability];
@@ -1612,29 +1612,29 @@ function goUpsell() {
   showToast('Relatório de casal em preparação! Em breve 🔥');
 }
 
-/* ── 카카오톡 공유 (Web Share API + 클립보드 fallback) ───────*/
+/* ── Kakao Talk sharing (Web Share API + clipboard fallback) ───────*/
 function shareKakao() {
   var typeA = getType(state.scoresA);
   var typeB = getType(state.scoresB);
   var key   = typeA + '×' + typeB;
-  var combo = COMBOS[key] || COMBOS[typeB + '×' + typeA] || { title: typeA + ' × ' + typeB + '형', sub: '우리만의 조합' };
+  var combo = COMBOS[key] || COMBOS[typeB + '×' + typeA] || { title: typeA + ' × ' + typeB, sub: 'Nuestra combinación' };
 
   var shareTitle = 'Nuestro tipo de pareja es ✨ ' + combo.title;
   var shareText  = combo.sub + '
 ¡Pruébalo tú también 👇';
   var shareUrl   = 'https://shadowgram.org/couple/es';
 
-  // 모바일 Web Share API (iOS/Android 네이티브 공유시트 — 카카오 포함)
+  // Mobile Web Share API (iOS/Android native share sheet — includes Kakao)
   if (navigator.share) {
     navigator.share({
       title: shareTitle,
       text:  shareText,
       url:   shareUrl,
     }).catch(function(err) {
-      // 사용자가 공유 취소하거Yo 오류 시 무시
+      // User cancelled sharing or error
     });
   } else {
-    // PC fallback: 클립보드 복사 후 토스트 안내
+    // PC fallback: copy to clipboard and show toast
     var copyText = shareTitle + '\n' + shareText + '\n' + shareUrl;
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(copyText).then(function() {
@@ -1665,7 +1665,7 @@ function fallbackCopy(text) {
   document.body.removeChild(ta);
 }
 
-/* ── 결과 이미지 저장 ────────────────────────────────────────*/
+/* ── Save result image ────────────────────────────────────────*/
 function saveResultImage() {
   var btn = document.getElementById('btn-save');
   btn.textContent = '\u23f3 \uc0dd\uc131 \uc911...';
@@ -1687,7 +1687,7 @@ function saveResultImage() {
   var axisValsB = [b5B.extraversion, b5B.openness, b5B.agreeableness, b5B.conscientiousness, b5B.stability];
   var axisLabels = ['\uc5d0\ub108\uc9c0 \ud0c0\uc785', '\uc124\ub808\uc784 \uac10\ub3c4', '\ubc30\ub824 \uc628\ub3c4', '\uc5f0\uc560 \uacc4\ud68d\ub825', '\ub9c8\uc74c \ub0a0\uc528'];
 
-  // Canvas size: 600x900 (9:15 — mobile share 최적)
+  // Canvas size: 600x900 (9:15 — optimized for mobile share)
   var W = 600, H = 900;
   var cv = document.createElement('canvas');
   cv.width = W; cv.height = H;
@@ -1911,8 +1911,8 @@ function showToast(msg) {
 }
 
 /* ════════════════════════════════════════════════════════════
-   INIT — URL 파라미터로 결과 직접 진입
-   예: ?a=SPARK&b=SOUL
+   INIT — Enter result directly via URL parameters
+   Example: ?a=SPARK&b=SOUL
 ═════════════════════════════════════════════════════════════*/
 (function() {
   const params = new URLSearchParams(window.location.search);
@@ -1920,15 +1920,15 @@ function showToast(msg) {
   const b = (params.get('b') || '').toUpperCase();
   const VALID = ['SPARK','VISION','STEADY','PLAYER','HARMONY','SOUL','LOGIC','LEADER'];
   if (VALID.includes(a) && VALID.includes(b)) {
-    // 가짜 점수로 state 세팅 후 결과 바로 표시
+    // Set state with fake scores and display result immediately
     state.scoresA = {};
     state.scoresB = {};
-    state.scoresA['_direct'] = a;  // 직접 주입 마커
+    state.scoresA['_direct'] = a;  // direct injection marker
     state.scoresB['_direct'] = b;
-    // getType을 우회하기 위해 임시 패치
+    // Temporary patch to bypass getType
     window._directTypeA = a;
     window._directTypeB = b;
-    // DOM 로드 후 실행
+    // Run after DOM loads
     document.addEventListener('DOMContentLoaded', function() {
       showResultDirect(a, b);
     });
@@ -1939,11 +1939,11 @@ function showResultDirect(typeA, typeB) {
   const key = typeA + '×' + typeB;
   const combo = COMBOS[key] || COMBOS[typeB + '×' + typeA] || {
     title: typeA + ' × ' + typeB,
-    sub: '특별한 두 사람의 조합',
-    hook: '우리만의 이야기가 시작됩니다',
-    tension: '서로 다른 에너지',
-    magic: '차이가 만드는 시너지',
-    tags: '#커플유형 #shadowgramcouple',
+    sub: 'Una combinación especial de dos personas',
+    hook: 'Nuestra historia está a punto de comenzar',
+    tension: 'Energías diferentes',
+    magic: 'La sinergia que crean sus diferencias',
+    tags: '#tipopareja #shadowgramcouple',
     bg: ['#1A2030','#2A3450'],
   };
 
@@ -1966,11 +1966,11 @@ function showResultDirect(typeA, typeB) {
   card.style.background = combo.bg[0];
   document.querySelector('.rc-mid').style.background = hexToRgba(combo.bg[1], 0.5);
 
-  // Big5 차트 — 중립값으로 표시
+  // Big5 chart — display with neutral values
   const neutral = { E:3, I:3, N:3, S:3, T:3, F:3, J:3, P:3 };
   renderBig5Radar(neutral, neutral);
 
-  // 인사이트 카드
+  // Insight cards
   renderInsights(typeA, typeB);
 
   showScreen('result');
