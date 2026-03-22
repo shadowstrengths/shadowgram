@@ -6,7 +6,7 @@
   <title>Shadowgram — Uma jornada pela luz e sombra da sua psique</title>
   <meta name="description" content="Shadowgram é um framework de 8 tipos baseado na psicologia de Jung. Descubra sua luz e sombra."/>
   <meta property="og:title" content="Shadowgram"/>
-  <meta property="og:description" content="빛과 그림자를 탐색하는 심리 유형 여정"/>
+  <meta property="og:description" content="Descubra sua luz e sombra com o framework de 8 tipos baseado em Jung."/>
   <meta property="og:image" content="https://shadowgram.org/shadowgram_cover_sq.png"/>
   <meta property="og:url" content="https://shadowgram.org"/>
   <meta name="twitter:card" content="summary_large_image"/>
@@ -94,6 +94,8 @@
     .card-link.kr:hover { background:rgba(120,80,200,0.2); }
     .card-link.pt { background:rgba(40,140,80,0.1); border-color:rgba(40,140,80,0.25); color:#70C890; }
     .card-link.pt:hover { background:rgba(40,140,80,0.2); }
+    .card-link.es { background:rgba(220,60,40,0.1); border-color:rgba(220,60,40,0.25); color:#E88870; }
+    .card-link.es:hover { background:rgba(220,60,40,0.2); }
 
     /* 8TYPES */
     .types-section { max-width:820px; margin:0 auto; padding:0 20px 80px; }
@@ -147,13 +149,15 @@
   </div>
   <div class="hw-section">
     <div class="hw-section-label">Self</div>
-    <span class="hw-item hw-parent"><span class="hw-item-icon">🌟</span> Shadowgram Self <span class="hw-badge">PT-BR</span></span>
-    <a class="hw-item hw-sub" href="/self/pt/?fresh=1"><span class="hw-item-icon">✏️</span> Fazer o teste</a>
+    <span class="hw-item hw-parent"><span class="hw-item-icon">🌟</span> Shadowgram Self</span>
+    <a class="hw-item hw-sub" href="/self/pt/?fresh=1"><span class="hw-item-icon">🇧🇷</span> Fazer o teste — PT-BR</a>
+    <a class="hw-item hw-sub" href="/self/es/?fresh=1"><span class="hw-item-icon">🇲🇽</span> Hacer el test — ES</a>
   </div>
   <div class="hw-section">
     <div class="hw-section-label">Couple</div>
-    <span class="hw-item hw-parent"><span class="hw-item-icon">💑</span> Shadowgram Couple <span class="hw-badge">PT-BR</span></span>
-    <a class="hw-item hw-sub" href="/couple/pt/"><span class="hw-item-icon">✏️</span> Fazer o teste</a>
+    <span class="hw-item hw-parent"><span class="hw-item-icon">💑</span> Shadowgram Couple</span>
+    <a class="hw-item hw-sub" href="/couple/pt/"><span class="hw-item-icon">🇧🇷</span> Fazer o teste — PT-BR</a>
+    <a class="hw-item hw-sub" href="/couple/es/"><span class="hw-item-icon">🇲🇽</span> Hacer el test — ES</a>
   </div>
 </div>
 
@@ -176,7 +180,8 @@
       <div class="card-sub" id="t-self-sub"></div>
       <div class="card-desc" id="t-self-desc"></div>
       <div class="card-links">
-        <a class="card-link pt" href="/self/pt/" id="t-self-link"></a>
+        <a class="card-link pt" href="/self/pt/">🇧🇷 PT-BR</a>
+        <a class="card-link es" href="/self/es/">🇲🇽 ES</a>
       </div>
     </div>
 
@@ -187,7 +192,8 @@
       <div class="card-sub" id="t-couple-sub"></div>
       <div class="card-desc" id="t-couple-desc"></div>
       <div class="card-links">
-        <a class="card-link pt" href="/couple/pt/" id="t-couple-test"></a>
+        <a class="card-link pt" href="/couple/pt/">🇧🇷 PT-BR</a>
+        <a class="card-link es" href="/couple/es/">🇲🇽 ES</a>
       </div>
     </div>
 
@@ -233,10 +239,8 @@ var T = {
     typelabel: 'Os 8 Tipos Shadowgram',
     selfSub: 'Exploração do tipo individual',
     selfDesc: '28 perguntas para descobrir sua função principal, com 7 luzes e 7 sombras — uma jornada rumo ao seu eu completo.',
-    selfLink: '🇧🇷 Fazer o teste — PT-BR',
     coupleSub: 'Exploração do tipo de casal',
     coupleDesc: 'Diagnóstico de dois tipos para analisar a dinâmica de relacionamento e comunicação entre 64 combinações possíveis.',
-    coupleTest: '🇧🇷 Fazer o teste — PT-BR',
     soon: 'Em breve',
     privacyLabel: 'Privacidade',
     mbtiNote: 'Shadowgram é um framework independente, sem relação com The Myers &amp; Briggs Foundation.'
@@ -249,10 +253,8 @@ var T = {
     typelabel: 'Los 8 Tipos Shadowgram',
     selfSub: 'Exploración del tipo individual',
     selfDesc: '28 preguntas para descubrir tu función principal, con 7 luces y 7 sombras — un viaje hacia tu yo completo.',
-    selfLink: '🇧🇷 Hacer el test — PT-BR',
     coupleSub: 'Exploración del tipo de pareja',
     coupleDesc: 'Diagnóstico de dos tipos para analizar la dinámica de relación y comunicación entre 64 combinaciones posibles.',
-    coupleTest: '🇧🇷 Hacer el test — PT-BR',
     soon: 'Próximamente',
     privacyLabel: 'Privacidad',
     mbtiNote: 'Shadowgram es un framework independiente, sin relación con The Myers &amp; Briggs Foundation.'
@@ -265,10 +267,8 @@ var T = {
     typelabel: 'Shadowgram 8 Types',
     selfSub: 'Individual personality exploration',
     selfDesc: '28 questions to uncover your dominant function — 7 lights and 7 shadows guiding you toward wholeness.',
-    selfLink: '🇧🇷 Take the test — PT-BR',
     coupleSub: 'Couple & relationship exploration',
     coupleDesc: 'Diagnose two types to analyze relationship dynamics and communication styles across 64 possible combinations.',
-    coupleTest: '🇧🇷 Take the test — PT-BR',
     soon: 'Coming soon',
     privacyLabel: 'Privacy contact',
     mbtiNote: 'Shadowgram is an independent framework, unaffiliated with The Myers &amp; Briggs Foundation.'
@@ -285,10 +285,8 @@ function applyLang(lang) {
   document.getElementById('t-typelabel').textContent = t.typelabel;
   document.getElementById('t-self-sub').textContent = t.selfSub;
   document.getElementById('t-self-desc').textContent = t.selfDesc;
-  document.getElementById('t-self-link').innerHTML = t.selfLink;
   document.getElementById('t-couple-sub').textContent = t.coupleSub;
   document.getElementById('t-couple-desc').textContent = t.coupleDesc;
-  document.getElementById('t-couple-test').innerHTML = t.coupleTest;
   document.getElementById('t-privacy-label').textContent = t.privacyLabel;
   document.getElementById('t-mbti-note').innerHTML = t.mbtiNote;
 
