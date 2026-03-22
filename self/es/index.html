@@ -7,7 +7,7 @@
   <meta name="description" content="Diagnóstico de personalidad basado en Jung y Big Five. 28 preguntas. Resultado instantáneo. Desarrollado por especialista coreano con 20 años de experiencia."/>
   <link rel="canonical" href="https://shadowgram.org/self/es/"/>
   <meta property="og:url" content="https://shadowgram.org/self/es/"/>
-  <meta property="og:title" content="Shadowgram — Descubre el Potencial que Ainda Não Despertou em Você"/>
+  <meta property="og:title" content="Shadowgram — Descubre el Potencial que Todavía No Ha Despertado en Ti"/>
   <meta property="og:description" content="Ya fuiste elogiado por algo — y criticado por el mismo rasgo? Descubre tu potencial y recibe un plan de acción. Gratuito. Basado en Jung. 28 preguntas."/>
   <meta property="og:image" content="https://shadowgram.org/shadowgram_cover_sq.png"/>
   <meta name="twitter:card" content="summary_large_image"/>
@@ -583,7 +583,7 @@
 
 <!-- MINI HEADER (minimal display above quiz) -->
 <div style="text-align:center; padding: 12px 20px 0; font-size:11px; letter-spacing:2px; color:var(--silver);">
-  ⏱ 5–7 MIN &nbsp;·&nbsp; 28 PERGUNTAS &nbsp;·&nbsp; 🔒 SEM CADASTRO
+  ⏱ 5–7 MIN &nbsp;·&nbsp; 28 PREGUNTAS &nbsp;·&nbsp; 🔒 SIN REGISTRO
 </div>
 
 <!-- BACK BUTTON -->
@@ -660,11 +660,11 @@
         <span style="display:block;font-size:11px;font-weight:700;
                      letter-spacing:0.1em;text-transform:uppercase;
                      color:rgba(184,134,11,0.7);margin-bottom:3px;">
-          LIVRO DO AUTOR · AMAZON KINDLE
+          LIBRO DEL AUTOR · AMAZON KINDLE
         </span>
         <span style="display:block;font-size:14px;font-weight:600;
                      color:#ddd;line-height:1.4;">
-          A teoria por trás do Shadowgram — disponível na Amazon
+          La teoría detrás de Shadowgram — disponible en Amazon
         </span>
       </span>
       <span style="display:flex;flex-direction:column;align-items:flex-end;
@@ -691,7 +691,7 @@
     </div>
     <span class="price-note">
       <span style="text-decoration:line-through;color:rgba(155,170,184,0.5);margin-right:6px;">R$ 37</span>
-      Relatório personalizado para o seu tipo — T1 Essencial + Apêndice A: Guia de Ação em Crise.<br>
+      Reporte personalizado para tu tipo — T1 Esencial + Apéndice A: Guía de Acción en Crisis.<br>
       <em style="font-size:12px;">Precio de lanzamiento · Puede aumentar en cualquier momento</em>
     </span>
     <a id="res-cta-btn" href="#" target="_blank" class="btn-buy">¡Quiero mi Reporte!</a>
@@ -700,7 +700,7 @@
     <!-- SNS share buttons -->
     <div style="margin-top:16px;">
       <p style="font-size:12px;color:var(--silver);text-align:center;margin:0 0 12px;letter-spacing:0.08em;text-transform:uppercase;font-weight:700;">
-        ✦ Compartilhe — seus amigos descobrem o tipo deles
+        ✦ Comparte — tus amigos descubren su tipo también
       </p>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
         <!-- WhatsApp -->
@@ -783,10 +783,10 @@
 <!-- FOOTER -->
 <footer>
   © 2025 Shadowgram · shadowgram.org<br>
-  Diagnóstico baseado em Jung (1921) e IPIP Big Five (domínio público).<br>
-  Shadowgram é um framework independente de desenvolvimento humano.<br>
-  Não é afiliado à The Myers &amp; Briggs Foundation.<br><br>
-  Contato · <a href="mailto:joculsion@gmail.com" style="color:rgba(155,170,184,0.5);text-decoration:none;">joculsion@gmail.com</a>
+  Diagnóstico basado en Jung (1921) e IPIP Big Five (dominio público).<br>
+  Shadowgram es un framework independiente de desarrollo humano.<br>
+  No está afiliado a The Myers &amp; Briggs Foundation.<br><br>
+  Contacto · <a href="mailto:joculsion@gmail.com" style="color:rgba(155,170,184,0.5);text-decoration:none;">joculsion@gmail.com</a>
 </footer>
 
 <script>
@@ -855,7 +855,7 @@ function _guessCountry() {
 
 
 // ═══════════════════════════════════════════════════════════════
-// 4 DIMENSÕES (eixos internos)
+// 4 DIMENSIONES (ejes internos)
 //   Dim 1: a=introvertido  / b=extrovertido
 //   Dim 2: a=concreto      / d=intuitivo
 //   Dim 3: a=analítico     / b=empático
@@ -863,106 +863,106 @@ function _guessCountry() {
 // ═══════════════════════════════════════════════════════════════
 const DIM_LABELS = [
   'DIMENSIÓN 1 · ENERGÍA',
-  'DIMENSIÓN 2 · PERCEPÇÃO',
-  'DIMENSIÓN 3 · DECISÃO',
-  'DIMENSIÓN 4 · ESTRUTURA',
+  'DIMENSIÓN 2 · PERCEPCIÓN',
+  'DIMENSIÓN 3 · DECISIÓN',
+  'DIMENSIÓN 4 · ESTRUCTURA',
 ];
 
 // ═══════════════════════════════════════════════════════════════
-// 28 PERGUNTAS — 7 por dimensão, linguagem cotidiana simples
+// 28 PREGUNTAS — 7 por dimensión, lenguaje cotidiano simple
 // ═══════════════════════════════════════════════════════════════
 const QUESTIONS = [
   // ── DIMENSIÓN 1: ENERGÍA ──
-  { dim:1, text:"No fim de um dia cheio de pessoas e conversas, você se sente...",
-    a:"Cansado — preciso de tempo sozinho para recarregar.",
-    b:"Energizado — adoro estar entre as pessoas." },
-  { dim:1, text:"Quando tem um problema para resolver, você prefere...",
-    a:"Pensar sozinho primeiro, depois compartilhar.",
-    b:"Pensar em voz alta, conversando com alguém." },
-  { dim:1, text:"Em uma festa ou evento social, você normalmente...",
-    a:"Fico com um grupo menor, conversando com mais profundidade.",
-    b:"Circulo, conheço pessoas novas, me sinto à vontade." },
-  { dim:1, text:"Quando começa algo novo (trabalho, projeto, hobby)...",
-    a:"Prefiro observar e entender antes de participar ativamente.",
-    b:"Pulo logo dentro — aprendo fazendo e interagindo." },
-  { dim:1, text:"Amigos e colegas diriam que você é...",
-    a:"Reservado, difícil de conhecer de verdade.",
-    b:"Aberto, fácil de conversar, expressivo." },
-  { dim:1, text:"No trabalho, você produz melhor...",
-    a:"Em silêncio, com concentração, sem interrupções.",
-    b:"Em ambientes movimentados, com troca constante." },
-  { dim:1, text:"Para tomar uma decisão difícil, você prefere...",
-    a:"Refletir internamente, talvez anotar seus pensamentos.",
-    b:"Conversar com alguém — a fala ajuda a clarear as ideias." },
+  { dim:1, text:"Al final de un día lleno de personas y conversaciones, te sientes...",
+    a:"Cansado — necesito tiempo solo para recargarme.",
+    b:"Energizado — me encanta estar entre la gente." },
+  { dim:1, text:"Cuando tienes un problema que resolver, prefieres...",
+    a:"Pensar solo primero, luego compartir.",
+    b:"Pensar en voz alta, conversando con alguien." },
+  { dim:1, text:"En una fiesta o evento social, normalmente...",
+    a:"Me quedo con un grupo pequeño, hablando con más profundidad.",
+    b:"Circulo, conozco gente nueva, me siento cómodo." },
+  { dim:1, text:"Cuando empiezas algo nuevo (trabajo, proyecto, hobby)...",
+    a:"Prefiero observar y entender antes de participar activamente.",
+    b:"Me lanzo de inmediato — aprendo haciendo e interactuando." },
+  { dim:1, text:"Amigos y colegas dirían que eres...",
+    a:"Reservado, difícil de conocer de verdad.",
+    b:"Abierto, fácil de hablar, expresivo." },
+  { dim:1, text:"En el trabajo, produces mejor...",
+    a:"En silencio, con concentración, sin interrupciones.",
+    b:"En ambientes dinámicos, con intercambio constante." },
+  { dim:1, text:"Para tomar una decisión difícil, prefieres...",
+    a:"Reflexionar internamente, quizás anotar tus pensamientos.",
+    b:"Conversar con alguien — hablar ayuda a aclarar las ideas." },
 
-  // ── DIMENSIÓN 2: PERCEPÇÃO ──
-  { dim:2, text:"Quando aprende algo novo, você prefere...",
-    a:"Exemplos concretos, passo a passo, aplicação prática.",
-    b:"Entender o conceito por trás, o padrão geral." },
-  { dim:2, text:"Você confia mais em...",
-    a:"O que pode ver, tocar, medir, comprovar.",
-    b:"Intuições e possibilidades que ainda não existem." },
-  { dim:2, text:"Ao planejar uma viagem, você prefere...",
-    a:"Roteiro detalhado, reservas feitas, tudo organizado.",
-    b:"Direção geral, improviso, descobrir no caminho." },
-  { dim:2, text:"No trabalho, você é mais valorizado por...",
-    a:"Ser confiável, preciso, realista e detalhista.",
-    b:"Trazer ideias novas, enxergar possibilidades que outros não veem." },
-  { dim:2, text:"Quando alguém conta um problema, você primeiro pensa...",
-    a:"Qual é a situação concreta? Quais são os fatos?",
-    b:"Qual é o padrão aqui? O que isso significa no fundo?" },
-  { dim:2, text:"Você prefere trabalhar com...",
-    a:"Coisas que já funcionam — melhorar e aperfeiçoar o que existe.",
-    b:"Coisas que ainda não existem — criar do zero." },
-  { dim:2, text:"Ao ler um livro ou artigo, você prefere...",
-    a:"Informações práticas, diretas, com exemplos reais.",
-    b:"Teorias, conceitos amplos, ideias que abrem a mente." },
+  // ── DIMENSIÓN 2: PERCEPCIÓN ──
+  { dim:2, text:"Cuando aprendes algo nuevo, prefieres...",
+    a:"Ejemplos concretos, paso a paso, aplicación práctica.",
+    b:"Entender el concepto detrás, el patrón general." },
+  { dim:2, text:"Confías más en...",
+    a:"Lo que puedes ver, tocar, medir, comprobar.",
+    b:"Intuiciones y posibilidades que aún no existen." },
+  { dim:2, text:"Al planear un viaje, prefieres...",
+    a:"Itinerario detallado, reservas hechas, todo organizado.",
+    b:"Dirección general, improvisación, descubrir en el camino." },
+  { dim:2, text:"En el trabajo, eres más valorado por...",
+    a:"Ser confiable, preciso, realista y detallista.",
+    b:"Traer ideas nuevas, ver posibilidades que otros no ven." },
+  { dim:2, text:"Cuando alguien te cuenta un problema, primero piensas...",
+    a:"¿Cuál es la situación concreta? ¿Cuáles son los hechos?",
+    b:"¿Cuál es el patrón aquí? ¿Qué significa en el fondo?" },
+  { dim:2, text:"Prefieres trabajar con...",
+    a:"Cosas que ya funcionan — mejorar y perfeccionar lo que existe.",
+    b:"Cosas que aún no existen — crear desde cero." },
+  { dim:2, text:"Al leer un libro o artículo, prefieres...",
+    a:"Información práctica, directa, con ejemplos reales.",
+    b:"Teorías, conceptos amplios, ideas que abren la mente." },
 
-  // ── DIMENSIÓN 3: DECISÃO ──
-  { dim:3, text:"Ao tomar uma decisão importante, você prioriza...",
-    a:"Lógica, dados, consequências objetivas.",
-    b:"Como vai afetar as pessoas, os sentimentos envolvidos." },
-  { dim:3, text:"Quando alguém te conta um problema pessoal, você tende a...",
-    a:"Oferecer uma solução ou análise objetiva do problema.",
-    b:"Ouvir, validar os sentimentos, oferecer apoio emocional." },
-  { dim:3, text:"Em um debate, você se sente mais à vontade quando...",
-    a:"O argumento é baseado em fatos e lógica verificável.",
-    b:"Há espaço para considerar valores humanos e sentimentos." },
-  { dim:3, text:"Quando precisa dar um feedback difícil, você...",
-    a:"Diz diretamente — honestidade objetiva é mais respeitosa.",
-    b:"Escolhe as palavras com muito cuidado para não magoar." },
-  { dim:3, text:"O que te incomoda mais em outras pessoas?",
-    a:"Pessoas muito emotivas que não conseguem ser objetivas.",
-    b:"Pessoas frias que ignoram o impacto emocional das suas decisões." },
-  { dim:3, text:"No trabalho em equipe, você naturalmente...",
-    a:"Foca no objetivo e na eficiência do processo.",
-    b:"Cuida do clima do grupo e das relações entre as pessoas." },
-  { dim:3, text:"Uma boa decisão para você é aquela que...",
-    a:"Faz sentido logicamente e gera o melhor resultado mensurável.",
-    b:"Está alinhada com os valores e o bem-estar de todos envolvidos." },
+  // ── DIMENSIÓN 3: DECISIÓN ──
+  { dim:3, text:"Al tomar una decisión importante, priorizas...",
+    a:"Lógica, datos, consecuencias objetivas.",
+    b:"Cómo va a afectar a las personas, los sentimientos involucrados." },
+  { dim:3, text:"Cuando alguien te cuenta un problema personal, tiendes a...",
+    a:"Ofrecer una solución o análisis objetivo del problema.",
+    b:"Escuchar, validar los sentimientos, ofrecer apoyo emocional." },
+  { dim:3, text:"En un debate, te sientes más cómodo cuando...",
+    a:"El argumento se basa en hechos y lógica verificable.",
+    b:"Hay espacio para considerar valores humanos y sentimientos." },
+  { dim:3, text:"Cuando necesitas dar un feedback difícil, tú...",
+    a:"Lo dices directamente — la honestidad objetiva es más respetuosa.",
+    b:"Eliges las palabras con mucho cuidado para no lastimar." },
+  { dim:3, text:"¿Qué te molesta más en otras personas?",
+    a:"Personas muy emotivas que no pueden ser objetivas.",
+    b:"Personas frías que ignoran el impacto emocional de sus decisiones." },
+  { dim:3, text:"En el trabajo en equipo, naturalmente...",
+    a:"Me enfoco en el objetivo y la eficiencia del proceso.",
+    b:"Cuido el clima del grupo y las relaciones entre las personas." },
+  { dim:3, text:"Una buena decisión para ti es la que...",
+    a:"Tiene sentido lógicamente y genera el mejor resultado medible.",
+    b:"Está alineada con los valores y el bienestar de todos los involucrados." },
 
-  // ── DIMENSIÓN 4: ESTRUTURA ──
-  { dim:4, text:"Sua mesa de trabalho ou espaço pessoal costuma ser...",
-    a:"Organizado — cada coisa tem seu lugar definido.",
-    b:"Um pouco caótico — mas eu sei onde está tudo." },
-  { dim:4, text:"Diante de um prazo, você normalmente...",
-    a:"Começo cedo, distribuo o trabalho, entrego antes do prazo.",
-    b:"Funciono melhor sob pressão — o prazo me motiva de verdade." },
-  { dim:4, text:"Você prefere uma semana...",
-    a:"Com agenda definida — sei o que vem a seguir.",
-    b:"Aberta, flexível — gosto de decidir conforme o momento pede." },
-  { dim:4, text:"Quando um plano muda de última hora, você sente...",
-    a:"Irritação — prefiro que as coisas saiam como planejado.",
-    b:"Às vezes animação — mudanças trazem novas possibilidades." },
-  { dim:4, text:"Você se descreve mais como...",
-    a:"Decidido — prefiro ter uma resposta, mesmo que incompleta.",
-    b:"Aberto — gosto de manter as opções em aberto o máximo possível." },
-  { dim:4, text:"Ao comprar algo grande (carro, viagem, eletrônico), você...",
-    a:"Pesquiso, decido e não fico em dúvida depois de decidir.",
-    b:"Continuo pesquisando e comparando mesmo depois de quase decidir." },
-  { dim:4, text:"No trabalho, você se sente melhor quando...",
-    a:"O projeto tem fases claras, prazos definidos e metas concretas.",
-    b:"Há liberdade para ajustar o caminho conforme o projeto avança." },
+  // ── DIMENSIÓN 4: ESTRUCTURA ──
+  { dim:4, text:"Tu escritorio o espacio personal suele ser...",
+    a:"Organizado — cada cosa tiene su lugar definido.",
+    b:"Un poco caótico — pero sé dónde está todo." },
+  { dim:4, text:"Ante un plazo, normalmente...",
+    a:"Empiezo temprano, distribuyo el trabajo, entrego antes del plazo.",
+    b:"Funciono mejor bajo presión — el plazo me motiva de verdad." },
+  { dim:4, text:"Prefieres una semana...",
+    a:"Con agenda definida — sé lo que viene después.",
+    b:"Abierta, flexible — me gusta decidir según el momento lo pide." },
+  { dim:4, text:"Cuando un plan cambia de última hora, sientes...",
+    a:"Irritación — prefiero que las cosas salgan como se planearon.",
+    b:"A veces emoción — los cambios traen nuevas posibilidades." },
+  { dim:4, text:"Te describes más como...",
+    a:"Decidido — prefiero tener una respuesta, aunque sea incompleta.",
+    b:"Abierto — me gusta mantener las opciones abiertas el mayor tiempo posible." },
+  { dim:4, text:"Al comprar algo grande (coche, viaje, electrónico), tú...",
+    a:"Investigo, decido y no me quedo con dudas después de decidir.",
+    b:"Sigo investigando y comparando incluso después de casi decidir." },
+  { dim:4, text:"En el trabajo, te sientes mejor cuando...",
+    a:"El proyecto tiene fases claras, plazos definidos y metas concretas.",
+    b:"Hay libertad para ajustar el camino a medida que el proyecto avanza." },
 ];
 
 // ═══════════════════════════════════════════════════════════════
@@ -994,96 +994,96 @@ function getType(d1, d2, d3, d4) {
 }
 
 // ═══════════════════════════════════════════════════════════════
-// TYPE DATA — luz, sombra, dor, preview, bônus
+// TYPE DATA — luz, sombra, dolor, preview, bonus
 // ═══════════════════════════════════════════════════════════════
 const TYPES = {
   STEADY: {
     color: '#7B9EA8',
-    function: 'Si · Sensação Introvertida',
-    light: 'Você é a força que sustenta o mundo. Sua memória de como as coisas funcionam protege todos ao seu redor. Nos momentos de caos, você é o porto seguro — confiável, consistente, inabalável.',
-    shadow: 'Sua sombra é Ne (Intuição Extrovertida): a resistência às mudanças, a ansiedade diante do desconhecido, a dificuldade de soltar o que já não serve. Quando pressionado, você se torna rígido exatamente quando a vida pede flexibilidade.',
-    pain: 'Quantas vezes você ficou parado enquanto o mundo mudava ao redor? Sua sombra Ne não integrada custa oportunidades reais — carreiras que não evoluíram, relações que sufocaram, inovações que você deixou para outros. O custo de ignorar sua sombra é a estagnação disfaçada de "estabilidade".',
-    preview: 'Padrão 1 · A armadilha da rotina sagrada\nQuando a rotina se torna uma prisão invisível...\n\nPadrão 2 · O medo do novo travestido de prudência\nComo a sombra Ne distorce sua percepção de risco...\n\nPadrão 3 · A resistência passiva\nPor que você sabota mudanças sem perceber...\n\nPadrão 4 · O apego ao passado\nComo liberar o que te prendia para criar espaço ao que vem...',
-    ctaTitle: 'Seu relatório STEADY está pronto.',
-    ctaSub: 'O relatório completo revela os 4 padrões inconscientes que bloqueiam seu crescimento — e o caminho prático para integrá-los.',
-    bonus: '✦ Workbook de integração da sombra Ne\n✦ Rotina de 21 dias para o tipo STEADY\n✦ Guia de transição para novos ciclos',
+    function: 'Si · Sensación Introvertida',
+    light: 'Eres la fuerza que sostiene el mundo. Tu memoria de cómo funcionan las cosas protege a todos a tu alrededor. En los momentos de caos, eres el puerto seguro — confiable, consistente, inquebrantable.',
+    shadow: 'Tu sombra es Ne (Intuición Extrovertida): la resistencia a los cambios, la ansiedad ante lo desconocido, la dificultad de soltar lo que ya no sirve. Cuando estás bajo presión, te vuelves rígido exactamente cuando la vida pide flexibilidad.',
+    pain: '¿Cuántas veces te quedaste parado mientras el mundo cambiaba a tu alrededor? Tu sombra Ne no integrada cuesta oportunidades reales — carreras que no evolucionaron, relaciones que se ahogaron, innovaciones que dejaste para otros. El costo de ignorar tu sombra es el estancamiento disfrazado de "estabilidad".',
+    preview: 'Patrón 1 · La trampa de la rutina sagrada\nCuando la rutina se convierte en una prisión invisible...\n\nPatrón 2 · El miedo a lo nuevo disfrazado de prudencia\nCómo la sombra Ne distorsiona tu percepción del riesgo...\n\nPatrón 3 · La resistencia pasiva\nPor qué sabotas los cambios sin darte cuenta...\n\nPatrón 4 · El apego al pasado\nCómo liberar lo que te retenía para crear espacio a lo que viene...',
+    ctaTitle: 'Tu reporte STEADY está listo.',
+    ctaSub: 'El reporte completo revela los 4 patrones inconscientes que bloquean tu crecimiento — y el camino práctico para integrarlos.',
+    bonus: '✦ Workbook de integración de la sombra Ne\n✦ Rutina de 21 días para el tipo STEADY\n✦ Guía de transición para nuevos ciclos',
   },
   SPARK: {
     color: '#E8A84A',
-    function: 'Ne · Intuição Extrovertida',
-    light: 'Você vê possibilidades onde os outros veem paredes. Sua energia é contagiante, suas ideias são incontáveis, e você tem o dom de inspirar o novo. O mundo precisa de pessoas que enxergam além do horizonte visível.',
-    shadow: 'Sua sombra é Si (Sensação Introvertida): a dificuldade de terminar o que começa, a fuga da rotina e do concreto, o desconforto com a manutenção. Quando pressionado, você se dispersa em infinitas direções sem chegar a nenhuma.',
-    pain: 'Quantas ideias brilhantes você já abandonou a 90% do caminho? Sua sombra Si não integrada é a razão pela qual você repete o mesmo ciclo: começa com tudo, perde o interesse, abandona — e sente que algo está errado com você. Não está. Mas enquanto não integrar sua sombra, continuará sabotando seus próprios projetos.',
-    preview: 'Padrão 1 · O abandono antes da linha de chegada\nPor que você abandona projetos quase prontos...\n\nPadrão 2 · A dispersão mascarada de criatividade\nComo distinguir inspiração genuína de fuga da conclusão...\n\nPadrão 3 · O vício em começos\nO prazer neuroquímico do início e como reconhecê-lo...\n\nPadrão 4 · A fuga da manutenção\nComo construir sistemas que sua mente SPARK consegue sustentar...',
-    ctaTitle: 'Seu relatório SPARK está pronto.',
-    ctaSub: 'O relatório completo revela por que você abandona projetos — e o método específico para o tipo SPARK completar o que começa.',
-    bonus: '✦ Workbook de integração da sombra Si\n✦ Sistema de conclusão para mentes SPARK\n✦ Os 3 gatilhos do abandono e como neutralizá-los',
+    function: 'Ne · Intuición Extrovertida',
+    light: 'Ves posibilidades donde otros ven paredes. Tu energía es contagiosa, tus ideas son incontables, y tienes el don de inspirar lo nuevo. El mundo necesita personas que vean más allá del horizonte visible.',
+    shadow: 'Tu sombra es Si (Sensación Introvertida): la dificultad de terminar lo que empiezas, la huida de la rutina y lo concreto, el malestar con el mantenimiento. Cuando estás bajo presión, te dispersas en infinitas direcciones sin llegar a ninguna.',
+    pain: '¿Cuántas ideas brillantes has abandonado cuando estaban al 90%? Tu sombra Si no integrada es la razón por la que repites el mismo ciclo: empiezas con todo, pierdes el interés, abandonas — y sientes que algo está mal contigo. No es así. Pero mientras no integres tu sombra, seguirás saboteando tus propios proyectos.',
+    preview: 'Patrón 1 · El abandono antes de la línea de llegada\nPor qué abandonas proyectos que están casi listos...\n\nPatrón 2 · La dispersión disfrazada de creatividad\nCómo distinguir inspiración genuina de huida hacia el final...\n\nPatrón 3 · La adicción a los comienzos\nEl placer neuroquímico del inicio y cómo reconocerlo...\n\nPatrón 4 · La huida del mantenimiento\nCómo construir sistemas que tu mente SPARK pueda sostener...',
+    ctaTitle: 'Tu reporte SPARK está listo.',
+    ctaSub: 'El reporte completo revela por qué abandonas proyectos — y el método específico para que el tipo SPARK complete lo que empieza.',
+    bonus: '✦ Workbook de integración de la sombra Si\n✦ Sistema de conclusión para mentes SPARK\n✦ Los 3 disparadores del abandono y cómo neutralizarlos',
   },
   PLAYER: {
     color: '#E07060',
-    function: 'Se · Sensação Extrovertida',
-    light: 'Você vive o presente com toda a intensidade. Sua capacidade de ação imediata, de sentir o ambiente e reagir com precisão é um dom raro. Nos momentos que pedem decisão, você já está em movimento.',
-    shadow: 'Sua sombra é Ni (Intuição Introvertida): a dificuldade de enxergar o padrão maior, o desconforto com o abstrato e o futuro distante. Quando pressionado, você age sem considerar as consequências de longo prazo.',
-    pain: 'Quanto dinheiro, energia ou tempo você já perdeu agindo rápido demais — sem ver o padrão? Sua sombra Ni não integrada é invisível para você, mas visível para todos ao redor. Ela aparece como impulsividade, como relações que se quebram sem você entender por quê, como conquistas que não duram.',
-    preview: 'Padrão 1 · A impulsividade disfarçada de confiança\nComo a sombra Ni distorce sua avaliação de risco...\n\nPadrão 2 · O presente que devora o futuro\nPor que suas conquistas têm prazo de validade curto...\n\nPadrão 3 · A cegueira para padrões\nComo reconhecer os ciclos que você repete sem perceber...\n\nPadrão 4 · A integração Ni\nComo desenvolver visão de longo prazo sem perder sua essência...',
-    ctaTitle: 'Seu relatório PLAYER está pronto.',
-    ctaSub: 'O relatório completo revela os 4 padrões que sabotam sua consistência — e o caminho para transformar ação em legado.',
-    bonus: '✦ Workbook de integração da sombra Ni\n✦ Protocolo de decisão para o tipo PLAYER\n✦ Guia de planejamento de 90 dias adaptado à sua mente',
+    function: 'Se · Sensación Extrovertida',
+    light: 'Vives el presente con toda la intensidad. Tu capacidad de acción inmediata, de sentir el ambiente y reaccionar con precisión es un don raro. En los momentos que piden decisión, ya estás en movimiento.',
+    shadow: 'Tu sombra es Ni (Intuición Introvertida): la dificultad de ver el patrón mayor, el malestar con lo abstracto y el futuro lejano. Cuando estás bajo presión, actúas sin considerar las consecuencias a largo plazo.',
+    pain: '¿Cuánto dinero, energía o tiempo has perdido actuando demasiado rápido — sin ver el patrón? Tu sombra Ni no integrada es invisible para ti, pero visible para todos a tu alrededor. Aparece como impulsividad, como relaciones que se rompen sin que entiendas por qué, como logros que no duran.',
+    preview: 'Patrón 1 · La impulsividad disfrazada de confianza\nCómo la sombra Ni distorsiona tu evaluación de riesgo...\n\nPatrón 2 · El presente que devora el futuro\nPor qué tus logros tienen fecha de caducidad corta...\n\nPatrón 3 · La ceguera para patrones\nCómo reconocer los ciclos que repites sin darte cuenta...\n\nPatrón 4 · La integración Ni\nCómo desarrollar visión de largo plazo sin perder tu esencia...',
+    ctaTitle: 'Tu reporte PLAYER está listo.',
+    ctaSub: 'El reporte completo revela los 4 patrones que sabotean tu consistencia — y el camino para transformar acción en legado.',
+    bonus: '✦ Workbook de integración de la sombra Ni\n✦ Protocolo de decisión para el tipo PLAYER\n✦ Guía de planificación de 90 días adaptada a tu mente',
   },
   VISION: {
     color: '#8B7BB8',
-    function: 'Ni · Intuição Introvertida',
-    light: 'Você enxerga o que os outros ainda não podem ver. Seus insights sobre padrões profundos e direções futuras são proféticos. Você carrega um mapa interno que poucos possuem — a bússola do invisível.',
-    shadow: 'Sua sombra é Se (Sensação Extrovertida): a desconexão com o aqui e agora, a dificuldade de habitar o corpo e o presente. Quando pressionado, você se perde em visões e análises sem nunca agir no mundo real.',
-    pain: 'Quantas visões brilhantes ficaram apenas na sua cabeça? Sua sombra Se não integrada cria uma distância dolorosa entre o que você percebe e o que você manifesta. Por fora, parece que você está bem. Por dentro, você sabe que está aquém do que poderia ser.',
-    preview: 'Padrão 1 · A paralisia da perfeição visionária\nPor que seus planos mais ambiciosos nunca saem do papel...\n\nPadrão 2 · O descolamento do presente\nComo a sombra Se te afasta do corpo, do dinheiro, das relações...\n\nPadrão 3 · A solidão do visionário\nPor que é tão difícil ser compreendido — e o que fazer...\n\nPadrão 4 · Do insight à ação\nO método para o tipo VISION manifestar no mundo real...',
-    ctaTitle: 'Seu relatório VISION está pronto.',
-    ctaSub: 'O relatório completo revela como transformar sua visão interna em resultados concretos — sem perder sua profundidade.',
-    bonus: '✦ Workbook de integração da sombra Se\n✦ Protocolo de manifestação para o tipo VISION\n✦ Guia de grounding para mentes visionárias',
+    function: 'Ni · Intuición Introvertida',
+    light: 'Ves lo que otros aún no pueden ver. Tus insights sobre patrones profundos y direcciones futuras son proféticos. Cargas un mapa interno que pocos poseen — la brújula de lo invisible.',
+    shadow: 'Tu sombra es Se (Sensación Extrovertida): la desconexión con el aquí y ahora, la dificultad de habitar el cuerpo y el presente. Cuando estás bajo presión, te pierdes en visiones y análisis sin nunca actuar en el mundo real.',
+    pain: '¿Cuántas visiones brillantes quedaron solo en tu cabeza? Tu sombra Se no integrada crea una distancia dolorosa entre lo que percibes y lo que manifiestas. Por fuera, parece que estás bien. Por dentro, sabes que estás por debajo de lo que podrías ser.',
+    preview: 'Patrón 1 · La parálisis de la perfección visionaria\nPor qué tus planes más ambiciosos nunca salen del papel...\n\nPatrón 2 · El desapego del presente\nCómo la sombra Se te aleja del cuerpo, del dinero, de las relaciones...\n\nPatrón 3 · La soledad del visionario\nPor qué es tan difícil ser comprendido — y qué hacer...\n\nPatrón 4 · Del insight a la acción\nEl método para que el tipo VISION se manifieste en el mundo real...',
+    ctaTitle: 'Tu reporte VISION está listo.',
+    ctaSub: 'El reporte completo revela cómo transformar tu visión interna en resultados concretos — sin perder tu profundidad.',
+    bonus: '✦ Workbook de integración de la sombra Se\n✦ Protocolo de manifestación para el tipo VISION\n✦ Guía de grounding para mentes visionarias',
   },
   LOGIC: {
     color: '#5B9EA0',
-    function: 'Ti · Pensamento Introvertido',
-    light: 'Sua mente é um instrumento de precisão. Você encontra a estrutura lógica onde outros veem caos. Sua capacidade de ir fundo em um problema e encontrar a verdade essencial é um presente raro para o mundo.',
-    shadow: 'Sua sombra é Fe (Sentimento Extrovertido): a dificuldade nas relações emocionais, o desconforto com a dinâmica de grupo e as expectativas sociais. Quando pressionado, você se isola exatamente quando mais precisa das pessoas.',
-    pain: 'Quantas relações — de trabalho, de amor, de amizade — você perdeu por não conseguir se conectar emocionalmente? Sua precisão analítica tem um custo invisível: a frieza que os outros sentem como rejeição, mesmo quando você está apenas pensando. Esse padrão se repete até você entender sua sombra Fe.',
-    preview: 'Padrão 1 · A armadura intelectual\nComo a lógica vira defesa contra a vulnerabilidade...\n\nPadrão 2 · O custo relacional da precisão\nPor que as pessoas se afastam mesmo admirando você...\n\nPadrão 3 · O isolamento como padrão\nComo o tipo LOGIC sabota conexão sem perceber...\n\nPadrão 4 · Integração Fe\nComo desenvolver inteligência emocional sem perder precisão...',
-    ctaTitle: 'Seu relatório LOGIC está pronto.',
-    ctaSub: 'O relatório completo revela como integrar emoção e razão — e construir relações sem abrir mão da sua precisão.',
-    bonus: '✦ Workbook de integração da sombra Fe\n✦ Guia de comunicação emocional para o tipo LOGIC\n✦ Protocolo de conexão para mentes analíticas',
+    function: 'Ti · Pensamiento Introvertido',
+    light: 'Tu mente es un instrumento de precisión. Encuentras la estructura lógica donde otros ven caos. Tu capacidad de profundizar en un problema y encontrar la verdad esencial es un don raro para el mundo.',
+    shadow: 'Tu sombra es Fe (Sentimiento Extrovertido): la dificultad en las relaciones emocionales, el malestar con la dinámica de grupo y las expectativas sociales. Cuando estás bajo presión, te aislas exactamente cuando más necesitas a las personas.',
+    pain: '¿Cuántas relaciones — de trabajo, de amor, de amistad — has perdido por no poder conectar emocionalmente? Tu precisión analítica tiene un costo invisible: la frialdad que otros sienten como rechazo, aunque tú solo estés pensando. Este patrón se repite hasta que entiendas tu sombra Fe.',
+    preview: 'Patrón 1 · La armadura intelectual\nCómo la lógica se convierte en defensa contra la vulnerabilidad...\n\nPatrón 2 · El costo relacional de la precisión\nPor qué las personas se alejan aunque te admiran...\n\nPatrón 3 · El aislamiento como patrón\nCómo el tipo LOGIC sabotea la conexión sin darse cuenta...\n\nPatrón 4 · Integración Fe\nCómo desarrollar inteligencia emocional sin perder precisión...',
+    ctaTitle: 'Tu reporte LOGIC está listo.',
+    ctaSub: 'El reporte completo revela cómo integrar emoción y razón — y construir relaciones sin renunciar a tu precisión.',
+    bonus: '✦ Workbook de integración de la sombra Fe\n✦ Guía de comunicación emocional para el tipo LOGIC\n✦ Protocolo de conexión para mentes analíticas',
   },
   HARMONY: {
     color: '#D4886A',
-    function: 'Fe · Sentimento Extrovertido',
-    light: 'Você tem o dom de unir as pessoas. Sua sensibilidade ao estado emocional do grupo, sua capacidade de criar harmonia e cuidar do coletivo é uma força rara e profundamente necessária no mundo.',
-    shadow: 'Sua sombra é Ti (Pensamento Introvertido): a dificuldade de dizer não, de priorizar sua própria lógica interna, de separar suas necessidades das dos outros. Quando pressionado, você se perde completamente nos outros.',
-    pain: 'Quantas vezes você disse sim quando queria dizer não? Sua sombra Ti não integrada te mantém em um ciclo de doação excessiva — até o esgotamento. O preço de cuidar de todos é frequentemente se perder. E quem cuida de você?',
-    preview: 'Padrão 1 · A incapacidade de dizer não\nPor que você prioriza a paz dos outros à custa de si mesmo...\n\nPadrão 2 · A culpa como mecanismo de controle\nComo sua sombra Ti se manifesta como julgamento interno...\n\nPadrão 3 · O esgotamento do cuidador\nPor que você chega ao limite repetidamente...\n\nPadrão 4 · Integração Ti\nComo desenvolver limites saudáveis sem perder sua compaixão...',
-    ctaTitle: 'Seu relatório HARMONY está pronto.',
-    ctaSub: 'O relatório completo revela como cuidar dos outros sem se perder — e construir limites sem culpa.',
-    bonus: '✦ Workbook de integração da sombra Ti\n✦ Guia de limites saudáveis para o tipo HARMONY\n✦ Protocolo de autocuidado para cuidadores',
+    function: 'Fe · Sentimiento Extrovertido',
+    light: 'Tienes el don de unir a las personas. Tu sensibilidad al estado emocional del grupo, tu capacidad de crear armonía y cuidar del colectivo es una fuerza rara y profundamente necesaria en el mundo.',
+    shadow: 'Tu sombra es Ti (Pensamiento Introvertido): la dificultad de decir no, de priorizar tu propia lógica interna, de separar tus necesidades de las de los demás. Cuando estás bajo presión, te pierdes completamente en los otros.',
+    pain: '¿Cuántas veces dijiste sí cuando querías decir no? Tu sombra Ti no integrada te mantiene en un ciclo de entrega excesiva — hasta el agotamiento. El precio de cuidar a todos es frecuentemente perderte a ti mismo. ¿Y quién te cuida a ti?',
+    preview: 'Patrón 1 · La incapacidad de decir no\nPor qué priorizas la paz de los demás a costa de ti mismo...\n\nPatrón 2 · La culpa como mecanismo de control\nCómo tu sombra Ti se manifiesta como juicio interno...\n\nPatrón 3 · El agotamiento del cuidador\nPor qué llegas al límite repetidamente...\n\nPatrón 4 · Integración Ti\nCómo desarrollar límites saludables sin perder tu compasión...',
+    ctaTitle: 'Tu reporte HARMONY está listo.',
+    ctaSub: 'El reporte completo revela cómo cuidar a los demás sin perderte — y construir límites sin culpa.',
+    bonus: '✦ Workbook de integración de la sombra Ti\n✦ Guía de límites saludables para el tipo HARMONY\n✦ Protocolo de autocuidado para cuidadores',
   },
   LEADER: {
     color: '#6B8E6B',
-    function: 'Te · Pensamento Extrovertido',
-    light: 'Você constrói sistemas que funcionam. Sua capacidade de definir objetivos, organizar recursos e levar um grupo ao resultado é uma forma de liderança que o mundo precisa. Onde há caos, você cria ordem.',
-    shadow: 'Sua sombra é Fi (Sentimento Introvertido): a dificuldade de acessar e honrar seus próprios valores e emoções internas. Quando pressionado, você ignora sua vida interior em nome da eficiência — e paga um preço alto por isso.',
-    pain: 'Você constrói resultados para todos. Mas quando foi a última vez que perguntou o que você realmente quer? Sua sombra Fi não integrada acumula uma conta emocional que um dia cobra de uma vez — em forma de crise, de vazio, de relações que não sustentam o peso da sua vida.',
-    preview: 'Padrão 1 · A eficiência que devora a autenticidade\nComo a busca por resultado esconde o que você sente...\n\nPadrão 2 · A liderança sem vulnerabilidade\nPor que seu poder intimida e isola ao mesmo tempo...\n\nPadrão 3 · O vazio do executor\nO que acontece quando os objetivos são alcançados e ainda falta algo...\n\nPadrão 4 · Integração Fi\nComo liderar com propósito real — conectado a valores genuínos...',
-    ctaTitle: 'Seu relatório LEADER está pronto.',
-    ctaSub: 'O relatório completo revela o que sua eficiência está escondendo — e como liderar com mais autenticidade e sustentabilidade.',
-    bonus: '✦ Workbook de integração da sombra Fi\n✦ Guia de liderança com valores para o tipo LEADER\n✦ Protocolo de conexão com o eu interior para executores',
+    function: 'Te · Pensamiento Extrovertido',
+    light: 'Construyes sistemas que funcionan. Tu capacidad de definir objetivos, organizar recursos y llevar a un grupo al resultado es una forma de liderazgo que el mundo necesita. Donde hay caos, tú creas orden.',
+    shadow: 'Tu sombra es Fi (Sentimiento Introvertido): la dificultad de acceder y honrar tus propios valores y emociones internas. Cuando estás bajo presión, ignoras tu vida interior en nombre de la eficiencia — y pagas un alto precio por ello.',
+    pain: 'Construyes resultados para todos. Pero ¿cuándo fue la última vez que te preguntaste qué quieres realmente? Tu sombra Fi no integrada acumula una deuda emocional que un día cobra de golpe — en forma de crisis, de vacío, de relaciones que no sostienen el peso de tu vida.',
+    preview: 'Patrón 1 · La eficiencia que devora la autenticidad\nCómo la búsqueda de resultados oculta lo que sientes...\n\nPatrón 2 · El liderazgo sin vulnerabilidad\nPor qué tu poder intimida y aísla al mismo tiempo...\n\nPatrón 3 · El vacío del ejecutor\nQué ocurre cuando los objetivos se alcanzan y aún falta algo...\n\nPatrón 4 · Integración Fi\nCómo liderar con propósito real — conectado a valores genuinos...',
+    ctaTitle: 'Tu reporte LEADER está listo.',
+    ctaSub: 'El reporte completo revela qué está escondiendo tu eficiencia — y cómo liderar con más autenticidad y sostenibilidad.',
+    bonus: '✦ Workbook de integración de la sombra Fi\n✦ Guía de liderazgo con valores para el tipo LEADER\n✦ Protocolo de conexión con el yo interior para ejecutores',
   },
   SOUL: {
     color: '#B87BA8',
-    function: 'Fi · Sentimento Introvertido',
-    light: 'Você carrega uma bússola de valores que não se dobra. Sua autenticidade, profundidade e integridade são uma forma de presença no mundo que toca as pessoas de maneira que poucos conseguem.',
-    shadow: 'Sua sombra é Te (Pensamento Extrovertido): o choque com as exigências do mundo prático — eficiência, produtividade, resultados mensuráveis. Quando pressionado, você se sente incompreendido e invisível em um mundo que mede tudo.',
-    pain: 'Você tem muito a oferecer — mas o mundo parece não reconhecer. Sua sombra Te não integrada é a razão pela qual sua profundidade raramente se traduz em resultado concreto. Essa distância entre quem você é e o que o mundo vê é o custo real de ignorar sua sombra.',
-    preview: 'Padrão 1 · A invisibilidade do profundo\nPor que sua riqueza interior raramente é vista pelos outros...\n\nPadrão 2 · A resistência ao mundo prático\nComo a sombra Te se manifesta como procrastinação e evitação...\n\nPadrão 3 · O ressentimento silencioso\nO acúmulo emocional quando seus valores não são respeitados...\n\nPadrão 4 · Integração Te\nComo traduzir profundidade em impacto concreto no mundo...',
-    ctaTitle: 'Seu relatório SOUL está pronto.',
-    ctaSub: 'O relatório completo revela como transformar sua profundidade em presença real — e ser visto pelo que você realmente é.',
-    bonus: '✦ Workbook de integração da sombra Te\n✦ Guia de produtividade alinhada a valores para o tipo SOUL\n✦ Protocolo de visibilidade para mentes profundas',
+    function: 'Fi · Sentimiento Introvertido',
+    light: 'Cargas una brújula de valores que no se dobla. Tu autenticidad, profundidad e integridad son una forma de presencia en el mundo que toca a las personas de una manera que pocos logran.',
+    shadow: 'Tu sombra es Te (Pensamiento Extrovertido): el choque con las exigencias del mundo práctico — eficiencia, productividad, resultados medibles. Cuando estás bajo presión, te sientes incomprendido e invisible en un mundo que lo mide todo.',
+    pain: 'Tienes mucho que ofrecer — pero el mundo parece no reconocerlo. Tu sombra Te no integrada es la razón por la que tu profundidad rara vez se traduce en resultado concreto. Esa distancia entre quién eres y lo que el mundo ve es el costo real de ignorar tu sombra.',
+    preview: 'Patrón 1 · La invisibilidad de lo profundo\nPor qué tu riqueza interior rara vez es vista por los demás...\n\nPatrón 2 · La resistencia al mundo práctico\nCómo la sombra Te se manifiesta como procrastinación y evitación...\n\nPatrón 3 · El resentimiento silencioso\nLa acumulación emocional cuando tus valores no son respetados...\n\nPatrón 4 · Integración Te\nCómo traducir profundidad en impacto concreto en el mundo...',
+    ctaTitle: 'Tu reporte SOUL está listo.',
+    ctaSub: 'El reporte completo revela cómo transformar tu profundidad en presencia real — y ser visto por lo que realmente eres.',
+    bonus: '✦ Workbook de integración de la sombra Te\n✦ Guía de productividad alineada a valores para el tipo SOUL\n✦ Protocolo de visibilidad para mentes profundas',
   },
 };
 
@@ -1103,7 +1103,7 @@ function buildQuiz() {
     div.className = 'question-block' + (qi === 0 ? ' active' : '');
     div.id = 'q-' + qi;
     div.innerHTML = `
-      <p class="q-num">PERGUNTA ${qi + 1} DE ${totalQ}</p>
+      <p class="q-num">PREGUNTA ${qi + 1} DE ${totalQ}</p>
       <p class="q-text">${q.text}</p>
       <div class="ab-options">
         <button class="ab-btn" onclick="selectOption(${qi}, 'a', this)">
@@ -1292,8 +1292,8 @@ function showResult(savedWinner) {
   // SNS share button — share.html?type=TYPE (viral-only page)
   const SHARE_URL = `https://shadowgram.org/self/es/?type=${winner}&fresh=0`;
   const QUIZ_URL  = 'https://shadowgram.org/self/es/';
-  const shareMsg  = `Fiz o Shadowgram e sou tipo ${winner}! 🔥\nE você, qual é o seu?\n👇\n${SHARE_URL}`;
-  const shareMsgShort = `Sou tipo ${winner} no Shadowgram 🔥 E você? 👇 ${SHARE_URL}`;
+  const shareMsg  = `Hice el Shadowgram y soy tipo ${winner}! 🔥\n¿Y tú, cuál es el tuyo?\n👇\n${SHARE_URL}`;
+  const shareMsgShort = `Soy tipo ${winner} en Shadowgram 🔥 ¿Y tú? 👇 ${SHARE_URL}`;
 
   // WhatsApp
   document.getElementById('btn-whatsapp-share').href =
@@ -1304,7 +1304,7 @@ function showResult(savedWinner) {
   document.getElementById('btn-instagram-share').onclick = function(e) {
     e.preventDefault();
     navigator.clipboard && navigator.clipboard.writeText(SHARE_URL);
-    this.textContent = '✅ Link copiado! Cole no Instagram';
+    this.textContent = '✅ ¡Link copiado! Pégalo en Instagram';
     setTimeout(() => this.textContent = '📸 Instagram', 2500);
   };
 
@@ -1330,7 +1330,7 @@ function showResult(savedWinner) {
     const savedDate = localStorage.getItem('sg_date') || '';
     const banner = document.createElement('div');
     banner.style.cssText = 'background:rgba(184,134,11,0.06);border:1px solid rgba(184,134,11,0.2);border-radius:10px;padding:12px 16px;margin-bottom:16px;font-size:12px;color:var(--silver);text-align:center;';
-    banner.innerHTML = `✅ Seu resultado salvo · ${savedDate} · <button onclick="restartQuiz()" style="background:none;border:none;color:var(--gold);cursor:pointer;font-size:12px;text-decoration:underline;">Rehacer diagnóstico</button>`;
+    banner.innerHTML = `✅ Tu resultado guardado · ${savedDate} · <button onclick="restartQuiz()" style="background:none;border:none;color:var(--gold);cursor:pointer;font-size:12px;text-decoration:underline;">Rehacer diagnóstico</button>`;
     const rs = document.getElementById('result-section');
     rs.insertBefore(banner, rs.firstChild);
   }
@@ -1349,7 +1349,7 @@ function showResult(savedWinner) {
     {a:'Introvertido', b:'Extrovertido'},
     {a:'Concreto',     b:'Intuitivo'},
     {a:'Analítico',    b:'Empático'},
-    {a:'Estruturado',  b:'Flexível'},
+    {a:'Estructurado', b:'Flexible'},
   ];
   const barRows = document.getElementById('score-bar-rows');
   barRows.innerHTML = '';
