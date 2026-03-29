@@ -180,6 +180,51 @@
     .footer{padding:20px;text-align:center;font-size:11px;color:var(--dim);}
     @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
     .fade-in{opacity:0;animation:fadeUp 0.6s forwards;}
+
+    /* ── Block A : Shadowgram 소개 + 8유형 ── */
+    .about-tool-wrap{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:28px 20px;margin:0 20px 28px;}
+    .about-tool-header{display:flex;align-items:center;gap:12px;margin-bottom:18px;}
+    .about-tool-icon{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,#1A2A3A,#0A1A2A);border:1px solid rgba(201,168,76,0.3);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+    .about-tool-title{font-size:16px;font-weight:900;line-height:1.3;}
+    .about-tool-title span{display:block;font-size:11px;font-weight:400;color:var(--silver);letter-spacing:0.5px;margin-top:2px;}
+    .about-tool-desc{font-size:13px;color:var(--silver);line-height:1.8;margin-bottom:18px;}
+    .about-tool-desc strong{color:var(--white);}
+    .type-mini-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:10px;}
+    .type-mini-card{background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:12px;padding:10px 6px;text-align:center;cursor:pointer;transition:background 0.2s,border-color 0.2s;}
+    .type-mini-card:hover,.type-mini-card.active{background:rgba(201,168,76,0.1);border-color:rgba(201,168,76,0.4);}
+    .type-mini-icon{font-size:20px;margin-bottom:4px;}
+    .type-mini-name{font-size:10px;font-weight:700;letter-spacing:0.5px;}
+    .type-mini-mbti{font-size:9px;color:var(--silver);margin-top:2px;}
+    .type-grid-hint{font-size:11px;color:var(--silver);text-align:center;margin-bottom:14px;}
+    .type-detail-box{background:rgba(255,255,255,0.04);border:1px solid rgba(201,168,76,0.3);border-radius:14px;padding:16px;margin-bottom:14px;display:none;}
+    .type-detail-box.visible{display:block;}
+    .type-detail-name{font-size:15px;font-weight:900;color:var(--gold);margin-bottom:4px;}
+    .type-detail-mbti{font-size:11px;color:var(--silver);margin-bottom:10px;}
+    .type-detail-desc{font-size:13px;line-height:1.7;color:var(--white);}
+    .type-detail-kw{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
+    .type-detail-kw .kw{font-size:11px;background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.3);color:var(--gold);padding:3px 10px;border-radius:20px;}
+    .about-tool-footer{font-size:12px;color:var(--silver);line-height:1.7;padding-top:14px;border-top:1px solid var(--border);}
+    .about-tool-footer strong{color:var(--white);}
+
+    /* ── Block B : 신뢰·검증 섹션 ── */
+    .trust-wrap{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:28px 20px;margin:0 20px 28px;}
+    .trust-headline{font-size:17px;font-weight:900;line-height:1.5;margin-bottom:8px;}
+    .trust-headline em{font-style:normal;background:linear-gradient(135deg,#E8D090,#C9A84C);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    .trust-sub{font-size:13px;color:var(--silver);line-height:1.8;margin-bottom:20px;}
+    .trust-cards{display:flex;flex-direction:column;gap:10px;margin-bottom:18px;}
+    .trust-card{display:flex;align-items:flex-start;gap:14px;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:16px;padding:16px;}
+    .trust-card-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+    .trust-card-icon.t-green{background:rgba(80,200,120,0.12);border:1px solid rgba(80,200,120,0.25);}
+    .trust-card-icon.t-blue{background:rgba(96,144,200,0.12);border:1px solid rgba(96,144,200,0.25);}
+    .trust-card-icon.t-gold{background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.25);}
+    .trust-card-title{font-size:13px;font-weight:700;margin-bottom:4px;}
+    .trust-card-desc{font-size:12px;color:var(--silver);line-height:1.6;}
+    .trust-card-desc strong{color:var(--white);}
+    .big5-badge{display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,rgba(80,200,120,0.08),rgba(96,144,200,0.08));border:1px solid rgba(80,200,120,0.3);border-radius:14px;padding:14px 16px;}
+    .big5-badge-icon{font-size:24px;}
+    .big5-badge-text{font-size:12px;line-height:1.6;}
+    .big5-badge-text strong{display:block;font-size:13px;color:#50C878;margin-bottom:2px;}
+    .big5-badge-text span{color:var(--silver);}
   /* ── Mini GNav ── */
   .gnav{position:fixed;top:0;left:0;right:0;z-index:999;
     background:rgba(15,18,30,0.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
@@ -281,6 +326,47 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- ★ Block A : Shadowgram 소개 + 8유형 ★ -->
+  <div class="about-tool-wrap fade-in" style="animation-delay:0.45s;">
+    <div class="about-tool-header">
+      <div class="about-tool-icon">🪐</div>
+      <div class="about-tool-title">
+        42world × Shadowgram
+        <span>이 검사, 어디서 만든 거예요?</span>
+      </div>
+    </div>
+    <div class="about-tool-desc">
+      <strong>42world</strong>는 Shadowgram의 커플 심리 콘텐츠를 서비스하는 플랫폼이에요.<br>
+      검사와 결과 뒤에 있는 심리 프레임워크는 <strong>Shadowgram</strong>이 만들었어요.<br><br>
+      Shadowgram은 사람의 <strong>핵심 에너지(주기능)</strong>를 기준으로 성격을 <strong>8가지 빛 유형</strong>으로 나눠요.
+      나의 강점(빛)과 성장 포인트(그림자)를 함께 보여주는 심리 프레임워크예요.<br>
+      아래에서 8가지 유형을 눌러 확인해보세요 👇
+    </div>
+    <div class="type-mini-grid">
+      <div class="type-mini-card" onclick="showType('SPARK')" id="sg-card-SPARK"><div class="type-mini-icon">⚡</div><div class="type-mini-name" style="color:#F0C060;">SPARK</div><div class="type-mini-mbti">ENFP·ENTP</div></div>
+      <div class="type-mini-card" onclick="showType('VISION')" id="sg-card-VISION"><div class="type-mini-icon">🔮</div><div class="type-mini-name" style="color:#C0A0EE;">VISION</div><div class="type-mini-mbti">INFJ·INTJ</div></div>
+      <div class="type-mini-card" onclick="showType('STEADY')" id="sg-card-STEADY"><div class="type-mini-icon">⚓</div><div class="type-mini-name" style="color:#A0D0A0;">STEADY</div><div class="type-mini-mbti">ISFJ·ISTJ</div></div>
+      <div class="type-mini-card" onclick="showType('PLAYER')" id="sg-card-PLAYER"><div class="type-mini-icon">🎯</div><div class="type-mini-name" style="color:#F09080;">PLAYER</div><div class="type-mini-mbti">ESFP·ESTP</div></div>
+      <div class="type-mini-card" onclick="showType('HARMONY')" id="sg-card-HARMONY"><div class="type-mini-icon">🌸</div><div class="type-mini-name" style="color:#F0A0C0;">HARMONY</div><div class="type-mini-mbti">ESFJ·ENFJ</div></div>
+      <div class="type-mini-card" onclick="showType('SOUL')" id="sg-card-SOUL"><div class="type-mini-icon">💎</div><div class="type-mini-name" style="color:#A0D0B0;">SOUL</div><div class="type-mini-mbti">INFP·ISFP</div></div>
+      <div class="type-mini-card" onclick="showType('LOGIC')" id="sg-card-LOGIC"><div class="type-mini-icon">🔬</div><div class="type-mini-name" style="color:#90C8F0;">LOGIC</div><div class="type-mini-mbti">ISTP·INTP</div></div>
+      <div class="type-mini-card" onclick="showType('LEADER')" id="sg-card-LEADER"><div class="type-mini-icon">⚙️</div><div class="type-mini-name" style="color:#F0C070;">LEADER</div><div class="type-mini-mbti">ESTJ·ENTJ</div></div>
+    </div>
+    <div class="type-grid-hint">유형을 눌러서 설명을 확인해보세요</div>
+    <div class="type-detail-box" id="sg-type-detail">
+      <div class="type-detail-name" id="sg-td-name">—</div>
+      <div class="type-detail-mbti" id="sg-td-mbti">—</div>
+      <div class="type-detail-desc" id="sg-td-desc">—</div>
+      <div class="type-detail-kw" id="sg-td-kw"></div>
+    </div>
+    <div class="about-tool-footer">
+      Shadowgram은 MBTI®의 근거인 <strong>칼 융의 유형론</strong>을 바탕으로 독자적으로 개발한 심리 프레임워크예요.
+      각 유형의 <strong>핵심 에너지(주기능)</strong>를 기준으로 8가지로 구분하고,
+      강점(빛)과 성장 포인트(그림자)를 함께 탐색해요.<br>
+      <span style="color:var(--gold);font-weight:700;">42world</span>는 Shadowgram의 커플 콘텐츠(Shadowgram Duo)를 서비스하는 플랫폼입니다.
     </div>
   </div>
 
@@ -512,6 +598,42 @@
     </div>
   </div>
 
+  <!-- ★ Block B : 24문항 신뢰·검증 ★ -->
+  <div class="trust-wrap fade-in" style="animation-delay:1.85s;">
+    <div class="trust-headline">24문항으로<br><em>진짜 유형이 나올 수 있을까요?</em></div>
+    <div class="trust-sub">짧아서 오히려 더 정확해요.<br>핵심 질문만 남기고, 애매한 문항은 전부 걷어냈어요.</div>
+    <div class="trust-cards">
+      <div class="trust-card">
+        <div class="trust-card-icon t-green">🧬</div>
+        <div>
+          <div class="trust-card-title">Big Five 공인 문항 기반 설계</div>
+          <div class="trust-card-desc">세계적으로 검증된 <strong>Big Five(OCEAN) 성격 모델</strong>의 핵심 측정 항목을 Shadowgram 8유형 구조에 맞게 재설계했어요. 학술 연구에서 수십 년간 사용해온 측정 방식이에요.</div>
+        </div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-card-icon t-blue">✂️</div>
+        <div>
+          <div class="trust-card-title">불필요한 문항 제거 = 피로 없는 정확도</div>
+          <div class="trust-card-desc">긴 검사는 후반부로 갈수록 집중력이 떨어져 오답이 늘어요. <strong>24문항은 응답 품질을 최고로 유지</strong>할 수 있는 최적 길이예요.</div>
+        </div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-card-icon t-gold">🎯</div>
+        <div>
+          <div class="trust-card-title">행동 기반 질문 — "나는 이런 사람" X</div>
+          <div class="trust-card-desc">"나는 외향적이다"처럼 자기 평가식 질문 대신, <strong>실제 상황과 행동 패턴</strong>을 묻는 방식으로 자기 이상화 오류를 최소화했어요.</div>
+        </div>
+      </div>
+    </div>
+    <div class="big5-badge">
+      <div class="big5-badge-icon">✅</div>
+      <div class="big5-badge-text">
+        <strong>과학적으로 검증된 Big Five 측정 방식 적용</strong>
+        <span>Shadowgram은 심리학 연구에서 가장 신뢰받는 성격 모델을 기반으로 개발되었습니다</span>
+      </div>
+    </div>
+  </div>
+
   <!-- 리포트 CTA -->
   <div class="report-cta fade-in" style="animation-delay:1.9s">
     <div class="rt">✦ FULL REPORT ✦</div>
@@ -603,6 +725,32 @@ const TYPE_INFO = {
   SOUL:  {color:'#9070B0',pill:'#2A1A3A',pillBorder:'#5A3A7A',pillText:'#C0A0E0',radar:[65,75,50,80,40,85,30,95]},
 };
 const RADAR_LABELS = ['성실','자발','활력','통찰','논리','공감','추진','감성'];
+
+// ── Block A : 8유형 인터랙션 ──
+const SG_TYPE_DATA = {
+  SPARK:{color:'#F0C060',mbti:'ENFP · ENTP',desc:'새로운 가능성을 가장 먼저 보는 사람이에요. 아이디어가 끊임없이 솟구치고, 주변 에너지를 자연스럽게 끌어올려요. 시작을 잘하는 만큼 마무리가 약한 면도 있어요.',kw:['가능성 탐색','전염되는 에너지','빠른 적응','즉흥적']},
+  VISION:{color:'#C0A0EE',mbti:'INFJ · INTJ',desc:'아직 일어나지 않은 일을 직관으로 느끼는 사람이에요. 한 가지에 깊이 몰두하면 세계적 수준의 통찰에 도달해요. 완벽주의로 시작 전 너무 많이 생각하는 경향이 있어요.',kw:['깊은 통찰','미래 감지','몰입','완벽주의']},
+  STEADY:{color:'#A0D0A0',mbti:'ISFJ · ISTJ',desc:'한 번 약속하면 끝까지 지키는 사람이에요. 함께 있으면 무엇도 무너지지 않을 것 같은 안정감을 줘요. 변화보다 익숙한 것을 선호하고, 속마음을 잘 표현하지 않아요.',kw:['신뢰','꼼꼼함','안정감','루틴 마스터']},
+  PLAYER:{color:'#F09080',mbti:'ESFP · ESTP',desc:'지금 이 순간을 가장 풍성하게 사는 사람이에요. 돌발 상황에서 가장 빛나고, 마음에 없는 말은 절대 안 해요. 장기 계획보다 즉흥에 끌리는 경향이 있어요.',kw:['현재 집중','순발력','솔직함','즉흥성']},
+  HARMONY:{color:'#F0A0C0',mbti:'ESFJ · ENFJ',desc:'상대가 말 안 해도 감정을 먼저 알아채는 사람이에요. 어색한 자리도 따뜻하게 만들고, 사랑하는 사람을 위해 전부를 줄 수 있어요. 자기 감정보다 상대를 먼저 챙기다 지칠 수 있어요.',kw:['공감 능력','분위기 메이커','헌신','갈등 회피']},
+  SOUL:{color:'#A0D0B0',mbti:'INFP · ISFP',desc:'표면이 아닌 진심으로 연결되는 사람이에요. 감동적인 방식으로 감정을 표현하고, 자신이 믿는 가치를 끝까지 지켜요. 감정이 격해지면 말문이 막히는 경향이 있어요.',kw:['진정성','풍부한 내면','가치 중심','감성적 표현']},
+  LOGIC:{color:'#90C8F0',mbti:'ISTP · INTP',desc:'감정에 흔들리지 않고 본질을 보는 사람이에요. 위기 상황에서 가장 믿음직하고, 혼자서도 완전해요. 감정 표현이 서툴러 차갑게 보일 수 있어요.',kw:['냉철한 분석','문제 해결','독립성','논리적 사고']},
+  LEADER:{color:'#F0C070',mbti:'ESTJ · ENTJ',desc:'계획을 현실로 만드는 추진력이 있는 사람이에요. 무엇이 중요한지 흔들리지 않고 자연스럽게 방향을 잡아줘요. 내 방식이 옳다는 확신이 강하고 감정보다 결과를 우선시해요.',kw:['실행력','명확한 기준','리더십','목표 지향']}
+};
+let sgActiveType = null;
+function showType(type){
+  if(sgActiveType) document.getElementById('sg-card-'+sgActiveType).classList.remove('active');
+  if(sgActiveType===type){document.getElementById('sg-type-detail').classList.remove('visible');sgActiveType=null;return;}
+  sgActiveType=type;
+  document.getElementById('sg-card-'+type).classList.add('active');
+  const d=SG_TYPE_DATA[type];
+  document.getElementById('sg-td-name').textContent=type;
+  document.getElementById('sg-td-name').style.color=d.color;
+  document.getElementById('sg-td-mbti').textContent='MBTI® 대응: '+d.mbti;
+  document.getElementById('sg-td-desc').textContent=d.desc;
+  document.getElementById('sg-td-kw').innerHTML=d.kw.map(k=>`<span class="kw">${k}</span>`).join('');
+  document.getElementById('sg-type-detail').classList.add('visible');
+}
 
 // ── 별 생성
 (function(){
@@ -1071,20 +1219,25 @@ function shareInsta(){
   }else{copyToClipboard(msg,'📸 링크가 복사됐어요! 인스타 스토리에 붙여넣기 해보세요');}
 }
 function copyLink(){copyToClipboard(getShareUrl(),'✅ 링크가 복사됐어요!');}
+// 래피드 단일 상품 링크
+const LATPEED_URL = 'https://www.latpeed.com/products/JYjg-';
+
 function getReport(){
   const params=new URLSearchParams(window.location.search);
   const a=(params.get('a')||'SPARK').toUpperCase();
   const b=(params.get('b')||'VISION').toUpperCase();
   const combo=`${a}_${b}`;
-  const url=`/couple/kr/reports/combo/${combo}_KR.pdf`;
-  const filename=`Shadowgram_Couple_${combo}_KR.pdf`;
-  showToast(`📥 ${a} × ${b} 커플 리포트를 다운로드합니다!`);
-  setTimeout(()=>{
-    const l=document.createElement('a');
-    l.href=url;
-    l.download=filename;
-    l.click();
-  },400);
+  const ref=params.get('ref')||'';
+
+  // 쿠키에 유형 저장 (30일) — 결제 후 다운로드 페이지에서 사용
+  document.cookie=`sg_combo=${combo};path=/;max-age=2592000;SameSite=Lax`;
+  if(ref) document.cookie=`sg_ref=${ref};path=/;max-age=2592000;SameSite=Lax`;
+
+  // 래피드 결제 페이지로 이동
+  const latpeedUrl = ref
+    ? `${LATPEED_URL}?ref=${ref}&combo=${combo}`
+    : `${LATPEED_URL}?combo=${combo}`;
+  window.location.href = latpeedUrl;
 }
 
 function hwToggle(){
